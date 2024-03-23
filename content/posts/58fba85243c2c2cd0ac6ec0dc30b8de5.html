@@ -1,0 +1,28 @@
++++
+title = "研究人员分享在暗网上发现匿名勒索软件站点的技术"
+date = 2022-07-07T09:53:35+08:00
+categories = ["暗网技术", "暗网纵论"]
+tags = ["Talos", "Tenable", "勒索软件", "思科"]
+thumbnail = ""
++++
+
+<div class="entry-content clearfix">
+<div class="wp-block-image">
+<figure class="aligncenter size-full"><noscript><img fetchpriority="high" decoding="async" width="1019" height="627" src="/images/08b473e2cffd8f88ded5d6bccd20c137.jpg" alt="研究人员分享在暗网上发现匿名勒索软件站点的技术" class="wp-image-1924"></noscript><img fetchpriority="high" decoding="async" width="1019" height="627" src="/images/08b473e2cffd8f88ded5d6bccd20c137.jpg" alt="研究人员分享在暗网上发现匿名勒索软件站点的技术" class="wp-image-1924 j-lazy"></figure></div>
+<p>网络安全研究人员详细介绍了<span class="wpcom_tag_link">勒索软件</span>攻击者为掩盖其在线真实身份以及其网络服务器基础设施的托管位置而采取的各种措施。</p>
+<p>“大多数勒索软件运营商使用其原籍国（如瑞典、德国和新加坡）以外的托管服务提供商来托管他们的勒索软件运营网站，”<span class="wpcom_tag_link">思科</span><span class="wpcom_tag_link">Talos</span>研究员Paul Eubanks说。“当他们连接到他们的勒索软件网络基础设施以进行远程管理任务时，他们使用VPS作为代理来隐藏他们的真实位置。”</p>
+<p>同样突出的是使用TOR网络和DNS代理注册服务，为其非法操作提供额外的匿名层。</p>
+<p>但是，通过利用威胁参与者的操作安全失误和其他技术，这家网络安全公司上周披露，它能够识别托管在公共IP地址上的TOR隐藏服务，其中一些是与DarkAngels、Snatch、Quantum和Nokoyawa勒索软件集团有关的先前未知的基础设施。</p>
+<p>虽然众所周知，勒索软件集团依靠暗网来掩盖他们的非法活动，从泄露被盗数据到与受害者谈判付款，但Talos透露，它能够识别“公共IP地址托管与暗网相同的威胁参与者基础设施”网。”</p>
+<p>“我们用来识别公共互联网IP的方法涉及将威胁参与者的[自签名]TLS证书序列号和页面元素与公共互联网上的索引匹配。”Eubanks说。</p>
+<p>除了TLS证书匹配之外，用于发现攻击者清晰网络基础设施的第二种方法是使用Shodan等网络爬虫将与暗网网站相关的网站图标与公共互联网进行对比。</p>
+<p>以Nokoyawa为例，这是今年早些时候出现的一种新的Windows勒索软件，与Karma具有大量代码相似之处，托管在TOR隐藏服务上的站点被发现存在目录遍历漏洞，使研究人员能够访问用于捕获用户登录的“/var/log/auth.log“文件。</p>
+<p>调查结果表明，不仅犯罪分子的泄漏网站可以被互联网上的任何用户访问，其他基础设施组件，包括识别服务器数据，也被暴露出来，从而有效地使获得用于管理勒索软件服务器的登录位置成为可能。</p>
+<p>对登录成功的root用户登录信息的进一步分析表明，它们来自两个IP地址5.230.29.12和176.119.0.195，前者属于GHOSTnet GmbH，这是一家提供虚拟专用服务器（VPS）服务的托管服务提供商。</p>
+<p>“然而，176.119.0.195属于AS58271，它以Tyatkova Oksana Valerievna的名义列出，”Eubanks指出，“操作员可能忘记使用基于德国的VPS进行混淆，并直接从其176.119.0.195的真实IP登录到与该Web服务器的会话。”</p>
+<p>随着新兴Black Basta勒索软件的操作者通过使用QakBot进行初始访问和横向移动，并利用PrintNightmare漏洞（CVE-2021-34527）进行特权文件操作来扩大他们的攻击武器库。</p>
+<p>更重要的是，LockBit勒索软件团伙上周宣布发布LockBit 3.0，并打出“让勒索软件再次伟大！”的宣传标语，此外还推出了他们自己的漏洞赏金计划，为发现安全漏洞和改进其软件的“绝妙的想法”提供1000至100万美元的奖励。</p>
+<p><span class="wpcom_tag_link">Tenable</span>高级研究工程师Satnam Narang在一份声明中表示：“LockBit3.0的发布和漏洞赏金计划的引入是对网络犯罪分子的正式邀请，以帮助协助该组织寻求保持领先地位。”</p>
+<p>“漏洞赏金计划的一个关键重点是防御措施：防止安全研究人员和执法部门在其泄漏站点或勒索软件中发现漏洞，确定包括会员计划在内的成员可能被人肉攻击的方式，以及发现该组织用于内部通信的消息软件和Tor网络本身的漏洞。”</p>
+<p>“被人肉或被识别的威胁表明，执法工作显然是LockBit等组织非常关注的问题。最后，该组织正计划提供Zcash作为付款方式，这很重要，因为Zcash比比特币更难追踪，使研究人员更难监视该组织的活动。”</p>
+ </div>

@@ -1,0 +1,32 @@
++++
+title = "一个神秘的组织劫持了Tor暗网出口节点，进行SSL剥离攻击"
+date = 2021-01-28T07:19:26+08:00
+categories = ["暗网技术"]
+tags = []
+thumbnail = ""
++++
+
+<div class="entry-content clearfix">
+<figure class="wp-block-image size-large"><noscript><img fetchpriority="high" decoding="async" width="1000" height="500" src="/images/a6e188eef19936a1cbef05615f15963c.png" alt="一个神秘的组织劫持了Tor暗网出口节点，进行SSL剥离攻击" class="wp-image-641"></noscript><img fetchpriority="high" decoding="async" width="1000" height="500" src="/images/a6e188eef19936a1cbef05615f15963c.png" alt="一个神秘的组织劫持了Tor暗网出口节点，进行SSL剥离攻击" class="wp-image-641 j-lazy"></figure>
+<p>自2020年1月以来，一个神秘的黑客组织一直在向Tor网络添加服务器，以便对通过Tor浏览器访问与加密货币相关站点的用户进行SSL剥离攻击。</p>
+<p>该组织的攻击是如此的庞大和持久，以至于2020年5月，他们运行 <strong>了所有Tor出口中继的四分之一 </strong>-用户流量通过这些服务器离开Tor网络并访问公共互联网。</p>
+<p>根据 独立安全研究人员和Tor服务器运营商Nusenu周日发布的<a rel="noreferrer noopener" href="https://medium.com/@nusenu/how-malicious-tor-relays-are-exploiting-users-in-2020-part-i-1097575c0cac" target="_blank">一份报告</a>，在Tor团队采取三项干预措施中的第一项来淘汰该网络之前，该小组在高峰期管理了380个恶意Tor出口中继。</p>
+<h3 class="wp-block-heading">SSL对比特币用户的攻击</h3>
+<p>努瑟努在周末写道：“他们运作的全部细节还不得而知，但动机似乎很简单：利润。”</p>
+<p>研究人员说，该组织正在“通过操纵流过出口中继的流量来对Tor用户进行中间人攻击”，他们专门针对使用Tor软件或Tor浏览器访问与加密货币相关的网站的用户。</p>
+<p>中间人攻击的目标是通过将用户的Web流量从HTTPS URL降级为不太安全的HTTP替代方案，来执行“ SSL剥离”攻击。</p>
+<p>根据他们的调查，Nusenu说，这些SSL剥离攻击的主要目标是允许该组织替换进入比特币混合服务的HTTP流量内的比特币地址。</p>
+<p>比特币混合器是一个网站，通过将少量资金分成零碎资金并通过数千个中间地址进行转移，然后再在目标地址重新加入资金，用户可以将比特币从一个地址发送到另一个地址。通过在HTTP流量级别替换目标地址，攻击者有效地劫持了用户的资金，而无需用户或比特币混合器的了解。</p>
+<h2 class="wp-block-heading">艰难的进攻</h2>
+<p>研究人员说：“比特币地址重写攻击并不新鲜，但是其操作规模却是新的。”</p>
+<p>Nusenu表示，根据用于恶意服务器的联系电子邮件地址，他们跟踪了至少七个不同的恶意Tor出口中继群集，这些群集在过去七个月内被添加。</p>
+<figure class="wp-block-image size-large"><noscript><img decoding="async" width="810" height="363" src="/images/b2b85ec6059342e598bc48b65694096d.png" alt="一个神秘的组织劫持了Tor暗网出口节点，进行SSL剥离攻击" class="wp-image-643"></noscript><img decoding="async" width="810" height="363" src="/images/b2b85ec6059342e598bc48b65694096d.png" alt="一个神秘的组织劫持了Tor暗网出口节点，进行SSL剥离攻击" class="wp-image-643 j-lazy"><figcaption>图片：Nusenu</figcaption></figure>
+<p>研究人员说，恶意网络在5月22日达到380台服务器的峰值，当时所有Tor出口中继的23.95％受该小组控制，这使Tor用户有四分之一的机会登陆到恶意出口中继。</p>
+<p>Nusenu表示，自5月份以来，他一直在向Tor管理员报告恶意出口中继，并且在6月21日最近一次撤离之后，威胁参与者的能力已大大降低。</p>
+<figure class="wp-block-image size-large"><noscript><img decoding="async" width="770" height="307" src="/images/750dd784f9920195b4eecde79f505c78.png" alt="一个神秘的组织劫持了Tor暗网出口节点，进行SSL剥离攻击" class="wp-image-644"></noscript><img decoding="async" width="770" height="307" src="/images/750dd784f9920195b4eecde79f505c78.png" alt="一个神秘的组织劫持了Tor暗网出口节点，进行SSL剥离攻击" class="wp-image-644 j-lazy"><figcaption>图片：Nusenu</figcaption></figure>
+<p>尽管如此，Nusenu还补充说，自上次下台以来，“有多个指标表明攻击者 <strong>的Tor网络出口容量仍然超过10％</strong>  （截至2020-08-08）。”</p>
+<p>研究人员认为，由于Tor项目对可加入其网络的实体没有适当的审查流程，威胁者可能会继续进行攻击。尽管匿名是Tor网络的核心特征，但研究人员认为，至少对出口中继运营商而言，可以进行更好的审查。</p>
+<h3 class="wp-block-heading">2018年类似的攻击地点</h3>
+<p>在2018年发生了类似的攻击; 但是，它不是针对Tor出口中继，而是针对Tor-to-web（Tor2Web）代理-公共互联网上的Web门户，允许用户访问通常只能通过Tor浏览器访问的.onion地址。</p>
+<p>当时， <a href="https://www.proofpoint.com/us/threat-insight/post/double-dipping-diverting-ransomware-bitcoin-payments-onion-domains" target="_blank" rel="noreferrer noopener">美国安全公司Proofpoint报告</a> 称，至少有一个Tor-to-web代理运营商正在悄悄地替换比特币地址，以供用户访问旨在支付赎金要求的勒索软件支付门户，从而有效地劫持了付款并让受害者没有解密密钥，即使他们支付了赎金。</p>
+ </div>

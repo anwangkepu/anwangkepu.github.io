@@ -1,0 +1,93 @@
++++
+title = "Tor官方推荐，隐私操作系统Tails 6.0正式发布"
+date = 2024-02-29T20:54:41+08:00
+categories = ["Tor官方动态", "工具", "暗网动态"]
+tags = ["Tails", "Tor官方", "操作系统", "隐私保护"]
+thumbnail = ""
++++
+
+<div class="entry-content clearfix">
+<div class="wp-block-image">
+<figure class="aligncenter size-full"><noscript><img fetchpriority="high" decoding="async" width="940" height="529" src="/images/158c13dc29b212b1ce7ef840ec40d282.webp" alt="Tor官方推荐，隐私操作系统Tails 6.0正式发布" class="wp-image-3160"></noscript><img fetchpriority="high" decoding="async" width="940" height="529" src="/images/158c13dc29b212b1ce7ef840ec40d282.webp" alt="Tor官方推荐，隐私操作系统Tails 6.0正式发布" class="wp-image-3160 j-lazy"></figure></div>
+<p>近日，Tor项目<a href="https://blog.torproject.org/new-release-tails-60/" target="_blank" rel="noreferrer noopener">官方博客发布文章</a>，推荐了隐私<span class="wpcom_tag_link">操作系统</span><span class="wpcom_tag_link">Tails</span>的6.0新版本。</p>
+<p>Tails是基于Debian的专注于安全隐私的Linux发行版，旨在保护互联网隐私和提供匿名性，“暗网下/AWX”曾介绍过5.1版本，目前已更新至版本6.0，这是一个引入大量新功能和更新组件的主要版本。</p>
+<p>Tails 6.0基于最新的Debian GNU/Linux 12 “Bookworm”操作系统系列，默认附带GNOME 43桌面环境，并具有持久存储错误检测功能，可帮助用户诊断硬件故障、防范恶意USB设备并支持自动安装外部设备。</p>
+<p>新的自动挂载功能支持加密设备，因此系统会提示用户输入密码以自动解锁加密。但是，作为安全防护功能，新的“针对恶意USB设备的防护”将在屏幕锁定时自动忽略插入计算机的任何设备。</p>
+<p>随着新的GNOME 43桌面更新，Tails 6.0还引入了对黑暗模式的支持。此外，现在还有夜灯模式，可以将屏幕更改为更暖的颜色和更低的亮度。此外，GNOME 43还带来了内置的屏幕截图和截屏功能。</p>
+<p>此版本还包括在Mozilla Thunderbird电子邮件客户端中更轻松地配置Gmail帐户，因为用户现在可以直接登录，而无需配置任何特殊内容。此外，持久存储密码现在可以生成加泰罗尼亚语、德语、意大利语、葡萄牙语和西班牙语。</p>
+<p>Tails 6.0中包含的默认软件包括Tor Browser 13.0.10匿名网络浏览器、KeePassXC 2.7.4密码管理器、Electrum 4.3.4比特币钱包、Metadata Cleaner 2.4.0隐私工具、Inkscape 1.2.2 SVG编辑器、Audacity 3.2.4音频编辑器、GIMP 2.10.34图像编辑器和Kleopatra 22.12证书管理器。</p>
+<p>Tails 6.0现已可以从<a href="https://tails.net/" target="_blank" rel="noreferrer noopener">官方网站</a>下载ISO或USB镜像。现有用户必须<a href="https://tails.net/doc/upgrade/index.en.html#manual" target="_blank" rel="noreferrer noopener">按照这些说明</a>执行手动升级。有关此更新中包含的更改的更多详细信息，请查看<a href="https://tails.net/news/version_6.0/index.en.html" target="_blank" rel="noreferrer noopener">完整的发行说明</a>。</p>
+<h2 class="wp-block-heading">新功能</h2>
+<h3 class="wp-block-heading">持久存储上的错误检测</h3>
+<p>Tails 6.0会在用户从Tails USB设备中<a href="https://tails.net/ioerror/" target="_blank" rel="noreferrer noopener">读取或写入数据时发生错误</a>时提出警告。</p>
+<p>这些警报可以帮助用户诊断U盘上的硬件故障，并在出现问题之前备份用户的持久存储。</p>
+<h3 class="wp-block-heading">自动挂载外部设备</h3>
+<p>当用户插入外部存储设备（U盘或移动硬盘）时，Tails 6.0会自动挂载。如果存储设备包含加密分区，Tails 6.0会自动解锁加密。</p>
+<p>此功能还简化了解锁<a href="https://tails.net/doc/encryption_and_privacy/veracrypt/" target="_blank" rel="noreferrer noopener">VeraCrypt加密卷</a>的方法。</p>
+<h3 class="wp-block-heading">防范恶意USB设备</h3>
+<p>如果攻击者设法将<a href="https://en.wikipedia.org/wiki/BadUSB" target="_blank" rel="noreferrer noopener">恶意USB设备</a>插入用户的电脑，他们可能会在用户不知情的情况下运行软件，破坏Tails内置的安全性。</p>
+<p>为了在用户离开电脑时防止此类攻击，Tails 6.0会忽略屏幕锁定状态下时插入的任何USB设备。</p>
+<p>只有在屏幕解锁时插入新的USB设备，用户才能使用它们。</p>
+<h3 class="wp-block-heading">深色模式和夜灯</h3>
+<p>从Tails 6.0的系统菜单中，用户现在可以在以下各项之间切换：</p>
+<ul>
+<li>颜色更冷、亮度更高的默认灯光模式</li>
+<li>黑暗模式</li>
+<li>色彩较暖、亮度较低的夜光模式</li>
+<li>暗光模式和夜光模式的组合</li>
+<li>更方便的截图和截屏</li>
+</ul>
+<p>GNOME 43在系统菜单中引入了一个新的快捷方式，使截屏或录制截屏视频变得更容易。</p>
+<h3 class="wp-block-heading">Thunderbird中使用Gmail更简单</h3>
+<p>由于Thunderbird和Gmail的变化，在Tails 6.0系统里，Thunderbird中配置Gmail帐户变得更加容易。</p>
+<p>除了常规的两步验证之外，用户无需在Gmail帐户中进行任何特殊配置。</p>
+<p>在Thunderbird中配置Gmail帐户时，用户可以直接登录该帐户。</p>
+<h3 class="wp-block-heading">Diceware密码短语支持另外5种语言</h3>
+<p>创建持久存储时，建议的口令现在还能以加泰罗尼亚语、德语、意大利语、葡萄牙语和西班牙语生成。</p>
+<h2 class="wp-block-heading">更改和更新</h2>
+<h3 class="wp-block-heading">附带软件</h3>
+<p>Tails 6.0更新了Tails中包含的大部分应用程序，其中包括：</p>
+<ul>
+<li>Tor浏览器升级至<a href="https://blog.torproject.org/new-release-tor-browser-13010/" target="_blank" rel="noreferrer noopener">13.0.10</a>；</li>
+<li>Electrum从4.0.9升级到4.3.4，改进对闪电协议和硬件钱包的支持；</li>
+<li>KeePassXC从2.6.2升级到2.7.4，添加条目标签，支持深色模式，重新设计历史视图；</li>
+<li>元数据清理器（Metadata Cleaner ）从1.0.2升级到2.4.0，重新设计整个用户界面，支持深色模式，添加对AIFF和HEIC文件的支持；</li>
+<li>文本编辑器从gedit到gnome-text-editor，支持深色模式；</li>
+<li>Inkscape从1.0.2升级到1.2.2；</li>
+<li>Audacity从2.4.2升级到3.2.4；</li>
+<li>Gimp从2.10.22升级到2.10.34；</li>
+<li>Kleopatra从4:20.08升级到 4:22.12；</li>
+</ul>
+<h3 class="wp-block-heading">删除的功能</h3>
+<ul>
+<li>删除桌面上的图标，提供此功能的GNOME Shell扩展没有很好地集成到GNOME中，并产生了其他问题；</li>
+<li>从文件浏览器的快捷菜单中删除项目“擦除”和“擦除可用磁盘空间”，U盘和固态硬盘 (SSD) 上的安全删除不够可靠，将<a href="https://tails.net/doc/encryption_and_privacy/secure_deletion/" target="_blank" rel="noreferrer noopener">有关安全删除的文档</a>更新为新建议：使用加密卷、覆盖整个设备或物理分解它；</li>
+<li>从文件浏览器的快捷菜单中删除项目“删除元数据”，Metadata Cleaner使用的元数据删除库MAT2的开发人员不再提供此选项；</li>
+<li>删除GtkHash，用户仍然可以安装GtkHash作为<a href="https://tails.net/doc/persistent_storage/additional_software/" target="_blank" rel="noreferrer noopener">附加软件</a>。</li>
+</ul>
+<h3 class="wp-block-heading">已修复问题</h3>
+<ul>
+<li>修复了屏幕键盘中特殊字符和非拉丁脚本的多个问题。</li>
+</ul>
+<h3 class="wp-block-heading">已知的问题</h3>
+<ul>
+<li>OnionShare 2.2版本仍包含在系统中，虽然尝试将OnionShare 2.6版本集成在Tails 6.0中，但它存在一些涉及安全的问题；</li>
+<li>自动安装外部设备会干扰备份持久存储实用程序。</li>
+</ul>
+<h2 class="wp-block-heading">获取Tails 6.0</h2>
+<p>升级用户的Tails U盘并保留用户的持久存储，自动升级仅适用于从Tails 6.0~rc1到6.0。<br>所有其他用户都必须进行<a href="https://tails.net/doc/upgrade/#manual" target="_blank" rel="noreferrer noopener">手动升级</a>。</p>
+<h3 class="wp-block-heading">在新的U盘上安装Tails 6.0</h3>
+<p>请遵循安装说明：</p>
+<ul>
+<li><a href="https://tails.net/install/windows/" target="_blank" rel="noreferrer noopener">从Windows系统上安装</a></li>
+<li><a href="https://tails.net/install/mac/" target="_blank" rel="noreferrer noopener">从macOS系统上安装</a></li>
+<li><a href="https://tails.net/install/linux/" target="_blank" rel="noreferrer noopener">从Linux系统上安装</a></li>
+<li><a href="https://tails.net/install/expert/" target="_blank" rel="noreferrer noopener">使用命令行和GnuPG从Debian或Ubuntu安装</a></li>
+</ul>
+<p>如果用户安装而不是升级，则U盘上的持久存储将会丢失。</p>
+<h3 class="wp-block-heading">仅供下载</h3>
+<p>如果用户不需要安装或升级说明，可以直接下载Tails 6.0：</p>
+<p><a href="https://tails.net/install/download/" target="_blank" rel="noreferrer noopener">对于U盘（USB 映像）</a><br><a href="https://tails.net/install/download-iso/" target="_blank" rel="noreferrer noopener">对于DVD和虚拟机（ISO 映像）</a></p>
+<h3 class="wp-block-heading">支持与反馈</h3>
+<p>如需支持和反馈，请访问<a href="https://tails.net/support/" target="_blank" rel="noreferrer noopener">Tails网站上的支持部分</a>。</p>
+ </div>

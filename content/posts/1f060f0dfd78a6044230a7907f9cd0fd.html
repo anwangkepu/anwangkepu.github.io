@@ -1,0 +1,43 @@
++++
+title = "Cloudflare提供的Tor上的DNS配置文档"
+date = 2021-09-20T10:45:29+08:00
+categories = ["暗网技术"]
+tags = ["DNS配置", "暗网教程"]
+thumbnail = ""
++++
+
+<div class="entry-content clearfix">
+<div class="wp-block-image"><figure class="aligncenter size-large"><noscript><img fetchpriority="high" decoding="async" width="1024" height="385" src="/images/268552539917f9400654bc391a80a9e8.png" alt="Cloudflare提供的Tor上的DNS配置文档" class="wp-image-169"></noscript><img fetchpriority="high" decoding="async" width="1024" height="385" src="/images/268552539917f9400654bc391a80a9e8.png" alt="Cloudflare提供的Tor上的DNS配置文档" class="wp-image-169 j-lazy"></figure></div>
+<p>如果不想向DNS解析服务器透露自己的IP地址，可以选择使用Cloudflare的Tor onion服务。通过Tor网络解析DNS查询保证了比直接发出请求提供了更高级别的匿名性。这样做不仅可以防止DNS解析服务器看到记录用户的IP地址，还可以防止ISP提供商知道用户尝试解析与访问的具体域名。</p>
+<p>Cloudflare在<a href="https://blog.cloudflare.com/welcome-hidden-resolver/">此博客文章中</a>介绍了有关此服务的更多<a href="https://blog.cloudflare.com/welcome-hidden-resolver/">信息</a>，<span class="has-inline-color has-vivid-purple-color">暗网下/Anwangxia</span>也曾经转载过此文章。这里继续跟进下其<a rel="noreferrer noopener" href="https://developers.cloudflare.com/1.1.1.1/other-ways-to-use-1.1.1.1/dns-over-tor" target="_blank">具体的配置</a>。</p>
+<h2 class="wp-block-heading">设置Tor客户端</h2>
+<p>使用所有其他DNS模式与此模式之间的重要区别在于，数据包路由不再使用IP地址，因此所有连接都必须通过Tor客户端进行路由。</p>
+<p>在开始之前，请前往Tor项目网站<a rel="noreferrer noopener" href="https://www.torproject.org/download/download.html.en" target="_blank">下载并安装Tor客户端</a>。如果你使用Tor浏览器，它会自动启动一个SOCKS代理在：127.0.0.1:9150。</p>
+<p>如果从命令行使用 Tor，请创建以下配置文件：</p>
+<p><code>SOCKSPort 9150</code></p>
+<p>然后你可以运行tor：</p>
+<p><code>tor -f tor.conf</code></p>
+<p>此外，如果你使用Tor浏览器，你可以前往解析器的地址，看到通常的1.1.1.1页面：</p>
+<p><a href="https://dns4torpnlfs2ifuz2s2yf3fc7rdmsbhm6rw75euj35pac6ap25zgqad.onion/" target="_blank" rel="noreferrer noopener">https://dns4torpnlfs2ifuz2s2yf3fc7rdmsbhm6rw75euj35pac6ap25zgqad.onion/</a></p>
+<p>请注意，HTTPS证书指示符应显示“Cloudflare, Inc. (US)”。</p>
+<p>提示：如果您忘记了dns4torblahblahblah（长地址）.onion地址，请使用cURL：</p>
+<p><code>​curl -sI https://tor.cloudflare-dns.com | grep -i alt-svc</code></p>
+<h2 class="wp-block-heading">使用socat设置本地DNS代理</h2>
+<p>当然，并非所有DNS客户端都支持连接到Tor客户端，因此将任何使用DNS的软件连接到隐藏解析器的最简单方法是在本地转发端口，例如使用<a href="http://www.dest-unreach.org/socat/" target="_blank" rel="noreferrer noopener">socat</a>.</p>
+<p>​<strong>基于TCP、TLS和HTTPS的DNS</strong></p>
+<p>隐藏的解析器设置为在TCP端口53和853上监听基于TCP和TLS的DNS请求。设置Tor代理后，socat以特权用户身份运行以下命令，适当替换端口号：</p>
+<p><code>PORT=853; socat TCP4-LISTEN:${PORT},reuseaddr,fork SOCKS4A:127.0.0.1:dns4torpnlfs2ifuz2s2yf3fc7rdmsbhm6rw75euj35pac6ap25zgqad.onion:${PORT},socksport=9150</code></p>
+<p>从这里开始，你可以按照设置1.1.1.1的常规指南，除了你应该总是使用本地地址127.0.0.1而不是1.1.1.1。如果你需要从其他设备访问代理，只需将socat命令中的本地IP地址127.0.0.1替换为你的网络IP地址，如192.168.X.X。</p>
+<p><strong>​UDP上的DNS</strong></p>
+<p>请注意，Tor网络不支持UDP连接，这就是需要进行一些黑客技巧的原因。如果你的客户端只支持UDP连接，解决方案是使用下面的socat命令，将发送到本地主机UDP:53端口的数据包封装为TCP数据包：</p>
+<p><code>socat UDP4-LISTEN:53,reuseaddr,fork SOCKS4A:127.0.0.1:dns4torpnlfs2ifuz2s2yf3fc7rdmsbhm6rw75euj35pac6ap25zgqad.onion:253,socksport=9150</code></p>
+<p><strong>基于 HTTPS 的 DNS</strong></p>
+<p><a href="https://blog.cloudflare.com/welcome-hidden-resolver/" target="_blank" rel="noreferrer noopener">如博客文章中所述</a>，我们最喜欢使用隐藏解析器的方式是使用DNS over HTTPS (DoH)。要设置它：</p>
+<ol><li>按照“通过HTTPS客户端运行DNS”指南下载cloudflared。</li></ol>
+<ol start="2"><li>启动Tor SOCKS代理并用于socat将端口TCP:443转发到本地主机：</li></ol>
+<p><code>socat TCP4-LISTEN:443,reuseaddr,fork SOCKS4A:127.0.0.1:dns4torpnlfs2ifuz2s2yf3fc7rdmsbhm6rw75euj35pac6ap25zgqad.onion:443,socksport=9150</code></p>
+<ol start="3"><li>指示你的机器将.onion地址视为localhost本地主机：</li></ol>
+<p><code>$ cat &lt;&lt; EOF &gt;&gt; /etc/hosts<br>127.0.0.1 dns4torpnlfs2ifuz2s2yf3fc7rdmsbhm6rw75euj35pac6ap25zgqad.onion<br>EOF</code></p>
+<ol start="4"><li>最后，启动一个本地DNS over UDP守护进程：</li></ol>
+<p>c<code>loudflared proxy-dns --upstream "https://dns4torpnlfs2ifuz2s2yf3fc7rdmsbhm6rw75euj35pac6ap25zgqad.onion/dns-query"</code></p>
+ </div>

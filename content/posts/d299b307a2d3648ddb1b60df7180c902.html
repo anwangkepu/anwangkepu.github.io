@@ -1,0 +1,22 @@
++++
+title = "基于GPU的Tor v3 vanity网址onion域名运算工具"
+date = 2022-02-06T09:24:33+08:00
+categories = ["工具", "暗网技术"]
+tags = ["onion域名", "洋葱服务"]
+thumbnail = ""
++++
+
+<div class="entry-content clearfix">
+<div class="wp-block-image"><figure class="aligncenter size-full"><noscript><img fetchpriority="high" decoding="async" width="850" height="425" src="/images/55316ba157bddcb5000fe6f9cc38b028.png" alt="基于GPU的Tor v3 vanity网址onion域名运算工具" class="wp-image-1466"></noscript><img fetchpriority="high" decoding="async" width="850" height="425" src="/images/55316ba157bddcb5000fe6f9cc38b028.png" alt="基于GPU的Tor v3 vanity网址onion域名运算工具" class="wp-image-1466 j-lazy"></figure></div>
+<p>“暗网下/AWX”早前介绍过暴力运算获取好的看自定义前缀的v2的.onion域名的工具，如<a rel="noreferrer noopener" href="https://github.com/katmagic/Shallot" target="_blank">Shallot</a>、<a rel="noreferrer noopener" href="https://github.com/lachesis/scallion" target="_blank">scallion</a>，但是Onion Services v2已经被Onion Services v3所取代，当然，之前就也介绍过ed25519洋葱服务也就是v3的.onion域名（vanity地址）运算工具，如<a rel="noreferrer noopener" href="https://github.com/cathugger/mkp224o" target="_blank">mkp224o</a>。</p>
+<p>但是mkp224o是基于CPU运算的，效率比较低，一般锁定前8位前缀就基本算不出来了。近期，“暗网下/AWX”发现了一款基于GPU的Tor v3 vanity网址生成器，使用Rust语言开发，设计用于在NVIDIA GPU上运行。</p>
+<p>项目地址：<a rel="noreferrer noopener" href="https://github.com/dr-bonez/tor-v3-vanity" target="_blank">https://github.com/dr-bonez/tor-v3-vanity</a></p>
+<p><strong>作者的声明：</strong></p>
+<blockquote class="wp-block-quote"><p>这个项目是全新的，还没有经过彻底审查。请在这里报告你发现的任何错误。</p><p>该程序被设计为使用所有可用的cuda设备，并将自动决定使用的线程和块的数量。</p><p>支持指定多个前缀。</p></blockquote>
+<p><strong>安装方法：</strong></p>
+<p>安装Rust<br>安装Cuda<br>执行以下命令：<br><code>rustup install nightly<br>rustup target add nvptx64-nvidia-cuda<br>cargo install ptx-linker<br>git clone https://github.com/dr-bonez/tor-v3-vanity<br>cd tor-v3-vanity<br>cargo +nightly install --path .</code></p>
+<p><strong>使用方法：</strong></p>
+<p>1.创建输出目录：<br><code>mkdir mykeys</code><br>2.执行t3v：<br><code>t3v --dst mykeys/ myprefix1,myprefix2</code><br>3.使用结果文件作为你的hs_ed25519_secret_key：<br><code>cat mykeys/myprefixwhatever.onion &gt; /var/lib/tor/hidden_service/hs_ed25519_secret_key</code></p>
+<p>根据作者测试，使用其1070ti的显卡，计算5位前缀，需要7分钟；6位前缀，需要3.5小时；7位，需要5天；8位，需要22.5周；9位，需要14年。</p>
+<p>“暗网下/AWX”将在测试后更新测试结果。</p>
+ </div>

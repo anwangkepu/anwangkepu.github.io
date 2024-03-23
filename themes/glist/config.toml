@@ -1,0 +1,33 @@
+[params]
+announcement="本站所有资源为完全免费分享，不用注册，也不需要充值任何网盘VIP。"
+footer = """<small>WARNING: This website contains explicit adult material.</small>"""
+logo = "/logo.png"
+# favicon = "/favicon.ico"
+# [[menu.main]]
+# name = "首页"
+# url = "/"
+# weight = 1
+# [[menu.main]]
+# name = "蛋蛋ASMR视频"
+# url = "https://asmregg.com/"
+# weight = 2
+# [[menu.main]]
+# name = "蛋蛋ASMR音声"
+# url = "https://a.asmregg.com/"
+# weight = 3
+# [[menu.main]]
+# name = "搜索"
+# url = "/search/"
+# weight = 4
+# [[menu.main]]
+# name = "分类4"
+# url = "/categories/分类4/"
+# weight = 5
+# [[menu.main]]
+# name = "分类5"
+# url = "/categories/分类5/"
+# weight = 6
+# [[menu.main]]
+# name = "分类"
+# url = "/categories/分类6/"
+# weight = 7

@@ -1,0 +1,46 @@
++++
+title = "安全恶意软件分析的5个步骤"
+date = 2020-10-20T22:32:38+08:00
+categories = ["暗网技术"]
+tags = []
+thumbnail = ""
++++
+
+<div class="entry-content clearfix">
+<p>恶意软件分析是一个棘手的过程。错误的处理会导致意外的自我暴露，这可能会造成严重破坏，具体取决于感染发生的位置。</p>
+<ul><li>如果将其放在日常使用的计算机中，那么您将注定要擦干净并重新启动。</li><li>如果它在虚拟机内部，您可能会认为不必担心，但是VM的网络功能又如何呢？它是否与托管VM的主机连接到同一网络？如果是这样，则容易受到感染的VM的横向移动。</li><li>如果我们将恶意软件移至不相邻的网络怎么办？您可以，但是如何连接到该端点？是RDP吗？如果是这样，那么您就不得不担心 <a href="https://research.checkpoint.com/2019/reverse-rdp-attack-code-execution-on-rdp-clients/">剪贴板被利用了</a>。</li></ul>
+<p>听起来好像无休止的事情需要担心。当然，您要研究的恶意软件可能不具备某些令人恐惧的超跳功能，但是由于意外暴露，损失太多了。您要担心的最后一件事是在深夜分析一些新的勒索软件，并在第二天清晨醒来，出现几条警报，警告您所有客户数据均已加密。那么最佳实践是什么？</p>
+<p>好吧，让我们从第一个正方形开始；我们如何获取这些新样本？</p>
+<h2 class="wp-block-heading" id="step-one-where-s-your-sample-for-malware-analysis">第一步：恶意软件分析的样本在哪里？</h2>
+<p>假设您正在寻找一个新的示例，它恰好在.onion网站上的某个论坛上做广告。您的第一个想法是跳上Tor网络并下载它：这是您的第一个错误。当您与隐藏的服务进行交互时，这是另一回事。我说的是归因。</p>
+<p>您看起来像其他所有Tor用户一样吗？还是你脱颖而出？并非所有Tor用户都使用同一操作系统，这只是浏览器泄漏的众多属性之一。那您的时区呢？您的用户代理？您的CPU类型？这只是一个平方，有很多事情要担心。更不用说您将所有安全性都委托给Firefox，这<a href="https://blog.authentic8.com/breaking-the-local-browser-sandbox-1/">是从入侵计算机到您</a>和<a href="https://blog.authentic8.com/breaking-the-local-browser-sandbox-1/">漏洞利用工具包</a>之间唯一存在的问题 。在您时间有限的时刻（例如在事件响应期间），这些小事情可以忽略。</p>
+<p>因此，这是我的第一条建议： <strong>减少归因</strong>。不要在其他人都不喜欢的地方漫游，也不要在没有其他研究的情况下对比赛场地了解很多。任何突出的单个属性都可能导致某些邪恶的Web服务操作员两次检查访问日志。如果您站出来大声尖叫，“研究人员的姓名！” 这可以启动损害控制，并且您可能会丢失样品。</p>
+<h3 class="wp-block-heading" id="step-two-storing-the-sample">第二步：存储样本</h3>
+<p><strong>一个</strong>ssuming抓住你的样品时所采取的预防措施，你怎么存放？您是否公然将其下载到您的主计算机中？尚未执行任何操作（假设您的浏览器没有为您执行此操作），但实际上某些防病毒软件已将其选中，不是吗？如果防病毒软件确实选择了它，则可以安全地假定该示例现在已对该供应商的示例数据库公开。而且，如果造成恶意软件威胁的人再次看到该样本（例如在VirusTotal上），他们将启动损害控制，您将回到第一个方框。您可能认为您应该关闭所有保护措施，以使样本不会发送到任何地方-听起来不是个好主意！如果您关闭保护装置，则有遭受意外暴露的风险，甚至都不知道是什么原因击中了您。</p>
+<p>有这么多细微差别，我们应该在哪里存储恶意软件？我会告诉您不保留它的地方：在您的本地端点上！无论您决定放置在何处，请确保它不是您的下载文件夹。将其存储在云中，将其存储在不相邻的地方，将其保存在不必为忙于移动它而双击的地方。</p>
+<p>因此，如果到目前为止我们已经学到了任何东西，则用于获取恶意软件的工具和放置恶意软件的位置 <strong>都不应与本地网络相邻</strong>。</p>
+<h3 class="wp-block-heading" id="step-three-analyzing-the-sample">第三步：分析样本</h3>
+<p>因此，您已经做到了这一步而不会被烧毁，现在开始分解恶意软件的过程。静态分析技术使您无需运行即可查看恶意软件的内部。例如，如果您尝试确定行为并快速了解恶意软件内部存储的数据类型，则此方法很有用。也许其中一个字符串被编码了，也许导致了一些控制服务器。这是进行分析时要考虑的所有重要信息。</p>
+<p>有很多工具可让您从Ghidra，IDA Pro等中执行此操作。但是，您没有考虑的一件事是恶意软件在运行时会做什么。如果该恶意软件仅在运行时进行了多次网络握手以加载下一组指令，该怎么办？你不想知道吗 这将要求您运行恶意软件。问题是，您不能在任何环境中都这样做。</p>
+<p>首先，此环境不能成为常规虚拟机，因为一旦恶意软件检测到它位于其中，它便可能采取必要的步骤保持休眠状态。 恶意软件作者可以通过 <a href="https://www.blackhat.com/docs/asia-14/materials/Li/Asia-14-Li-Comprehensive-Virtual-Appliance-Detection.pdf">多种方式</a>来生成检测二进制文件是否驻留在虚拟机内部的逻辑。如果您的恶意软件是为您或组织量身定制的，那么您第一次失败就不会失败。可能还内置了其他规避策略，您可能不知道该规避策略可以提醒作者，由于在虚拟环境中执行了恶意软件，因此正在对其恶意软件进行分析。</p>
+<p>那么如何避免这种情况呢？查看 提供沙盒执行功能的供应商，例如 <a href="https://www.crowdstrike.com/endpoint-security-products/falcon-sandbox-malware-analysis/falcon-sandbox-faq/">Crowdstrike</a> 和 <a href="https://cuckoosandbox.org/">Cuckoo</a>，那样您就不必担心困扰虚拟环境的所有属性，因为那里已经有人在工作。重新发明轮子毫无意义，尤其是当您不能考虑可能有助于区分您的环境确实在虚拟化的每个属性时。</p>
+<h3 class="wp-block-heading" id="step-four-bulk-analysis-using-silo-for-research-toolbox-">第四步：使用筒仓进行研究进行批量分析（工具箱）</h3>
+<p>如果您已经做到了这一点，则意味着您已经成功分析了第一个样本，并且对它是否良性有了很好的了解。问题是：您有一个以上的工件，并且要花很多时间才能做到这一点而又不会犯任何错误，这是有问题且耗时的。必须有一条更好的路线。</p>
+<div class="wp-block-image"><figure class="aligncenter size-large"><noscript><img fetchpriority="high" decoding="async" width="1024" height="522" src="/images/b18c7f8006bf8458d7356275e7d26c8d.png" alt="安全恶意软件分析的5个步骤" class="wp-image-520"></noscript><img fetchpriority="high" decoding="async" width="1024" height="522" src="/images/b18c7f8006bf8458d7356275e7d26c8d.png" alt="安全恶意软件分析的5个步骤" class="wp-image-520 j-lazy"></figure></div>
+<p>Silo for Research是一款独立的浏览器，可让您修改归因，可以快速帮助您减少指纹。它可以帮助您看起来像各种花园浏览器，还可以帮助您利用Tor网络。它还带有一个安全的存储平台，可将所有工件保存在不存在意外暴露的地方。</p>
+<div class="wp-block-image"><figure class="aligncenter size-large"><noscript><img decoding="async" width="1024" height="576" src="/images/e09d6ee7e2d0bbb1868b6956626d51d0.png" alt="安全恶意软件分析的5个步骤" class="wp-image-521"></noscript><img decoding="async" width="1024" height="576" src="/images/e09d6ee7e2d0bbb1868b6956626d51d0.png" alt="安全恶意软件分析的5个步骤" class="wp-image-521 j-lazy"></figure></div>
+<p>此外，我们的外部API允许您与文件进行交互，而无需离开平台。您可以创建一个脚本，将该脚本存储到存储中，将其发送到沙箱中，然后返回报表，而无需创建虚拟机或避免确保一切正常的麻烦。</p>
+<div class="wp-block-image"><figure class="aligncenter size-large"><noscript><img decoding="async" width="1024" height="576" src="/images/ad9159313ab71fb171013e2e3b155c37.png" alt="安全恶意软件分析的5个步骤" class="wp-image-523"></noscript><img decoding="async" width="1024" height="576" src="/images/ad9159313ab71fb171013e2e3b155c37.png" alt="安全恶意软件分析的5个步骤" class="wp-image-523 j-lazy"></figure></div>
+<p>幸运的是，一个研究人员团队致力于创建一个能够做到这一点的脚本。让我们谈谈有人将如何构建这样的脚本。</p>
+<h3 class="wp-block-heading" id="step-five-building-a-script">第五步：构建脚本</h3>
+<p>多亏了Authentic8安全存储API和外包的恶意软件分析工具，将文件从一个不相邻的网络传输到另一个网络非常简单。以下是有关如何构建脚本的步骤：</p>
+<p><strong>获取您的存储桶文件令牌和存储桶ID</strong>。Silo for Research允许您通过访问令牌（用户文件令牌和存储桶ID）安全地访问共享的安全存储驱动器。身份验证后，您可以使用API​​端点通过HTTP请求从安全存储中下载和上传文件。此外，还有列出文件的命令，这些命令使您可以循环访问目录以查找特定文件。在您的脚本中，这些命令将有助于在安全存储中查找文件和从中进行文件传输，并将其提交到恶意软件分析工具。当文件从一个位置传输到另一位置时，请确保将文件作为二进制文件传输并保存在内存中。例如，如果要用python编写脚本，则可以使用IO库将文件存储在内存中的二进制流（例如BytesIO对象）中。<a href="https://docs.python.org/3/library/io.html">在这里</a>查看更多文档 <a href="https://docs.python.org/3/library/io.html"></a>。这样可以确保您不会在主机上存储任何恶意软件，也不会意外触发有害病毒。下一步是找到恶意软件分析工具。</p>
+<p>为了提供帮助，我们提供了一个使用Authentic8 External API进行此操作的示例。</p>
+<div class="wp-block-image"><figure class="aligncenter size-large"><noscript><img loading="lazy" decoding="async" width="514" height="211" src="/images/2d7b029e760e9e4949f7e1335eaef18e.png" alt="安全恶意软件分析的5个步骤" class="wp-image-522"></noscript><img loading="lazy" decoding="async" width="514" height="211" src="/images/2d7b029e760e9e4949f7e1335eaef18e.png" alt="安全恶意软件分析的5个步骤" class="wp-image-522 j-lazy"></figure></div>
+<p><strong>选择一个恶意软件分析工具</strong>。为了使事情变得简单，请选择一个具有易于使用的API的工具，该工具可让您上载和扫描文件以及访问完成的报告。例如，假设我们要设计脚本来与VirusTotal API交互。在这种情况下，我们需要参考 <a href="https://developers.virustotal.com/reference">VirusTotal API文档</a> 以了解API的工作原理，并指出我们可以使用哪些API端点发送和接收信息。浏览完文档并了解如何与API通信之后，我们可以使用 <strong>/ file / report</strong> 端点使用sha256哈希值检索最新的防病毒报告，并使用 <strong>/ file / scan端点 </strong>发送文件进行扫描并生成防病毒软件报告<strong>。 </strong>对于VirusTotal，最好的方法是先搜索文件报告，然后再发送文件进行扫描（如果其他人也提交了相同的哈希值进行分析）。这样可以更快地生成报告。<a href="https://www.hybrid-analysis.com/">混合分析</a>，  <a href="https://www.joesecurity.org/">Joe Sandbox Cloud</a> 和 <a href="https://www.secondwrite.com/">SecondWrite</a>等供应商提供了其他可用的类似分析工具 。</p>
+<p><strong>生成报告。</strong> 该过程中最重要的部分是生成信息。根据您希望对恶意软件执行的分析的深度，HTML中的VirusTotal返回分析报告等API可以使您分析恶意软件的行为，查找相似的恶意软件，甚至查看其创建的网络流量。您可以将这些报告发送回安全存储，以与其他分析师共享或将其保留在本地计算机上。</p>
+<p><strong>把它放在一起。 </strong>上面的示例演示了一个成功脚本的工作流程，该脚本可以将文件从安全存储中接收并发送到您选择的恶意软件分析平台。首先，从安全存储中检索文件，然后将其发送到沙箱，最后检索报告，并将其发送回安全驱动器或将其存储在本地目录中。尽管此过程可能很简单，但必须记住以安全，快速和隔离的方式传输这些文件，以使危险的恶意软件永远不会触及您的端点或网络。</p>
+<p>最好的部分是一旦你建立了脚本，你可以在几分钟内进行批量恶意软件分析。</p>
+<p>假设你最喜欢的恶意软件提交平台是VirusTotal，你可以创建一个脚本，从安全存储中获取所有的工件，提交给VirusTotal，然后你在安全存储中的另一个驱动器里面获取报告。你可以利用共享驱动器，让你的组织内的每个人都能在浏览器中安全地查看里面的报告。它永远不会触及你的端点。</p>
+<p>通过这些步骤，您不必担心归属、虚拟化或意外暴露，总的恶意软件分析时间大大减少。不再浪费几个小时和几个小时来配置您的虚拟机，使其看起来像一个普通的Windows 10虚拟机。</p>
+ </div>

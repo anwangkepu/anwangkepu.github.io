@@ -1,0 +1,60 @@
++++
+title = "为您的暗网洋葱onion域名配置TLS证书"
+date = 2021-04-10T09:46:14+08:00
+categories = ["暗网技术"]
+tags = []
+thumbnail = ""
++++
+
+<div class="entry-content clearfix">
+<p>很长一段时间，我（kushaldas.in）想为我的博客的onion域名创建一个HTTPS认证证书。Digicert是长期以来唯一提供暗网onion域名认证的CA，但是成本很高，只适合大的公司或者组织使用，但是我个人不适合，尤其是由于成本原因。</p>
+<figure class="wp-block-image size-large"><noscript><img fetchpriority="high" decoding="async" width="710" height="230" src="/images/803325cbccd2612fc0fadedf06dfc509.png" alt="为您的暗网洋葱onion域名配置TLS证书" class="wp-image-711"></noscript><img fetchpriority="high" decoding="async" width="710" height="230" src="/images/803325cbccd2612fc0fadedf06dfc509.png" alt="为您的暗网洋葱onion域名配置TLS证书" class="wp-image-711 j-lazy"></figure>
+<p>几天前，在IRC上，我发现 <a href="https://www.harica.gr/Contact/GetHarica" target="_blank" rel="noreferrer noopener">Harica</a>为暗网洋葱站点提供Domain验证证书，费用约为每年30欧元。我就抢着去办了一个，同时， <a href="https://twitter.com/ahfaeroey" target="_blank" rel="noreferrer noopener">ahf</a>也在弄他的证书，他帮助我进行了Nginx的配置。</p>
+<h2 class="wp-block-heading">如何获得自己的证书？</h2>
+<ul><li>确保您的网站以Tor v3洋葱服务运行</li><li>在<a href="https://cm.harica.gr/">https://cm.harica.gr/</a>上创建一个帐户<a href="https://cm.harica.gr/"></a></li><li>进入左侧栏的服务器证书，对你的域名进行新的申请，按照表格中的要求提供洋葱地址。</li><li>它将为你提供上传CSR证书签名请求的选项。你可以通过openssl req -newkey rsa:4096 -keyout kushaldas.in.onion.key -out csr.csr生成一个。对于通用名，请提供相同的onion地址。</li><li>单击网站后，它将要求您下载文件并将其放在目录内的Web根目录.well-known/pki-validation/中，请确保可以通过Tor浏览器访问文件。</li><li>当您单击最终提交按钮时，系统将花费一些时间来验证域。付款后，您应该可以完整下载证书（以.p7b结尾的文件）。网页上有3个选项，因此请记住下载正确的文件:)</li><li>您将不得不将其转换为PEM格式，我使用了<a rel="noreferrer noopener" href="https://twitter.com/ahfaeroey" target="_blank">ahf</a>提供给我的命令： <code>openssl pkcs7 -inform pem -in kushaldas.in.p7b -print_certs -out kushaldas.in.onion.chain.pem -outform pem</code></li></ul>
+<h2 class="wp-block-heading">设置nginx</h2>
+<p>这一部分和其他标准的nginx配置一样。以下是我使用的配置。请在确定一切正常后，取消对Strict-Transport-Security头行的注释。</p>
+<pre class="wp-block-code"><code>server {
+	listen unix:/var/run/tor-hs-kushal.sock;
+    server_name kushal76uaid62oup5774umh654scnu5dwzh4u2534qxhcbi4wbab3ad.onion;
+    access_log /var/log/nginx/kushal_onion-access.log;
+    location / {
+	return 301 https://$host$request_uri;
+    }
+
+}
+
+server {
+    listen unix:/var/run/tor-hs-kushal-https.sock ssl http2;
+    server_name kushal76uaid62oup5774umh654scnu5dwzh4u2534qxhcbi4wbab3ad.onion;
+    access_log /var/log/nginx/kushal_onion-access.log;
+    ssl_certificate /etc/pki/kushaldas.in.onion.chain.pem;
+	ssl_certificate_key /etc/pki/kushaldas.in.onion.open.key;
+    #add_header Strict-Transport-Security "max-age=63072000; includeSubdomains";
+	add_header X-Frame-Options DENY;
+	add_header X-Content-Type-Options nosniff;
+    # Turn on OCSP stapling as recommended at
+    # https://community.letsencrypt.org/t/integration-guide/13123
+    # requires nginx version &gt;= 1.3.7
+    ssl_stapling on;
+    ssl_stapling_verify on;
+
+    # modern configuration. tweak to your needs.
+    ssl_protocols TLSv1.2;
+    ssl_ciphers 'ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-SHA384:ECDHE-RSA-AES256-SHA384:ECDHE-ECDSA-AES128-SHA256:ECDHE-RSA-AES128-SHA256';
+    ssl_prefer_server_ciphers on;
+	index index.html;
+	root /var/www/kushaldas.in;
+	location / {
+		try_files $uri $uri/ =404;
+	}
+}
+</code></pre>
+<p>我在<code>/etc/tor/torrc</code>文件中还具有以下配置以使用这些<code>unix socket</code>文件。</p>
+<pre class="wp-block-code"><code>HiddenServiceDir /var/lib/tor/hs-kushal/
+HiddenServiceVersion 3
+HiddenServicePort 80 unix:/var/run/tor-hs-kushal-me.sock
+HiddenServicePort 443 unix:/var/run/tor-hs-kushal-https.sock
+</code></pre>
+<p>如果您想进一步了解为什么需要为onion洋葱域名配置证书，Tor Project会有一个很好的<a href="https://community.torproject.org/onion-services/advanced/https/">解释</a>。</p>
+ </div>

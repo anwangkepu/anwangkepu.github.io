@@ -1,0 +1,33 @@
++++
+title = "Tor项目推出新的WebTunnel桥接方式，模仿HTTPS流量"
+date = 2024-03-13T23:11:00+08:00
+categories = ["Tor官方动态", "暗网动态"]
+tags = ["Tor项目", "WebTunnel"]
+thumbnail = ""
++++
+
+<div class="entry-content clearfix">
+<figure class="wp-block-image size-full"><noscript><img fetchpriority="high" decoding="async" width="940" height="529" src="/images/aff0ddb548f80d32279007b6ad0d3791.jpg" alt="Tor项目推出新的WebTunnel桥接方式，模仿HTTPS流量" class="wp-image-3185"></noscript><img fetchpriority="high" decoding="async" width="940" height="529" src="/images/aff0ddb548f80d32279007b6ad0d3791.jpg" alt="Tor项目推出新的WebTunnel桥接方式，模仿HTTPS流量" class="wp-image-3185 j-lazy"></figure>
+<p>“<mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-vivid-red-color">暗网下/AWX</mark>”刚刚报道有传言称Tor浏览器的网桥WebTunnel存在被流量识别问题，<span class="wpcom_tag_link">WebTunnel</span>又传来新的消息。</p>
+<p>根据<a href="https://blog.torproject.org/introducing-webtunnel-evading-censorship-by-hiding-in-plain-sight/" target="_blank" rel="noreferrer noopener">Tor项目官方博客的文章</a>，在<a href="https://en.wikipedia.org/wiki/World_Day_Against_Cyber_Censorship" target="_blank" rel="noreferrer noopener">3月12日世界反网络审查日</a>，<span class="wpcom_tag_link">Tor项目</span>的反审查团队很高兴地正式宣布推出WebTunnel，这是一种新型的Tor桥接器，旨在帮助严格审查地区的用户连接到Tor网络。WebTunnel现已在Tor浏览器的稳定版本中提供使用，它加入了由Tor项目开发和维护的审查规避技术集合。</p>
+<p>开发不同类型的桥接技术对于提高Tor抵御审查的能力以及在高度动态和不断变化的审查环境中领先对手至关重要。尤其是在即将迎来2024年全球大选之际，<a href="https://blog.torproject.org/2024-defend-internet-freedom-during-elections/" target="_blank" rel="noreferrer noopener">规避审查的技术在捍卫互联网自由方面的作用变得尤为重要</a>。用户可以在Tor社区门户中找到运行WebTunnel网桥的要求和说明。</p>
+<h2 class="wp-block-heading">什么是WebTunnel以及它如何工作？</h2>
+<p>WebTunnel是一种抗审查的可插拔传输方式，其设计灵感来自<a href="https://www.usenix.org/conference/foci20/presentation/frolov" target="_blank" rel="noreferrer noopener">HTTPT</a>，用于模仿加密网络流量（HTTPS）。它的工作原理是将有效载荷连接包装成类似WebSocket的HTTPS连接，在网络观察者看来就是普通的HTTPS（WebSocket）连接。因此，对于不知道隐藏路径的旁观者来说，它看起来就像与网页服务器的普通HTTP连接，让人以为用户只是在浏览网页。</p>
+<p>事实上，WebTunnel与普通Web流量非常相似，它可以与同一网络端点上的网站共存，即相同的域名、IP地址和端口。这种共存允许标准流量反向代理将普通Web流量和WebTunnel转发到各自的应用程序服务器。因此，当有人试图访问共享网络地址上的网站时，他们只会看到该网站地址的内容，而不会注意到秘密桥梁（WebTunnel）的存在。</p>
+<h2 class="wp-block-heading">WebTunnel与obfs4网桥的比较</h2>
+<p>对于大多数Tor浏览器用户来说，WebTunnel可以用作obfs4的替代品。虽然obfs4和其他完全加密的流量旨在完全不同且无法识别，但WebTunnel模仿已知和典型Web流量的方法使其在存在协议允许列表和默认拒绝网络环境的情况下更加有效。</p>
+<p>将网络流量审查机制视为硬币分类机，硬币代表流动的流量。传统上，这样的机器会检查硬币是否符合已知的形状，如果符合则允许其通过，如果不符合则将其丢弃。在完全加密、未知流量的情况下，不符合任何特定形状，它将受到审查。在WebTunnel的硬币类比中，硬币不仅必须不符合任何已知的被阻止协议的形状，而且还需要符合公认的允许形状——否则，它就会被丢弃。Obfs4流量既不匹配任何已知允许的协议，也不匹配文本协议，因此会被拒绝。相反，类似于HTTPS流量（一种允许的协议）的WebTunnel流量将有可能被通过。</p>
+<h2 class="wp-block-heading">如何使用WebTunnel桥接器？</h2>
+<h3 class="wp-block-heading">🌉步骤1-获取WebTunnel网桥</h3>
+<p>目前，WebTunnel网桥仅通过Tor项目网桥网站分发。Tor项目计划加入更多的分发方式，例如Telegram和moat。</p>
+<p>使用常规网络浏览器访问网站：<a href="https://bridges.torproject.org/options" target="_blank" rel="noreferrer noopener">https://bridges.torproject.org/options</a></p>
+<p>在“高级选项”中，从下拉菜单中选择“Webtunnel”，然后单击“获取网桥”。输入正确的验证码后复制网桥链接线路。</p>
+<h3 class="wp-block-heading">💻步骤2-下载并安装桌面版Tor浏览器</h3>
+<p>注意：WebTunnel桥接器不适用于旧版本的Tor浏览器(12.5.x)。</p>
+<p>下载并安装最新版本的桌面版Tor浏览器。打开Tor浏览器并转到连接首选项窗口（或单击“配置连接”）。</p>
+<p>单击“手动添加桥”并添加步骤1中提供的网桥链接线路。关闭网桥对话框并单击“连接”。</p>
+<h3 class="wp-block-heading">📲或下载并安装Android版Tor浏览器</h3>
+<p>下载并安装最新版本的Android版Tor浏览器。运行Tor浏览器并选择配置网桥的选项。</p>
+<p>选择“提供我知道的网桥”并输入提供的网桥地址。点击“确定”，如果一切正常，它将连接。</p>
+<p>Tor项目宣称其目标是确保Tor适合所有人，目前全球有60个WebTunnel网桥，每天有700多名活跃用户在不同平台上使用WebTunnel。目前除了在伊朗的某些地区无法使用外，WebTunnel在多个地区可以使用。但是，中国社区的用户对该技术嗤之以鼻，一些中国网友评论称，这已经是被玩剩下来了，基本属于淘汰了的技术。</p>
+ </div>

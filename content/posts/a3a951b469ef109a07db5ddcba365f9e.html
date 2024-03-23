@@ -1,0 +1,37 @@
++++
+title = "探索黑暗面：揭露打击暗网犯罪的OSINT情报调查工具和技术"
+date = 2023-07-20T09:08:10+08:00
+categories = ["暗网技术", "暗网纵论"]
+tags = ["暗网监控", "调查暗网"]
+thumbnail = ""
++++
+
+<div class="entry-content clearfix">
+<div class="wp-block-image">
+<figure class="aligncenter size-large"><noscript><img fetchpriority="high" decoding="async" width="1024" height="578" src="/images/fdb0c9677560996730ec7d57dbde789a.webp" alt="探索黑暗面：揭露打击暗网犯罪的OSINT情报调查工具和技术" class="wp-image-2712"></noscript><img fetchpriority="high" decoding="async" width="1024" height="578" src="/images/fdb0c9677560996730ec7d57dbde789a.webp" alt="探索黑暗面：揭露打击暗网犯罪的OSINT情报调查工具和技术" class="wp-image-2712 j-lazy"></figure></div>
+<p>2023年4月5日，美国联邦调查局（FBI）和荷兰国家警察局宣布捣毁最大的暗网市场之一Genesis Market。这次行动被称为“饼干怪兽行动”（Operation Cookie Monster），共逮捕了119人，并缴获超过 100 万美元的加密货币。<a href="https://flashpoint.io/wp-content/uploads/Affidavit-in-Support-of-Seizure-Warrant.pdf" target="_blank" rel="noreferrer noopener">您可以在此处阅读联邦调查局的搜查令，了解此案的具体细节</a>。鉴于这些事件，可以讨论一下暗网威胁情报（OSINT）如何协助暗网调查。</p>
+<p>暗网的匿名性吸引了各种各样的用户，从举报人和政治活动家到网络犯罪分子和恐怖分子。有多种技术可用于尝试识别这些网站和角色背后的个人。</p>
+<h2 class="wp-block-heading">技术漏洞</h2>
+<p>虽然不被视为OSINT，但在某些情况下，用于托管暗网网站的技术中存在技术漏洞。这些漏洞可能存在于软件本身，或者是由于配置错误造成的，但它们有时会泄露站点的真实IP地址。通常，这些软件漏洞需要使用渗透测试工具和技术（例如BurpSuite）来造成包含站点真实IP地址的错误消息。诸如此类的漏洞并不常见，而且很少被利用。</p>
+<p>也有暗网网站运营者使用SSL证书或SSH密钥的情况，这些证书或密钥可以使用<a rel="noreferrer noopener" href="https://www.shodan.io/" target="_blank">Shodan</a>、<a href="https://censys.io/" target="_blank" rel="noreferrer noopener">Censys</a>、<a href="https://www.zoomeye.org/" target="_blank" rel="noreferrer noopener">Zoomeye</a>或<a href="https://en.fofa.info/" target="_blank" rel="noreferrer noopener">Fofa</a>等资产扫描探测服务发现其明网上的真实IP地址。</p>
+<h2 class="wp-block-heading">加密货币追踪</h2>
+<p>暗网上的交易通常涉及加密货币以支付非法商品和服务。这使得借助区块链分析工具来识别个人身份成为可能。</p>
+<p>根据各国”防止洗钱“的法律，任何人都无法以“匿名”名义去银行开设账户。这些要求通常称为反洗钱（AML）和了解您的客户（KYC），并要求客户提供政府颁发的身份证明以证明身份。许多国家对加密货币交易所都有类似的要求。</p>
+<p>多年来，一些公司提供了区块链分析工具，试图将加密货币地址与特定交易所（例如Coinbase或Binance）联系起来。一旦加密货币地址与特定交易所存在联系，具有法律权限的执法和/或金融调查人员就可以要求交易所向他们提供该账户所有者的身份识别信息。</p>
+<p>一直以来，对于个人来说，这些区块链分析服务购买成本高昂，但是，区块链分析提供商<a href="https://www.breadcrumbs.app/" target="_blank" rel="noreferrer noopener">Breadcrumbs</a>最近推出了一个分析平台，提供更实惠的价格和免费计划。</p>
+<h2 class="wp-block-heading">带回到互联网上</h2>
+<p>如何将需要在暗网上获取的联系方式带回互联网？想象一下，如果您经营着一辆餐车，而城市规定您每月不能在同一地点出现超过两次，您只能被迫不断更换地点。您将如何尝试建立品牌忠诚度，并让潜在客户知道您每天所在的位置？</p>
+<p>您可能会尝试让客户在社交媒体上与您联系或访问您的网站等，以便他们知道在哪里可以找到您。不管你相信与否，暗网上也存在着非常相似的动态。</p>
+<p>暗网提供的是匿名性，缺乏的是稳定性和安全性。Silk Road、AlphaBay、Hansa、WallStreet以及现在的Genesis等主要暗网市场均已被执法部门取缔。拒绝服务攻击已成为Tor网络上的一个主要问题，最近流行的暗网论坛“Dread”前期也因此类攻击而关闭数月就证明了这一点。您能想象在那种环境下尝试经营暗网生意并获得稳定的收入吗？</p>
+<p>卖家尝试实现稳定性和弹性的一种方法是在多个市场上销售，并提供直接联系他们的方法。这种提供稳定性的尝试非常有意义，并且对于OSINT从业者来说非常有用，因为它提供了联系方法或“选择器”，因为可以使用它们在互联网上找到他们，并充分利用所有的知识、经验和资源。如从暗网网站获取电子邮件地址，并将其与使用Google的互联网上的网站关联起来。</p>
+<p>一旦我们将个人与互联网上的资源联系起来，我们就有多种选择来对其进行去匿名化。最常用的一些选项包括：</p>
+<h3 class="wp-block-heading">历史WHOIS查询</h3>
+<p>WHOIS记录等域名注册信息可以提供有关网站所有者或运营者的有用信息。在某些情况下，犯罪分子可能会利用不准确或不完整的隐私保护措施，无意中暴露自己的身份或位置。即使某个网站的WHOIS信息目前是匿名的，但在过去的某个时间点往往不是匿名的。</p>
+<h3 class="wp-block-heading">论坛上的OSINT</h3>
+<p>暗网上的个人经常参加论坛进行交流、回答问题等，他们可能会无意中透露出可以帮助OSINT从业者更多地了解其真实身份的信息。他们使用的语言和独特的说法非常有用。</p>
+<h3 class="wp-block-heading">泄露数据</h3>
+<p>即使电子邮件与匿名服务绑定，用户也可能在其他网站上使用过它，包括论坛和社交媒体。如果在法律和道德上允许您能够在调查中使用泄露数据，您也许能够将在线角色与真实姓名、实际地址等联系起来。</p>
+<p>事实证明对一些调查人员有帮助的一个泄露示例是2021/2022年来自多家VPN提供商（包括SuperVPN、GeckoVPN和ChatVPN）的10GB数据泄露。这些数据包含所用设备的全名、账单详细信息和潜在的唯一标识符，包括移动设备的国际移动用户身份（IMSI）。</p>
+<h2 class="wp-block-heading">未来的发展和趋势</h2>
+<p>未来的暗网市场打击将使用本文讨论的方法，并且毫无疑问将采用新兴技术。最明显的发展是在OSINT中使用人工智能（AI）和机器学习（ML）。例如，人工智能可以帮助构建网络爬取工具，可以快速收集和分析来自多个来源的数据，而机器学习算法可以经过训练来识别数据中的模式和关系。这些进步有可能为调查人员节省大量时间和资源，使他们能够专注于调查的其他方面。</p>
+ </div>

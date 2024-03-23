@@ -1,0 +1,21 @@
++++
+title = "“黑客”披露了Tor和Tor浏览器两个0day漏洞"
+date = 2020-08-02T08:16:41+08:00
+categories = ["暗网动态", "美国暗网动态"]
+tags = []
+thumbnail = ""
++++
+
+<div class="entry-content clearfix">
+<figure class="wp-block-image size-large"><noscript><img fetchpriority="high" decoding="async" width="1024" height="602" src="/images/fac5ffae4c8b1a9de4d498ee49992111.png" alt='"黑客"披露了Tor和Tor浏览器两个0day漏洞' class="wp-image-398"></noscript><img fetchpriority="high" decoding="async" width="1024" height="602" src="/images/fac5ffae4c8b1a9de4d498ee49992111.png" alt='"黑客"披露了Tor和Tor浏览器两个0day漏洞' class="wp-image-398 j-lazy"></figure>
+<p>本周， 由自己管理多个Tor节点的网络<a href="https://topantiviruslist.com/">安全</a>专家Neal Krawetz发布了两个零日漏洞的详细信息，这些漏洞影响了Tor网络本身和Tor浏览器。</p>
+<p>研究人员说，Tor开发人员一再拒绝解决他发现的问题，因此他决定公开这些漏洞。更糟糕的是，Kravets承诺不久将再发布三个0天漏洞，其中一个可以用来揭示Tor服务器的真实IP地址。</p>
+<p>专家在2020年7月23日的博客中描述了<a href="https://www.hackerfactor.com/blog/index.php?/archives/888-Tor-0day-Stopping-Tor-Connections.html">第一个0day问题。</a>在本文中，他讨论了公司和ISP如何阻止用户连接到Tor网络。为此，您只需扫描网络连接以查找Tor流量独有的特征性数据包签名。</p>
+<p><a href="https://www.hackerfactor.com/blog/index.php?/archives/889-Tor-0day-Burning-Bridges.html">第二个0day的漏洞</a>  Kravets在今天（2020年7月30日）的博客文章中进行了描述。第二个漏洞还允许网络运营商检测Tor流量。但是，如果第一个问题可用于检测到Tor网络（到Tor保护节点）的直接连接，则第二个漏洞可用于检测间接连接。这些是用户与Tor桥的连接。</p>
+<p>让我提醒您，网桥充当一种代理，将连接从用户转移到Tor网络本身。由于它们是Tor基础架构中高度敏感的部分，因此桥列表会不断更新，以使提供商更难阻止它们。Kravets写道，使用TCP数据包跟踪技术可以轻松发现与Tor桥的连接。</p>
+<blockquote class="wp-block-quote"><p>“在我的上一篇博客文章和这篇文章之后，您拥有执行实时数据包检查来执行策略（阻止Tor）所需的一切。专家写道，无论他们是直接连接还是使用网桥，您都可以阻止所有用户连接到Tor。</p></blockquote>
+<p>专家还说，他认为，Tor Project工程师对网络，工具和用户的安全性不够重视。他指的是他以前的经验，并尝试过多次尝试使Tor开发人员了解各种错误，这些错误最终都没有得到解决。其中：</p>
+<ul><li><a href="https://gitlab.torproject.org/tpo/applications/tor-browser/-/issues/22632">自2017年6月起</a>，漏洞使网站能够通过开发人员意识到的滚动条宽度检测和识别Tor浏览器用户  ;</li><li>一个漏洞，允许您使用<a href="https://trac.torproject.org/projects/tor/ticket/7349">八年前发现的</a> Tor桥使用OR（洋葱路由）端口进行检测  ；</li><li>该漏洞允许识别Tor服务器使用的SSL库，  <a href="https://hackerone.com/reports/300826">发现于2017年12月27日</a> ……</li></ul>
+<p>2020年7月上旬，Kravets宣布他已决定最终放弃与Tor项目的合作，现在打算公开讨论这些问题。</p>
+<blockquote class="wp-block-quote"><p>我放弃了向Tor Project报告错误。Tor有需要解决的严重问题，他们了解许多问题，因此拒绝采取任何措施。</p><p>我正在推迟放送Tor 0days，直到抗议结束为止。（即使有bug，我们现在也需要Tor。）抗议活动开始后0天。</p><p>–尼尔·克拉维兹博士（@hackerfactor）  <a href="https://twitter.com/hackerfactor/status/1268522494211678208?ref_src=twsrc%5Etfw">，2020年6月4日</a></p></blockquote>
+ </div>

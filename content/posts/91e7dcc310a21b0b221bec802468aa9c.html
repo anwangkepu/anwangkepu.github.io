@@ -1,0 +1,43 @@
++++
+title = "卡巴斯基曝光，“被投毒”的Tor浏览器追踪中国用户的浏览历史、物理位置，请警惕YouTube流氓频道“工具大师i”的所有分享"
+date = 2022-10-05T05:00:08+08:00
+categories = ["中国暗网动态", "暗网动态", "暗网技术"]
+tags = ["OnionPoison", "Tor浏览器", "YouTube", "卡巴斯基", "洋葱毒药"]
+thumbnail = ""
++++
+
+<div class="entry-content clearfix">
+<figure class="wp-block-image size-large"><noscript><img fetchpriority="high" decoding="async" width="1024" height="699" src="/images/9d1b2badb640217258a19f0c390c938a.jpg" alt="卡巴斯基曝光，“被投毒”的Tor浏览器追踪中国用户的浏览历史、物理位置，请警惕YouTube流氓频道“工具大师i”的所有分享" class="wp-image-2097"></noscript><img fetchpriority="high" decoding="async" width="1024" height="699" src="/images/9d1b2badb640217258a19f0c390c938a.jpg" alt="卡巴斯基曝光，“被投毒”的Tor浏览器追踪中国用户的浏览历史、物理位置，请警惕YouTube流氓频道“工具大师i”的所有分享" class="wp-image-2097 j-lazy"><figcaption>含有恶意<span class="wpcom_tag_link">Tor浏览器</span>下载链接的<span class="wpcom_tag_link">YouTube</span>视频截图（<span class="wpcom_tag_link">卡巴斯基</span>）</figcaption></figure>
+<p>网络安全研究人员卡巴斯基公司周二表示，一个Tor浏览器的修改版本至少从3月开始收集中国用户的敏感数据，也许早在1月就开始了，其中包括浏览历史、表单数据、计算机名称和位置、用户名和网络适配器的MAC地址。</p>
+<p>在一个<a rel="noreferrer noopener" href="https://www.youtube.com/c/%E5%B7%A5%E5%85%B7%E5%A4%A7%E5%B8%88i" target="_blank">名为“工具大师i”的中文YouTube频道</a>发布的视频下方简介里，有一个指向恶意版本的Tor浏览器安装程序的链接（蓝奏云链接）。卡巴斯基研究人员Leonid Bezvershenko和Georgy Kucherin<a href="https://securelist.com/onionpoison-infected-tor-browser-installer-youtube/107627/" target="_blank" rel="noreferrer noopener">在周二公布的研究结果中</a>说，该频道有超过18万名订阅者，该视频已被观看了64000多次。</p>
+<p>卡巴斯基称，这个名为“工具大师i”的YouTube帐户于2022年1月上传了该视频，卡巴斯基研究人员在注意到恶意Tor浏览器安装程序下载集群后，于3月开始在他们的数据中看到受害者。</p>
+<h2 class="wp-block-heading">卡巴斯基对“<span class="wpcom_tag_link">洋葱毒药</span>”的分析</h2>
+<p>卡巴斯基研究人员将此活动称为“洋葱毒药”（<span class="wpcom_tag_link">OnionPoison</span>），指的是通过修改“洋葱路由”（The Onion Router）进行投毒。“洋葱路由”是<a href="https://www.torproject.org/about/history/" target="_blank" rel="noreferrer noopener">最初由美国海军研究实验室开发的匿名路由</a>，合法的Tor浏览器使用了“洋葱路由”的技术。</p>
+<p>研究人员表示，恶意安装程序加载了一个带后门版本的Tor浏览器，其中包括一个间谍软件库，旨在收集个人数据并将其发送到攻击者控制的服务器，还可以让攻击者有能力在受害者的机器上执行shell命令。</p>
+<p>非营利组织Tor项目的执行董事Isabela Fernandes告诉Cyber​​Scoop，该组织在周二部署了一个补丁。</p>
+<p>“基本上，这个‘中毒’的Tor浏览器会修改更新URL，所以它不能正常更新。”她说。“我们所做的是添加一个重定向，以便我们响应修改后的URL，这样人们就会更新。现在他们的URL是一个有效的更新URL。”</p>
+<p>研究人员表示，目前尚不清楚该活动的幕后策划者，但它显然针对的是中国用户。他们说，命令和控制服务器检查IP地址，只会向中国的IP发送恶意软件。此外，视频描述中包括一个有效的Tor浏览器链接，但由于Tor网站在中国被封锁，用户更有可能点击下方的蓝奏云链接，将他们定向到托管在第三方“蓝奏云”共享网站上的可下载文件。</p>
+<p>研究人员表示，有趣的是，修改后的浏览器不会自动收集用户密码、cookie或钱包，而是专注于浏览历史记录、社交网络帐户ID和Wi-Fi网络。</p>
+<p>据卡巴斯基分析，“洋葱毒药”定制的Tor浏览器可以保存浏览历史、启用网页缓存、存储登录凭据以及从访问过的网站收集额外的会话数据。此外，收集到的数据会发送回攻击者。其中包括安装的软件、在Tor浏览器、Chrome和Edge中访问的网站、微信和QQ的用户账号ID，以及受害者已经或曾经连接到的Wi-Fi网络的SSID和MAC地址。</p>
+<p>研究人员写道：“攻击者可以搜索泄露的浏览器历史记录，寻找非法活动的痕迹，通过社交网络联系受害者，并威胁要向政府举报。”</p>
+<h2 class="wp-block-heading">历史上Tor浏览器曾出现多个恶意篡改版本</h2>
+<p>网络犯罪分子和民族国家的黑客过去曾多次部署过修改过的Tor浏览器版本。2019年，斯洛伐克网络<a href="https://www.cyberscoop.com/tor-trojan-eset-dark-web/" target="_blank" rel="noreferrer noopener">安全公司ESET的研究人员报告了一个旨在从讲俄语的人那里窃取加密货币的Tor版本</a>。在另一个例子中，大约10年前，<a href="https://www.securityweek.com/onionduke-apt-malware-distributed-malicious-tor-exit-node" target="_blank" rel="noreferrer noopener">与俄罗斯有关的黑客使用Tor出口节点部署了名为OnionDuke的恶意软件</a>。</p>
+<p>联邦调查局（FBI）也曾经被指控与<a href="https://theintercept.com/2015/07/16/hackingteam-attacked-tor-browser/" target="_blank" rel="noreferrer noopener">承包商</a>和<a rel="noreferrer noopener" href="https://blog.torproject.org/did-fbi-pay-university-attack-tor-users/" target="_blank">潜在的大学生合作</a>，修改Tor软件或利用0day，揭露Tor用户身份并调查涉及暗网恋童癖网站（联邦调查局当时<a href="https://thehackernews.com/2015/11/fbi-unmask-tor.html" target="_blank" rel="noreferrer noopener">含糊地否认了这一说法</a>）。</p>
+<p>研究人员表示，避免“洋葱毒药”（OnionPoison）的最佳方法是<a href="https://www.torproject.org/download/" target="_blank" rel="noreferrer noopener">从官方网站下载Tor浏览器</a>，或者，如果不能这样做，必须从第三方网站下载，则需要检查从第三方来源下载的安装程序的数字签名来验证其真实性。合法的安装程序应具有有效的签名，其证书中指定的公司名称应与软件开发人员的名称相匹配。</p>
+<h2 class="wp-block-heading">使用“洋葱毒药”投毒的Youtube频道“工具大师i”</h2>
+<p>卡巴斯基称，“洋葱毒药”（OnionPoison）案例中，恶意Tor安装程序的链接被发布在一个流行的中文YouTube频道上，该频道致力于互联网上的匿名性。该频道拥有超过180,000名订阅者，而带有恶意链接的视频的观看次数超过64,000次。</p>
+<p>从卡巴斯基的视频截图可以看出，该Youtube恶意频道名为“工具大师i”，地址为：<br><a href="https://www.youtube.com/c/%E5%B7%A5%E5%85%B7%E5%A4%A7%E5%B8%88i" target="_blank" rel="noreferrer noopener">https://www.youtube.com/c/%E5%B7%A5%E5%85%B7%E5%A4%A7%E5%B8%88i</a></p>
+<p>该视频（<a href="https://www.youtube.com/watch?v=qob8gqQ2_3k" target="_blank" rel="noreferrer noopener">https://www.youtube.com/watch?v=qob8gqQ2_3k</a>）名称为“2022年最新暗网进入方法！什么是暗网暗网有什么如何使用科学上网工具访问暗网暗网怎么进2022丨暗网网址丨dark web 2022丨By工具大师i”，已经因违反YouTube规定并YouTube移除（This video has been removed for violating YouTube’s Community Guidelines），已经无法观看，但是从第三方网站NoxInfluencer（<a href="https://cn.noxinfluencer.com/youtube/video-analytics/qob8gqQ2_3k" target="_blank" rel="noreferrer noopener">https://cn.noxinfluencer.com/youtube/video-analytics/qob8gqQ2_3k</a>）的记录中可以看到，该视频发布时间为2022年1月9日，观看量为6.06万，投放恶意软件的蓝奏云地址为：<a href="https://wwi.lanzouo.com/i6iLaym6fsf" target="_blank" rel="noreferrer noopener">https://wwi.lanzouo.com/i6iLaym6fsf</a>。</p>
+<p>此外，该YouTube频道并不是第一次修改Tor浏览器，<mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-vivid-red-color">“暗网下/AWX”</mark>发现了该频道的另一个视频（<a rel="noreferrer noopener" href="https://www.youtube.com/watch?v=0nwDOd_xl3Y" target="_blank">https://www.youtube.com/watch?v=0nwDOd_xl3Y</a>），名称为“2020年最新 暗网登录 方法教程，哪种方式最快最好用？配合Tor洋葱浏览器，SSR，Vray科学上网！让你网络隐私至极！”，已经于北京时间2022年10月5日中午被设置为私有视频（This video is private），目前同样无法观看，但是从第三方网站（<a href="https://cn.noxinfluencer.com/youtube/video-analytics/0nwDOd_xl3Y" target="_blank" rel="noreferrer noopener">https://cn.noxinfluencer.com/youtube/video-analytics/0nwDOd_xl3Y</a>）的记录中可以看到，该视频发布时间为2020年11月28日，观看量为7.82万，投放恶意软件的蓝奏云地址为：<a href="https://www.lanzoui.com/i5cDbix01if" target="_blank" rel="noreferrer noopener">https://www.lanzoui.com/i5cDbix01if</a>。</p>
+<p>据统计，YouTube频道“工具大师i”创建于2018年11月18日，发布地点为香港，拥有超过18万粉丝，总计发布视频166个，总观看量超过1100万。</p>
+<p>但是，在卡巴斯基曝光之后，目前访问该频道，发现视频仅剩79个，将近90个视频被设置为“私有”，而隐去的视频基本都是其发布的多个VPN工具、加速工具、翻墙工具、挖矿工具等等。若工具为exe文件基本上每个视频均提供了蓝奏云的下载地址链接，如果是安卓应用，均提供了apk的下载地址，如果是苹果应用，提供的是testflight.apple.com的下载地址。根据其“此地无银三百两”的做法判断，但凡是该频道提供的工具，均带有后门，请警惕该频道的分享。</p>
+<h2 class="wp-block-heading">卡巴斯基对恶意Tor浏览器的分析</h2>
+<p>恶意的Tor浏览器文件名为：torbrowser-install-win64-11.0.3_zh-CN.exe，安装程序的用户界面与原始程序用户界面相同，但是，恶意安装程序没有数字签名。卡巴斯基称，根据其测试，“洋葱毒药”针对的受害者必须位于中国，因为C2服务器会检查受害者机器的外网IP地址是否来自中国。</p>
+<p>攻击者降低了恶意的Tor浏览器的私密性，通过修改存储在 browser\omni.ja 存档中的 \defaults\preferences\000-tor-browser.js 配置文件，他们将Tor浏览器配置为：</p>
+<blockquote class="wp-block-quote"><p>存储浏览历史；<br>启用磁盘上的页面缓存；<br>启用自动表单填写和登录数据的记忆；<br>为网站存储额外的会话数据。</p></blockquote>
+<p>恶意的Tor浏览器启动后，会伪随机地选择以下C2服务器URL之一并向其发出POST请求：<br>https://torbrowser.io/metrics/geoip<br>https://tor-browser.io/metrics/geoip</p>
+<p>其针对中国用户加载的恶意Dll文件会检索以下系统信息：</p>
+<blockquote class="wp-block-quote"><p>操作系统磁盘卷的GUID；<br>机器GUID；<br>计算机名称；<br>计算机语言环境；<br>当前用户名；<br>网络适​​配器的MAC地址。</p></blockquote>
+<p>且会请求收集以下附加信息：</p>
+<blockquote class="wp-block-quote"><p>已安装的软件；<br>运行进程；<br>TOR浏览器历史；<br>Google Chrome和Edge历史记录；<br>属于受害人的微信和QQ账号；<br>受害者连接的Wi-Fi网络的SSID和MAC地址。</p></blockquote>
+ </div>

@@ -1,0 +1,28 @@
++++
+title = "Tor出口节点的定位和映射"
+date = 2020-05-14T19:50:01+08:00
+categories = ["暗网技术"]
+tags = []
+thumbnail = ""
++++
+
+<div class="entry-content clearfix">
+<p>Tor出口节点是<strong>加密的Tor流量到达Internet</strong>的网关。这意味着出口节点可能被滥用来监视Tor流量（离开洋葱网络后）。</p>
+<p>在Tor网络的设计中，应该很难确定通过网络的流量来源。但是，如果出口流量未加密且包含标识信息，则可能会滥用出口节点。</p>
+<p><a href="https://torproject.org/">TOR项目</a>， 因此，依赖于一个多元化和广泛出口节点。与任何技术一样，通过对信息的工作原理有基本的了解，您将获得最大的利益并确保信息安全。通过了解，您将可以更好地评估风险。大多数出口节点可能不会受到监控，并且是“安全的”。他们由相信Tor项目目标的优秀互联网公民管理。但是，当您使用Tor网络时，出口节点也会定期更改，因此即使<strong>是少数不良节点</strong>也是一个威胁。</p>
+<h2 class="wp-block-heading">了解技术，了解风险</h2>
+<p>活动家和人权捍卫者对Tor项目的使用可以成为避免监视的宝贵工具。但是，由于这些出口节点中的任何一个都可能在监视您的流量，因此您应该始终对风险有充分的了解，并端对端地对流量进行加密。</p>
+<p>在<strong>最基本的级别上，</strong>除非您使用加密协议（HTTPS / SSH / TLS），<strong>否则可以监控</strong> Tor流量。这是两个简单的示例：</p>
+<ul><li>使用不使用HTTPS的论坛，您的登录名，密码，会话cookie和帖子都可以被捕获。</li><li>如果您使用SMTP（无TLS）发送电子邮件，则该电子邮件可能会被拦截。</li></ul>
+<p>要了解技术，<a href="https://www.torproject.org/">Tor Project网站</a>是最好的起点。</p>
+<h2 class="wp-block-heading">Tor出口节点的地理位置定位和映射</h2>
+<h4 class="wp-block-heading">地图和图表每天更新</h4>
+<p>出口节点列表以csv格式从<a href="https://check.torproject.org/cgi-bin/TorBulkExitList.py?ip=1.1.1.1">Tor项目</a>下载。使用MaxMind GeoLite2数据库（https://maxmind.com）对IP地址执行地理定位。</p>
+<figure class="wp-block-image size-large"><noscript><img fetchpriority="high" decoding="async" width="1024" height="601" src="/images/75e469a43f2f8de392b5c4d122ce5ff6.png" alt="Tor出口节点的定位和映射" class="wp-image-253"></noscript><img fetchpriority="high" decoding="async" width="1024" height="601" src="/images/75e469a43f2f8de392b5c4d122ce5ff6.png" alt="Tor出口节点的定位和映射" class="wp-image-253 j-lazy"></figure>
+<p>从地图上可以清楚地看到欧洲境内Tor出口节点的高度集中，一旦开始放大并看到欧洲节点，就可以清楚地看到Tor节点的运行位置相当分散。</p>
+<figure class="wp-block-image size-large"><noscript><img decoding="async" width="1025" height="573" src="/images/7ed9a1d89f43b0d6cae6e388f1555c46.png" alt="Tor出口节点的定位和映射" class="wp-image-254"></noscript><img decoding="async" width="1025" height="573" src="/images/7ed9a1d89f43b0d6cae6e388f1555c46.png" alt="Tor出口节点的定位和映射" class="wp-image-254 j-lazy"></figure>
+<figure class="wp-block-image size-large"><noscript><img decoding="async" width="1025" height="573" src="/images/9363c25a89d599516cbabad4da04f2c0.png" alt="Tor出口节点的定位和映射" class="wp-image-255"></noscript><img decoding="async" width="1025" height="573" src="/images/9363c25a89d599516cbabad4da04f2c0.png" alt="Tor出口节点的定位和映射" class="wp-image-255 j-lazy"></figure>
+<p>图表中的Internet服务提供商和国家/地区是Tor出口节点集中度最高的前20名。</p>
+<h2 class="wp-block-heading">结论</h2>
+<p>在这篇文章中，我谈到了Tor网络的一些安全威胁和好处。我鼓励任何打算使用Tor网络的人围绕操作安全性进行可靠的研究。如果您使用Tor绕过代理，则需要了解流量的风险。如果您是使用Tor来避免通过压迫性手段进行监视的激进主义者，则需要对这项技术有深入的了解。<strong>在不知道威胁的情况下，您正在使自己以及其他人处于危险之中。</strong></p>
+ </div>

@@ -1,0 +1,22 @@
++++
+title = "洋葱TLS / SSL证书更新"
+date = 2020-04-23T02:22:28+08:00
+categories = ["工具", "暗网技术"]
+tags = []
+thumbnail = ""
++++
+
+<div class="entry-content clearfix">
+<h2 class="wp-block-heading" id="onion-tls-ssl-certificate-updates">洋葱TLS / SSL证书更新</h2>
+<p>EV证书<a href="https://expeditedsecurity.com/why-ev-ssl">可验证网站</a>：它们在网络用户需要知道与谁进行通信的任何情况下都很有用，但是对于<code>onion</code>网站使用名称作为公钥的base32表示形式（例如<code>swursuzpievjanml.onion</code>-结果，EV证书是唯一用于洋葱的证书。甚至<a href="https://github.com/lachesis/scallion">虚荣的前缀</a>仍然可以由任何人谁希望该前缀，使用一组不同的尾部字符的产生。因此，<a href="https://expeditedsecurity.com/why-ev-ssl">将网站与公司，慈善机构，个人独资经营者或其他法律实体联系起来的</a>做法很有用。<noscript><img fetchpriority="high" decoding="async" width="1280" height="720" class="wp-image-60" style="width: 800px;" src="/images/802d2d29e40dc696f42c05fd3b6be0c1.jpg" alt=""></noscript><img fetchpriority="high" decoding="async" width="1280" height="720" class="wp-image-60 j-lazy" style="width: 800px;" src="/images/802d2d29e40dc696f42c05fd3b6be0c1.jpg" alt></p>
+<p>我们最近对包含<code>.onion</code>名称的证书的处理方式进行了一些更改，值得在此处进行讨论：</p>
+<h2 class="wp-block-heading" id="wildcards-allowed-for-onion-certs-throughout-certsimple">整个CertSimple中允许通配符用于洋葱证书</h2>
+<p>与常规EV证书不同，常规的EV证书必须由人来审核每个域，因此不允许使用通配符，而洋葱EV证书则允许使用通配符。以前，客户必须通过电子邮件向我们发送有关洋葱通配符的信息，然后我们将其手动添加到证书中，我们的订购和证书管理平台现已更新，可以在任何<code>.onion</code>站点上接受通配符。</p>
+<h2 class="wp-block-heading" id="no-need-to-specify-full-pubkey-for-current-gen-onions">无需为当前洋葱指定完整的公钥</h2>
+<p>老一代的洋葱站点使用SHA1作为哈希方案。SHA1现在被普遍认为已损坏，因此缓解措施的一部分是在证书本身内部包含完整的pubkey副本，以防止它通过SHA1冲突而被用于另一个站点。使用较早版本站点的客户必须分别向我们发送完整的公钥电子邮件给我们，而不是申请证书。</p>
+<p><a href="https://www.engadget.com/2017/11/03/tor-onion-system-next-gen-update/"></a>像<a href="https://hzwjmjimhr7bdmfv2doll4upibt5ojjmpo3pbp5ctwcg37n3hyk7qzid.onion/">Ablative</a>这样的<a href="https://www.engadget.com/2017/11/03/tor-onion-system-next-gen-update/">新一代</a>洋葱站点不使用SHA1，因此不需要额外的字段。虽然我们建议使用当前的洋葱名称，但如果需要，我们仍然支持以前的洋葱。</p>
+<h2 class="wp-block-heading" id="no-2-year-option-for-certs-including-onion-sites">证书（包括洋葱站点）没有2年选项</h2>
+<p>当为新的EV证书检测到任何洋葱域时，UI会将证书的生存期限制为一年，因为<code>.onion</code>证书的最大生存期为一年。</p>
+<h2 class="wp-block-heading" id="that-s-all-for-now">目前为止就这样了</h2>
+<p>我们还将很快推出更多洋葱更换方法。我们始终对社区的反馈或改进我们验证过程的新方法感兴趣，因此请<a href="/cdn-cgi/l/email-protection#a9ddccc8c4e9caccdbdddac0c4d9c5cc87cac6c4">告知我们您的想法</a>。</p>
+ </div>

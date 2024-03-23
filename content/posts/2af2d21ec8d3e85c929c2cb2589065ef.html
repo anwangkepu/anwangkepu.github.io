@@ -1,0 +1,122 @@
++++
+title = "Tor（暗网）简介和教程"
+date = 2024-02-15T22:47:00+08:00
+categories = ["工具", "暗网技术"]
+tags = ["Tor", "暗网教程"]
+thumbnail = ""
++++
+
+<div class="entry-content clearfix">
+<p>本文源自“<mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-vivid-red-color">暗网下/AWX</mark>”官方Telegram群组成员<a href="https://t.me/DepressedLeslieAlexander" target="_blank" rel="noreferrer noopener nofollow">@DepressedLeslieAlexander</a>，从技术上介绍了<span class="wpcom_tag_link">Tor</span>的实现原理、如何连接到Tor，以及访问暗网的注意事项与认知误区。</p>
+<h1 class="wp-block-heading" id="概述">概述</h1>
+<p><strong>Tor</strong>是实现匿名通信的自由软件，由美国非盈利组织The Tor Project, Inc开发与维护。其名源于“The Onion Router”（洋葱路由）的英语缩写。用户可透过Tor接达由全球志愿者免费提供，包含7500多个中继的覆盖网络，从而达至隐藏用户真实地址、避免网络监控及流量分析的目的。Tor用户的互联网活动（包括浏览在线网站、帖子以及即时消息等通信形式）相对较难追踪。Tor的设计原意在于保障用户的个人隐私，以及不受监控地进行秘密通信的自由和能力。</p>
+<p>Tor通过一种叫做路径选择算法的方式自动在网络中选择3个Tor节点，这三个节点分别叫做入口节点（Guard relay）、中间节点（Middle relay）和出口节点（Exit relay）。在网络连接的应用层，数据以一种叫做洋葱路由的方式进行传输。数据首先在用户端连续加密三层，而三个中继各自解密一层，这样它们就能知道接下来把数据传送给谁。在这种情况下，数据就像剥洋葱一样被一层一层地解密，所以被称为“洋葱路由”。最后的出口节点会解密最内层的加密数据并得到真实的数据内容，并把它传送给目标地址。出口节点虽然知道真正的数据内容，但是它只知道上一个中继节点的地址，并不知道数据最初的发送者是谁，从而保证了数据发送者的安全。相对应地，入口节点仅知晓用户的IP地址而无法得知其访问的网站，而中间节点既无法得知IP地址也无法得知用户所访问的内容。</p>
+<figure class="wp-block-embed aligncenter is-type-video is-provider-youtube wp-block-embed-youtube wp-embed-aspect-16-9 wp-has-aspect-ratio"><div class="wp-block-embed__wrapper">
+<iframe title="How Tor Browser Protects Your Privacy and Identity Online" width="500" height="281" src="https://www.youtube.com/embed/JWII85UlzKw?feature=oembed" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+</div><figcaption class="wp-element-caption">Tor</figcaption></figure>
+<figure class="wp-block-embed aligncenter is-type-video is-provider-youtube wp-block-embed-youtube wp-embed-aspect-16-9 wp-has-aspect-ratio"><div class="wp-block-embed__wrapper">
+<iframe title="通过 Tor 浏览器来保护你的互联网活动 [How to use Tor Browser –Chinese]" width="500" height="281" src="https://www.youtube.com/embed/F3N5k9D8It4?feature=oembed" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+</div><figcaption class="wp-element-caption">通过Tor浏览器来保护你的互联网活动</figcaption></figure>
+<h1 class="wp-block-heading" id="洋葱服务-暗网（Hidden-Service）">洋葱服务-暗网（Hidden Service）</h1>
+<p>在Tor的网络世界中，有一些以.onion顶级域名结尾的网址，这些网站就是我们所熟知的洋葱服务，也就是我们所熟知的<strong>暗网。</strong>这类网站通常只能通过Tor来进行访问，因此保证了访问者的匿名性。通常我们所熟知的暗网都是黑暗内容，例如色情、血腥暴力、恐怖主义、毒品交易、人口贩卖、黑客服务等违法信息，但Tor的设计初衷绝不是这样的，它的宗旨是保护普通人的隐私，例如为记者、政治活动家、以及追求安全匿名的用户提供服务。</p>
+<div class="wp-block-image">
+<figure class="aligncenter size-full"><noscript><img fetchpriority="high" decoding="async" width="980" height="551" src="/images/49e9c659b2fc8eabd215c7c519d1b57e.jpg" alt="Tor（暗网）简介和教程" class="wp-image-51"></noscript><img fetchpriority="high" decoding="async" width="980" height="551" src="/images/49e9c659b2fc8eabd215c7c519d1b57e.jpg" alt="Tor（暗网）简介和教程" class="wp-image-51 j-lazy"><figcaption class="wp-element-caption">Tor</figcaption></figure></div>
+<blockquote class="wp-block-quote">
+<p>Tor 的使命是通过免费开源技术促进人权，使用户能够抵御大规模监视和互联网审查。 我们讨厌有人将 Tor 用于邪恶目的，我们谴责滥用和利用我们的技术进行犯罪活动。</p>
+</blockquote>
+<blockquote class="wp-block-quote">
+<p>重要的是要理解，犯罪意图在于个人，而不在于他们使用的工具。 就像其他广泛使用的技术一样，Tor 可能被有犯罪意图的个人使用。 而且由于他们可以使用其他选择，将 Tor 从世界上移除似乎不太可能阻止他们从事犯罪活动。 同时，Tor 和其他隐私措施可以打击身份盗用、跟踪等人身犯罪，并可供执法部门用来调查犯罪并帮助支持幸存者。</p>
+</blockquote>
+<figure class="wp-block-embed aligncenter is-type-video is-provider-youtube wp-block-embed-youtube wp-embed-aspect-16-9 wp-has-aspect-ratio"><div class="wp-block-embed__wrapper">
+<iframe loading="lazy" title="TOR Hidden Services - Computerphile" width="500" height="281" src="https://www.youtube.com/embed/lVcbq_a5N9I?feature=oembed" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+</div><figcaption class="wp-element-caption">Tor Hidden Services</figcaption></figure>
+<h1 class="wp-block-heading" id="如何连接到Tor">如何连接到Tor</h1>
+<p>通常情况下，你只需要前往官网（<a href="https://support.torproject.org/zh-CN" target="_blank" rel="noreferrer noopener">https://support.torproject.org/zh-CN</a>）下载并安装基于Tor的Tor浏览器（Mozilla Firefox的分支），启动后点击连接即可连接至Tor网络。</p>
+<h2 class="wp-block-heading" id="审查">审查</h2>
+<p>当然，许多国家对Tor网络进行封锁，例如俄罗斯、伊朗等国家，想在这些国家使用Tor，您可能需要进行额外的配置。您可能需要其他方法下载Tor浏览器并且需要为Tor添加可插拔传输层（网桥）。</p>
+<h2 class="wp-block-heading" id="其他下载Tor浏览器的方法">其他下载Tor浏览器的方法</h2>
+<blockquote class="wp-block-quote">
+<p>如果你无法通过我们的<a href="https://www.torproject.org/" target="_blank" rel="noreferrer noopener">网站</a>下载 Tor浏览器，你可以通过 GetTor 获取一份 Tor 浏览器的副本。 GetTor 是一项通过不同方式自动回复最新版 Tor 浏览器下载链接的服务。这些链接由不同处所托管，例如 Dropbox 、Google Drive 和 GitHub. 可以通过<a href="https://support.torproject.org/zh-CN/censorship/gettor-2/" target="_blank" rel="noreferrer noopener">邮件</a>或者 Telegram 自动程序<a href="https://t.me/gettor_bot" target="_blank" rel="noreferrer noopener">https://t.me/gettor_bot</a>请求。 可以从 <a href="https://tor.eff.org/" target="_blank" rel="noreferrer noopener">https://tor.eff.org</a> 或者 <a href="https://tor.calyxinstitute.org/" target="_blank" rel="noreferrer noopener">https://tor.calyxinstitute.org/</a>下载 Tor 浏览器。</p>
+</blockquote>
+<blockquote class="wp-block-quote">
+<p>给 <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="9dfaf8e9e9f2efdde9f2efedeff2f7f8fee9b3f2effa">[email protected]</a> 发送一封电子邮件 在邮件的正文中，写上你的操作系统的名称（如 Windows 、macOS 或 Linux）。 GetTor 将回复一封电子邮件，其中包含 Tor 浏览器的下载链接、加密签名（用于<a href="https://support.torproject.org/zh-CN/tbb/how-to-verify-signature/" target="_blank" rel="noreferrer noopener">验证下载的文件</a>）、用于签名的密钥指纹以及软件包的校验和。 你也许需要选择“32 位”或“64 位”版本：这和你的电脑有关，你可能需要查阅你电脑的说明书或与制造商联系来了解更多信息。</p>
+</blockquote>
+<h2 class="wp-block-heading" id="可插拔传输层（网桥）">可插拔传输层（网桥）</h2>
+<blockquote class="wp-block-quote">
+<p>什么是网桥？网桥指未在 Tor 公共目录里列出的 Tor 中继节点。</p>
+</blockquote>
+<blockquote class="wp-block-quote">
+<p>这意味着，屏蔽 Tor 网络的政府或 ISP 无法彻底屏蔽所有网桥。 对于暴虐政权下的用户或者想要更多安全性的人们，网桥非常有用，因为他们担心有人会发现自己在使用 公开的 Tor 中继 IP 地址。</p>
+</blockquote>
+<blockquote class="wp-block-quote">
+<p>网桥不过时普通的中继，只是配置稍有不同。 请参阅<a href="https://community.torproject.org/relay/setup/bridge/" target="_blank" rel="noreferrer noopener">如何运行网桥</a>以获取相关指南。</p>
+</blockquote>
+<blockquote class="wp-block-quote">
+<p>一些国家，包括俄罗斯和伊朗，已经找到探测和屏蔽 Tor 网桥的方法。 <a href="https://github.com/Yawning/obfs4/blob/master/doc/obfs4-spec.txt" target="_blank" rel="noreferrer noopener">Obfsproxy</a>网桥通过增加一层混淆来解决这个问题。 运行 obfsproxy 网桥需要一些额外的软件包和配置。 更多信息，请参阅<a href="https://tb-manual.torproject.org/circumvention/" target="_blank" rel="noreferrer noopener">可插拔传输</a>页面。</p>
+</blockquote>
+<figure class="wp-block-embed aligncenter is-type-video is-provider-youtube wp-block-embed-youtube wp-embed-aspect-16-9 wp-has-aspect-ratio"><div class="wp-block-embed__wrapper">
+<iframe loading="lazy" title="使用 Tor 网桥解锁互联网！[Bypassing Censorship with Tor - Chinese]" width="500" height="281" src="https://www.youtube.com/embed/kcQkIpl0VbE?feature=oembed" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+</div><figcaption class="wp-element-caption">使用Tor网桥解锁互联网！</figcaption></figure>
+<h2 class="wp-block-heading" id="Snowflake">Snowflake</h2>
+<blockquote class="wp-block-quote">
+<p>Snowflake 是 Tor 浏览器提供的<a href="https://support.torproject.org/zh-CN/glossary/pluggable-transports/" target="_blank" rel="noreferrer noopener">可插拔传输</a>根据，用于突破网络审查。 和 Tor 网桥一样，当普通 Tor 连接被屏蔽时，用户可以借助 Snowflake 访问开放互联网。 在 Tor 浏览器中使用 Snowflake 非常容易，类似于切换到新的网桥。</p>
+</blockquote>
+<blockquote class="wp-block-quote">
+<p>这个系统由三个部分组成：运行 Snowflake 代理的志愿者，想要连接到互联网的 Tor 用户，以及向用户分发 Snowflake 代理的中转站。</p>
+</blockquote>
+<blockquote class="wp-block-quote">
+<p>如果愿意帮助受审查用户，志愿者可在常规浏览器上搭建临时代理。请查看<a href="https://support.torproject.org/zh-CN/censorship/how-can-i-use-snowflake/" target="_blank" rel="noreferrer noopener">怎么使用 Snowflake？</a></p>
+</blockquote>
+<blockquote class="wp-block-quote">
+<p>Snowflake 使用非常有效的<a href="https://support.torproject.org/zh-CN/glossary/domain-fronting/" target="_blank" rel="noreferrer noopener">域名前置</a>技术，可连接由成千上万的志愿者运营的 Snowflake 代理服务器。 这些临时的轻量代理易于搭建。相对于之前的技术，Snowflake 更容易进行扩展。</p>
+</blockquote>
+<blockquote class="wp-block-quote">
+<p>对于受到被审查的用户，如果你的 Snowflake 代理被屏蔽，中转站将自动为你寻找新的代理。</p>
+</blockquote>
+<blockquote class="wp-block-quote">
+<p>如果你对技术细节和规范感兴趣，请参阅 <a href="https://gitlab.torproject.org/tpo/anti-censorship/pluggable-transports/snowflake/-/wikis/Technical%20Overview" target="_blank" rel="noreferrer noopener">Snowflake 技术概述</a>和<a href="https://snowflake.torproject.org/" target="_blank" rel="noreferrer noopener">项目页面</a>。 有关 Snowflake 的其他讨论，请访问 <a href="https://forum.torproject.org/" target="_blank" rel="noreferrer noopener">Tor 论坛</a>并关注 <a href="https://forum.torproject.org/tag/snowflake" target="_blank" rel="noreferrer noopener">Snowflake 标签</a>。</p>
+</blockquote>
+<blockquote class="wp-block-quote">
+<p>在所有平台的 <a href="https://www.torproject.org/download/" target="_blank" rel="noreferrer noopener">Tor 浏览器</a>稳定版中，都可以使用 Snowflake：Windows、macOS、GNU/Linux 和 Android。 你也可以在 iOS 上的 <a href="https://apps.apple.com/us/app/onion-browser/id519296448" target="_blank" rel="noreferrer noopener">Onion Browser</a>来使用 Snowflake。</p>
+</blockquote>
+<blockquote class="wp-block-quote">
+<p>如果第一次运行桌面版 Tor 浏览器，你可以在启动屏幕上点击“配置连接”。 在“网桥”部分，找到选项“选择 Tor 浏览器内置网桥”，然后点击“选择内置网桥”。 从菜单选择“Snowflake”。 选择 Snowflake 之后，向上滚动并点击“连接”以保存你的设置。</p>
+</blockquote>
+<blockquote class="wp-block-quote">
+<p>在浏览器内，你可以点击<a href="https://support.torproject.org/zh-CN/glossary/hamburger-menu/" target="_blank" rel="noreferrer noopener">汉堡菜单（”≡”）</a>，然后点击“设置”并打开“连接”。 另外，可以在地址栏中输入 <code>about:preferences#connection</code> 。 在“网桥”部分，找到选项“选择 Tor 浏览器内置网桥”，然后点击“选择内置网桥”。 从菜单选择“Snowflake”。</p>
+</blockquote>
+<h2 class="wp-block-heading" id="如何在中华人民共和国绕过防火长城（GFW）来连接到Tor？">如何绕过ISP的拦截来连接到Tor？</h2>
+<p>被封锁国家用户需额外步骤绕过ISP拦截连接到 Tor 网络。</p>
+<blockquote class="wp-block-quote">
+<p>要获得 Tor 浏览器的更新版本，先试试 Telegram 自动程序：<a href="https://t.me/gettor_bot" target="_blank" rel="noreferrer noopener">https://t.me/gettor_bot</a>。 如果不起作用，可以发送邮件至 <a href="/cdn-cgi/l/email-protection#81e6e4f5f5eef3c1f5eef3f1f3eeebe4e2f5afeef3e6"><span class="__cf_email__" data-cfemail="26414352524954665249545654494c43455208495441">[email protected]</span></a>，并根据相应的操作系统，在邮件主题上写明“Windows”、“Macos”或“linux”操作系统。</p>
+</blockquote>
+<blockquote class="wp-block-quote">
+<p>安装后，Tor 浏览器将尝试连接 Tor 网络。 如果所在地屏蔽了 Tor，链接助手将试图通过网桥或者 Snowflake 连接。 但是如果这样也无法连接，第二步是获得在中国可以使用的网桥。</p>
+</blockquote>
+<blockquote class="wp-block-quote">
+<p>在中国使用 Tor 有三种选项：</p>
+</blockquote>
+<blockquote class="wp-block-quote">
+<p><a href="https://support.torproject.org/zh-CN/censorship/what-is-snowflake/" target="_blank" rel="noreferrer noopener"><strong>Snowflake</strong></a><strong>：</strong>使用临时代理连接到 Tor 网络。 它可以在 Tor 浏览器和其他由 Tor 驱动的应用程序中使用，如Orbot。 你可以从 Tor 浏览器的<a href="https://support.torproject.org/zh-CN/censorship/how-can-i-use-snowflake/" target="_blank" rel="noreferrer noopener">内置网桥菜单</a>中选择 Snowflake。</p>
+</blockquote>
+<blockquote class="wp-block-quote">
+<p><strong>未公开的私密 obfs4 网桥：</strong>找到我们的 Telegram 机器人 <a href="https://t.me/GetBridgesBot" target="_blank" rel="noreferrer noopener">@GetBridgesBot</a> 并发送 <code>/bridges</code> 来获取网桥。 或者发送邮件到 <a href="/cdn-cgi/l/email-protection#3a5c4855544e5e5f49517a4e55484a4855505f594e1455485d"><span class="__cf_email__" data-cfemail="aaccd8c5c4dececfd9c1eadec5d8dad8c5c0cfc9de84c5d8cd">[email protected]</span></a>，并且邮件主题需要包含“private bridge cn”。 如果你懂些计算机技术，可以自己在中国境外搭建并运行 <a href="https://community.torproject.org/relay/setup/bridge/" target="_blank" rel="noreferrer noopener">obfs4 网桥</a>。 需要注意的是，通过 <a href="https://bridges.torproject.org/" target="_blank" rel="noreferrer noopener">BridgeDB</a> 获取的网桥以及 Tor 浏览器内置的 obfs4 网桥，很可能无法使用。</p>
+</blockquote>
+<blockquote class="wp-block-quote">
+<p><strong>meek-azure：</strong>能让你伪装成访问微软的网站，而不是 Tor。 不过，因带宽限制这种网桥连接较慢。 你可以在 Tor 浏览器的内置网桥下拉菜单中选择 meek-azure。</p>
+</blockquote>
+<blockquote class="wp-block-quote">
+<p>如果以上某个选项无法使用，请查看 <a href="https://support.torproject.org/zh-CN/connecting/connecting-2/" target="_blank" rel="noreferrer noopener">Tor 日志</a>并尝试其他方法。</p>
+</blockquote>
+<blockquote class="wp-block-quote">
+<p>如果需要帮助，可以从 Telegram <a href="https://t.me/TorProjectSupportBot" target="_blank" rel="noreferrer noopener">https://t.me/TorProjectSupportBot</a> 和 <a href="https://signal.me/#p/+17787431312" target="_blank" rel="noreferrer noopener">Signal</a>上得到帮助。</p>
+</blockquote>
+<h1 class="wp-block-heading" id="注意事项">注意事项</h1>
+<ol>
+<li>当我使用 Tor 浏览器时，其他人是否能知道我曾经访问过哪些网站？ Tor 浏览器防止人们获知你访问过的网站。 有些机构，例如你的互联网服务提供商，也许可看到你正在使用 Tor，不过他们不知道你正在使用 Tor 做些什么。</li>
+<li>使用Tor是完全匿名的吗？通常，完美的匿名是不可能的，即使用 Tor 也一样。 不过，使用 Tor 以及不在线时，你可以做一些事来提升匿名性。</li>
+<li>不要在Tor上使用BitTorrent，不要为Tor浏览器安装和启用其他插件，不要同时使用Tor和VPN。</li>
+</ol>
+<h1 class="wp-block-heading" id="误区">误区</h1>
+<p>Tor指的不是Tor浏览器，而是一种匿名网络，它依赖于Tor程序。你可以把Tor浏览器理解为Mozilla Firefox + Tor程序，Tor浏览器依赖于Tor程序。如果你想单独使用Tor而不使用浏览器，你可以尝试Tor的专家包，Tor程序会在本地的9050端口开放socks代理，而Tor浏览器则是在本地的9150端口开放socks代理。</p>
+ </div>

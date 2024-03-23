@@ -1,0 +1,21 @@
++++
+title = "Tor反审查小组报告：2020年5月"
+date = 2020-06-02T06:21:38+08:00
+categories = ["Tor官方动态", "暗网动态"]
+tags = []
+thumbnail = ""
++++
+
+<div class="entry-content clearfix">
+<p><noscript><img fetchpriority="high" decoding="async" width="1500" height="619" class="wp-image-297" style="width: 700px;" src="/images/6e88b090bb7dbd91999bd42396e79934.png" alt=""></noscript><img fetchpriority="high" decoding="async" width="1500" height="619" class="wp-image-297 j-lazy" style="width: 700px;" src="/images/6e88b090bb7dbd91999bd42396e79934.png" alt></p>
+<p>Tor的反审查小组每月撰写报告，以向世界通报其进展情况。到目前为止，我们已经将这些团队报告发布到了<a href="https://lists.torproject.org/cgi-bin/mailman/listinfo/tor-project">tor-project</a>邮件列表中，但是从本月开始，我们也正在尝试将团队报告转换为博客文章。我们希望这样可以使社区更加方便地关注我们的工作并对此发表评论。我们为大家工作，并且要做好我们的工作，我们需要您的来信！</p>
+<p>事不宜迟，以下是反审查小组在2020年5月完成的工作：</p>
+<h3 class="wp-block-heading">Snowflake</h3>
+<ul><li><a href="https://blog.torproject.org/new-release-tor-browser-95a13"></a>5月22日发布的<a href="https://blog.torproject.org/new-release-tor-browser-95a13">Tor浏览器9.5a13</a>在Snowflake中进行了重大的可用性改进，使您可以在使用的脱机状态下将连接迁移到新的临时代理。这样一来，Snowflake连接更有可能首先起作用，并使Snowflake的使用时间更长。您可以在<a href="https://bugs.torproject.org/34043">票证＃34043中</a>阅读更多<a href="https://bugs.torproject.org/34043">内容</a>。</li><li>启动了<a href="https://trac.torproject.org/projects/tor/wiki/doc/SnowflakeProxyAndroid">Google Summer of Code项目，</a>以实现一个Android Snowflake代理应用程序。</li><li>开始实施Snowflake代理和客户端之间NAT不兼容的解决方法。（<a href="https://bugs.torproject.org/34129">＃34129</a>）</li><li>实现了Snowflake客户端的Android可重现版本。（<a href="https://bugs.torproject.org/28672">＃28672</a>）</li><li>修复了导致Chrome代理挂起的错误。（<a href="https://bugs.torproject.org/31278">＃31278</a>）</li></ul>
+<h3 class="wp-block-heading">GetTor</h3>
+<ul><li>修复了GetTor与其他自动回复程序陷入无限电子邮件循环的问题。（<a href="https://bugs.torproject.org/34286">＃34286</a>）</li><li>修复了GetTor Twitter响应器中的一些错误，使其更接近于修复。（<a href="https://bugs.torproject.org/27330">＃27330</a>）</li></ul>
+<h3 class="wp-block-heading">BridgeDB</h3>
+<ul><li>在<a href="https://gitlab.torproject.org/tpo/anti-censorship/wolpertinger">wolpertinger</a>上取得了稳步的进展，这有助于BridgeDB与OONI（以及其他可能的审查制度测量平台）建立反馈循环。OONI完成了其实现的一部分，现在可以从wolpertinger的API请求桥接。然后，Wolpertinger从其S3存储桶中获取OONI的测试结果，并将其写回到BridgeDB的SQLite数据库中。（<a href="https://bugs.torproject.org/32740">＃32740</a>）</li><li>在<a href="https://lists.torproject.org/pipermail/anti-censorship-team/2020-May/000096.html">反审查小组邮件列表中</a>概述了BridgeDB的未来计划。</li><li><a href="https://blog.torproject.org/new-release-bridgedb-010-1"></a>在我们最新的BridgeDB 0.10.1版本中<a href="https://blog.torproject.org/new-release-bridgedb-010-1">写了一篇博客文章</a>。</li><li>已完成的监视工具，该工具会定期将电子邮件发送到BridgeDB的自动响应器，以确保其仍在工作。（<a href="https://bugs.torproject.org/12802">＃12802</a>）</li><li>在BridgeDB的UI中删除了chatspeak引用。（<a href="https://bugs.torproject.org/31528">＃31528</a>）</li><li>扩展的BridgeDB的简约SQL表，用于阻塞的网桥。（<a href="https://bugs.torproject.org/34154">＃34154</a>）</li><li>使用Transifex的最新翻译更新了BridgeDB的用户界面。感谢所有帮助将BridgeDB转换为不同语言的人！</li><li>修复了一段时间后会破坏BridgeDB电子邮件自动响应程序的错误。（<a href="https://bugs.torproject.org/33945">＃33945</a>）</li></ul>
+<h3 class="wp-block-heading">杂项</h3>
+<ul><li>设置一个<a href="https://gitlab.torproject.org/tpo/anti-censorship/monit-configuration">monit实例</a>，该<a href="https://gitlab.torproject.org/tpo/anti-censorship/monit-configuration">实例</a>现在可以监视我们的反审查基础结构。中断警报将发送到<a href="https://lists.torproject.org/cgi-bin/mailman/listinfo/anti-censorship-alerts">反审查警报邮件列表</a>。</li><li>用户指出问题后，更新了我们的<a href="https://community.torproject.org/relay/setup/bridge/docker/">docker bridge安装指南</a>。</li></ul>
+ </div>

@@ -1,0 +1,4 @@
+<div id="sibling-posts" class="grid grid-cols-1 md:grid-cols-2 gap-3">
+  <div><span class="text-gray-400 mr-1">上一篇:</span>{{ with .Prev }}<a class="font-semibold" href="{{.Permalink}}">{{.Title}}</a>{{ else }}没有了{{ end }}</div>
+  <div><span class="text-gray-400 mr-1">下一篇:</span>{{ with .Next }}<a class="font-semibold" href="{{.Permalink}}">{{.Title}}</a>{{ else }}没有了{{ end }}</div>
+</div>

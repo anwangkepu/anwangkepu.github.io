@@ -1,0 +1,59 @@
++++
+title = "DNS Resolver for Tor介绍"
+date = 2020-04-26T21:25:02+08:00
+categories = ["导航", "暗网技术", "暗网网站"]
+tags = []
+thumbnail = ""
++++
+
+<div class="entry-content clearfix">
+<p><noscript><img fetchpriority="high" decoding="async" width="2235" height="840" class="wp-image-169" style="width: 800px;" src="/images/cf4205f381351279ca9429137b10dee5.png" alt=""></noscript><img fetchpriority="high" decoding="async" width="2235" height="840" class="wp-image-169 j-lazy" style="width: 800px;" src="/images/cf4205f381351279ca9429137b10dee5.png" alt>如果您还没有听说过，Cloudflare 将于4月1日<a href="https://blog.cloudflare.com/dns-resolver-1-1-1-1/">推出</a>一项隐私优先的<a rel="noreferrer noopener" href="https://www.cloudflare.com/learning/dns/what-is-dns/" target="_blank">DNS</a>解析器服务。这不是开玩笑！该服务是我们的第一个以消费者为中心的服务，除了支持基于UDP：53和TCP：53的传统协议外，还支持新兴的DNS标准，例如基于HTTPS：443和TLS：853的DNS，所有这些都位于一个易于记忆的地址中：<a rel="noreferrer noopener" href="https://1.1.1.1/" target="_blank">1.1 .1.1</a>。</p>
+<p>正如原始博客文章中提到的那样，我们的政策是永远不要在24小时内将客户端IP地址写入磁盘并擦除所有日志。不过，非常注重隐私的人们可能根本不希望向解析器透露其IP地址，我们对此表示尊重。这就是为什么我们要在<a href="https://dns4torpnlfs2ifuz2s2yf3fc7rdmsbhm6rw75euj35pac6ap25zgqad.onion/" target="_blank" rel="noreferrer noopener">dns4torpnlfs2ifuz2s2yf3fc7rdmsbhm6rw75euj35pac6ap25zgqad.onion上</a>为解析器启动Tor洋葱服务的<a href="https://dns4torpnlfs2ifuz2s2yf3fc7rdmsbhm6rw75euj35pac6ap25zgqad.onion/" target="_blank" rel="noreferrer noopener">原因，</a>并且可以通过<a href="https://tor.cloudflare-dns.com/" target="_blank" rel="noreferrer noopener">tor.cloudflare-dns.com进行</a>访问。</p>
+<figure class="wp-block-image size-large"><noscript><img decoding="async" width="800" height="101" src="/images/0a75328397a61659e76759df89f242fa.gif" alt="DNS Resolver for Tor介绍" class="wp-image-174"></noscript><img decoding="async" width="800" height="101" src="/images/0a75328397a61659e76759df89f242fa.gif" alt="DNS Resolver for Tor介绍" class="wp-image-174 j-lazy"></figure>
+<p><strong>注意：</strong>隐藏的解析器仍是一项实验性服务，除非经过更多测试，否则不得用于生产或其他关键用途。</p>
+<h3 class="wp-block-heading" id="crashcourseontor">Tor速成班</h3>
+<h4 class="wp-block-heading" id="whatistor">什么是<a href="https://www.torproject.org/" target="_blank" rel="noreferrer noopener">Tor</a>？</h4>
+<p>想象一下一个替代的Internet，为了连接到www.cloudflare.com，而不是将查找我们服务器的路径的任务委派给您的Internet提供商，您必须执行以下步骤才能到达Cloudflare：</p>
+<ol><li>您可以计算出到达目的地的路径，如下所示：<code> You -&gt; Your ISP -&gt; X -&gt; Y -&gt; Z -&gt; www.cloudflare.com.</code></li><li>您使用Z的公钥，然后使用Y的公钥，最后使用X的公钥对数据包进行加密。</li><li>您将结果提交给X，后者用其私钥解密；</li><li>X将结果提交给Y，Y用其私钥解密；</li><li>Y将结果提交给Z，Z用其私钥解密以获取原始数据包；</li><li>Z将数据包提交到<a href="https://blog.cloudflare.com/welcome-hidden-resolver/www.cloudflare.com">www.cloudflare.com</a>。</li></ol>
+<p>如果每个人都能正确发挥作用，则可以确保只有入口中继X知道您的IP地址，只有出口中继Z知道您与您建立联系的网站，从而为您提供隐私和匿名性。这是Tor的简化版本：世界范围内由志愿者运行的计算机和服务器的集合，充当建立在Internet顶部的巨大网络的中继，在该网络中，从一个中继到下一中继的每一跳都剥离了一层加密，因此名称：洋葱路由器。</p>
+<figure class="wp-block-image size-large"><noscript><img decoding="async" width="1024" height="355" src="/images/60727dc5cd671264ff597c3da45cf9a8.png" alt="DNS Resolver for Tor介绍" class="wp-image-168"></noscript><img decoding="async" width="1024" height="355" src="/images/60727dc5cd671264ff597c3da45cf9a8.png" alt="DNS Resolver for Tor介绍" class="wp-image-168 j-lazy"></figure>
+<h4 class="wp-block-heading" id="whataretoronionservices">什么是Tor洋葱服务？</h4>
+<p>使互联网用户保持匿名不是Tor网络的唯一功能。特别是，以上过程的一个警告是出口中继站以及位于中继站和目的地之间的任何人（包括网络提供者）仍然可以访问该连接。为了解决此问题，并为内容发布者提供匿名，Tor允许使用洋葱服务。洋葱服务是Tor节点，它们发布其公共密钥，并使用.onion TLD编码为地址，并完全在Tor网络内建立连接：</p>
+<figure class="wp-block-image size-large"><noscript><img loading="lazy" decoding="async" width="1024" height="236" src="/images/1e41d465f12ba592ab27128910bc1f26.png" alt="DNS Resolver for Tor介绍" class="wp-image-170"></noscript><img loading="lazy" decoding="async" width="1024" height="236" src="/images/1e41d465f12ba592ab27128910bc1f26.png" alt="DNS Resolver for Tor介绍" class="wp-image-170 j-lazy"></figure>
+<h4 class="wp-block-heading" id="howdoyouresolveadomainwhileusingtor">使用Tor时如何解析域？</h4>
+<p>返回给定域名的IP地址的过程称为<em>DNS解析</em>。由于Tor仍然使用IP地址，因此您仍然需要进行DNS解析以通过Tor浏览Web。使用Tor时，有两种常见的解析域名的方法：</p>
+<ol><li>直接解析名称，然后通过Tor与IP地址对话；</li><li>要求Tor出口继电器公开解析名称并连接到IP。</li></ol>
+<p>显然，第一种选择会将您的IP泄漏到DNS解析器，除非您的客户端使用HTTP-over-HTTPS或DNS-over-TLS，否则它将目标名称泄漏到ISP。不太明显的是，第二种选择可以使您容易受到诸如DNS中毒或<a href="https://trac.torproject.org/projects/tor/wiki/doc/ReportingBadRelays" target="_blank" rel="noreferrer noopener">错误中继</a>引起的sslstrip之类的操纵<a href="https://arstechnica.com/information-technology/2014/01/scientists-detect-spoiled-onions-trying-to-sabotage-tor-privacy-network/" target="_blank" rel="noreferrer noopener">攻击</a>。这是我们的新服务的来源：<a href="https://trac.torproject.org/projects/tor/wiki/doc/ReportingBadRelays" target="_blank" rel="noreferrer noopener"></a></p>
+<ol start="3"><li>询问基于.onion的解析器服务！</li></ol>
+<h3 class="wp-block-heading" id="howdoesthecloudflarehiddenresolverwork">Cloudflare隐藏解析器如何工作？</h3>
+<p>简而言之，我们的基于.onion的解析器服务是Toronion服务，它将DNS端口上的所有通信转发到1.1.1.1上的相应端口，因此，明显的客户端IP是内部IP，而不是您的IP。但是，除了眼神之外，还有更多。</p>
+<figure class="wp-block-image size-large"><noscript><img loading="lazy" decoding="async" width="1024" height="245" src="/images/7cdb7f4f24ee71c860ff4db0862b6483.png" alt="DNS Resolver for Tor介绍" class="wp-image-171"></noscript><img loading="lazy" decoding="async" width="1024" height="245" src="/images/7cdb7f4f24ee71c860ff4db0862b6483.png" alt="DNS Resolver for Tor介绍" class="wp-image-171 j-lazy"></figure>
+<h4 class="wp-block-heading" id="isthehiddenresolversecure">隐藏的解析器安全吗？</h4>
+<p>使用1.1.1.1和此服务之间的明显区别是.onion地址为“ dns4tor”加上49个看似随机的字母数字字符。实际上，此56个字符的字符串包含完整的Ed25519公共密钥，该公共密钥用于保护与洋葱服务的通信。这对可用安全性提出了许多挑战：</p>
+<ol><li>用户如何确保地址正确？</li></ol>
+<p>我们只是购买了一个<a href="https://crt.sh/?id=439705277" target="_blank" rel="noreferrer noopener">证书</a>，其主题名称为tor.cloudflare-dns.com，而备用名称为.onion地址。这样，如果您在正确的位置，则应该看到以下内容：</p>
+<figure class="wp-block-image size-large"><noscript><img loading="lazy" decoding="async" width="782" height="24" src="/images/1e4a75a07fd26aa6be2de292c34b58f0.png" alt="DNS Resolver for Tor介绍" class="wp-image-172"></noscript><img loading="lazy" decoding="async" width="782" height="24" src="/images/1e4a75a07fd26aa6be2de292c34b58f0.png" alt="DNS Resolver for Tor介绍" class="wp-image-172 j-lazy"></figure>
+<ol start="2"><li>用户如何记住该地址？</li></ol>
+<p>我们认为您不需要记住该地址。理想情况下，您所需要做的就是访问<a href="https://tor.cloudflare-dns.com/" target="_blank" rel="noreferrer noopener">https://tor.cloudflare-dns.com</a>，并使浏览器将您的请求路由到.onion地址。使用“ <a href="https://tools.ietf.org/html/rfc7838" target="_blank" rel="noreferrer noopener">Alt-Svc</a> ” HTTP标头可以做到这一点，该标头是一个可选标头，通知浏览器可以从其他网络位置访问资源，可能使用其他协议。感谢<a href="https://hacks.mozilla.org/2018/05/a-cartoon-intro-to-dns-over-https/" target="_blank" rel="noreferrer noopener">Mozilla</a>，现在可以在<a href="https://nightly.mozilla.org/" target="_blank" rel="noreferrer noopener">Firefox Nightly中</a>使用.onion地址作为替代服务。</p>
+<p>将此功能像<a href="https://blog.cloudflare.com/opportunistic-encryption-bringing-http-2-to-the-unencrypted-web/">机会加密</a>一样考虑：一旦您的浏览器收到一个Alt-Svc标头，表明.onion地址可用于tor.cloudflare-dns.com，如果它知道可以访问.onion地址（例如，通过SOCKS）代理），它会尝试检查替代服务是否具有相同或更高的安全级别。这包括确保可以使用相同的证书和<a href="https://tools.ietf.org/html/rfc6066#section-3" target="_blank" rel="noreferrer noopener">服务器名称</a>连接到洋葱服务。在这种情况下，浏览器将改为使用替代服务，因此确保您将来的请求不会离开Tor网络。</p>
+<h4 class="wp-block-heading" id="isthehiddenresolverfast">隐藏的解析器快吗？</h4>
+<p>这是一个思想实验：假设地球上的每两个点之间都有一条光纤电缆，该电缆能够以光速无损传输数据包。</p>
+<figure class="wp-block-image size-large"><noscript><img loading="lazy" decoding="async" width="1024" height="683" src="/images/76dff7f1c92c2af45bb8d16ce12bf215.png" alt="DNS Resolver for Tor介绍" class="wp-image-173"></noscript><img loading="lazy" decoding="async" width="1024" height="683" src="/images/76dff7f1c92c2af45bb8d16ce12bf215.png" alt="DNS Resolver for Tor介绍" class="wp-image-173 j-lazy"></figure>
+<p>用背的最信封的计算很容易看到，平均而言，每个数据包经过的距离相当于一个<strong>季度的</strong>地球绕圆周<strong>为33ms</strong>，而每一个Tor的包大约需要<strong>200毫秒</strong>去<strong>一年</strong>在到达洋葱服务点之前，有<strong>一半</strong>转过地球。往返三回合可确保双方的匿名性。</p>
+<p>但是，Cloudflare不需要为其服务器匿名，这就是为什么我们可以通过为洋葱服务启用<a href="https://trac.torproject.org/projects/tor/ticket/17178" target="_blank" rel="noreferrer noopener">可选</a> <a href="https://gitweb.torproject.org/torspec.git/tree/proposals/260-rend-single-onion.txt" target="_blank" rel="noreferrer noopener">设置</a>（将优先级较低的延迟优先于服务的位置匿名性）而将中继数量减少到三个的原因。要强调的是，这不会影响客户的隐私或匿名性。的确，您可能已经注意到，在第一个洋葱服务映像中，起点距集合点三跳，而我们的洋葱服务仅一跳。</p>
+<p>我们正在积极研究开发方法，以使该服务更快，并确保其停机时间尽可能短。</p>
+<h4 class="wp-block-heading" id="whyshouldiusethecloudflarehiddenresolver">为什么要使用Cloudflare隐藏式解析器？</h4>
+<p>首先，最重要的是，例如通过连接到Google的8.8.8.8解析器，通过Tor网络解决DNS查询，保证了比直接发出请求高得多的匿名性。这样做不仅会阻止解析器看到您的IP地址，甚至您的ISP也不会知道您已尝试解析域名。</p>
+<p>尽管如此，除非目的地是洋葱服务，否则被动攻击者可以捕获离开Tor网络的数据包，而恶意出口节点则可以通过<a href="https://moxie.org/software/sslstrip/" target="_blank" rel="noreferrer noopener">sslstripping</a>毒害DNS查询或降级加密。即使将浏览限制为<a href="https://www.eff.org/pages/tor-and-https" target="_blank" rel="noreferrer noopener">仅HTTPS</a>站点，被动攻击者也可以找出您连接到的地址。更糟糕的是，能够比较流量进入Tor网络之前和离开Tor之后流量的参与者可能会使用元数据（大小，时间等）来使客户端<a href="https://nymity.ch/tor-dns/" target="_blank" rel="noreferrer noopener">匿名</a>。因此，唯一的解决方案是通过使用洋葱服务来消除对出口节点的需求。这就是我们基于.onion的解析器所提供的。</p>
+<p>此外，如果您的客户端不支持加密的DNS查询，则使用基于.onion的解析器可以保护连接免受路径上的攻击，包括BGP劫持攻击。这意味着与基于HTTPS的DNS和基于TLS的DNS相比，基于UDP的DNS和基于TCP的DNS具有相同的安全级别。</p>
+<p>但是，您的个人匿名不是您应使用此服务的唯一原因。Tor在确保每个人的匿名性方面的力量取决于使用它的人数。例如，如果仅举报者使用Tor网络，那么连接到Tor网络的任何人都会自动被怀疑是举报者。因此，越来越多的人使用Tor来浏览模因或在Internet上观看猫视频，对于那些真正需要匿名的人来说，将更容易融入流量。</p>
+<p>对于许多用户而言，使用Tor的一个障碍是速度太慢，因此我可以同情那些不会牺牲快速网站加载时间来帮助维权人士和持不同政见者保持匿名的人。也就是说，DNS请求的大小很小，并且由于大多数浏览器和操作系统都会缓存DNS结果，因此总流量并不大。结果，使用基于.onion的解析器只会稍微降低您的初始DNS请求的速度，而不会降低其他任何功能，同时仍然有助于Tor网络及其用户的整体匿名性。</p>
+<h3 class="wp-block-heading" id="whyshoulditrustthecloudflarehiddenresolver">为什么我应该相信Cloudflare隐藏式解析器？</h3>
+<p>使用基于.onion的解析器可确保您的ISP永远不会发现您正在解析域，出口节点不会有机会操纵DNS回复，并且解析器也永远不会找到您的IP地址。但是，使用基于Cloudflare .onion的解析器的独特好处是将Tor的功能与1.1.1.1解析器的所有隐私保护功能（例如查询名称最小化）以及一支致力于改进它的工程师团队相结合在每个级别，包括DNS-over-HTTPS和DNS-over-TLS之类的标准。</p>
+<p>正如首席执行官马修·普林斯（Matthew Prince）大约<a href="https://blog.cloudflare.com/the-trouble-with-tor/">两年前</a>所说，在线匿名是Cloudflare重视的原因。此外，当我们发布1.1.1.1解析器时，我们<a href="https://developers.cloudflare.com/1.1.1.1/commitment-to-privacy/" target="_blank" rel="noreferrer noopener">承诺</a>会采取所有技术步骤，以确保我们不知道您在Internet上做什么。提供一种通过Tor网络使用解析器并使其尽可能快的方法是朝着这个方向迈出的一大步。</p>
+<h3 class="wp-block-heading" id="howtosetitup">如何设置？</h3>
+<p>基于.onion的解析器仅在Tor网络上支持1.1.1.1支持的每个DNS协议。但是，由于并非每个DNS客户端都能够连接到Tor网络，因此需要进行一些破解才能使其正常工作。在这里，我们将说明如何设置基于.onion的解析器提供的基于HTTP的DNS，但是对于所有其他方案，请访问我们的<a href="https://developers.cloudflare.com/1.1.1.1/fun-stuff/dns-over-tor/" target="_blank" rel="noreferrer noopener">开发人员页面，</a>以获取有关如何使用基于.onion的解析器的详细信息。</p>
+<h4 class="wp-block-heading" id="remembercloudflared">还记得云雾cloud绕吗？</h4>
+<p>这是设置<code>cloudflared</code>启动通过Tor网络路由的通过HTTPS使用DNS的DNS客户端的方法：</p>
+<ol><li>首先，请<code>cloudflared</code>按照有关<a href="https://developers.cloudflare.com/1.1.1.1/dns-over-https/cloudflared-proxy/" target="_blank" rel="noreferrer noopener">通过HTTPS客户端运行DNS</a>的常规指南从下载开始。</li><li>启动一个Tor SOCKS代理，并用于<code>socat</code>将端口TCP：443转发到本地主机：<code> socat TCP4-LISTEN:443,reuseaddr,fork SOCKS4A:127.0.0.1:dns4torpnlfs2ifuz2s2yf3fc7rdmsbhm6rw75euj35pac6ap25zgqad.onion:443,socksport=9150</code></li><li>指示您的机器将.onion地址视为localhost：<code> cat &lt;&lt; EOF &gt;&gt; /etc/hosts 127.0.0.1 dns4torpnlfs2ifuz2s2yf3fc7rdmsbhm6rw75euj35pac6ap25zgqad.onion EOF</code></li><li>最后，通过UDP守护程序启动本地DNS：<code> cloudflared proxy-dns --upstream "https://dns4torpnlfs2ifuz2s2yf3fc7rdmsbhm6rw75euj35pac6ap25zgqad.onion/dns-query" INFO[0000] Adding DNS upstream url="https://dns4torpnlfs2ifuz2s2yf3fc7rdmsbhm6rw75euj35pac6ap25zgqad.onion/dns-query" INFO[0000] Starting DNS over HTTPS proxy server addr="dns://localhost:53" INFO[0000] Starting metrics server addr="127.0.0.1:35659"</code></li><li>利润！</li></ol>
+ </div>

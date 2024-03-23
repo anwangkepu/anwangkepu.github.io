@@ -1,0 +1,24 @@
++++
+title = "Tor软件包合并“工作量证明”以对抗Tor网络里持续的DDoS攻击"
+date = 2023-05-16T09:24:56+08:00
+categories = ["Tor官方动态", "暗网动态"]
+tags = ["DDOS", "PoW", "Tor", "Tor项目", "工作量证明"]
+thumbnail = ""
++++
+
+<div class="entry-content clearfix">
+<div class="wp-block-image">
+<figure class="aligncenter size-full"><noscript><img fetchpriority="high" decoding="async" width="768" height="403" src="/images/421b1705867e3c4b8cdaff37e0857eb7.png" alt="Tor软件包合并“工作量证明”以对抗Tor网络里持续的DDoS攻击" class="wp-image-144"></noscript><img fetchpriority="high" decoding="async" width="768" height="403" src="/images/421b1705867e3c4b8cdaff37e0857eb7.png" alt="Tor软件包合并“工作量证明”以对抗Tor网络里持续的DDoS攻击" class="wp-image-144 j-lazy"></figure></div>
+<p>经过几年的发展，<a href="https://gitlab.torproject.org/tpo/core/tor/-/merge_requests/702" target="_blank" rel="noreferrer noopener">Tor项目近期的Git</a>显示，其已经成功地将其“<span class="wpcom_tag_link">工作量证明</span>”（<span class="wpcom_tag_link">PoW</span>）功能合并到<span class="wpcom_tag_link">Tor</span>软件包的主要分支中。这意味着，在发布下一个Tor软件补丁并在节点中广泛实施后，困扰网络多年的拒绝服务（DoS或DDoS）攻击应该会大大减少。</p>
+<p>Tor网络在2022年的大部分时间里都受到持续的DDoS攻击的困扰，这不仅导致几个主要的暗网市场以及暗网论坛在数周或数月内无法访问，而且还产生了更广泛的影响，即几乎所有用户都觉得整个Tor网络的速度在变慢。然而，此类攻击对Tor来说并不是什么新鲜事，多年来，如何缓解这些攻击的解决方案一直是开发人员争论的主题。</p>
+<p>2020年8月，<span class="wpcom_tag_link">Tor项目</span>发布了一篇博文，解释了如何使用“工作量证明”的实施来使试图对网络进行DDoS攻击的攻击者付出更高的代价。2022年10月，在此类攻击达到临界水平后，Tor项目发布了工作量证明技术实施的状态更新，并于2023年3月17日正式引入了一项技术提案。近日，该提案的努力被合并到了Tor的主要代码库中，尽管这些变化将对DDoS攻击产生什么防护效果还有待观察。</p>
+<figure class="wp-block-embed is-type-rich is-provider-twitter wp-block-embed-twitter"><div class="wp-block-embed__wrapper">
+<blockquote class="twitter-tweet" data-width="500" data-dnt="true"><p lang="en" dir="ltr">While Proof-Of-Work has been traditionally used to power blockchains, it was originally suggested for DoS protection. Tor devs have been exploring the space and we believe that such a system could work wonders against the DoS attacks the network is currently experiencing. (7/8)</p>— The Tor Project (@torproject) <a href="https://twitter.com/torproject/status/1303722368746090500?ref_src=twsrc%5Etfw">September 9, 2020</a></blockquote><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</div></figure>
+<p>Tor项目于2020年9月<a href="https://twitter.com/torproject/status/1303722368746090500" target="_blank" rel="noreferrer noopener">发布推文</a>称：</p>
+<blockquote class="wp-block-quote">
+<p>“虽然工作量证明传统上一直用于为区块链提供动力，但最初建议用于DoS保护。Tor开发人员一直在探索这个空间，我们相信这样的系统可以在抵御网络目前正在经历的DoS攻击方面创造奇迹。”</p>
+</blockquote>
+<p>工作量证明的概念是在1999年首次提出的。它于2002年在一篇题为“Hashcash–拒绝服务防护措施”（Hashcash – A Denial of Service Counter-Measure）的论文中正式纳入Adam Back的hashcash系统。Hashcash旨在通过要求电子邮件发件人执行少量计算工作来防止垃圾邮件；其“证明”已添加到电子邮件标题中。然后可以通过可验证的方式确定包含此类标头的电子邮件不包含垃圾邮件。</p>
+<p>尽管hashcash仅在今天的少数实现中使用，但著名的工作量证明在2009年被比特币采用，用于比特币挖矿。目前使用工作量证明进行区块链挖矿的其他流行加密货币包括狗狗币、莱特币和门罗币。</p>
+ </div>

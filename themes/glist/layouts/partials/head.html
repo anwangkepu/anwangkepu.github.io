@@ -1,0 +1,42 @@
+  {{ $title := .Title }}
+  {{- if .Paginator }}{{- if gt .Paginator.PageNumber 1 }}
+    {{- $title = printf "%s 第%d页" $title .Paginator.PageNumber }}
+  {{- end }}{{- end }}
+  {{- if .IsHome }}
+    {{- with .Site.Params.Description }}
+      {{- $title = print $title " - " . }}
+    {{- end }}
+    {{- else }}
+      {{- $title = print $title " - " .Site.Title}}
+  {{- end }}
+  {{- $description := ""}}
+  {{- with .Description }}
+    {{- $description = .Description }}
+  {{- else }}
+    {{- with .Summary}}
+      {{- $description = . }}
+    {{- else }}
+      {{- if .IsHome }}
+        {{- with .Site.Params.Description }}
+          {{- $description = . }}
+        {{- end }}
+      {{- end }}
+    {{- end }}
+  {{- end }}
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="canonical" href="{{ .Permalink }}">
+  <link rel="stylesheet" href="{{ "/font-awesome-4.7.0/css/font-awesome.min.css" | absURL }}">
+  {{- with resources.Get "css/styles.css" | postCSS }}
+  <link rel="stylesheet" href="{{ .Permalink }}">
+  {{- end }}
+  {{- with site.Params.Favicon }}
+  <link rel="shortcut icon" href="{{ absURL . }}" type="image/x-icon" />
+  {{- end }}
+  <title>{{ $title }}</title>
+  {{- with $description }}
+  <meta name="description" content="{{ $description }}">
+  {{- end }}
+</head>

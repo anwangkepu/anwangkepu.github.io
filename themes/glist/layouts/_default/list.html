@@ -1,0 +1,12 @@
+      {{ define "main" }}
+      <!-- bread crumbs -->
+      {{- if not .IsHome }}
+      <div class="m-1 p-1 pl-5">
+        当前位置:<span class="ml-2 font-semibold">{{ .Title }}</span>
+      </div>
+      {{- end }}
+      {{ partial "list-posts.html" .Paginator.Pages }}
+      {{- if gt .Paginator.TotalPages 1 }}
+      {{ partial "pagination.html" . }}
+      {{- end }}
+      {{ end }}

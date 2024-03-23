@@ -1,0 +1,55 @@
++++
+title = "Scallion：一款基于GPU的Onion哈希生成器"
+date = 2020-05-13T19:08:35+08:00
+categories = ["域名", "工具", "暗网技术"]
+tags = []
+thumbnail = ""
++++
+
+<div class="entry-content clearfix">
+<h2 class="wp-block-heading">Scallion</h2>
+<p><strong>Scallion可以帮助我们使用OpenCL来创建GPG密钥以及针对Tor隐藏服务的.onion地址。Scallion基于Mono软件平台开发和运行，并已在Arch Linux平台上成功测试，工具的运行依赖.NET 3.5+（已在Windows 7和Windows Server 2008平台上测试）。</strong></p>
+<p>Scallion当前仍处于测试阶段，正在积极开发中，但是它目前已经可以正常使用了。我们的开发当前主要集中在性能、用户界面和安装难度方面的改进上，而不是在生成密钥以及相关算法方面。</p>
+<h2 class="wp-block-heading">工具依赖</h2>
+<blockquote class="wp-block-quote"><p>1、安装并配置好OpenCL以及相关驱动器。</p><p>2、OpenSSL，在Windows环境下，已包含有预内置的x64 DLL。</p><p>3、尽在Windows平台下，需要V<a href="https://www.microsoft.com/en-us/download/details.aspx?id=5582">C++ Redistributable 2008</a>。</p></blockquote>
+<h3 class="wp-block-heading">工具下载</h3>
+<blockquote class="wp-block-quote"><p>最新版本源码压缩包：【<a href="https://raw.githubusercontent.com/lachesis/scallion/binaries/scallion-v2.0.zip">点我下载</a>】</p></blockquote>
+<h2 class="wp-block-heading">Linux环境下构建</h2>
+<h3 class="wp-block-heading">依赖组件</h3>
+<blockquote class="wp-block-quote"><p>针对自己的Linux发行版，获取最新版本的Mono：【<a href="http://www.mono-project.com/download/">传送门</a>】</p></blockquote>
+<p>使用下列命令安装常用依赖组件：</p>
+<blockquote class="wp-block-quote"><p>sudo apt-get update</p><p>sudo apt-get install libssl-dev mono-devel</p></blockquote>
+<p>AMD/OpenSource构建命令：</p>
+<pre class="wp-block-code"><code>sudo apt-get install ocl-icd-opencl-dev</code></pre>
+<p>Nvidia构建命令：</p>
+<pre class="wp-block-code"><code>sudo apt-get install nvidia-opencl-dev nvidia-opencl-icd</code></pre>
+<p>最后，运行下列命令：</p>
+<pre class="wp-block-code"><code>msbuild scallion.sln</code></pre>
+<h2 class="wp-block-heading">Docker Linux配置（Nvidia GPU）</h2>
+<p>1、获取nvidia-docker容器运行时环境：【<a href="https://github.com/NVIDIA/nvidia-docker">点我获取</a>】。</p>
+<p>2、运行下列命令构建容器：</p>
+<pre class="wp-block-code"><code>docker build -t scallion -f Dockerfile.nvidia</code></pre>
+<p>3、运行下列命令：</p>
+<pre class="wp-block-code"><code>docker run --runtime=nvidia -ti --rm scallion -l</code></pre>
+<h2 class="wp-block-heading">Windows环境下构建</h2>
+<blockquote class="wp-block-quote"><p>1、在VS中打开“scallion.sln”</p><p>2、构建解决方案</p></blockquote>
+<h2 class="wp-block-heading">工具使用</h2>
+<h3 class="wp-block-heading">枚举设备：</h3>
+<pre class="wp-block-code"><code>$ mono scallion/bin/Debug/scallion.exe -l</code></pre>
+<h3 class="wp-block-heading">生成哈希：</h3>
+<pre class="wp-block-code"><code>$ mono scallion/bin/Debug/scallion.exe -d 0 prefix Cooking up some delicious scallions... Using kernel optimized from file kernel.cl (Optimized4) Using work group size 128 Compiling kernel... done. Testing SHA1 hash... CPU SHA-1: d3486ae9136e7856bc42212385ea797094475802 GPU SHA-1: d3486ae9136e7856bc42212385ea797094475802 Looks good! LoopIteration:40  HashCount:671.09MH  Speed:9.5MH/s  Runtime:00:01:10  Predicted:00:00:56  Found new key! Found 1 unique keys. &lt;XmlMatchOutput&gt;   &lt;GeneratedDate&gt;2014-08-05T07:14:50.329955Z&lt;/GeneratedDate&gt;   &lt;Hash&gt;prefix64kxpwmzdz.onion&lt;/Hash&gt;   &lt;PrivateKey&gt;-----BEGIN RSA PRIVATE KEY----- MIICXAIBAAKBgQCmYmTnwGOCpsPOqvs5mZQbIM1TTqOHK1r6zGvpk61ZaT7z2BCE FPvdTdkZ4tQ3/95ufjhPx7EVDjeJ/JUbT0QAW/YflzUfFJuBli0J2eUJzhhiHpC/ 1d3rb6Uhnwvv3xSnfG8m7LeI/Ao3FLtyZFgGZPwsw3BZYyJn3sD1mJIJrQIEB/ZP ZwKBgCTUQTR4zcz65zSOfo95l3YetVhfmApYcQQd8HTxgTqEsjr00XzW799ioIWt vaKMCtJlkWLz4N1EqflOH3WnXsEkNA5AVFe1FTirijuaH7e46fuaPJWhaSq1qERT eQT1jY2jytnsJT0VR7e2F83FKINjLeccnkkiVknsjrOPrzkXAkEA0Ky+vQdEj64e iP4Rxc1NreB7oKor40+w7XSA0hyLA3JQjaHcseg/bqYxPZ5J4JkCNmjavGdM1v6E OsVVaMWQ7QJBAMweWSWtLp6rVOvTcjZg+l5+D2NH+KbhHbNLBcSDIvHNmD9RzGM1 Xvt+rR0FA0wUDelcdJt0R29v2t19k2IBA8ECQFMDRoOQ+GBSoDUs7PUWdcXtM7Nt QW350QEJ1hBJkG2SqyNJuepH4PIktjfytgcwQi9w7iFafyxcAAEYgj4HZw8CQAUI 3xXEA2yZf9/wYax6/Gm67cpKc3sgKVczFxsHhzEml6hi5u0FG7aNs7jQTRMW0aVF P8Ecx3l7iZ6TeakqGhcCQGdhCaEb7bybAmwQ520omqfHWSte2Wyh+sWZXNy49EBg d1mBig/w54sOBCUHjfkO9gyiANP/uBbR6k/bnmF4dMc= -----END RSA PRIVATE KEY----- &lt;/PrivateKey&gt;   &lt;PublicModulusBytes&gt;pmJk58BjgqbDzqr7OZmUGyDNU06jhyta+sxr6ZOtWWk+89gQhBT73U3ZGeLUN//ebn44T8exFQ43ifyVG09EAFv2H5c1HxSbgZYtCdnlCc4YYh6Qv9Xd62+lIZ8L798Up3xvJuy3iPwKNxS7cmRYBmT8LMNwWWMiZ97A9ZiSCa0=&lt;/PublicModulusBytes&gt;   &lt;PublicExponentBytes&gt;B/ZPZw==&lt;/PublicExponentBytes&gt; &lt;/XmlMatchOutput&gt; init: 491ms / 1 (491ms, 2.04/s) generate key: 1193ms / 6 (198.83ms, 5.03/s) cpu precompute: 10ms / 6 (1.67ms, 600/s) total without init: 70640ms / 1 (70640ms, 0.01/s) set buffers: 0ms / 40 (0ms, 0/s) write buffers: 3ms / 40 (0.08ms, 13333.33/s) read results: 67442ms / 40 (1686.05ms, 0.59/s) check results: 185ms / 40 (4.63ms, 216.22/s) 9.50 million hashes per second Stopping the GPU and shutting down...</code></pre>
+<h2 class="wp-block-heading">多模式哈希</h2>
+<p>Scallion支持通过原语正则表达式语句来搜索单一或多模式哈希，目前仅支持字符类型（例如[absd]）。“.”字符代表任意字符，Onion地址长度固定为16个字符，GPG指纹为40个字符。你可以通过“$”来寻找前缀或后缀匹配，例如DEAD$。除此之外，你还可以使用pipe语句(例如pattern1|pattern2)来寻找多模式哈希，当然了，这种搜索模式下运行速度肯定不乐观。</p>
+<h2 class="wp-block-heading">查询样例</h2>
+<pre class="wp-block-code"><code>mono scallion.exe prefix[234567] mono scallion.exe -c prefix scallion hashes mono scallion.exe -c "prefix|scallion|hashes" mono scallion.exe .........badbeef mono scallion.exe --gpg badbeef$ # 生成GPG密钥 mono scallion.exe "suffixa$|suffixb$|prefixa|prefixb|a.suffix$|a.test.$"</code></pre>
+<h2 class="wp-block-heading">Scallion工作机制</h2>
+<blockquote class="wp-block-quote"><p>1、使用OpenSSL以及CPU生成RSA密钥</p><p>2、向GPU发送密钥</p><p>3、增加密钥的公共指数</p><p>4、对密钥进行哈希计算</p><p>5、如果生成的哈希非部分冲突，则返回第三步</p><p>6、如果生成的密钥未通过PKCS #1 v2.1的及健全性检查，则返回第三步</p><p>7、生成全新的密钥</p></blockquote>
+<h2 class="wp-block-heading">速度/性能</h2>
+<p>初始的RSA密钥生成是在CPU上完成的，SHA1哈希计算则是在GPU上完成的。下面给出的是常见GPU的计算速度表：</p>
+<figure class="wp-block-table"><table><thead><tr><th><strong>GPU</strong><strong>型号</strong></th><th><strong>速度</strong></th></tr></thead><tbody><tr><td>Intel i7-2620M</td><td>9.9 MH/s</td></tr><tr><td>Intel i5-5200U</td><td>118 MH/s</td></tr><tr><td>NVIDIA GT 520</td><td>38.7 MH/s</td></tr><tr><td>NVIDIA Quadro K2000M</td><td>90 MH/s</td></tr><tr><td>NVIDIA GTS 250</td><td>128 MH/s</td></tr><tr><td>NVIDIA GTS 450</td><td>144 MH/s</td></tr><tr><td>NVIDIA GTX 670</td><td>480 MH/s</td></tr><tr><td>NVIDIA GTX 970</td><td>2350 MH/s</td></tr><tr><td>NVIDIA GTX 980</td><td>3260 MH/s</td></tr><tr><td>NVIDIA GTX 1050 (M)</td><td>1400 MH/s</td></tr><tr><td>NVIDIA GTX 1070</td><td>4140 MH/s</td></tr><tr><td>NVIDIA GTX 1070 TI</td><td>5100 MH/s</td></tr><tr><td>NVIDIA GTX TITAN X</td><td>4412 MH/s</td></tr><tr><td>NVIDIA GTX 1080</td><td>5760 MH/s</td></tr><tr><td>NVIDIA Tesla V100</td><td>11646 MH/s</td></tr><tr><td>AMD A8-7600 APU</td><td>120 MH/s</td></tr><tr><td>AMD Radeon HD5770</td><td>520 MH/s</td></tr><tr><td>AMD Radeon HD6850</td><td>600 MH/s</td></tr><tr><td>AMD Radeon RX 460</td><td>840 MH/s</td></tr><tr><td>AMD Radeon RX 470</td><td>957 MH/s</td></tr><tr><td>AMD Radeon R9 380X</td><td>2058 MH/s</td></tr><tr><td>AMD FirePro W9100</td><td>2566 MH/s</td></tr><tr><td>AMD Radeon RX 480</td><td>2700 MH/s</td></tr><tr><td>AMD Radeon RX 580</td><td>3180 MH/s</td></tr><tr><td>AMD Radeon R9 Nano</td><td>3325 MH/s</td></tr><tr><td>AMD Vega Frontier Edition</td><td>7119 MH/s</td></tr></tbody></table></figure>
+<h3 class="wp-block-heading">MH/s = 百万哈希/秒</h3>
+<h2 class="wp-block-heading">工具运行截图</h2>
+<figure class="wp-block-image size-large"><a href="https://image.3001.net/images/20200203/1580664019_5e3704d388290.png" target="_blank" rel="noreferrer noopener"><noscript><img fetchpriority="high" decoding="async" width="1024" height="573" src="/images/020a4cf1e7ac78425db10235fad124db.png" alt="Scallion：一款基于GPU的Onion哈希生成器" class="wp-image-250"></noscript><img fetchpriority="high" decoding="async" width="1024" height="573" src="/images/020a4cf1e7ac78425db10235fad124db.png" alt="Scallion：一款基于GPU的Onion哈希生成器" class="wp-image-250 j-lazy"></a></figure>
+<h2 class="wp-block-heading">项目地址</h2>
+<blockquote class="wp-block-quote"><p>Scallion：【<a href="https://github.com/lachesis/scallion">GitHub传送门</a>】</p></blockquote>
+ </div>

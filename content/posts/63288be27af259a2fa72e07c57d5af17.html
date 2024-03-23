@@ -1,0 +1,57 @@
++++
+title = "创建自己的中继节点"
+date = 2020-05-13T19:01:13+08:00
+categories = ["暗网技术"]
+tags = []
+thumbnail = ""
++++
+
+<div class="entry-content clearfix">
+<h2 class="wp-block-heading"><noscript><img fetchpriority="high" decoding="async" width="2500" height="576" class="wp-image-170" style="width: 600px;" src="/images/07d732b35c345a1a772e5b6911aab62e.png" alt=""></noscript><img fetchpriority="high" decoding="async" width="2500" height="576" class="wp-image-170 j-lazy" style="width: 600px;" src="/images/07d732b35c345a1a772e5b6911aab62e.png" alt></h2>
+<h2 class="wp-block-heading">为什么要运行 Tor 中继？</h2>
+<p>运行 Tor 中继，您可以帮助 Tor 网络：</p>
+<ul><li>变得更快（因此变的更好用）</li><li>更难以被攻击</li><li>变得更健壮</li><li>使用户更安全（监视更多的中继更难）</li></ul>
+<p>—— 洋葱路由网络官方指南</p>
+<p>（实际上 Tor 因为越来越多的中继变快了不少。（确信）</p>
+<h2 class="wp-block-heading">系统需求</h2>
+<p>根据你要跑的 Tor 中继类型不同，节点硬件需求也不同。</p>
+<h3 class="wp-block-heading">带宽与连接</h3>
+<p>Tor 中继最重要的就是带宽需求了。</p>
+<p>一个非出口中继需要至少可以处理 7000 个并发连接，消费级路由器在这么多连接的情况下可能会直接狗带，所以不要在自家跑。IDC 肯定是没问题的，快速出口中继（100Mbp+）一般需要处理多得多的连接（100K+）。</p>
+<p>建议中继至少为 Tor 提供 16Mbps 的对等带宽， 多多益善。中继的最低要求是 10Mbps。</p>
+<h3 class="wp-block-heading">每月流量</h3>
+<p>Tor 中继每月至少使用 100GByte 的出站流量（和相同数量的传入流量），换算到每天平均也就是 10Mbps。 推荐月流量大于 2TB。 最好的情况当然是不限量的跑啦。</p>
+<h3 class="wp-block-heading">IP</h3>
+<p>每个中继都需要一个公共 IPv4 地址，最好是直接在主机上的，或者通过 NAT 和端口转发也可以。</p>
+<p>不需要是静态 IPv4 地址，但是最好是静态地址。</p>
+<p>如果你是个动态 IP, 至少应保持 3 个小时不变。因为如果经常换 IP，则在这机器上运行中继或桥接没有多大意义，因为中继IP列表每小时只分发一次。</p>
+<p>建议有额外的 IPv6 连接，但不是必需的。</p>
+<p>注意：每个公共 IPv4 地址只能运行最多两个 Tor 中继。如果要运行两个以上的中继，则将需要更多的IPv4地址。</p>
+<h3 class="wp-block-heading">内存</h3>
+<p>一个 40Mbps 的非出口中继至少需要 512M。</p>
+<p>40Mbps+ 的非出口中继至少需要 1GB。</p>
+<p>出口中继建议每个 Tor 实例至少有 1.5G。</p>
+<h3 class="wp-block-heading">存储</h3>
+<p>Tor 不怎么占地方，一般不会超过 200M。</p>
+<h3 class="wp-block-heading">CPU</h3>
+<p>任意现代 CPU 都能跑</p>
+<p>建议使用带 AES-NI 支持的CPU，可以提高性能，单机单实例上能跑 400-450Mbps 上下对等。 <code>cat /proc/cpuinfo</code> 有 <code>aes</code> 就支持AES-NI。</p>
+<h2 class="wp-block-heading">准备工作</h2>
+<p>Debian 用户可直接安装官方维护的 Tor 最新版 deb 包，非常方便。</p>
+<p>（要知道在很久之前最新版的 Tor 是需要手动自行编译的，现在的生活好多了好嘛。原来光 OpenSSL 和 Tor 和各种依赖的 ./configure 都能再出一篇废话（完美 Tor 节点的可能性？））</p>
+<p>我们需要 <code>Debian Buster</code> 发行版来安装 Tor 程序。（不会升级？<a href="https://blog.anank.ke/w/Debian_9_to_10">Debian 9 升级 Debian 10</a>）</p>
+<p>直接安装的版本属于上古 LTS 版本的 Tor，我们8装这个。</p>
+<p>首先添加 Tor 官方用来给包签名的 Key。</p>
+<pre class="wp-block-code"><code>curl https://deb.torproject.org/torproject.org/A3C4F0F979CAA22CDBA8F512EE8CBC9E886DDD89.asc | gpg --import
+gpg --export A3C4F0F979CAA22CDBA8F512EE8CBC9E886DDD89 | apt-key add -</code></pre>
+<p>然后在 <code>/etc/apt/sources.list</code> 中加入官方源。</p>
+<pre class="wp-block-code"><code>echo '
+deb https://deb.torproject.org/torproject.org buster main
+deb-src https://deb.torproject.org/torproject.org buster main
+' &gt;&gt; /etc/apt/sources.list</code></pre>
+<h2 class="wp-block-heading">安装 Tor</h2>
+<p>更新并且安装 tor 和官方的 keyring 确保签名 key 同步</p>
+<pre class="wp-block-code"><code>apt update
+apt install tor deb.torproject.org-keyring</code></pre>
+<p>这时候 Tor 就安装完成并且启动了。</p>
+ </div>

@@ -1,0 +1,17 @@
++++
+title = "Tor浏览器如何自动禁用javascript"
+date = 2021-04-17T03:37:06+08:00
+categories = ["工具", "暗网技术"]
+tags = []
+thumbnail = ""
++++
+
+<div class="entry-content clearfix">
+<p class="has-text-align-center"><noscript><img fetchpriority="high" decoding="async" width="980" height="551" class="wp-image-51" style="width: 700px;" src="/images/49e9c659b2fc8eabd215c7c519d1b57e.jpg" alt=""></noscript><img fetchpriority="high" decoding="async" width="980" height="551" class="wp-image-51 j-lazy" style="width: 700px;" src="/images/49e9c659b2fc8eabd215c7c519d1b57e.jpg" alt></p>
+<p>估计很多网友都认为作为史上最安全、隐私保护最好的浏览器，Tor浏览器应该是默认禁用javascript的，然而事实并非如此。新安装的Tor浏览器的Security Level是Standard，浏览器的常用功能默认都是启用的，包括javascript。</p>
+<div class="wp-block-image"><figure class="aligncenter size-large"><noscript><img decoding="async" width="1024" height="531" src="/images/c02099c83fed09d91f05d7e21a2bda56.png" alt="Tor浏览器如何自动禁用javascript" class="wp-image-746"></noscript><img decoding="async" width="1024" height="531" src="/images/c02099c83fed09d91f05d7e21a2bda56.png" alt="Tor浏览器如何自动禁用javascript" class="wp-image-746 j-lazy"></figure></div>
+<p>通过Tor浏览器Security Level的说明，我们可以看到：选择Standard，所有暗网网站启用javascript；选择Safer，HTTPS站点启用javascript；选择Safest，所有暗网站点禁用javascript。</p>
+<p>我们查阅<a href="https://support.torproject.org/zh-CN/tbb/tbb-34/" data-type="URL" data-id="https://support.torproject.org/zh-CN/tbb/tbb-34/" target="_blank" rel="noreferrer noopener">torproject官方的解释</a>，发现官方是这么说的：</p>
+<blockquote class="wp-block-quote"><p>为什么 Tor 浏览器默认启用 JavaScript ?</p><p>因为禁用 JavaScript 会让很多网站无法工作， Tor 浏览器内置的 NoScript 默认允许 JavaScript。 默认禁用 JavaScript 造成的不便过于严重，也许会让大多数用户直接放弃使用 Tor 。 原则上来说，我们不仅想让 Tor 浏览器尽可能安全，还想让大多数人都可以使用。所以按照目前状态， Tor 浏览器会继续默认启用 JavaScript。</p><p>对于想要在所有的 HTTP 网站上默认关闭 Javascript 的用户，我们坚已您更改 Tor 浏览器中“安全等级“的选项。 这可以通过找到安全图标（屏幕右上角那个小小的灰色盾牌）并点击“高级安全设置…”来实现。 ”标准“等级允许JavaScript，但是”安全“与”最安全“等级都将阻止HTTP网站上的JavaScript。</p></blockquote>
+<p>不过，网站功能是一方面，从安全角度考虑，还是建议将Tor浏览器请禁用Javascript，不允许任何客户端动态JS脚本。禁用的方法是将Security Level设置为Safest。</p>
+ </div>

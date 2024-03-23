@@ -1,0 +1,125 @@
++++
+title = "在Windows（Kali）Linux上安装Tor并搜索The Dark Web"
+date = 2020-04-22T05:43:38+08:00
+categories = ["工具", "暗网技术"]
+tags = ["Kali", "Tor"]
+thumbnail = ""
++++
+
+<div class="entry-content clearfix">
+<h2 class="wp-block-heading">Surface Web，Deep Web和Dark Web之间的区别</h2>
+<h2 class="wp-block-heading"><noscript><img fetchpriority="high" decoding="async" width="550" height="496" class="wp-image-115" style="width: 550px;" src="/images/10a76bcec332fa7639403379b36ca1ae.jpg" alt=""></noscript><img fetchpriority="high" decoding="async" width="550" height="496" class="wp-image-115 j-lazy" style="width: 550px;" src="/images/10a76bcec332fa7639403379b36ca1ae.jpg" alt></h2>
+<h3 class="wp-block-heading">什么是Surface Web</h3>
+<p>如您在图像中所见，Surface Web仅占Web的<strong>4％</strong>。然后，这就是大多数人每天都会访问的网络。如果您已经考虑过Surface Web的规模，那真是不可思议。</p>
+<p>Surface Web是Internet的一部分，它可供一般大众使用，并且可以使用标准Web搜索引擎进行搜索。</p>
+<h3 class="wp-block-heading">什么是深网</h3>
+<p>深层的网络就像声音一样，在表面之下，而不是完全黑暗的<br>“ <strong>信息金矿</strong> ”</p>
+<p>Deep Web包含<strong>搜索引擎不可见</strong>的内容。以下是深层网络中的一些示例：</p>
+<p>您的<strong>个人电子邮件</strong>帐户<br>的内容您的<strong>网上银行</strong>帐户的内容<br><strong>医疗记录</strong><br>公司存储在其<strong>私人数据库中</strong><br>的数据<strong>社交媒体帐户的</strong><br>内容<strong>科学和学术</strong>数据库中包含的内容<br>法律<strong>文件</strong></p>
+<p>深度网络中存在的很多内容都包含您可能不希望在网络搜索中出现的信息（例如您的支票帐户信息），因为这些信息是<strong>私有的</strong>并且可能会被滥用。</p>
+<p>如果您必须通过提供用户名，密码或其他某种身份验证来登录到您的帐户之一，则访问的信息可在<strong>Deep Web上找到</strong>。</p>
+<h3 class="wp-block-heading">什么是暗网</h3>
+<p>Dark Web – Darknet是一个不同的故事。Dark Web <strong>具有高度</strong>的<strong>匿名性</strong>。它承载无害的活动和内容，以及许多犯罪活动。</p>
+<p>Dark Web还托管许多合法公司，例如<a rel="noreferrer noopener" href="https://open.nytimes.com/https-open-nytimes-com-the-new-york-times-as-a-tor-onion-service-e0d0b67b7482" target="_blank"><strong>《纽约时报》</strong></a>  和  <strong><a rel="noreferrer noopener" href="https://www.facebook.com/notes/facebook-over-tor/1-million-people-use-facebook-over-tor/865624066877648/" target="_blank">Facebook</a> </strong>，这些公司提供基于<span class="wpcom_tag_link">Tor</span>的服务，以及通常可以通过加入<a href="http://theches3nacocgsc.onion/"><strong>国际象棋俱乐部</strong></a>  或  <strong><a href="http://blkbookppexymrxs.onion/">BlackBook</a>（</strong>一种被称为“ Tor Facebook”的社交网络）提供的良性内容  。黑暗网并不总是网络犯罪的代名词。</p>
+<p>要进入Darknet，您需要一个Tor浏览器（稍后将对此进行详细介绍）</p>
+<h3 class="wp-block-heading">黑暗网的黑暗面</h3>
+<p>黑暗湿地也是一个可能发现非法毒品和服务的地方，更糟的是。</p>
+<p>还可以购买信用卡号，所有类型的毒品，枪支和其他武器，假币，被盗的订阅凭证，被黑的Netflix帐户以及可帮助您闯入他人计算机的软件和脚本。也可以用$ 500的价格购买到$ 50,000的美国银行帐户的登录凭据，用$ 600的价格购买$ 3,000的伪造$ 20的钞票，用$ 500的价格购买七张预付借记卡，每张都具有$ 2,500的余额（快递包括在内）。您可以雇用黑客为您攻击计算机。您可以购买用户名和密码。不幸的是，在黑暗网络上也发生了许多其他严重犯罪。</p>
+<h4 class="wp-block-heading">这里是一些要考虑的安全问题。</h4>
+<p><strong>犯罪要素。</strong> 您有机会找到由罪犯经营的网站。除了销售非法商品和服务之外，他们还可能试图剥削您并从您那里窃取。</p>
+<p><strong>可疑链接</strong>。如果单击任何链接，您可能会被带到您可能不想看到的材料。单击链接或下载文件也有可能使您的设备感染<a href="https://hackingpassion.com/inhale-malware-analysis-classification-tool/">恶意软件</a>。</p>
+<p><strong>执法部门</strong>。执法人员在暗网上进行操作，以抓捕从事犯罪活动的人。就像黑暗网络上的其他人一样，执法人员可以在匿名的斗篷下进行工作。<noscript><img decoding="async" width="770" height="435" class="wp-image-108" style="width: 770px;" src="/images/bec639898df26dfff670db63fcf23da4.jpg" alt=""></noscript><img decoding="async" width="770" height="435" class="wp-image-108 j-lazy" style="width: 770px;" src="/images/bec639898df26dfff670db63fcf23da4.jpg" alt></p>
+<h2 class="wp-block-heading">有关暗网的一些常见问题</h2>
+<h3 class="wp-block-heading">谁启动了暗网？</h3>
+<p>该  <strong>暗网</strong>  是  <strong>建立</strong>  美国政府在90年代中期。因此，间谍可以完全<strong>匿名</strong>地分发信息。美国军事研究人员开发了称为Tor（<strong>洋葱路由器</strong>）的技术，并将其发布到公共领域，供所有人使用。</p>
+<h3 class="wp-block-heading">黑暗网有多大</h3>
+<p>一位<strong><a rel="noreferrer noopener" href="https://www.worldwidewebsize.com/" target="_blank">荷兰研究人员</a></strong>称，互联网至少包含<strong>65亿个</strong>被搜索引擎索引的网站。其余的称为深层网络，可能<strong>比表面互联网</strong>大500倍。<strong><a rel="noreferrer noopener" href="https://www.worldwidewebsize.com/" target="_blank"></a></strong><strong></strong></p>
+<h3 class="wp-block-heading">进入Dark Web是否违法？</h3>
+<p>一个简单的词：<strong>不</strong>。黑暗网是<strong>合法的</strong>。使用Tor浏览器也是完全合法的。但是，如果您使用暗网进行违反法律的行为，那当然是非法的。因此，我们在这里也强烈强调必须避免非法活动。</p>
+<h3 class="wp-block-heading">丝绸之路</h3>
+<p>Silk Road成立于2011年，Silk Road是一个平台，旨在使用户能够买卖非法药物和其他非法产品，以及使用比特币（一种不可追溯的数字货币）来买卖商品。</p>
+<p>创作者<a rel="noreferrer noopener" href="https://en.wikipedia.org/wiki/Ross_Ulbricht" target="_blank"><strong>Ross Ulbricht</strong></a>于2013年被捕。（Ross Ulbricht被判处无期徒刑。）到2013年关闭之时，该市场已积累了1,400个卖方和957,079个注册用户，并且代理了1.2多个<a rel="noreferrer noopener" href="https://www.fbi.gov/newyork/press-releases/2015/ross-ulbricht-aka-dread-pirate-roberts-sentenced-in-manhattan-federal-court-to-life-in-prison" target="_blank"><strong>联邦调查局（FBI）的数据显示</strong></a>，有100万笔交易价值2.14亿美元  。</p>
+<figure class="wp-block-image size-large"><noscript><img decoding="async" width="1024" height="799" src="/images/9690507b12b800a359d3146211cae1fb.png" alt="在Windows（Kali）Linux上安装Tor并搜索The Dark Web" class="wp-image-113"></noscript><img decoding="async" width="1024" height="799" src="/images/9690507b12b800a359d3146211cae1fb.png" alt="在Windows（Kali）Linux上安装Tor并搜索The Dark Web" class="wp-image-113 j-lazy"></figure>
+<h2 class="wp-block-heading">更高级别的网络 </h2>
+<p>有些人声称互联网上有更多的层。这是真的吗？不过，我也想提一提。因为有多个消息来源对此进行了介绍。您可以自己决定是否废话。我把这个留给你。</p>
+<p>1.普通网络<br>2.表面网络<br>3. Bergie网络<br>4.深层网络<br>5.宪章网络<br>6. Marianas网络<br>7.（？）<br>8.雾/病毒汤<br>9. Primarch系统<br>建议阅读此文件…来源：<a href="https://rationalwiki.org/wiki/Deep_web">https://rationalwiki.org/wiki/Deep_web</a></p>
+<figure class="wp-block-image size-large"><noscript><img loading="lazy" decoding="async" width="1024" height="682" src="/images/d20d7e1c94da8cc5bb007052e0a42b81.jpg" alt="在Windows（Kali）Linux上安装Tor并搜索The Dark Web" class="wp-image-111"></noscript><img loading="lazy" decoding="async" width="1024" height="682" src="/images/d20d7e1c94da8cc5bb007052e0a42b81.jpg" alt="在Windows（Kali）Linux上安装Tor并搜索The Dark Web" class="wp-image-111 j-lazy"></figure>
+<h2 class="wp-block-heading">Dark Web分步计划</h2>
+<p>如何安全地浏览Dark Web。浏览深色网络之前，请仔细阅读所有内容。</p>
+<h3 class="wp-block-heading">确保您具有良好的基础知识</h3>
+<p>Dark Web是一个复杂的环境，很多地方都可能出错。它到处都是骗子，恶意软件和网络钓鱼网站。边干边学最好。但是，这不是最佳方法。在您不了解计算机的全部工作原理之前，您宁愿不使计算机感染恶意软件或造成大量损失。黑暗网络上有太多想滥用无知的人。</p>
+<h3 class="wp-block-heading">使用Linux发行版</h3>
+<p>匿名是Dark Web上最重要的事情。不是因为这是非法的，而是因为您越匿名-您越安全。不幸的是，Windows 10并不是用于保护隐私的强大操作系统。这是因为Windows 10</p>
+<p>1默认情况下，您的数据是同步的：浏览器历史记录和打开的网站，应用程序设置，Wi-Fi热点均被跟踪。<br>2 Windows将您的设备（PC，笔记本电脑或智能手机）作为标准连接到唯一的广告客户ID。<br>3 Cortana可以收集您的用户数据，例如击键，搜索，麦克风录音，日历数据，音乐播放列表和购买。<br>4 Windows还会收集各种个人信息，例如您的身份，密码，兴趣和习惯，联系方式和位置。</p>
+<h3 class="wp-block-heading">使用VPN</h3>
+<p>即使使用<strong>Tor浏览器</strong>，拥有足够时间和知识的人也可以跟踪您的互联网流量。在2017年，发生了泄漏事件，在某些情况下仅提供了IP地址。但是，如果这些用户的VPN在后台运行，则不会有问题。</p>
+<p>因此，即使您通过Tor在黑暗的网络中，也建议您使用<a rel="noreferrer noopener" href="https://go.nordvpn.net/aff_c?offer_id=15&amp;aff_id=37153&amp;file_id=67" target="_blank"><strong>VPN</strong></a>（此链接为赞助商）。VPN使您的互联网流量匿名，并确保您的IP地址对黑客或政府机构不可见。<strong>很高兴知道不是每个VPN都一样可靠。</strong>免费的VPN可能非常慢。</p>
+<h3 class="wp-block-heading">从官方网站下载Tor</h3>
+<p>Tor浏览器是<strong>黑客</strong>和<strong>政府</strong>机构感兴趣的目标。伪造的Tor浏览器版本已经在线。这样，Tor用户甚至可以在进入黑网之前就被黑客入侵，或者一旦他们进入黑网就可以跟踪用户的行为。后一种方法主要由希望跟踪暗网上的<strong>非法行为</strong>的政府机构使用。</p>
+<p>因此，务必始终在其官方网页上下载<strong>正确版本</strong>的Tor，这一点很重要：https：//www.torproject.org/</p>
+<h3 class="wp-block-heading">未雨绸缪</h3>
+<p>打开Tor浏览器之前<br><strong>非常重要</strong>。更改您的<strong>DNS设置</strong>。（我将在另一篇文章中再次讨论，并解释如何调整它（以及原因），您应该始终更改DNS设置）。</p>
+<p>1关闭<strong>所有</strong>非必需的应用程序。<br>2 <strong>关闭</strong>所有不必要的服务。<br>3 用胶带覆盖您的<strong>网络摄像头</strong>。入侵某人的网络摄像机非常<strong>容易</strong>。<br>4。关闭您的计算机<strong>位置</strong>。除了您的IP地址外，您的计算机还可以提供您的位置信息。</p>
+<p>打开Tor后，请勿更改Tor浏览器屏幕的大小。足够奇怪的是，这<strong>使您更安全</strong>。</p>
+<h3 class="wp-block-heading">更改Tor安全级别</h3>
+<p>在Tor中，您可以将安全级别设置为低，中和高。当然，高是最安全的。不幸的是，此级别确保您的Internet连接将被延迟，并且某些网站无法完全正常运行。</p>
+<figure class="wp-block-image size-large"><noscript><img loading="lazy" decoding="async" width="1007" height="732" src="/images/a8a6bf4307c4770ca48d0e5101bed518.png" alt="在Windows（Kali）Linux上安装Tor并搜索The Dark Web" class="wp-image-119"></noscript><img loading="lazy" decoding="async" width="1007" height="732" src="/images/a8a6bf4307c4770ca48d0e5101bed518.png" alt="在Windows（Kali）Linux上安装Tor并搜索The Dark Web" class="wp-image-119 j-lazy"></figure>
+<h3 class="wp-block-heading">检查您是否不受IP泄漏或DNS泄漏困扰</h3>
+<p>您的VPN可能正在泄漏<strong>IP和DNS信息</strong>。您还可能会通过多个浏览器（例如Chrome）遭受<strong>WebRTC泄漏</strong>。为确保您的连接正确匿名，您可以访问以下网站：</p>
+<p><strong><a rel="noreferrer noopener" href="https://ipleak.org/" target="_blank">ipleak.org</a></strong><br><strong><a rel="noreferrer noopener" href="https://dnsleaktest.com/" target="_blank">dnsleaktest.com</a></strong><br><strong><a rel="noreferrer noopener" href="https://browserleaks.com/webrtc" target="_blank">WebRTC测试</a></strong></p>
+<h3 class="wp-block-heading">如果您购买东西，请使用加密货币</h3>
+<p>如果黑网上的某人想通过一家普通银行安排一笔交易，那么您已经非法地骗了一个<strong>骗子</strong>，<strong>黑帽黑客</strong>或其他东西。暗网是一个匿名区域，<strong>没有人</strong>愿意使用<strong>可追溯的银行</strong>进行交易。</p>
+<p>比特币是最著名的加密货币，通常也被认为是完全安全和匿名的。这是<strong>不是</strong>这种情况。比特币有许多隐私问题，尽管有很大的困难，但仍可能将<strong>某人的个人数据</strong>链接到比特币交易。</p>
+<p>这就是为什么最好选择专门用于隐私和匿名性的加密货币。</p>
+<h3 class="wp-block-heading">完成后立即关闭所有内容</h3>
+<p>浏览完深色网页后，您必须关闭所有程序和其他相关内容。为了理所当然，最好重新启动计算机。</p>
+<h3 class="wp-block-heading">请注意，您永远不会100％安全</h3>
+<p>即使您正确执行所有这些步骤，仍然有可能出问题。您<strong>永远不会100％安全</strong>地上网，尤其是在黑暗的网络上。您可能会不慎泄露个人信息或单击错误的链接。黑客一直在努力寻找<strong>利用</strong>安全措施的新方法。如果设备的硬件被感染，则无论如何您都不安全。换句话说，您可以采取许多<strong>预防措施</strong>来提高暗网的安全性，但是<strong>没有什么</strong>是100％安全的。</p>
+<h3 class="wp-block-heading">奖励提示，如果您真的想保持匿名</h3>
+<p>如果您遵循此分步计划，则实际上不必太担心。除非您随机单击危险链接。在暗网中必须多么小心，还取决于您要在暗网中做什么。有时称为“ <strong>威胁模型</strong> ”。如果您只想阅读一个黑暗的Web论坛上的一些讨论，则无需遵循所有预防措施。如果将Tor浏览器设置为最安全，并且不单击奇怪的链接，则不会有任何问题。</p>
+<h4 class="wp-block-heading"><strong>切勿在Tor浏览器中直接输入任何内容。</strong></h4>
+<p>您可以通过多种方式在线识别您的身份。使用<strong>浏览器指纹识别，</strong>您可以以无数种方式将自己与其他Tor用户区分开。有一些策略可以解决，但是这些都不是水密的。此外，还有另一种找到您的方法：“ <strong>指纹类型</strong> ”。</p>
+<p>您拥有完全独特的输入方式。无论您使用互联网上的完全<strong>匿名用户</strong>，无论使用左移键还是右移键，您键入的速度有多快，通常会键入或不键入哪些字，它们都是所谓的“ <strong>标识符</strong> ” 。这就是为什么永远不要在Tor浏览器中键入任何内容的原因，因为这可以遵循。要变通解决此问题，您可以执行以下操作<strong></strong></p>
+<p>打开一个文本编辑器作为Tor浏览器旁边的屏幕<br>，在文本编辑器中键入所有内容，然后将所有内容复制粘贴到浏览器中。天文学家通过Tor浏览器分析您的键入类型的机会非常小。但这总是<strong>可能的</strong>。通过在浏览器中不键入任何内容，您只需要小心一点。</p>
+<figure class="wp-block-image size-large"><noscript><img loading="lazy" decoding="async" width="1024" height="565" src="/images/9230f1093f0aac6aa96a1bbe43e05038.png" alt="在Windows（Kali）Linux上安装Tor并搜索The Dark Web" class="wp-image-118"></noscript><img loading="lazy" decoding="async" width="1024" height="565" src="/images/9230f1093f0aac6aa96a1bbe43e05038.png" alt="在Windows（Kali）Linux上安装Tor并搜索The Dark Web" class="wp-image-118 j-lazy"></figure>
+<p><strong>请注意，</strong>如果确实需要这些提示，这些提示也无济于事。如果情报服务在您身边，那么最好的选择就是<strong>不再</strong>在线。</p>
+<h2 class="wp-block-heading">安装Tor</h2>
+<p>在视频中，我将介绍安装和更多内容。</p>
+<h3 class="wp-block-heading">在Windows上下载并安装Tor</h3>
+<p>要下载Windows版Tor，请转到Tor项目，然后单击下载。确保URL正确，并且不要从任何其他来源下载它。然后点击“运行”</p>
+<figure class="wp-block-image size-large"><noscript><img loading="lazy" decoding="async" width="1024" height="528" src="/images/1b7da3a4c2fe47eddddf58f6eaf829bd.png" alt="在Windows（Kali）Linux上安装Tor并搜索The Dark Web" class="wp-image-109"></noscript><img loading="lazy" decoding="async" width="1024" height="528" src="/images/1b7da3a4c2fe47eddddf58f6eaf829bd.png" alt="在Windows（Kali）Linux上安装Tor并搜索The Dark Web" class="wp-image-109 j-lazy"></figure>
+<h3 class="wp-block-heading">在“ <span class="wpcom_tag_link">Kali</span>” Linux上安装Tor</h3>
+<p>在视频中，我将解释并展示如何在Kali Linux上安装Tor。但是对于其他Linux发行版（发行版），它的工作原理相同。我使用<strong>Parrot OS</strong>或<strong>Parrot安全性，</strong>因为已经安装了Tor 的主要<a href="https://hackingpassion.com/best-operating-system-for-ethical-hacking-and-pentesting/">操作系统</a>（OS）。在另一篇文章中，还有<strong>Anonsurf</strong>。我会讲的。</p>
+<h3 class="wp-block-heading">注意：</h3>
+<p>如果安装Tor，则使用新的root用户名进行此操作更为安全。这个新帐户只能用于浏览Dark Web。您可以想象，使用“正常”使用会留下一些痕迹。</p>
+<h3 class="wp-block-heading">下载Tor</h3>
+<figure class="wp-block-image size-large"><noscript><img loading="lazy" decoding="async" width="1024" height="507" src="/images/bb07e4a886d1641ce67b7f66595cb3f1.png" alt="在Windows（Kali）Linux上安装Tor并搜索The Dark Web" class="wp-image-122"></noscript><img loading="lazy" decoding="async" width="1024" height="507" src="/images/bb07e4a886d1641ce67b7f66595cb3f1.png" alt="在Windows（Kali）Linux上安装Tor并搜索The Dark Web" class="wp-image-122 j-lazy"><figcaption>确保使用正确的链接..！https://www.torproject.org/download/</figcaption></figure>
+<figure class="wp-block-image size-large"><noscript><img loading="lazy" decoding="async" width="1024" height="490" src="/images/726b6f004ab88c7e55384164ae97d37e.png" alt="在Windows（Kali）Linux上安装Tor并搜索The Dark Web" class="wp-image-123"></noscript><img loading="lazy" decoding="async" width="1024" height="490" src="/images/726b6f004ab88c7e55384164ae97d37e.png" alt="在Windows（Kali）Linux上安装Tor并搜索The Dark Web" class="wp-image-123 j-lazy"></figure>
+<figure class="wp-block-image size-large"><noscript><img loading="lazy" decoding="async" width="1024" height="566" src="/images/e1b7968264dcc2d6bf8dc507744a411a.png" alt="在Windows（Kali）Linux上安装Tor并搜索The Dark Web" class="wp-image-124"></noscript><img loading="lazy" decoding="async" width="1024" height="566" src="/images/e1b7968264dcc2d6bf8dc507744a411a.png" alt="在Windows（Kali）Linux上安装Tor并搜索The Dark Web" class="wp-image-124 j-lazy"></figure>
+<figure class="wp-block-image size-large"><noscript><img loading="lazy" decoding="async" width="630" height="368" src="/images/e865a04d3afb9aec7f3b9618e53d7f38.png" alt="在Windows（Kali）Linux上安装Tor并搜索The Dark Web" class="wp-image-117"></noscript><img loading="lazy" decoding="async" width="630" height="368" src="/images/e865a04d3afb9aec7f3b9618e53d7f38.png" alt="在Windows（Kali）Linux上安装Tor并搜索The Dark Web" class="wp-image-117 j-lazy"></figure>
+<figure class="wp-block-image size-large"><noscript><img loading="lazy" decoding="async" width="1024" height="508" src="/images/a32f2e901427652c37b8a360c3f73073.png" alt="在Windows（Kali）Linux上安装Tor并搜索The Dark Web" class="wp-image-120"></noscript><img loading="lazy" decoding="async" width="1024" height="508" src="/images/a32f2e901427652c37b8a360c3f73073.png" alt="在Windows（Kali）Linux上安装Tor并搜索The Dark Web" class="wp-image-120 j-lazy"></figure>
+<figure class="wp-block-image size-large"><noscript><img loading="lazy" decoding="async" width="1024" height="499" src="/images/1867dab6348bb45807154a6c21d6a6a4.png" alt="在Windows（Kali）Linux上安装Tor并搜索The Dark Web" class="wp-image-121"></noscript><img loading="lazy" decoding="async" width="1024" height="499" src="/images/1867dab6348bb45807154a6c21d6a6a4.png" alt="在Windows（Kali）Linux上安装Tor并搜索The Dark Web" class="wp-image-121 j-lazy"></figure>
+<p>如果您的国家/地区对Tor进行了审查，请单击“配置”，然后Tor会为您提供其他选项。</p>
+<figure class="wp-block-image size-large"><noscript><img loading="lazy" decoding="async" width="1024" height="504" src="/images/5e6cae0aee1ce4aa3cfcb111d804023c.png" alt="在Windows（Kali）Linux上安装Tor并搜索The Dark Web" class="wp-image-125"></noscript><img loading="lazy" decoding="async" width="1024" height="504" src="/images/5e6cae0aee1ce4aa3cfcb111d804023c.png" alt="在Windows（Kali）Linux上安装Tor并搜索The Dark Web" class="wp-image-125 j-lazy"></figure>
+<h2 class="wp-block-heading">隐藏的维基</h2>
+<p>隐藏的Wiki是<strong>Dark Web Wikipedia</strong>，您可以在其中找到指向不同网站的链接。如您在本文中所指出的那样，深色网页的URL通常是毫无意义的，并且链接以<strong>.onion</strong>结尾。这使得很难找到您要查找的网站。隐藏的Wiki会为您进行大量搜索。此外，他们还提供了有关可能感兴趣的一系列主题的信息页。</p>
+<p>注意不要单击您不想看到的内容的链接，因为“隐藏的Wiki”不仅索引合法网站。</p>
+<figure class="wp-block-image size-large"><noscript><img loading="lazy" decoding="async" width="1024" height="555" src="/images/6f4dac141a4f7d163d07e9d6b694b1ee.png" alt="在Windows（Kali）Linux上安装Tor并搜索The Dark Web" class="wp-image-116"></noscript><img loading="lazy" decoding="async" width="1024" height="555" src="/images/6f4dac141a4f7d163d07e9d6b694b1ee.png" alt="在Windows（Kali）Linux上安装Tor并搜索The Dark Web" class="wp-image-116 j-lazy"></figure>
+<h2 class="wp-block-heading">深度浏览器</h2>
+<p>不久前，我遇到了这个非常方便的<strong>Deep Explorer</strong>工具来搜索Dark Web。如您所知，可能很难在Dark Web上找到某些东西。这个工具让生活更轻松??</p>
+<p>Deep Explorer是使用python开发的工具，目的是使用<strong>Ahmia浏览器</strong>并抓取所获得的链接，从而在Tor网络中搜索<strong>隐藏的服务</strong>。您应该已安装Tor，才能使用Deep Explorer。<strong></strong></p>
+<h3 class="wp-block-heading">安装Deep Explorer</h3>
+<pre class="wp-block-code"><code>sudo git clone https://github.com/blueudp/Deep-Explorer
+
+cd Deep-Explorer/
+
+pip3 install -r requirements.txt</code></pre>
+<figure class="wp-block-image size-large"><noscript><img loading="lazy" decoding="async" width="1024" height="677" src="/images/8d4682901db05f5963ba24ee420909a7.png" alt="在Windows（Kali）Linux上安装Tor并搜索The Dark Web" class="wp-image-110"></noscript><img loading="lazy" decoding="async" width="1024" height="677" src="/images/8d4682901db05f5963ba24ee420909a7.png" alt="在Windows（Kali）Linux上安装Tor并搜索The Dark Web" class="wp-image-110 j-lazy"></figure>
+<hr class="wp-block-separator">
+<h3 class="wp-block-heading">使用Deep Explorer</h3>
+<p>这是一个示例：（从Dark Web下载内容时要小心）。</p>
+<pre class="wp-block-code"><code>python3 deepexplorer.py "hacking books" 20 all</code></pre>
+<figure class="wp-block-image size-large"><noscript><img loading="lazy" decoding="async" width="1013" height="598" src="/images/f3c732c4f2c737293745d3e52cadbfce.png" alt="在Windows（Kali）Linux上安装Tor并搜索The Dark Web" class="wp-image-114"></noscript><img loading="lazy" decoding="async" width="1013" height="598" src="/images/f3c732c4f2c737293745d3e52cadbfce.png" alt="在Windows（Kali）Linux上安装Tor并搜索The Dark Web" class="wp-image-114 j-lazy"></figure>
+<hr class="wp-block-separator">
+<figure class="wp-block-image size-large"><noscript><img loading="lazy" decoding="async" width="829" height="707" src="/images/733df16664b8ad0462d445aca8e96717.png" alt="在Windows（Kali）Linux上安装Tor并搜索The Dark Web" class="wp-image-112"></noscript><img loading="lazy" decoding="async" width="829" height="707" src="/images/733df16664b8ad0462d445aca8e96717.png" alt="在Windows（Kali）Linux上安装Tor并搜索The Dark Web" class="wp-image-112 j-lazy"></figure>
+ </div>

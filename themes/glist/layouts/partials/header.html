@@ -1,0 +1,38 @@
+
+<nav id="navbar" class="md:flex bg-gray-800 shadow-lg px-8 py-1 my-0.5">
+  <div class="flex justify-between">
+    <div class="text-3xl"><a href="{{ .Site.BaseURL }}">{{.Site.Title}}</a></div>
+    <div class="md:hidden flex items-center">
+      <button id="mobile-menu-button" class="outline-none">
+        <svg
+          class="w-6 h-6 text-gray-500"
+          x-show="!showMenu"
+          fill="none"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+        <path d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+      </button>
+    </div>
+  </div>
+  <div id="nav-menu" class="hidden md:flex md:ml-4 my-auto">
+    {{- range .Site.Menus.main }}
+    {{- if eq $.Permalink (absURL .URL) }}
+    <a href="{{ absURL .URL }}" class="block p-2 text-white font-semibold hover:text-white transition duration-300 bg-yellow-600" target="_blank">{{ .Name }}</a>
+    {{- else }}
+    <a href="{{ absURL .URL }}" class="block p-2 text-white font-semibold hover:bg-yellow-600 transition duration-300" target="_blank">{{ .Name }}</a>
+    {{- end }}
+    {{- end }}
+  </div>
+  <script>
+    const btn = document.getElementById("mobile-menu-button");
+    const menu = document.getElementById("nav-menu");
+    btn.addEventListener("click", () => {
+      menu.classList.toggle("hidden");
+    });
+  </script>
+</nav>

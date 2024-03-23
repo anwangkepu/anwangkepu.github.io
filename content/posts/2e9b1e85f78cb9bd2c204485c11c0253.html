@@ -1,0 +1,33 @@
++++
+title = "如何通过Tor运行SSH连接"
+date = 2020-06-02T06:38:38+08:00
+categories = ["工具", "暗网技术"]
+tags = []
+thumbnail = ""
++++
+
+<div class="entry-content clearfix">
+<p><noscript><img fetchpriority="high" decoding="async" width="770" height="531" class="wp-image-303" style="width: 700px;" src="/images/f9f0b79a70f7b4ecff7bdfa2982f9b84.jpg" alt=""></noscript><img fetchpriority="high" decoding="async" width="770" height="531" class="wp-image-303 j-lazy" style="width: 700px;" src="/images/f9f0b79a70f7b4ecff7bdfa2982f9b84.jpg" alt></p>
+<p>从设计上来说，SSH是一种相当安全的方式，可以获得远程机器的shell访问权限。然而，总有一些方法可以从这些连接中获得更多的安全和隐私。</p>
+<p>这样的方法之一就是借助于Tor的帮助。使用Tor，你可以增加一个匿名性，甚至可以隐藏你的服务，避免被窥探/黑客的眼睛。</p>
+<p>我将会告诉你通过Tor进行SSH连接的过程。这个过程并不难，所以任何管理SSH的人都应该能够做到这一点。</p>
+<h2 class="wp-block-heading">您需要做的是</h2>
+<p>将在两台Ubuntu服务器上进行演示，但这个过程可以在任何Linux发行版上使用。你还需要一个具有sudo权限的用户。</p>
+<h2 class="wp-block-heading">如何安装Tor</h2>
+<p>您必须做的第一件事就是安装Tor。你需要在客户端和服务器上都要安装，所以要登录并分别运行以下命令。</p>
+<p>sudo apt-get install tor -y<br>一旦安装完成，你就可以配置Tor了。</p>
+<h2 class="wp-block-heading">如何配置Tor</h2>
+<p>我们需要向默认的Tor配置文件中添加几个配置选项。登录到要连接的服务器，然后发出以下命令：</p>
+<p>sudo nano /etc/tor/torrc<br>在该文件的底部，添加以下内容。</p>
+<p>HiddenServiceDir /var/lib/tor/other_hidden_service/<br>隐藏服务端口 22<br>保存并关闭文件。</p>
+<p>用命令重启Tor。</p>
+<p>sudo systemctl restart tor<br>重启Tor会在/var/lib/tor/other_hidden_service中生成所有必要的文件。在这个目录中，你需要使用主机名从远程客户端连接到服务器。要找到这个主机名，请执行以下命令。</p>
+<p>sudo cat /var/lib/tor/other_hidden_service/hostname<br>你应该看到的东西是这样的。</p>
+<p>riludi2kstjwmlzn.onion</p>
+<h2 class="wp-block-heading">如何连接到服务器</h2>
+<p>转到你的客户端，你也在那里安装了Tor。为了连接到服务器，你将使用上面的cat命令提供的主机名。因此，要建立连接，你会发出以下命令。</p>
+<p>torify ssh USER@HOSTNAME<br>其中USER是远程用户，HOSTNAME是Tor提供的主机名。</p>
+<p>比如说</p>
+<p>torify ssh <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="cda7acaea68dbfa4a1b8a9a4ffa6beb9a7baa0a1b7a3e3a2a3a4a2a3">[email protected]</a><br>你会被提示你的远程用户密码（或SSH密钥密码），然后被允许进入服务器。</p>
+<p>以这种方式使用Tor的唯一注意事项是，它的连接速度要比直接的SSH连接稍慢。这几秒钟的牺牲是非常值得的，因为你可以获得匿名性。</p>
+ </div>

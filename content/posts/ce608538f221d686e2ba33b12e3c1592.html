@@ -1,0 +1,23 @@
++++
+title = "Tor项目称，WebTunnel，一种新的可插拔网桥传输，现已可供部署测试"
+date = 2023-07-06T08:07:19+08:00
+categories = ["Tor官方动态", "暗网动态", "暗网技术"]
+tags = ["Tor项目", "WebTunnel"]
+thumbnail = ""
++++
+
+<div class="entry-content clearfix">
+<div class="wp-block-image">
+<figure class="aligncenter size-full"><noscript><img fetchpriority="high" decoding="async" width="869" height="522" src="/images/e5ce3d39c7fa5b1434e702dfba6a0996.jpg" alt="Tor项目称，WebTunnel，一种新的可插拔网桥传输，现已可供部署测试" class="wp-image-1950"></noscript><img fetchpriority="high" decoding="async" width="869" height="522" src="/images/e5ce3d39c7fa5b1434e702dfba6a0996.jpg" alt="Tor项目称，WebTunnel，一种新的可插拔网桥传输，现已可供部署测试" class="wp-image-1950 j-lazy"></figure></div>
+<p>上周，<span class="wpcom_tag_link">Tor项目</span>向众多Tor中继运营商宣布，正式推出”<span class="wpcom_tag_link">WebTunnel</span>“。WebTunnel是一种适用于Tor生态系统的新型桥接式可插拔传输（PT），它是一个抗审查的代理，试图模仿HTTPS流量，基于HTTPT 21研究。Tor项目目前正在对WebTunnel进行试运行，并鼓励网桥运营商建立WebTunnel网桥，以发现这个新的可插拔传输的实施中的问题。</p>
+<h2 class="wp-block-heading">WebTunnel是如何工作的</h2>
+<p>连接到WebTunnel Bridge时，客户端通过加密连接向负载均衡器发送http 1.1升级请求，就像WebSocket的工作方式一样。因此，从观察者的角度来看，这个过程看起来就像是与真实网站的真实Websocket连接。如果有人尝试连接到前置网站，那么将呈现的将是该前置网站。如果没有完整的URL路径，就很难通过探测HTTPS端口来判断一个网站是否承载了WebTunnel。</p>
+<h2 class="wp-block-heading">技术要求</h2>
+<p>要设置WebTunnel桥接，用户需要一个自我托管的网站，一个能自主控制的域名，一个可配置的负载平衡器，静态IPv4，以及设置Tor Bridge的环境来建立一个WebTunnel桥接。建议使用Docker或其他容器运行时来简化设置过程，但这不是必需的。</p>
+<p>设置指南可在此处获取：<a href="https://gitlab.torproject.org/tpo/anti-censorship/pluggable-transports/webtunnel#docker-setup" target="_blank" rel="noreferrer noopener">https://gitlab.torproject.org/tpo/anti-censorship/pluggable-transports/webtunnel#docker-setup</a></p>
+<h2 class="wp-block-heading">如何测试和报告问题</h2>
+<p>用户可以通过使用<a rel="noreferrer noopener" href="https://www.torproject.org/download/alpha/" target="_blank">Tor浏览器最新的Alpha 3版本</a>来测试WebTunnel桥接。目前，WebTunnel只通过HTTPS分发（torrc设置：’BridgeDistribution https’）。</p>
+<p>用户可以在Tor项目的GitLab上报告问题：<a href="https://gitlab.torproject.org/tpo/anti-censorship/pluggable-transports/webtunnel" target="_blank" rel="noreferrer noopener">https://gitlab.torproject.org/tpo/anti-censorship/pluggable-transports/webtunnel</a></p>
+<p>鉴于这个新的PT目前仅在Tor浏览器的Alpha版本上可用，中继运营商目前不应期望有大量的使用或大量的用户。</p>
+<p>Tor项目称，如果用户在设置WebTunnel时遇到任何困难，请及时反馈给Tor项目。Tor项目感谢大家对Tor生态系统的贡献。</p>
+ </div>

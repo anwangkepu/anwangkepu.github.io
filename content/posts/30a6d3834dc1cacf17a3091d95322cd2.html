@@ -1,0 +1,47 @@
++++
+title = "Scallion : 基于GPU的Onion域名生成工具"
+date = 2020-05-15T00:14:11+08:00
+categories = ["域名", "工具", "暗网技术"]
+tags = []
+thumbnail = ""
++++
+
+<div class="entry-content clearfix">
+<p><noscript><img fetchpriority="high" decoding="async" width="820" height="425" class="wp-image-100" style="width: 800px;" src="/images/e02a48c603d0714026cf398d688e2747.png" alt=""></noscript><img fetchpriority="high" decoding="async" width="820" height="425" class="wp-image-100 j-lazy" style="width: 800px;" src="/images/e02a48c603d0714026cf398d688e2747.png" alt></p>
+<p>Scallion允许你使用OpenCL创建虚构的GPG密钥和.onion地址（用于<a href="https://www.torproject.org/">Tor的</a> <a href="https://www.torproject.org/docs/hidden-services">隐藏服务</a>）。它可以在Mono（在Arch Linux上测试）和.NET 3.5+（在Windows 7和Server 2008上测试）上运行。</p>
+<p>它目前处于测试阶段，并且正在积极开发中。尽管如此，我们认为它已经可以使用了。预期主要在性能，用户界面和安装简便性方面有所改进，而不是在用于生成密钥的整体算法方面有所改进。</p>
+<p><strong>常问问题</strong></p>
+<p>以下是一些常见问题及其解答：</p>
+<ol><li>为什么要生成GPG密钥？Scallion用于在Web of Trust的强大集中查找每个32位密钥ID的冲突，这表明32位密钥ID的不安全程度。<a href="https://www.defcon.org/html/defcon-22/dc-22-speakers.html#Klafter">在DEFCON上</a>有<a href="https://www.defcon.org/html/defcon-22/dc-22-speakers.html#Klafter">一个演讲</a>（<a href="https://www.youtube.com/watch?v=Ow-YcP_KsIw">视频</a>），可以在<a href="https://evil32.com/">https://evil32.com/</a>上找到更多信息。</li><li>什么是有效字符？Tor .onion地址使用<a href="http://www.ietf.org/rfc/rfc4648.txt">Base32</a>，由所有字母和2到7（包括2和7）组成。它们不区分大小写。GPG指纹使用<a href="https://en.wikipedia.org/wiki/Hexadecimal">十六进制</a>，由数字0-9和字母AF组成。</li><li>您可以使用比特币ASIC（例如Jalapeno，KnC）来加速此过程吗？可悲的是没有。尽管Scallion使用的过程在概念上是相似的（增加随机数并检查哈希），但细节有所不同（SHA-1与比特币的双SHA-256）。此外，比特币ASIC之所以能如此之快，是因为它们非常适合比特币挖矿应用。例如，这是<a href="https://bitmine.ch/wp-content/uploads/2013/11/CoinCraft-A1.pdf">数据表</a>对于CoinCraft A-1，这是一种从未问世的ASIC，但可能表示通用方法。微控制器以比特币块的最后128位，前几位的哈希中间状态，目标难度以及要尝试的最大随机数的形式发送工作。ASIC选择插入随机数的位置，然后选择满足散列的块。Scallion必须在其他位置插入随机数，并且它检查模式匹配，而不仅仅是“低于XXXX”。</li><li>如何使用多个设备？运行多个Scallion实例。?葱的搜索是概率性的，因此您不会重复使用第二个设备。真正的多设备支持不是很困难，但也不会增加太多。我已经在<a href="http://tmux.sourceforge.net/">tmux</a>或<a href="https://www.gnu.org/software/screen/">screen中</a>运行了多个葱实例，并取得了巨大的成功。您只要找到一个模式就可以手动中止所有作业（或编写一个shell脚本来监视输出文件，并在看到结果时将其全部杀死）。</li></ol>
+<p><strong>依存关系</strong></p>
+<ul><li>OpenCL和相关的驱动程序已安装和配置。请参阅您的发行版文档。</li><li>OpenSSL。对于Windows，包含预构建的x86 DLL</li><li>仅在Windows上，<a href="https://www.microsoft.com/en-us/download/details.aspx?id=5582">VC ++ Redistributable 2008</a></li></ul>
+<p><strong>编译Linux</strong></p>
+<p>先决条件</p>
+<ul><li>为您的Linux发行版获取最新的Mono：<a href="http://www.mono-project.com/download/">http</a> : <a href="http://www.mono-project.com/download/">//www.mono-project.com/download/</a></li><li>安装通用依赖项： <code><strong>sudo apt-get update sudo apt-get install libssl-dev mono-devel</strong></code></li><li>AMD /开源构建 <code><strong>sudo apt-get install ocl-icd-opencl-dev</strong></code></li><li>Nvidia构建 <strong><code>sudo apt-get install nvidia-opencl-dev nvidia-opencl-icd</code></strong></li><li>最后 <strong><code>msbuild scallion.sln</code></strong></li></ul>
+<p><strong>Docker Linux（仅限nvidia GPU）</strong></p>
+<ul><li>具有<a href="https://github.com/NVIDIA/nvidia-docker">nvidia-docker容器</a>运行时</li><li>构建容器： <code><strong>docker build -t scallion -f Dockerfile.nvidia .</strong></code></li><li>运行：<code><strong>docker run --runtime=nvidia -ti --rm scallion -l</strong></code> <a href="https://user-images.githubusercontent.com/9354925/53215957-37ed6100-3653-11e9-97d0-97a6c06eabe4.png">预期输出的屏幕截图</a></li></ul>
+<p><strong>建立视窗</strong></p>
+<ul><li>在VS Express中为Desktop 2012打开’scallion.sln’</li><li>构建解决方案后，我在调试模式下进行了所有操作。</li></ul>
+<p><strong>多模式散列</strong></p>
+<p>Scallion支持通过原始正则表达式语法查找多个模式中的一个或多个。仅支持字符类（例如<code><strong>[abcd]</strong></code>）。该<code>.</code>字符代表任意字符。洋葱地址始终为16个字符，GPG指纹始终为40个字符。您可以通过<code>$</code>在比赛的末尾放置一个后缀（例如<code><strong>DEAD$</strong></code>）。最后，管道语法（例如<code><strong>pattern1|pattern2</strong></code>）可用于查找多个模式。搜索多重模式（在合理的范围内）不会显着降低速度。许多正则表达式将在GPU上产生单个模式，并且不会降低速度。</p>
+<p>带有示例的一些用例：</p>
+<ul><li>生成前缀后跟数字以提高可读性： <code><strong>mono scallion.exe prefix[234567]</strong></code></li><li>一次搜索多个模式（nb -c导致葱即使被击中也能继续生成） <strong><code>mono scallion.exe -c prefix scallion hashes mono scallion.exe -c "prefix|scallion|hashes"</code></strong></li><li>搜索后缀“ badbeef” <strong><code>mono scallion.exe .........badbeef mono scallion.exe --gpg badbeef$ # Generate GPG key</code></strong></li><li>复杂的自我说明示例： <code><strong>mono scallion.exe "suffixa$|suffixb$|prefixa|prefixb|a.suffix$|a.test.$"</strong></code></li></ul>
+<p><strong>它是如何工作的？</strong></p>
+<p>在较高的层次上，Scallion的工作原理如下：</p>
+<ul><li>在CPU上使用OpenSSL生成RSA密钥</li><li>将密钥发送到GPU</li><li>增加密钥的公开指数</li><li>哈希键</li><li>如果哈希密钥不是部分冲突，请转到步骤3</li><li>如果密钥没有通过PKCS＃1 v2.1建议的完整性检查（在CPU上检查），请转到步骤3</li><li>带有部分碰撞的全新钥匙！</li></ul>
+<p>上面描述了基本算法。速度/性能是GPU和CPU上大规模并行化的结果。</p>
+<p><strong>速度/性能</strong></p>
+<p><strong>重要的是，要认识到Scallion预先执行的是概率性搜索。实际时间可能与预测的时间有很大的差异。</strong></p>
+<p>初始RSA密钥生成由CPU完成。ivybridge i7可以使用单个内核每秒生成51个密钥。每个密钥可以提供价值1千兆ah的指数来挖掘，并且像样的CPU可以跟上目前实现的多个GPU。</p>
+<p>SHA1哈希在GPU上完成。下面是我们测试过的多个GPU的哈希率（按制造商分组并按功率排序）：</p>
+<figure class="wp-block-table"><table><thead><tr><th>显卡</th><th>速度</th></tr></thead><tbody><tr><td>英特尔i7-2620M</td><td>9.9 MH /秒</td></tr><tr><td>英特尔i5-5200U</td><td>118 MH /秒</td></tr><tr><td>NVIDIA GT 520</td><td>38.7 MH /秒</td></tr><tr><td>NVIDIA Quadro K2000M</td><td>90 MH /秒</td></tr><tr><td>NVIDIA GTS 250</td><td>128 MH /秒</td></tr><tr><td>NVIDIA GTS 450</td><td>144 MH /秒</td></tr><tr><td>NVIDIA GTX 670</td><td>480 MH /秒</td></tr><tr><td>NVIDIA GTX 970</td><td>2350 MH /秒</td></tr><tr><td>NVIDIA GTX 980</td><td>3260 MH /秒</td></tr><tr><td>NVIDIA GTX 1050（M）</td><td>1400 MH /秒</td></tr><tr><td>NVIDIA GTX 1070</td><td>4140 MH /秒</td></tr><tr><td>NVIDIA GTX 1070 TI</td><td>5100 MH /秒</td></tr><tr><td>NVIDIA GTX TITAN X</td><td>4412 MH /秒</td></tr><tr><td>NVIDIA GTX 1080</td><td>5760 MH /秒</td></tr><tr><td>NVIDIA Tesla V100</td><td>11646 MH /秒</td></tr><tr><td>AMD A8-7600 APU</td><td>120 MH /秒</td></tr><tr><td>AMD Radeon HD5770</td><td>520 MH /秒</td></tr><tr><td>AMD Radeon HD6850</td><td>600 MH /秒</td></tr><tr><td>AMD Radeon RX 460</td><td>840 MH /秒</td></tr><tr><td>AMD Radeon RX 470</td><td>957 MH /秒</td></tr><tr><td>AMD Radeon R9 380X</td><td>2058 MH /秒</td></tr><tr><td>AMD FirePro W9100</td><td>2566 MH /秒</td></tr><tr><td>AMD Radeon RX 480</td><td>2700 MH /秒</td></tr><tr><td>AMD Radeon RX 580</td><td>3180 MH /秒</td></tr><tr><td>AMD Radeon R9纳米</td><td>3325 MH /秒</td></tr><tr><td>AMD Vega Frontier版</td><td>7119 MH /秒</td></tr></tbody></table></figure>
+<p>MH / s =每秒百万个哈希</p>
+<p>值得注意的是，英特尔已经为其处理器发布了OpenCL驱动程序，可以在CPU上找到短暂的冲突。</p>
+<p>要计算给定的部分碰撞所需的秒数（平均），请使用以下公式：</p>
+<figure class="wp-block-table"><table><thead><tr><th>类型</th><th>预计时间</th></tr></thead><tbody><tr><td>GPG密钥</td><td>2 ^（4 * length-1）/哈希速度</td></tr><tr><td>.onion地址</td><td>2 ^（5 * length-1）/哈希速度</td></tr></tbody></table></figure>
+<p>例如，在我的nVidia Quadro K2000M上，我看到的速度约为90 MH / s。以这种速度，我可以在大约1h 41m中生成一个八个字符的.onion前缀<strong><code>2^(5*8-1)/90 million = 101 minutes</code>。</strong></p>
+<p><strong>工作小组人数</strong></p>
+<p>Scallion 将默认使用您的设备报告的首选工作群组大小。这是一个合理的默认值，但尝试使用工作群组可能会提高性能。</p>
+<p><strong>安全</strong></p>
+<p>Scallion生成的密钥与shallot生成的密钥非常相似。它们有异常大的公共指数，但它们通过openssl的RSA_check_key函数通过PKCS #1 v2.1推荐的全套安全检查。Scallion支持多种RSA密钥大小，有1024b、2048b和4096b的优化内核。其他的密钥大小也可以使用，但还没有测试过。</p>
+ </div>

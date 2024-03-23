@@ -1,0 +1,18 @@
++++
+title = "从DigiCert订购.Onion证书"
+date = 2020-04-23T02:00:28+08:00
+categories = ["工具", "暗网技术"]
+tags = []
+thumbnail = ""
++++
+
+<div class="entry-content clearfix">
+<p>我们最近提出了大量有关如何为.onion地址获取SSL证书的问题。该博客文章应提供有关.onion证书查询的基本答案。<noscript><img fetchpriority="high" decoding="async" width="1200" height="929" class="wp-image-133" style="width: 800px;" src="/images/91b3045ff205eaa8231dcc3695fdeb06.jpg" alt=""></noscript><img fetchpriority="high" decoding="async" width="1200" height="929" class="wp-image-133 j-lazy" style="width: 800px;" src="/images/91b3045ff205eaa8231dcc3695fdeb06.jpg" alt></p>
+<h3 class="wp-block-heading">背景</h3>
+<p>截至9月，.onion被IESG <a href="https://blog.digicert.com/onion-officially-recognized-special-use-domain/" target="_blank" rel="noreferrer noopener">确认</a>为特殊用途域，这意味着它们可以使用SSL证书进行保护。（以前.onion被视为内部名称。）公众信任的证书向Tor用户验证组织，并且是对抗网络钓鱼和MITM攻击的重要组成部分。CA / B论坛概述了审核.onion名称的准则，您可以<a href="https://cabforum.org/2015/02/18/ballot-144-validation-rules-dot-onion-names/">在此处</a>阅读。</p>
+<h3 class="wp-block-heading">.Onion网站可用的证书</h3>
+<p>Tor项目致力于帮助用户匿名浏览Web。但是，获得SSL证书向用户  <a href="https://blog.digicert.com/anonymous-facebook-via-tor/" target="_blank" rel="noreferrer noopener">标识自己（或组织）与</a>匿名无关。这使得为​​.onion站点订购SSL证书变得很复杂，这就是DigiCert遵守CA.B <a href="https://cabforum.org/2015/02/18/ballot-144-validation-rules-dot-onion-names/" target="_blank" rel="noreferrer noopener">论坛.onion证书指南的原因</a>。订购.onion证书时，请确保记住以下几点：</p>
+<ul><li><strong>EV证书：</strong> DigiCert仅提供.onion地址的<a href="https://www.digicert.com/ev-ssl-certification.htm" target="_blank" rel="noreferrer noopener">扩展验证证书</a>。</li><li><strong>通配符名称：</strong>这些.onion EV证书有一个独特的用例，允许使用通配符名称（例如* .yourdomain.onion）。</li><li><strong>有效期：</strong>根据CA / B论坛指南，.onion证书的有效期不超过15个月。（DigiCert系统将根据应用程序将有效期自动调整为15个月，以确保.onion通用名称。）</li></ul>
+<h3 class="wp-block-heading">如何为。洋葱地址订购证书</h3>
+<p>要为您的.onion网站购买证书，只需订购EV SSL或EV多域SSL证书并填写  <a href="https://www.digicert.com/order/order-1.php?prod=11">订购表</a>。</p>
+ </div>

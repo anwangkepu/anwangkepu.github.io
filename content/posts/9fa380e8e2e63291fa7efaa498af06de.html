@@ -1,0 +1,38 @@
++++
+title = "Tor浏览器被Windows Defender误杀，导致新版本无法连接Tor网络"
+date = 2023-10-09T07:19:17+08:00
+categories = ["工具", "暗网技术", "独家报道"]
+tags = ["Tor浏览器"]
+thumbnail = ""
++++
+
+<div class="entry-content clearfix">
+<figure class="wp-block-image size-full"><noscript><img fetchpriority="high" decoding="async" width="978" height="598" src="/images/6f1c409504c7af9d113482845838265f.webp" alt="Tor浏览器被Windows Defender误杀，导致新版本无法连接Tor网络" class="wp-image-2853"></noscript><img fetchpriority="high" decoding="async" width="978" height="598" src="/images/6f1c409504c7af9d113482845838265f.webp" alt="Tor浏览器被Windows Defender误杀，导致新版本无法连接Tor网络" class="wp-image-2853 j-lazy"></figure>
+<p>十一长假期间，多名网友向<mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-vivid-red-color">“暗网下/AWX”</mark>请求援助称<span class="wpcom_tag_link">Tor浏览器</span>新版本更新后无法连接Tor网络，后经“暗网下/AWX”证实，是由于Tor浏览器的新版本tor.exe被Windows Defender误杀导致。</p>
+<h2 class="wp-block-heading">问题产生与解决方法</h2>
+<p>10月1日左右，Tor浏览器推出新的64位版本12.5.6，然而，该版本的Tor网络连接程序tor.exe却被最新版本的Windows 10与Windows 11的Windows Defender病毒和威胁防护程序识别为病毒威胁并删除进了隔离区：</p>
+<blockquote class="wp-block-quote">
+<p>已检测：Trojan:Win32/Malgent!MTB</p>
+</blockquote>
+<p>当tor.exe被杀以后，Tor浏览器无法正常连接Tor网络。很多境内网友表示已经翻墙并能成功访问Google等境外网站，Tor浏览器仍然无法正常连接，无论是默认配置（obfs4）还是选择Snowflake配置，或者更换其他网桥（bridge），并显示如下错误：</p>
+<blockquote class="wp-block-quote">
+<p>Tor Browser couldn’t locate you</p>
+<p>Tor Browser needs to know your location in order to choose the right bridge for you. If you’d rather not share your location, configure your connection manually instead.</p>
+<p>Component returned failure code: 0x804b000d (NS_ERROR_CONNECTION_REFUSED) [nsIScriptableInputStream.available]</p>
+</blockquote>
+<p>事发后，立即有网友在<a href="https://forum.torproject.org/t/tor-browser-stopped-being-able-to-connect/9488" target="_blank" rel="noreferrer noopener">torproject官方论坛进行了反馈</a>，也有网友在<a href="https://www.reddit.com/r/techsupport/comments/16w64nx/tor_browser_latest_version_not_working_on_windows/" target="_blank" rel="noreferrer noopener">Reddit论坛咨询此问题</a>，并给出了解决方案：卸载12.5.6版本的Tor浏览器，安装12.5.3版本的Tor浏览器即可。</p>
+<p>12.5.3版本的Tor浏览器下载地址：<a href="https://archive.torproject.org/tor-package-archive/torbrowser/12.5.3/" target="_blank" rel="noreferrer noopener">https://archive.torproject.org/tor-package-archive/torbrowser/12.5.3/</a></p>
+<p>此外，还可以直接使用12.5.3版本中的tor.exe，下载tor-expert-bundle-12.5.3-windows-x86_64.tar压缩包，找到tor目录中的tor.exe，复制粘贴到Tor浏览器对应的目录（Tor Browser\Browser\TorBrowser\Tor）下。</p>
+<p><a href="https://twitter.com/torproject/status/1708855101308518559" target="_blank" rel="noreferrer noopener">Tor项目于10月2日紧急在Twitter发布了公告</a>，表示问题已经解决：</p>
+<blockquote class="wp-block-quote">
+<p>TorBrowser 12.5.6 不再被 Windows Defender 标记。<br>✔️确保您的 Windows Defender 是最新的，<br>✔️取消隔离 tor.exe，或从我们的网站下载 TorBrowser 重新安装<br>✔️记得检查签名 (1.397.1910. 0)</p>
+</blockquote>
+<figure class="wp-block-embed is-type-rich is-provider-twitter wp-block-embed-twitter"><div class="wp-block-embed__wrapper">
+<blockquote class="twitter-tweet" data-width="500" data-dnt="true"><p lang="en" dir="ltr">TorBrowser 12.5.6 no longer flagged by Windows Defender. <br>✔️Make sure your Windows Defender is up to date, <br>✔️and either unquarantine tor.exe, or reinstall TorBrowser by downloading it from our website – <br>✔️ remember to check the signature (1.397.1910.0)<a href="https://t.co/NQDLGETp2L">https://t.co/NQDLGETp2L</a></p>— The Tor Project (@torproject) <a href="https://twitter.com/torproject/status/1708855101308518559?ref_src=twsrc%5Etfw">October 2, 2023</a></blockquote><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</div></figure>
+<p>意味着10月2日之后，如果还出现此问题，重新安装12.5.6版本的Tor浏览器即可正常使用。</p>
+<h2 class="wp-block-heading">其他Tor浏览器可能无法正常连接的原因</h2>
+<p>可能性一、国家或地区限制：某些国家或地区的互联网服务提供商可能会限制或阻止连接到Tor网络，可以尝试先使用虚拟专用网络（VPN）或代理服务器等代理工具。</p>
+<p>可能性二、本地防火墙限制：有时候电脑的防火墙或者局域网的防火墙阻止了Tor浏览器连接到互联网，可以尝试关闭防火墙再试。</p>
+<p>可能性三、Tor浏览器配置问题：Tor浏览器中的网桥配置错误也会导致无法连接到Tor网络，可以尝试恢复默认设置。</p>
+ </div>

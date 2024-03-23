@@ -1,0 +1,23 @@
++++
+title = "超过27%的Tor出口节点被黑客组织控制用来监视暗网用户的活动"
+date = 2021-05-11T10:05:05+08:00
+categories = ["暗网技术"]
+tags = []
+thumbnail = ""
++++
+
+<div class="entry-content clearfix">
+<div class="wp-block-image"><figure class="aligncenter size-large"><noscript><img fetchpriority="high" decoding="async" width="728" height="380" src="/images/366299c1e85f06b6b545e55a9d32aec1.jpg" alt="超过27%的Tor出口节点被黑客组织控制用来监视暗网用户的活动" class="wp-image-859"></noscript><img fetchpriority="high" decoding="async" width="728" height="380" src="/images/366299c1e85f06b6b545e55a9d32aec1.jpg" alt="超过27%的Tor出口节点被黑客组织控制用来监视暗网用户的活动" class="wp-image-859 j-lazy"></figure></div>
+<p>一项关于暗网基础设施的新研究显示，一个未知的威胁参与者在2021年2月上旬设法控制了整个Tor网络出口流量的27％以上。</p>
+<p>独立安全研究人员nusenu在周日发表的<a rel="noreferrer noopener" href="https://nusenu.medium.com/tracking-one-year-of-malicious-tor-exit-relay-activities-part-ii-85c80875c5df" target="_blank">一篇文章中说：</a> “攻击Tor用户的黑客组织自一年以来一直在积极针对tor用户，并将其攻击范围扩大到新的记录水平。” 在过去的12个月中，该黑客组织控制的平均出口节点比例超过14％。”</p>
+<p>这是自<a rel="noreferrer noopener" href="https://nusenu.medium.com/the-growing-problem-of-malicious-relays-on-the-tor-network-2f14198af548" target="_blank">2019</a>年<a rel="noreferrer noopener" href="https://nusenu.medium.com/the-growing-problem-of-malicious-relays-on-the-tor-network-2f14198af548" target="_blank">12月</a>以来<a rel="noreferrer noopener" href="https://nusenu.medium.com/the-growing-problem-of-malicious-relays-on-the-tor-network-2f14198af548" target="_blank">揭露</a>恶意的Tor活动而开展的一系列工作中的最新一项。据称，这些攻击始于2020年1月，由同一研究人员在2020年8月首次<a rel="noreferrer noopener" href="https://nusenu.medium.com/how-malicious-tor-relays-are-exploiting-users-in-2020-part-i-1097575c0cac" target="_blank">记录和揭露</a>。</p>
+<p>Tor是一款开源软件，用于实现互联网上的匿名通信。它通过将网络流量引导通过一系列中继来混淆Web请求的源和目的地，以便从监视或流量分析中掩盖用户的IP地址以及位置和使用情况。中继节点通常负责在Tor网络上接收流量并传递，而出口节点是Tor流量到达目的地之前经过的最后一个节点。</p>
+<p>过去曾经发生过破坏了Tor网络上的出口节点以注入<a rel="noreferrer noopener" href="https://malpedia.caad.fkie.fraunhofer.de/details/win.onionduke" target="_blank">OnionDuke之类的</a>恶意软件，但这是第一次有一个身份不明的<a rel="noreferrer noopener" href="https://malpedia.caad.fkie.fraunhofer.de/details/win.onionduke" target="_blank">参与者</a>首次设法控制如此大比例的Tor出口节点。</p>
+<div class="wp-block-image"><figure class="aligncenter size-large"><noscript><img decoding="async" width="1024" height="344" src="/images/1afa78c4362de074c90952fb90497c60.png" alt="超过27%的Tor出口节点被黑客组织控制用来监视暗网用户的活动" class="wp-image-860"></noscript><img decoding="async" width="1024" height="344" src="/images/1afa78c4362de074c90952fb90497c60.png" alt="超过27%的Tor出口节点被黑客组织控制用来监视暗网用户的活动" class="wp-image-860 j-lazy"><figcaption>在2020年7月和2021年4月之间，这个特定的恶意攻击者控制的Tor出口容量（以整个可用的Tor网络出口容量的百分比衡量）。峰值可以看出：攻击者在2021年2月2日确实控制了大约27.5%的Tor网络出口容量。Graph by <a href="https://nusenu.github.io/" target="_blank" rel="noreferrer noopener">nusenu</a> (raw data source: <a href="https://metrics.torproject.org/onionoo.html" target="_blank" rel="noreferrer noopener">Tor Project/onionoo</a>)</figcaption></figure></div>
+<p>黑客组织在2020年8月高峰期之前维护了380个恶意Tor出口节点，然后Tor项目官方进行了干预，将这些节点从Tor网络中剔除，之后该活动在今年年初再次达到顶峰，攻击者试图在5月的第一周增加超过1000个出口节点。在第二波攻击中检测到的所有恶意Tor出口节点后来都被删除。</p>
+<p>据nusenu称，攻击的主要目的是通过控制流过出口中继网络的流量来对Tor用户进行“中间人”攻击。具体来说，攻击者似乎<a rel="noreferrer noopener" href="https://www.venafi.com/blog/what-are-ssl-stripping-attacks" target="_blank">执行</a>了所谓的<a rel="noreferrer noopener" href="https://blog.cloudflare.com/performing-preventing-ssl-stripping-a-plain-english-primer/" target="_blank">SSL剥离，</a>以将前往<a rel="noreferrer noopener" href="https://en.wikipedia.org/wiki/Cryptocurrency_tumbler" target="_blank">比特币混币</a>服务的流量从HTTPS降级为HTTP，以试图替换比特币地址并将交易重定向到其钱包，而不是用户提供的比特币地址。</p>
+<p>“如果用户访问了这些站点之一的HTTP版本（即未加密，未经身份验证的版本），他们将阻止该站点将用户重定向到该站点的HTTPS版本（即经过加密，身份验证的版本），”维护者Tor Project的负责人于去年8月<a href="https://blog.torproject.org/bad-exit-relays-may-june-2020" rel="noreferrer noopener" target="_blank">解释道</a>。“如果用户没有注意到他们没有进入该站点的HTTPS版本（浏览器中没有锁定图标）并继续发送或接收敏感信息，则攻击者可能会拦截此信息。”</p>
+<p>为了减轻此类攻击，Tor项目概述了许多建议，包括敦促网站管理员部署<a rel="noreferrer noopener" href="https://en.wikipedia.org/wiki/.onion" target="_blank">.onion</a>网站时默认启用HTTPS以避免出口节点攻击，并补充说它正在“全面修复”上工作以<a rel="noreferrer noopener" href="https://gitlab.torproject.org/tpo/applications/tor-browser/-/issues/19850" target="_blank">禁用</a>Tor浏览器中的<a rel="noreferrer noopener" href="https://gitlab.torproject.org/tpo/applications/tor-browser/-/issues/19850" target="_blank">纯HTTP</a>。</p>
+<p>美国网络安全和基础设施安全局（CISA）在2020年7月的一份咨询报告中<a rel="noreferrer noopener" href="https://us-cert.cisa.gov/ncas/alerts/aa20-183a" target="_blank">说：</a> “通过Tor传播的恶意活动的目标风险对每个组织来说都是独特的。每个组织应通过评估黑客将其系统或数据作为目标的可能性，以及考虑到当前的缓解措施和控制措施，并苹果黑客成功的概率来确定其风险。”</p>
+<p>该机构补充说：“各组织应评估其缓解决策，以应对来自高级持续性威胁（APT）、中度复杂的攻击者以及技术水平低下的单个黑客的威胁，这些人过去都曾利用Tor进行了侦察和攻击。”</p>
+ </div>

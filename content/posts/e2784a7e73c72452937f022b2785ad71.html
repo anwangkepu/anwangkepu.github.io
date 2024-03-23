@@ -1,0 +1,26 @@
++++
+title = "Tor项目官方发布新版本Arti 1.0.0，以Rust语言重新开发的Tor更安全"
+date = 2022-09-06T10:29:19+08:00
+categories = ["Tor官方动态", "暗网动态", "暗网技术"]
+tags = ["Arti", "Rust", "Tor官方"]
+thumbnail = ""
++++
+
+<div class="entry-content clearfix">
+<div class="wp-block-image">
+<figure class="aligncenter size-full"><noscript><img fetchpriority="high" decoding="async" width="940" height="529" src="/images/491b4aeffbdf76a515b1c1fff51c66ff.jpg" alt="Tor项目官方发布新版本Arti 1.0.0，以Rust语言重新开发的Tor更安全" class="wp-image-2016"></noscript><img fetchpriority="high" decoding="async" width="940" height="529" src="/images/491b4aeffbdf76a515b1c1fff51c66ff.jpg" alt="Tor项目官方发布新版本Arti 1.0.0，以Rust语言重新开发的Tor更安全" class="wp-image-2016 j-lazy"></figure></div>
+<p><span class="wpcom_tag_link">Arti</span>是一个以高安全性语言<span class="wpcom_tag_link">Rust</span>重新开发的Tor，官方认为这个版本代码更具模块化设计，也对其安全性更有信心。</p>
+<p><span class="wpcom_tag_link">Tor官方</span>近日发布一个用Rust重新开发的Tor版本Arti 1.0.0，目前这个版本已经可用于生产环境。Arti与C客户端Tor具有类似的隐私度、可用性和稳定性，而嵌入器（Embedder）API也接近完全稳定阶段。</p>
+<p>用户现在已经可使用Arti代理连接Tor网络，匿名化网络连接，官方提醒，不建议用户使用传统网络浏览器指向Arti，因为传统浏览器会泄漏许多隐私和可识别信息，最好使用Tor浏览器。</p>
+<h2 class="wp-block-heading">为什么是Arti？以及如何实现？</h2>
+<p>从2020年Tor官方就已经开始着手以Rust语言开发Tor协议，而之所以要用Rust语言重写Tor，官方解释，在2001年的时候，C语言是一个合理的选择，但他们逐渐发现C语言的限制，比如C语言鼓励对许多编程问题采用不必要的低级方法，解决程序开发问题，而且要安全地使用C语言，需要付出许多精力，也由于这些限制，C语言的开发速度总是比期望更慢。</p>
+<p>还有另一个重要原因，C语言发展这么多年，早已成为一个不那么模块化的设计，几乎所有东西都连结在一起，而这使得代码分析和进行安全性改进都变得困难。而转向以Rust开发，是解决这些问题的好方法，在2017年的时候，官方就曾尝试在C Tor代码库中添加Rust，希望有一天能逐步替换代码。</p>
+<p>Rust于2010年在Mozilla开始，现在由Rust基金会维护，经过多年的发展，Rust已经成为一种独立维护的编程语言，具有很好的人体工程学和性能，以及强大的安全属性。</p>
+<p>因为C语言代码没有足够的模块化，不容易重写，但要获得Rust代码带来的好处，需要一次重写整个模组，而不是一次只重写一个函数。但那些被隔离的、足以替换的代码部分大多是微不足道的，真正需要更换的部分又全部交织在一起，因此要在不破坏代码稳定性的情况下，要逐步替换成Rust开发，官方认为是不可能的工作。</p>
+<p>在2020年，Tor共同创办人Nick Mathewson开始着手Rust Tor版本开发，随后更名Arti作为Tor官方版本，并获得<a href="https://zcashcommunitygrants.org/" target="_blank" rel="noreferrer noopener">Zcash社区补助金</a>（Zcash Community Grants）的资助，使得Tor公司得以雇用更多的开发者加入开发，历经数个测试版本，现在终于达到1.0.0的里程碑。</p>
+<h2 class="wp-block-heading">那么，Rust 怎么样？</h2>
+<p>从开发语言改变来看，官方提到，在每个可比较的开发阶段，以Rust语言开发碰到的Bug，都比C语言开发阶段少得多，会遇到的错误几乎都是语义/算法上的错误，也就是真正的编程问题，而不是使用Rust语言及其设施上的错误。</p>
+<p>Rust以其困难的语言和挑剔的编译器而闻名，而且编译器的挑剔性代表着非常严谨，官方提到，一般而言，只要Rust代码能够编译并通过测试，那么在相同条件下，它比C代码更有可能是正确的。虽然是第二次建构Tor，类似功能开发速度本来就会比较快，但官方强调，速度的提高有一部分是由于Rust的语义更具表现力和更可用的库生态系统，但很大一部分是由于Rust的安全性带来的信心。</p>
+<p>不过Rust还是有一些缺点，虽然Rust可移植性比C语言更好，但还是需要处理操作系统之间的差异，另外，因为Rust的标准库并不会默认安装在目标系统上，也因此增加可执行文件的大小，虽然通过使用平台原生TLS开发改进支持，已经足以消除这个问题，但是仍有一些工作要进行。</p>
+<p>比起C Tor，官方发现Arti更吸引贡献者，获得的代码贡献量更大且摩擦更小，由于Rust强大的类型系统、优秀的API文档支持和安全性，极大程度帮助新的贡献者入手。这些特性可以帮助他们找到要修改的地方，也可以让他们在修改不熟悉的代码时更有信心。</p>
+ </div>

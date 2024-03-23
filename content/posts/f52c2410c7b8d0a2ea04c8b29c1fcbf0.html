@@ -1,0 +1,32 @@
++++
+title = "洋葱路由网络详解"
+date = 2020-05-13T18:06:07+08:00
+categories = ["暗网技术"]
+tags = []
+thumbnail = ""
++++
+
+<div class="entry-content clearfix">
+<p>Tor 是可以帮助你网上冲浪时保持隐私的免费开源软件系统。当你使用 Tor 浏览器冲浪时，你的流量会在到达最终目的地之前通过服务器网络随机定向，以保护你的位置安全和身份信息。</p>
+<p><code>Tor</code> 是「<ruby>洋葱路由器<rt>The Onion Router</rt></ruby>」的缩写，形容 Tor 通过将数据包装在多个加密层中（如洋葱一般）来保护其数据的方式。</p>
+<p>Tor 本质是匿名工具，代理非其所长，不加可插拔传输的直球 Tor 连接流量特征明显。</p>
+<p>但是 Tor 是如何在让你匿名冲浪的呢？在本系列废话中，我们将深入研究 Tor 网络使用的结构和协议，以便第一手了解 Tor 的工作方式。</p>
+<h2 class="wp-block-heading">Tor 101</h2>
+<p>在一个非常抽象的层次上，Tor 是通过一系列服务器（称为节点或<ruby>中继<rt>Relay</rt></ruby>）进行路由转发流量的。</p>
+<p><noscript><img fetchpriority="high" decoding="async" width="1687" height="687" class="wp-image-238" style="width: 600px;" src="/images/e569e13d7b426f99e517d145afb93fc5.png" alt=""></noscript><img fetchpriority="high" decoding="async" width="1687" height="687" class="wp-image-238 j-lazy" style="width: 600px;" src="/images/e569e13d7b426f99e517d145afb93fc5.png" alt></p>
+<p>目前 Tor 全网大约有 6300+ 个中继和 1000+ 网桥通过 Tor 网络路由流量。这些中继遍布世界各地，完全由愿意为 Tor 网络贡献带宽的志愿者，非营利机构，科研院校和图书馆和开蜜罐的 FBI、国安局等运行。中继越多越好！这是有道理的，因为每个中继只能提供一定的带宽。Tor 的节点越多，网络的性能、冗余性和安全性就越好。</p>
+<h2 class="wp-block-heading">Types of Relays</h2>
+<p>默认情况下，Tor 客户端通过 3 个中继建立连接，每个中继都有特定的作用。RT</p>
+<p><noscript><img decoding="async" width="1691" height="804" class="wp-image-239" style="width: 600px;" src="/images/866ab6c5b8f2931401023ba8af68992b.png" alt=""></noscript><img decoding="async" width="1691" height="804" class="wp-image-239 j-lazy" style="width: 600px;" src="/images/866ab6c5b8f2931401023ba8af68992b.png" alt></p>
+<p>中继种类有：</p>
+<ul><li><ruby>入口中继<rt>Guard Relay</rt></ruby> —— Tor 链路的第一个中继。当使用网桥时，网桥会取代入口中继。稳定高带宽的一般通过中继经过一段时间的使用会被挂上入口中继 Flag。</li><li><ruby>中间中继<rt>Middle Relay</rt></ruby> —— 中间中继就像名字说的一样是将流量从入口中继传输到出口中继的，这样可以防止入口中继和出口中继互通有无。</li><li><ruby>出口中继<rt>Exit Relay</rt></ruby> —— 出口中继是 Tor 网络边缘的出口点，将流量发送到客户端预期的最终目的地。所谓蜜罐也都是在出口中继上的。出口中继的流量如果没过 TLS，那么从出口到目标服务的连接就是明文流量，会暴露非 Onion 地址的 DNS 查询记录（因为 DNS 查询也是出口处理的）。</li><li><ruby>网桥<rt>Bridge</rt></ruby> —— 不出现在公共 Directory 里的入口中继，可部署可插拔传输插件，是非公开的节点们。</li></ul>
+<p>要注意除了配置了现代可插拔传输插件的网桥，其他的节点是必墙的，方式是很 Old School 的路由黑洞。</p>
+<p>当用户通过 Tor 客户端（例如 Tor 浏览器）连接到互联网时，加密后的流量会从用户出发，先经过入口中继/网桥进入 Tor 网路，随后发送到中间中继，最后从出口中继发送明文到达访问目标。由于每个路径都是随机生成的，并且没有保留任何一个中继的记录，因此很难被追踪。</p>
+<h2 class="wp-block-heading">Onions? Onions!</h2>
+<p>现在，我们通过一系列的申必中转冲浪了，那如何知道用来冲浪的中继不视奸我们在干嘛呢？ 我们不需要知道！</p>
+<p>Tor 的设计是尽量不信任中继。 它通过多层加密实现这点。</p>
+<ol><li>客户端以仅出口中继可以解密原始数据的方式加密原始数据</li><li>然后，以仅中间中继可以解密的方式再次加密此加密数据。</li><li>最后，再次加密已加密数据，使得只有入口中继/网桥才能解密。</li></ol>
+<p><noscript><img decoding="async" width="1693" height="531" class="wp-image-240" style="width: 600px;" src="/images/f9c5aaebfd75ab3f5283e99281db4300.png" alt=""></noscript><img decoding="async" width="1693" height="531" class="wp-image-240 j-lazy" style="width: 600px;" src="/images/f9c5aaebfd75ab3f5283e99281db4300.png" alt></p>
+<p>将原始数据包装在加密层中就像洋葱被包装在一层一层的洋葱皮里。这样，每个中继仅具有它需要知道的信息 —— 从何处获取加密数据，以及从何处将数据发送到下一个中继。这种方式加密数据对双方都有利：客户端流量不会受到影响，中继也不必为看不见的数据承担责任。</p>
+<p>出口中继可以看到客户端发送的原始数据，因为它们必须将数据传递到目的地，如果用 HTTP，FTP 或其他明文协议冲浪，则出口中继可以看到你在冲什么浪。</p>
+ </div>

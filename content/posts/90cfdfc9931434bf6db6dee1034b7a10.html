@@ -1,0 +1,28 @@
++++
+title = "暗网最大的英文论坛Dread遭受了持续的大规模DDOS攻击"
+date = 2022-10-21T10:16:20+08:00
+categories = ["暗网网站", "独家报道"]
+tags = ["DDOS", "Dread", "暗网论坛"]
+thumbnail = ""
++++
+
+<div class="entry-content clearfix">
+<figure class="wp-block-image size-large"><noscript><img fetchpriority="high" decoding="async" width="1024" height="570" src="/images/f4b06d3b2be46169b1567fcea7085394.jpg" alt="暗网最大的英文论坛Dread遭受了持续的大规模DDOS攻击" class="wp-image-2127"></noscript><img fetchpriority="high" decoding="async" width="1024" height="570" src="/images/f4b06d3b2be46169b1567fcea7085394.jpg" alt="暗网最大的英文论坛Dread遭受了持续的大规模DDOS攻击" class="wp-image-2127 j-lazy"></figure>
+<p><span class="wpcom_tag_link">暗网论坛</span><span class="wpcom_tag_link">Dread</span>近期断断续续无法访问，据称其遭受了持续的<span class="wpcom_tag_link">DDOS</span>拒绝服务攻击。<mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-vivid-red-color">“暗网下/AWX”</mark>曾报道，Dread是暗网上最大的英文论坛，仿Reddit结构搭建，因持续关注国际上的暗网交易市场而闻名，暗网上知名的交易市场都在Dread创建了子版块。</p>
+<p>通常的DDOS攻击依赖于让数千台计算机向受害者发送大量UDP流量，但是Tor只传输正确格式的TCP流，而不是所有的IP数据包，因此<a rel="noreferrer noopener" href="https://support.torproject.org/abuse/what-about-ddos/" target="_blank">常规的DDOS攻击Tor网络并不奏效</a>。不过，也有简单的方法，由于Tor网络中不存在CDN，如果需要发起DDOS攻击，只需纠集数千个机器人同时访问某个目标。</p>
+<p>Dread遭受的DDOS攻击已经持续了数周，目前尚不知道攻击者究竟是谁，但是Dread管理员认为攻击是为了勒索赎金。Dread的管理团队一直在采取措施进行防御，比如增加了高性能防护节点，但是Tor网络是脆弱的，因此防护比较艰难。</p>
+<p>Tor项目团队6月份<a rel="noreferrer noopener" href="https://status.torproject.org/issues/2022-06-09-network-ddos/" target="_blank">曾表示</a>：”我们正在经历影响Tor网络性能的全网络DDoS尝试，其中包括洋葱服务和非洋葱服务流量。我们目前正在调查潜在的缓解措施。“并在7月份更新描述：”DDoS还没有结束，而是改变了它的性质，我们目前正在研究如何减轻新的过载。“</p>
+<p>Dread管理员<a rel="noreferrer noopener" href="http://dreadytofatroptsdj6io7l3xptbet6onoyno2yv7jicoxknyazubrad.onion/u/Paris" target="_blank">Paris</a>在上周日发表了一篇对最近的DDOS攻击的进行解释的公告帖子，帖子标题是“<a rel="noreferrer noopener" href="http://dreadytofatroptsdj6io7l3xptbet6onoyno2yv7jicoxknyazubrad.onion/post/490601303f91dd726ab8" target="_blank">又一天，又一次Tor网络攻击</a>”，试图向网友解释是什么让这次特别的DDOS攻击如此有效。</p>
+<p>Paris表示：“我觉得我们需要烧更多的钱。Dread再次收到了大规模的DDOS攻击，这正在杀死我们前端的防护节点。”</p>
+<p>Paris写道：“这些攻击与对Tor网络的其他攻击是结合在一起的，如果你<a rel="noreferrer noopener" href="https://metrics.torproject.org/torperf.html" target="_blank">查看Tor项目的性能指标</a>，你会发现完成平均请求的时间在持续上升。超时和失败越来越常见，<a href="https://metrics.torproject.org/torperf-failures.html?start=2022-09-10&amp;end=2022-10-08&amp;server=public" target="_blank" rel="noreferrer noopener">有时超过10%的连接无法建立</a>，证明Tor网络普遍不可访问。”</p>
+<p>Paris称：“Tor项目保存的网络性能统计数据显示，由于从9月中旬开始的持续DDOS攻击，整个Tor网络的访问速度普遍放缓。Tor网络开始迅速恶化，所以预计Dread论坛偶尔会出现停机和不可访问的情况。如果你在访问Dread网站时出现超时问题，请重新开启新的连接，可能需要几分钟，但是如果你能成功地建立了一个连接，它应该在10分钟内稳固，直到你需要建立另一个新连接。“</p>
+<p>根据Paris的说法，Tor的守护节点在最近几天已经集体离线，这使得攻击者更容易使像Dread这样的网站无法访问。Paris认为，攻击强度上升的原因是攻击者向各个洋葱网站管理员勒索资金的“最后的尝试”。</p>
+<p>Dread论坛可以通过I2P网络直接连接，不受攻击影响，也不需要验证码或其他反DDOS方法。Paris说：”I2p已经启动，工作正常。如果你真的想上Dread就用i2p吧。高级会员可以使用专用的Tor镜像URL地址（访问<a href="http://dreadytofatroptsdj6io7l3xptbet6onoyno2yv7jicoxknyazubrad.onion/d/lounge" target="_blank" rel="noreferrer noopener">/d/lounge</a>子版块可以看到链接），它是稳定和全速的。”</p>
+<p>每天都有数百名暗网市场用户、在线隐私爱好者和普通研究人员访问Dread。自2018年以来，它一直是暗网上最大的讨论有关暗网市场、网络安全、加密货币以及政治和社会问题的交流论坛。</p>
+<p>DDOS攻击发生后，多位Dread的网友对该事件进行了讨论。</p>
+<p>网友“EvilNet”说：“为什么要攻击Dread？更重要的是，谁会这样做？我不认为是执法部门，因为他们会潜入，当然不会进行DoS/DDoS攻击。”</p>
+<p>网友“MrMiggles”说：“根据我的经验，使用i2p一直比Tor更快、更稳定。而且它应该是更安全的。”</p>
+<p>网友“Expectant”说：“可怜的Tor网络。它看起来并不好。”</p>
+<p>针对Tor网络以及Dread论坛的DDOS攻击，<mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-vivid-red-color">“暗网下/AWX”</mark>将持续关注。</p>
+<p>更多暗网新闻动态，请关注<mark><mark style="background-color:#ffffff" class="has-inline-color has-vivid-red-color">“暗网下/AWX”</mark></mark>。</p>
+ </div>

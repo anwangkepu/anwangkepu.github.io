@@ -1,0 +1,31 @@
++++
+title = "Tor浏览器13.0版本正式发布，更新图标、主页及窗口"
+date = 2023-10-13T08:09:15+08:00
+categories = ["Tor官方动态", "工具", "暗网动态"]
+tags = ["Tor浏览器"]
+thumbnail = ""
++++
+
+<div class="entry-content clearfix">
+<div class="wp-block-image">
+<figure class="aligncenter size-full"><noscript><img fetchpriority="high" decoding="async" width="940" height="529" src="/images/a9da4bfbb95efc93991e1bc7622ba5c0.webp" alt="Tor浏览器13.0版本正式发布，更新图标、主页及窗口" class="wp-image-2860"></noscript><img fetchpriority="high" decoding="async" width="940" height="529" src="/images/a9da4bfbb95efc93991e1bc7622ba5c0.webp" alt="Tor浏览器13.0版本正式发布，更新图标、主页及窗口" class="wp-image-2860 j-lazy"></figure></div>
+<p><span class="wpcom_tag_link">Tor浏览器</span>13.0现在可以从<a href="https://www.torproject.org/download/" target="_blank" rel="noreferrer noopener">Tor浏览器下载页面</a>和Tor项目的<a href="https://dist.torproject.org/torbrowser/13.0/" target="_blank" rel="noreferrer noopener">分发目录</a>中获取。</p>
+<p>这是基于<a href="https://www.mozilla.org/en-US/firefox/115.0esr/releasenotes/" target="_blank" rel="noreferrer noopener">Firefox ESR 115</a>的Tor浏览器的第一个稳定版本，它整合了一年来上游发布的变更。在此过程中，Tor项目的工作人员审查了Firefox的变更日志，以查找可能对Tor浏览器用户的隐私和安全产生负面影响的问题，并在必要时禁用任何有问题的补丁。</p>
+<p>特别值得注意的是，Tor浏览器在过渡到Firefox ESR 115后获得了可访问性方面的改进。虽然眼尖的用户可能已经注意到用户界面的细微视觉变化（例如，内部链接现在带有下划线），但Tor 浏览器 13.0的第一个版本继承了Mozilla在Firefox 113中引入的<a href="https://blog.mozilla.org/accessibility/firefox-113-accessibility-performance/" target="_blank" rel="noreferrer noopener">重新设计的辅助功能引擎</a>，显著提高了使用屏幕阅读器和其他辅助技术的人们的性能。</p>
+<p>本次大版本更新的变化：</p>
+<h2 class="wp-block-heading">更新了应用程序图标</h2>
+<p>Tor项目的工作人员称，今年早些时候花了一些时间将<a href="https://blog.torproject.org/releasing-mullvad-browser/" target="_blank" rel="noreferrer noopener">Mullvad浏览器</a>的图标艺术化，以创建支持其在各个平台发布所需的各种资源，包括符合各平台约定的应用程序、安装程序和文档图标。在了解每个平台的当前要求的同时，他们还发现了Tor浏览器存在一些差距，于是开始同时为Tor浏览器开发新图标。</p>
+<p>需要指出的是，Tor浏览器目前的图标（有时被称为”洋葱标志”）是在四年多前通过社区投票选择的，以取代Tor浏览器8.5中的较旧的紫色和绿色地球。考虑到社区对其选择的参与度、网民的认可度以及大家仍然喜欢现有图标的简单事实，官方工作人员选择将焦点放在改进而不是完全替换它。</p>
+<p>这样的工作背后的一个动机是不忘初心的理念，即保护隐私的产品不应该是纯粹的功利性，而还可以激发快乐。然而，也有实际的好处：遵循平台约定提供更好的一致性，可识别的应用程序和安装程序图标有助于防止用户错误，吸引新用户使每个人受益，因为匿名喜欢陪伴。</p>
+<h2 class="wp-block-heading">更新了主页</h2>
+<p>Tor项目的工作人员称，在过去的一年里，他们一直在重写Tor浏览器的后端，这提供了机会来重建一直没有改变的少数内部页面之一：主页（通常以内部引用“about:tor”）。Tor浏览器13.0的主页现在展示了新的应用程序图标、简化的设计以及通过切换到<a href="https://duckduckgogg42xjoc72x3sjasowoarfbgcmvfimaftt6twagswzczad.onion/" target="_blank" rel="noreferrer noopener">DuckDuckGo洋葱站点</a>来“洋葱化”DuckDuckGo搜索的功能。继续改进浏览器可访问性的工作，重新设计的主页还为使用屏幕阅读器和其他辅助技术的用户提供了更好的支持。</p>
+<p>现有的Tor浏览器用户可以庆幸的是，以前的主页会偶尔陷入的臭名昭著的“红屏”错误状态已经远去。在后端重写的过程中，删除了自动连接Tor网络的检查，该检查是旧版Tor启动器的保留，其中引导是由在浏览器界面出现之前运行的扩展处理的。由于在Tor浏览器10.5中引入的更紧密的tor集成和浏览器内引导体验，该检查背后的旧逻辑经常会失败，并在某些情况下向一些用户显示“红屏”，即使他们的连接正常。</p>
+<p>官方表示，事实上，自从Tor浏览器10.5以来，其收到的关于默认tor配置下的用户看到“红屏”的所有报告都被证明是误报，导致了不必要的警报。尽管该检查对于运行非默认配置的用户来说仍然有用，但这样做的两个主要环境（Tails和Whonix）都没有使用“about:tor”作为默认的新选项卡或主页。对于其他人，其在重新设计的主页上添加了一个新横幅来代替红屏，以检查Tor是否已连接并按预期工作。</p>
+<h2 class="wp-block-heading">更新了大的窗口</h2>
+<p>旧的Tor浏览器窗口比较小，是为了避免指纹识别，但是从浏览器而言，新窗口应该更大，并且在Tor浏览器 13.0中，对于大多数桌面用户来说，应该以更有用的横向纵横比呈现。</p>
+<p>在Tor浏览器 9.0中引入了字母装箱技术（Letterboxing），以允许用户调整浏览器窗口的大小，而无需担心根据内部内容窗口（有时被称为”视口”）舍入到200 x 100像素的倍数来调整浏览器窗口的大小，而不必担心被指纹识别。该技术的工作原理是将大多数用户的窗口大小分组到一系列常见的“存储桶”中，从而保护这些存储桶中的各个用户不被根据其窗口或屏幕大小挑选出来。</p>
+<p>为了在打开新窗口时保留这些保护措施，旧版本的Tor浏览器覆盖了平台的默认设置，并会选择一个符合字母装箱步骤的尺寸，最大不超过1000 x 1000像素。然而，虽然在过去可能还好，但1000像素的最大宽度对于现代Web不再适用。例如，在许多新网站上，第一个响应式断点位于1000-1200像素的范围内，这意味着默认情况下，Tor浏览器用户将收到为平板电脑和移动设备设计的网站菜单和布局。或者，在某些网站上，用户将收到桌面版本，但会有水平滚动条的干扰。这自然会导致这些网站的用户需要手动展开每个新窗口才能使用。</p>
+<p>为此，新版本的Tor浏览器将新窗口的最大尺寸提高到1400 x 900像素，并修改了字母装箱步骤以匹配。由于宽度的增加，Tor浏览器13.0中的桌面版本应该不再会在较大屏幕上触发响应式断点，而绝大多数桌面用户将看到与现代浏览器更为一致的横向纵横比。选择这个特定尺寸是通过分析数据来提供更大的新窗口空间，而不会超过它们的实用性。作为额外的好处，Tor浏览器用户不再需要像以前那样频繁地手动更改窗口大小，从而将更多的用户保持在默认桶中。</p>
+<p><a href="https://blog.torproject.org/new-release-tor-browser-130/" target="_blank" rel="noreferrer noopener">这是Tor浏览器 13.0的主要更新</a>。这一版本包括一系列可访问性和用户体验的改进，以及更现代的应用程序图标和主页。这些变化旨在提高Tor浏览器的性能和可用性，使其更适合广大用户，尤其是使用屏幕阅读器和辅助技术的人们。新版本还解决了一些以往版本中的问题，例如”红屏”错误状态，同时改进了窗口大小和显示效果，以更好地适应现代Web。</p>
+<p>用户可以从Tor浏览器下载页面或分发目录中获取Tor浏览器13.0，体验这些新功能和改进。</p>
+ </div>

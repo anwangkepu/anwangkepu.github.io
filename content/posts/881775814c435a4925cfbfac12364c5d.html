@@ -1,0 +1,19 @@
++++
+title = "对Tor的攻击导致 “V3 Onion”宕机，实验性修复即将登陆"
+date = 2021-01-13T10:08:09+08:00
+categories = ["暗网技术"]
+tags = []
+thumbnail = ""
++++
+
+<div class="entry-content clearfix">
+<div class="wp-block-image"><figure class="aligncenter size-large"><noscript><img fetchpriority="high" decoding="async" width="696" height="392" src="/images/485ded82a422d7a8f36df3b29e519813.jpg" alt='对Tor的攻击导致 "V3 Onion"宕机，实验性修复即将登陆' class="wp-image-619"></noscript><img fetchpriority="high" decoding="async" width="696" height="392" src="/images/485ded82a422d7a8f36df3b29e519813.jpg" alt='对Tor的攻击导致 "V3 Onion"宕机，实验性修复即将登陆' class="wp-image-619 j-lazy"></figure></div>
+<ul><li><strong>Tor网络正在经历宕机，可能是由于暗网市场之间不受控制的DDoS所致。</strong></li><li><strong>由于无法保留共识的“实时”状态的错误，V3 Onion站点已关闭。</strong></li><li><strong>大量网站受到影响，有些网站保持离线状态长达12个小时。</strong></li></ul>
+<p>自2021年1月6日以来一直在对Tor网络进行协同攻击，导致所有v3洋葱域昨天离线12小时。一些服务启动了临时的v2洋葱域以使其联机返回，而Tor Project团队则忙于<a rel="noreferrer noopener" href="https://lists.torproject.org/pipermail/tor-talk/2021-January/045681.html" target="_blank">准备一个修补程序</a>，甚至是一个临时<a rel="noreferrer noopener" href="https://lists.torproject.org/pipermail/tor-talk/2021-January/045681.html" target="_blank">的修补程序</a>。他们现在宣布了一个实验补丁，该补丁需要同时应用于客户端和服务端。</p>
+<p>关于为什么v3洋葱域受攻击影响而先前版本没有受到攻击的<a rel="noreferrer noopener" href="https://web.archive.org/web/20210111015857/https://gitlab.torproject.org/tpo/core/tor/-/issues/40237" target="_blank">解释</a>是，最新版本在服务实现中存在错误，即使共识仍然有效，也会导致共识的“实时”状态下降。如果有足够的时间（几个小时）和回合，共识进入的状态将不再被视为“实时”，因此服务不会发布描述符，客户端也不会获取描述符。</p>
+<div class="wp-block-image"><figure class="aligncenter size-large"><noscript><img decoding="async" width="562" height="302" src="/images/a56a840cd25ccee6b5baaff68cf9b51f.png" alt='对Tor的攻击导致 "V3 Onion"宕机，实验性修复即将登陆' class="wp-image-620"></noscript><img decoding="async" width="562" height="302" src="/images/a56a840cd25ccee6b5baaff68cf9b51f.png" alt='对Tor的攻击导致 "V3 Onion"宕机，实验性修复即将登陆' class="wp-image-620 j-lazy"></figure></div>
+<p>Tor（0.4.6.0）的“ Alpha”版本目前正在测试中，如果您想摆弄它，可以从此<a rel="noreferrer noopener" href="https://gitlab.torproject.org/dgoulet/tor/-/tree/ticket40237_046_01" target="_blank">Git存储库中</a>构建源代码 。对Tor的攻击暴露了以前未发现或仅未解决的bug的存在并不是什么新鲜事，但是让社区充满热情地做出响应非常重要。</p>
+<p>自然，停机时间影响了许多洋葱网站，包括Wasabi和Bisq等比特币服务。据监视暗网的研究人员称，最近有一些活动涉及暗网市场之间的拒绝服务攻击。显然，这些攻击迅速升级为压倒了Tor网络的（HSDir）节点，导致无法连接到v3洋葱站点。</p>
+<p>试图访问其资产和钱包并经历延迟或连接失败的加密货币持有者自然会感到恐慌，因为他们担心最坏的情况。Bisq敦促社区不要公开争端，向他们保证局势不会对其资产构成威胁。</p>
+<p>同样，Wasabi迅速采取了将跟踪路由到v2和v1洋葱站点以及仍可通过Tor访问的clearnet后端端点的方法。当然，中断将继续，但是该平台保证没有什么可担心的。</p>
+ </div>

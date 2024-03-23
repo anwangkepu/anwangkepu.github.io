@@ -1,0 +1,22 @@
++++
+title = "有黑客质疑，中情局的暗网网站可能会给潜在泄密者带来风险"
+date = 2022-05-06T08:43:46+08:00
+categories = ["暗网技术", "独家报道"]
+tags = ["CIA", "匿名技术", "暗网网站"]
+thumbnail = ""
++++
+
+<div class="entry-content clearfix">
+<div class="wp-block-image"><figure class="aligncenter size-large"><noscript><img fetchpriority="high" decoding="async" width="1024" height="609" src="/images/107b45c79cc2e108f7de1745b9888a0c.jpg" alt="有黑客质疑，中情局的暗网网站可能会给潜在泄密者带来风险" class="wp-image-1810"></noscript><img fetchpriority="high" decoding="async" width="1024" height="609" src="/images/107b45c79cc2e108f7de1745b9888a0c.jpg" alt="有黑客质疑，中情局的暗网网站可能会给潜在泄密者带来风险" class="wp-image-1810 j-lazy"></figure></div>
+<p>前些天，<mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-vivid-red-color">“暗网下/AWX”</mark>介绍了中央情报局（CIA）在暗网给其官方网站https://cia.gov制作了一个副本，即一个基于Tor的暗网.onion网站，并用俄语在Instagram（<a rel="noreferrer noopener" href="https://instagram.com/p/CdDo1_QMCLe/" target="_blank">https://instagram.com/p/CdDo1_QMCLe/</a>）做广告，呼吁有情报的俄罗斯人与他们联系。</p>
+<figure class="wp-block-embed is-type-rich is-provider-twitter wp-block-embed-twitter"><div class="wp-block-embed__wrapper">
+<blockquote class="twitter-tweet" data-width="500" data-dnt="true"><p lang="en" dir="ltr">the @<span class="wpcom_tag_link">CIA</span> made a tor .onion site and advertised it in russian (<a href="https://t.co/Mf9Cf5oCu4">https://t.co/Mf9Cf5oCu4</a>) with call for russians with intelligence to contact them. But as I look at it more I'm incredibly impressed by what a potential fk'up this might be. Here's why: <br>1/7</p>— Nathan Fain (public) (@nathanafain) <a href="https://twitter.com/nathanafain/status/1521636281968730112?ref_src=twsrc%5Etfw">May 3, 2022</a></blockquote><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</div></figure>
+<p>但根据黑客、网络安全专家<a href="https://twitter.com/nathanafain" target="_blank" rel="noreferrer noopener">Nathan Fain</a>（<a href="https://nathanfain.com/" target="_blank" rel="noreferrer noopener">https://nathanfain.com/</a>）的技术上的分析，<br>CIA的这个<span class="wpcom_tag_link">暗网网站</span>对于使用者而言，可能存在暴露自身的风险。Nathan Fain在推特上（<a href="https://twitter.com/nathanafain" target="_blank" rel="noreferrer noopener">https://twitter.com/nathanafain</a>）给出的原因如下：</p>
+<blockquote class="wp-block-quote"><p>1：CIA的表格需要电子邮箱。中央情报局如果回复的话，可能会暴露发邮件的源头；<br>2：网站没有文件上传，使用电子邮件的风险更大；<br>3：CIA没有设置像其他网站一样安全的通信渠道（类似于securedrop，纽约时报，wapo，维基解密等）<br>4：CIA提供的洋葱网站是其官网https://cia.gov的副本，足足有5MB的大小，，很容易被从流量上设置指纹。</p></blockquote>
+<p>此外，securedrop、nyt、wapo、wikileaks 在他们的基于Tor的暗网.onion网站上拥有并且设置了基于HTTPS的安全通信层。这意味着作为文件泄露者，使用者可以在一个位置进行加密的双向通信，从而减少通过其他通信暴露的担忧。</p>
+<p>Nathan Fain具体解释如下：</p>
+<p>CIA的暗网.onion网站有“Report Information”的页面，但是“ONLINE FORM”（在线表格）只是一个由几个文本框组成的表单，但是没有最基础的文件上传功能。如果泄密者想上传文件，估计中情局倾向于使用电子邮件，但是那将导致巨大的来源危险。</p>
+<p>CIA的暗网.onion站点只是主站点<a href="http://cia.gov" target="_blank" rel="noreferrer noopener">http://cia.gov</a>的镜像站点，访问该网站的请求回应约为5MB（经<mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-vivid-red-color">“暗网下/AWX”</mark>实际测试，发送了39个请求，共计4.55MB）。而通过.onion访问是一样的。因此，俄罗斯的ISP运营商有可能监视这种规模的加密流量以找到潜在的泄密者。</p>
+<p><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-vivid-red-color">“暗网下/AWX”</mark>认为，Nathan Fain的分析还是有道理的，其实CIA最安全的做法是：在暗网设置一个securedrop的举报提交网站，并为该网站配置基于onion域名的SSL证书。</p>
+ </div>

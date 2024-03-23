@@ -1,0 +1,31 @@
+        {{- $featureImage := "/images/none.png" | absURL -}}
+        {{- with .Params.Thumbnail -}}
+          {{- $featureImage = . -}}
+        {{- else -}}
+          {{- $matches := findRE `<img[^>]*\s+src="[^"]+"` .Content -}}
+          {{- with $matches -}}
+              {{- $matches := findRE `src="[^"]+"` (index $matches 0) -}}
+              {{- $featureImage = index (split (index $matches 0) `"`) 1 -}}
+          {{- else -}}
+              {{- with .Params.Image_Urls -}}
+                {{- $featureImage = index . 0 -}}
+          {{- else -}}
+              {{- end -}}
+          {{- end -}}
+        {{- end -}}
+        <div class="p-2">
+          <div>
+            <a target="_blank" href="{{.Permalink}}">
+              <img src="{{ $featureImage | absURL }}" alt="{{ .Params.title }}" class="rounded-lg shadow-sm w-full h-64 md:h-64 object-cover" referrerpolicy="no-referrer" />
+            </a>            
+          </div>
+          <div class="text-center font-semibold"><a target="_blank" href="{{.Permalink}}">{{ .Title }}</a></div>
+          <div class="text-sm text-gray-500 text-center">
+            {{- range .Params.Categories }}
+            <a target="_blank" href="{{ print "/categories/" (urlize .) "/" | absURL }}"><i class="fa fa-bookmark fa-fw"></i>{{.}}</a>
+            {{- end }}
+            {{- if .Params.Date }}
+            <i class="fa fa-clock-o fa-fw"></i><time datetime="{{ .Params.Date.Format "2006-01-02T15:04:05Z07:00" }}">{{ .Params.date.Format "2006-01-02" }}</time>
+            {{- end }}
+          </div>
+        </div>

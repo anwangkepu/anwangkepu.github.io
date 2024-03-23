@@ -1,0 +1,117 @@
+{{- $paginator := .Paginator }}
+{{- $perSide := 3 }}
+{{- $startNum := sub .Paginator.PageNumber $perSide -}}
+{{- $endNum := add .Paginator.PageNumber $perSide -}}
+{{- if lt $startNum 1 -}}
+  {{- $endNum = sub (add $endNum 1) $startNum -}}
+{{- end -}}
+{{- if gt $endNum .Paginator.TotalPages -}}
+  {{- $startNum = sub $startNum (sub $endNum .Paginator.TotalPages) -}}
+{{- end -}}
+{{- if lt $startNum 1 -}}
+  {{- $startNum = 1 -}}
+{{ end }}
+{{- if gt $endNum .Paginator.TotalPages -}}
+  {{- $endNum = .Paginator.TotalPages -}}
+{{- end -}}
+{{- $iterPager := .Paginator.First }}
+{{- range seq (sub $startNum 1) }}
+  {{- $iterPager = $iterPager.Next }}
+{{- end }}
+<!-- This pagination requires Tailwind CSS v2.0+ -->
+<div id="pagination" class="px-4 py-3 flex items-center justify-between border-t border-gray-200 sm:px-6">
+  <div class="flex-1 flex justify-between sm:hidden">
+    {{- if .Paginator.HasPrev }}
+    <a href="{{ .Paginator.Prev.URL | absURL }}" class="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">
+      上一页
+    </a>
+    {{- else }}
+    <span class="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">
+      上一页
+    </span>
+    {{- end }}
+    {{- if .Paginator.HasNext }}
+    <a href="{{ .Paginator.Next.URL | absURL }}" class="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">
+      下一页
+    </a>
+    {{- else }}
+    <span class="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">
+      下一页
+    </span>
+    {{- end }}
+  </div>
+  <div class="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
+    <div>
+      <p class="text-sm text-gray-700">
+        当前第
+        <span class="font-medium">{{ .Paginator.PageNumber }}</span>
+        页,共
+        <span class="font-medium">{{ .Paginator.TotalPages }}</span>
+        页
+      </p>
+    </div>
+    <div>
+      <nav class="relative z-0 inline-flex rounded-md shadow-sm -space-x-px" aria-label="Pagination">
+        {{- if .Paginator.HasPrev }}
+        <a href="{{ .Paginator.Prev.URL | absURL }}" class="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
+          <span class="sr-only">上一页</span>
+          <!-- Heroicon name: solid/chevron-left -->
+          <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+            <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" />
+          </svg>
+        </a>
+        {{- end }}
+        <!--
+        Current: aria-current="page" class="z-10 bg-indigo-50 border-indigo-500 text-indigo-600 relative inline-flex items-center px-4 py-2 border text-sm font-medium",
+        Default: "bg-white border-gray-300 text-gray-500 hover:bg-gray-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium",
+        Ellipsis: "relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700"
+        -->
+        {{- if gt $startNum 1 }}
+        <a href="{{ .Paginator.First.URL | absURL }}" class="bg-white border-gray-300 text-gray-500 hover:bg-gray-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium">
+          1
+        </a>
+        {{- end }}
+        {{- if gt $startNum 2 }}
+        <span class="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700">
+          &hellip;
+        </span>
+        {{- end -}}
+        <!-- Iterates pager begin --> 
+        {{- range seq $startNum $endNum }}
+        {{- if eq $iterPager.PageNumber $paginator.PageNumber }}
+        <span aria-current="page" class="z-10 bg-indigo-50 border-indigo-500 text-indigo-600 relative inline-flex items-center px-4 py-2 border text-sm font-medium">
+          {{ $iterPager.PageNumber }}
+        </span>
+        {{- else }}
+        <a href="{{ $iterPager.URL | absURL }}" class="bg-white border-gray-300 text-gray-500 hover:bg-gray-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium">
+          {{ $iterPager.PageNumber }}
+        </a>
+        {{- end }}
+        {{- if $iterPager.HasNext }}
+          {{- $iterPager = $iterPager.Next }}
+        {{- end }}
+        {{- end -}}
+        <!-- Iterates pager end -->
+        {{- if lt $endNum (sub .Paginator.TotalPages 1) }}
+        <span class="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700">
+          &hellip;
+        </span>
+        {{- end }}
+        {{- if lt $endNum .Paginator.TotalPages }}
+        <a href="{{ .Paginator.Last.URL | absURL }}" class="bg-white border-gray-300 text-gray-500 hover:bg-gray-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium">
+          {{ .Paginator.Last.PageNumber }}
+        </a>
+        {{- end }}
+        {{- if .Paginator.HasNext }}
+        <a href="{{ .Paginator.Next.URL | absURL }}" class="relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
+          <span class="sr-only">下一页</span>
+          <!-- Heroicon name: solid/chevron-right -->
+          <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+            <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+          </svg>
+        </a>
+        {{- end }}
+      </nav>
+    </div>
+  </div>
+</div>

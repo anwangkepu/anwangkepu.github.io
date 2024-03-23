@@ -1,0 +1,37 @@
++++
+title = "Tor Project关于V2洋葱服务的废弃说明"
+date = 2021-06-28T22:06:15+08:00
+categories = ["Tor官方动态", "域名", "暗网动态", "暗网技术"]
+tags = ["DDOS", "Onion", "洋葱服务"]
+thumbnail = ""
++++
+
+<div class="entry-content clearfix">
+<div class="wp-block-image"><figure class="aligncenter size-large"><noscript><img fetchpriority="high" decoding="async" width="1024" height="499" src="/images/64791c715f60914dbad72a91a2eeded0.png" alt="Tor Project关于V2洋葱服务的废弃说明" class="wp-image-1019"></noscript><img fetchpriority="high" decoding="async" width="1024" height="499" src="/images/64791c715f60914dbad72a91a2eeded0.png" alt="Tor Project关于V2洋葱服务的废弃说明" class="wp-image-1019 j-lazy"><figcaption>V2 <span class="wpcom_tag_link">Onion</span> Services Deprecation</figcaption></figure></div>
+<h2 class="wp-block-heading">我如何知道我是在使用v2还是v3<span class="wpcom_tag_link">洋葱服务</span>？</h2>
+<p>你可以通过56个字符的长度来识别v3洋葱地址，例如，Tor项目的v2地址：<a href="http://expyuzz4wqqyqhjn.onion/" target="_blank" rel="noreferrer noopener">http://expyuzz4wqqyqhjn.onion/</a>，Tor项目的v3地址：<a href="http://2gzyxa5ihm7nsggfxnu52rck2vv4rvmdlkiu3zzui5du4xyclen53wid.onion/" target="_blank" rel="noreferrer noopener">http://2gzyxa5ihm7nsggfxnu52rck2vv4rvmdlkiu3zzui5du4xyclen53wid.onion/</a></p>
+<p>如果你是一个洋葱服务管理员，你必须尽快升级到v3洋葱服务。如果你是一个用户，请确保将你的书签更新到网站的v3洋葱地址。</p>
+<h2 class="wp-block-heading">v2废止的时间表是什么？</h2>
+<p>2020年9月，Tor开始警告洋葱服务运营商和客户，v2将在0.4.6版本中被弃用和淘汰。2021年6月，Tor浏览器开始警告用户。</p>
+<p>2021年7月，0.4.6版的Tor将不再支持v2，支持将从代码库中删除。</p>
+<p>2021年10月，我们将为所有支持的系列发布新的Tor客户端稳定版本，该版本将禁用v2。</p>
+<p>你可以在Tor项目的Blog<a href="https://blog.torproject.org/v2-deprecation-timeline" target="_blank" rel="noreferrer noopener">《洋葱服务第2版废弃时间表》</a>中阅读更多内容。</p>
+<h2 class="wp-block-heading">我可以继续使用我的v2洋葱地址吗？我可以在9月之后访问我的v2洋葱吗？这是一个向后不兼容的变化吗？</h2>
+<p>V2洋葱地址从根本上来说是不安全的。如果你有一个V2洋葱服务，我们建议你现在就进行迁移。这是一个向后不兼容的变化：V2洋葱服务在2021年9月后将无法到达。</p>
+<h2 class="wp-block-heading">对开发者来说，迁移的建议是什么？有没有关于如何向人们传播新的v3地址的提示？</h2>
+<p>在torrc中，要创建一个v3的地址，你只需要像创建v2服务一样创建一个新的服务，用这两行。</p>
+<pre class="wp-block-code"><code>HiddenServiceDir /full/path/to/your/new/v3/directory/
+HiddenServicePort &lt;virtual port&gt; &lt;target-address&gt;:&lt;target-port&gt;</code></pre>
+<p>默认版本现在被设置为3，所以你不需要明确地设置它。重新启动 tor，并在你的目录上寻找新的地址。如果你希望继续运行你的v2服务，直到它被废弃，以便为你的用户提供一个过渡路径，请在你的版本2服务的配置块中添加这一行。</p>
+<pre class="wp-block-code"><code>HiddenServiceVersion 2</code></pre>
+<p>这将允许你在你的配置文件中识别哪个是哪个版本。</p>
+<p>如果你在网站上配置了<a rel="noreferrer noopener" href="https://community.torproject.org/onion-services/advanced/onion-location/" target="_blank">Onion-Location</a>，你需要用你的新v3地址来设置头。关于运行洋葱服务的技术文档，请阅读我们社区门户中的<a rel="noreferrer noopener" href="https://community.torproject.org/onion-services/" target="_blank">洋葱服务</a>页面。</p>
+<h2 class="wp-block-heading">我没有看到公告，我可以得到更多的时间来迁移吗？</h2>
+<p>不能，V2洋葱连接现在就开始失效了，先是慢慢地，然后突然地。现在是时候迁移了。<br>服务会在9月开始失效，还是之前就已经开始失效了？</p>
+<p>在Tor 0.4.6中已经没有引入点了，所以如果中继运营商更新，它们将无法到达。</p>
+<h2 class="wp-block-heading">作为一个网站管理员，我可以把用户从我的v2洋葱重定向到v3吗？</h2>
+<p>是的，它将工作，直到v2洋葱地址无法到达。你可能想鼓励用户更新他们的书签。</p>
+<h2 class="wp-block-heading">v3洋葱服务是否会有助于缓解DDoS问题？</h2>
+<p>是的，我们正在不断努力提高洋葱服务的安全性。我们在路线工作计划图中的一些工作是<a rel="noreferrer noopener" href="https://gitweb.torproject.org/torspec.git/tree/proposals/305-establish-intro-dos-defense-extention.txt" target="_blank">ESTABLISH_INTRO Cell DoS</a>防御扩展：<a href="https://gitweb.torproject.org/torspec.git/tree/proposals/331-res-tokens-for-anti-dos.md">Res tokens: Anonymous Credentials for Onion Service DoS Resilience</a>, <a href="https://gitweb.torproject.org/torspec.git/tree/proposals/327-pow-over-intro.txt">A First Take at PoW Over Introduction Circuits</a>.。关于这些建议的概述，请阅读详细的博文《<a rel="noreferrer noopener" href="https://blog.torproject.org/stop-the-onion-denial" target="_blank">如何阻止针对洋葱服务的拒绝服务攻击</a>》。</p>
+<p>本文来自：<a href="https://support.torproject.org/onionservices/#v2-deprecation" target="_blank" rel="noreferrer noopener">https://support.torproject.org/onionservices/#v2-deprecation</a></p>
+ </div>

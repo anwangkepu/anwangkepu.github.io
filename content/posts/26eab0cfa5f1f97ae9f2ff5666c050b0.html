@@ -1,0 +1,110 @@
++++
+title = "在Windows系统上设置Tor代理，使用Chrome浏览器访问暗网"
+date = 2022-07-22T08:00:07+08:00
+categories = ["工具", "暗网技术"]
+tags = ["Tor代理", "Windows", "洋葱服务"]
+thumbnail = ""
++++
+
+<div class="entry-content clearfix">
+<div class="wp-block-image">
+<figure class="aligncenter size-full"><noscript><img fetchpriority="high" decoding="async" width="980" height="551" src="/images/49e9c659b2fc8eabd215c7c519d1b57e.jpg" alt="在Windows系统上设置Tor代理，使用Chrome浏览器访问暗网" class="wp-image-51"></noscript><img fetchpriority="high" decoding="async" width="980" height="551" src="/images/49e9c659b2fc8eabd215c7c519d1b57e.jpg" alt="在Windows系统上设置Tor代理，使用Chrome浏览器访问暗网" class="wp-image-51 j-lazy"></figure></div>
+<p>大家都知道如何访问暗网，正如<mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-vivid-red-color">“暗网下/AWX”</mark>之前介绍：如何通过三个步骤简单的使用Tor浏览器访问暗网。但是，假如不使用Tor浏览器，不使用Brave浏览器，使用日常用的浏览器，如Chrome浏览器、Firefox火狐浏览器，可以访问暗网吗？怎么在<span class="wpcom_tag_link">Windows</span>系统上设置<span class="wpcom_tag_link">Tor代理</span>，利用Tor节点访问网络？本文将做简单的介绍，从而可以做到暗网的爬取与监控。</p>
+<h2 class="wp-block-heading">一、下载Windows专家包和Tor浏览器</h2>
+<p>下载<a href="https://www.torproject.org/download/tor/" target="_blank" rel="noreferrer noopener">Windows专家包</a>，解压到桌面上。</p>
+<p>下载<a href="https://www.torproject.org/download/languages/" target="_blank" rel="noreferrer noopener">Tor浏览器</a>（版本取决于您的计算机）。使用默认设置运行.exe并安装。</p>
+<p>在“文件夹选项”中设置显示隐藏的项目和文件扩展名：在资源管理器窗口的左上角，单击“查看”选项卡。在最右侧的显示/隐藏部分中，选中隐藏项目的复选框；选中文件扩展名的复选框。</p>
+<h2 class="wp-block-heading">二、组合文件并重定位</h2>
+<p>打开桌面上的Tor文件夹，双击tor.exe。一旦命令提示符显示：<code>[notice] Bootstrapped 100% (done): Done</code>，关闭窗口。这将创建文件夹C:\Users\\AppData\Roaming\tor\（其中您的用户名）。</p>
+<p>从桌面上的Tor文件夹中，选择所有.dll和.exe文件，并将它们剪切/粘贴到C:\Users\\AppData\Roaming\tor\文件夹中。</p>
+<p>在桌面上的Tor文件夹中，打开Data文件夹。同时选择geoip和geoip6，并将它们剪切/粘贴到C:\Users\\AppData\Roaming\tor\文件夹中。</p>
+<p>打开C:\Users\\Desktop\Tor Browser\Browser\TorBrowser\Tor\PluggableTransports文件夹，选择obfs4proxy.exe并将其剪切/粘贴到C:\Users\\AppData\Roaming\tor\文件夹中。</p>
+<h2 class="wp-block-heading">三、创建和编辑您的Tor配置文件</h2>
+<p>在C:\Users\\AppData\Roaming\tor\文件夹中，创建新文件，命名为torrc，注意不设置扩展名。</p>
+<p>使用文件编辑器打开（如记事本）torrc文件，添加以下内容：</p>
+<pre class="wp-block-code"><code>Log notice file C:\Users\&lt;user&gt;\AppData\Roaming\tor\notice.log
+GeoIPFile C:\Users\&lt;user&gt;\AppData\Roaming\tor\geoip
+GeoIPv6File C:\Users\&lt;user&gt;\AppData\Roaming\tor\geoip6
+
+BridgeRelay 1
+
+# Replace "TODO1" with a Tor port of your choice.
+# This port must be externally reachable.
+# Avoid port 9001 because it's commonly associated with Tor and censors may be scanning the Internet for this port.
+ORPort TODO1
+
+ServerTransportPlugin obfs4 exec C:\Users\&lt;user&gt;\AppData\Roaming\tor\obfs4proxy.exe
+
+# Replace "TODO2" with an obfs4 port of your choice.
+# This port must be externally reachable and must be different from the one specified for ORPort.
+# Avoid port 9001 because it's commonly associated with Tor and censors may be scanning the Internet for this port.
+ServerTransportListenAddr obfs4 0.0.0.0:TODO2
+
+# Local communication port between Tor and obfs4.  Always set this to "auto".
+# "Ext" means "extended", not "external".  Don't try to set a specific port number, nor listen on 0.0.0.0.
+ExtORPort auto
+
+# Replace "&lt;<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="68090c0c1a0d1b1b280d05090104460b0705">[email protected]</a>&gt;" with your email address so we can contact you if there are problems with your bridge.
+# This is optional but encouraged.
+ContactInfo &lt;<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="8feeebebfdeafcfccfeae2eee6e3a1ece0e2">[email protected]</a>&gt;
+
+# Pick a nickname that you like for your bridge.  This is optional.
+
+Nickname PickANickname</code></pre>
+<p>不要忘记更改ORPort、ServerTransportListenAddr、ContactInfo、和Nickname项目的值。</p>
+<p>使用一个大于1024的固定obfs4端口，但是要避免使用9001端口。</p>
+<p>请注意，Tor的OR端口及其obfs4端口都必须是可访问的。如果您的网桥位于防火墙或NAT之后，请确保打开两个端口。您可以使用我们的可达性测试来查看您的obfs4端口是否可以从Internet访问。</p>
+<p>为了能够本地解析，在torrc文件底部加上：</p>
+<pre class="wp-block-code"><code>DNSPort 53<br>AutomapHostsOnResolve 1<br>AutomapHostsSuffixes .onion</code></pre>
+<h2 class="wp-block-heading">四、使用cmd启动Tor</h2>
+<p>打开命令提示符应用程序cmd，使用以下命令切换到您的工作目录：<code>cd C:\Users\\AppData\Roaming\tor\</code></p>
+<p>执行命令：<code>tor.exe -f torrc</code></p>
+<h2 class="wp-block-heading">五、监控tor.exe执行日志</h2>
+<p>要确认您的网桥正常运行，应该查看：C:\Users\\AppData\Roaming\tor\notice.log，日志如下所示：</p>
+<blockquote class="wp-block-quote"><p>[notice] Your Tor server’s identity key fingerprint is ‘ ‘<br>[notice] Your Tor bridge’s hashed identity key fingerprint is ‘ ‘<br>[notice] Tor has successfully opened a circuit. Looks like client functionality is working.<br>[notice] Bootstrapped 100%: Done<br>[notice] Now checking whether ORPort :3818 is reachable… (this may take up to 20 minutes — look for log messages indicating success)<br>[notice] Self-testing indicates your ORPort is reachable from the outside. Excellent. Publishing server descriptor.</p></blockquote>
+<h2 class="wp-block-heading">六、下载并设置SocksCap等代理工具，配置本地DNS</h2>
+<p>以SocksCap64为例，下载安装后，添加代理127.0.0.1，端口为9050，测试连通性。</p>
+<p>修改本地DNS的次选项为127.0.0.1。</p>
+<p>在SocksCap64程序中添加Chrome等浏览器，打开后，可以直接访问.onion域名了。</p>
+<p>如打开Onion666暗网导航：<a href="http://666666666tjjjeweu5iikuj7hkpke5phvdylcless7g4dn6vma2xxcad.onion/" target="_blank" rel="noreferrer noopener">http://666666666tjjjeweu5iikuj7hkpke5phvdylcless7g4dn6vma2xxcad.onion/</a></p>
+<h2 class="wp-block-heading">七、Selenium爬虫使用Tor的简单配置</h2>
+<pre class="wp-block-code"><code>from selenium import webdriver
+
+chrome_options = webdriver.ChromeOptions()
+chrome_options.add_argument('--proxy-server=socks5://127.0.0.1:9050')
+driver = webdriver.Chrome(chrome_options=chrome_options)
+driver.get('https://onion666.com')</code></pre>
+<h2 class="wp-block-heading">八、配置文件样例</h2>
+<pre class="wp-block-code"><code>Log notice file C:\Users\administrator\AppData\Roaming\tor\notice.log
+GeoIPFile C:\Users\administrator\AppData\Roaming\tor\geoip
+GeoIPv6File C:\Users\administrator\AppData\Roaming\tor\geoip6
+
+BridgeRelay 1
+
+# Replace "TODO1" with a Tor port of your choice.
+# This port must be externally reachable.
+# Avoid port 9001 because it's commonly associated with Tor and censors may be scanning the Internet for this port.
+ORPort 54078
+
+ServerTransportPlugin obfs4 exec C:\Users\administrator\AppData\Roaming\tor\obfs4proxy.exe
+
+# Replace "TODO2" with an obfs4 port of your choice.
+# This port must be externally reachable and must be different from the one specified for ORPort.
+# Avoid port 9001 because it's commonly associated with Tor and censors may be scanning the Internet for this port.
+ServerTransportListenAddr obfs4 0.0.0.0:54079
+
+# Local communication port between Tor and obfs4.  Always set this to "auto".
+# "Ext" means "extended", not "external".  Don't try to set a specific port number, nor listen on 0.0.0.0.
+ExtORPort auto
+
+# Replace "&lt;<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="4b2a2f2f392e38380b2e262a222765282426">[email protected]</a>&gt;" with your email address so we can contact you if there are problems with your bridge.
+# This is optional but encouraged.
+ContactInfo <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="3253565f5b5c72535c45535c554a5b531c515d5f">[email protected]</a>
+
+# Pick a nickname that you like for your bridge.  This is optional.
+Nickname anwangxia
+
+DNSPort 53
+AutomapHostsOnResolve 1
+AutomapHostsSuffixes .onion</code></pre>
+ </div>

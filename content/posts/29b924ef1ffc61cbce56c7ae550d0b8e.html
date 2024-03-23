@@ -1,0 +1,31 @@
++++
+title = "使用status.torproject.org检查Tor服务的状态"
+date = 2021-05-09T10:26:56+08:00
+categories = ["Tor官方动态", "暗网动态"]
+tags = ["Tor", "洋葱服务"]
+thumbnail = ""
++++
+
+<div class="entry-content clearfix">
+<div class="wp-block-image">
+<figure class="aligncenter size-large"><noscript><img fetchpriority="high" decoding="async" width="1024" height="576" src="/images/2c49719a0a8f3bd809df162167fabc19.png" alt="使用status.torproject.org检查Tor服务的状态" class="wp-image-850"></noscript><img fetchpriority="high" decoding="async" width="1024" height="576" src="/images/2c49719a0a8f3bd809df162167fabc19.png" alt="使用status.torproject.org检查Tor服务的状态" class="wp-image-850 j-lazy"></figure></div>
+<p>现在，<span class="wpcom_tag_link">Tor</span>项目有一个<a rel="noreferrer noopener" href="https://status.torproject.org/" target="_blank">状态页面</a>，其中显示了Tor主要服务的状态。</p>
+<p><strong>您可以访问</strong><a rel="noreferrer noopener" href="https://status.torproject.org/" target="_blank">status.torproject.org</a><strong>以获得有关Tor服务重大中断的信息</strong>，包括v3和v2洋葱域名服务，目录授权，Tor官方网站（<a rel="noreferrer noopener" href="https://torproject.org/" target="_blank">torproject.org</a>）和<a rel="noreferrer noopener" href="https://check.torproject.org/" target="_blank">check.torproject.org</a>工具。状态页面还显示与Tor内部服务相关的中断信息，例如Tor官方的GitLab实例。</p>
+<p>这篇文章记录了Tor官方启动<a href="https://status.torproject.org/" target="_blank" rel="noreferrer noopener">status.torproject.org</a>的原因，服务的构建方式以及工作方式。</p>
+<h2 class="wp-block-heading" id="why-a-status-page">为什么要显示状态页面</h2>
+<p>设置服务页面的第一步是要意识到大家首先需要一个页面。Tor官方在2020年底<a rel="noreferrer noopener" href="https://gitlab.torproject.org/tpo/tpa/team/-/wikis/roadmap/2021#survey-results" target="_blank">对内部用户</a>进行了<a rel="noreferrer noopener" href="https://gitlab.torproject.org/tpo/tpa/team/-/wikis/roadmap/2021#survey-results" target="_blank">调查</a>，看有什么可以改进的地方，后来提出的建议之一是“记录一小时或更长时间的停机信息”，并总体上改善围绕监控的通信。后者仍在<a rel="noreferrer noopener" href="https://gitlab.torproject.org/tpo/tpa/team/-/wikis/roadmap/2021" target="_blank">sysadmin路线图上</a>，但是状态页面似乎对于前者是一个很好的解决方案。</p>
+<p>sysadmin团队中已经有了两个监视工具：<a rel="noreferrer noopener" href="https://gitlab.torproject.org/tpo/tpa/team/-/wikis/howto/nagios" target="_blank">Icinga</a>（Nagios的一个分支）和<a rel="noreferrer noopener" href="https://gitlab.torproject.org/tpo/tpa/team/-/wikis/howto/prometheus/" target="_blank">Prometheus</a>（带有<a rel="noreferrer noopener" href="https://gitlab.torproject.org/tpo/tpa/team/-/wikis/howto/grafana" target="_blank">Grafana</a>仪表面板）。但是这些对于用户来说很难理解。更糟糕的是，它们还容易产生误报，并且不能清楚地向用户显示哪些问题很关键。</p>
+<p>最后，手动管理的仪表面板相对于自动化系统具有重要的可用性优势，并且<a href="https://gitlab.torproject.org/tpo/tpa/team/-/wikis/service/status#example-sites" target="_blank" rel="noreferrer noopener">所有主要组织都拥有一个</a>。</p>
+<h2 class="wp-block-heading" id="picking-the-right-tool">选择正确的工具</h2>
+<p>这不是作者第一次进行状态页面设计。在另一种生活中，作者使用称为<a rel="noreferrer noopener" href="https://cachethq.io/" target="_blank">Cachet</a>的工具设置了状态页。与以前的解决方案相比，这已经是一个很大的改进，以前的解决方案是先使用Wiki，然后使用博客来发布更新。但是Cachet是一个复杂的<a rel="noreferrer noopener" href="https://laravel.com/" target="_blank">Laravel</a>应用，它还需要Web浏览器进行更新。通常，它需要比我们想要的更多的维护，需要像SQL数据库和PHP Web服务器这样的愚蠢的东西。</p>
+<p>因此，当作者发现<a rel="noreferrer noopener" href="https://github.com/cstate/cstate" target="_blank">cstate</a>时，感到非常兴奋。基本上，它是<a rel="noreferrer noopener" href="https://gohugo.io/" target="_blank">Hugo</a>静态网站生成器的主题，这意味着它是一组HTML，CSS和少量Javascript。基于Hugo的网站意味着该网站是由一组<a rel="noreferrer noopener" href="https://en.wikipedia.org/wiki/Markdown" target="_blank">Markdown</a>文件生成的，其结果就是纯HTML可以在地球上的任何Web服务器上托管。</p>
+<h2 class="wp-block-heading" id="deployment">部署方式</h2>
+<p>最初，作者想通过<a rel="noreferrer noopener" href="https://gitlab.torproject.org/tpo/tpa/team/-/wikis/service/ci" target="_blank">GitLab CI</a>部署站点，但是那时我们还没有设置GitLab页面。即使我们现在<a rel="noreferrer noopener" href="https://gitlab.torproject.org/tpo/tpa/team/-/wikis/howto/gitlab#publishing-gitlab-pages" target="_blank">已经设置了GitLab页面</a>，但尚未将其与我们的镜像基础结构集成在一起。因此，到目前为止，源代码是在我们的旧版<a rel="noreferrer noopener" href="https://gitlab.torproject.org/tpo/tpa/team/-/wikis/howto/git" target="_blank">git</a>和<a rel="noreferrer noopener" href="https://gitlab.torproject.org/tpo/tpa/team/-/wikis/howto/jenkins" target="_blank">Jenkins</a>服务中托管和构建的。</p>
+<p>最好将内容托管在git存储库中：sysadmins可以在git存储库中编辑Markdown并推送以部署更改，而无需Web浏览器。设置本地环境以预览更改很简单：</p>
+<pre class="wp-block-code"><code>hugo serve --baseUrl=http://localhost/
+firefox https://localhost:1313/</code></pre>
+<p>在此阶段，只有sysadmin团队和gitolite管理员有权访问存储库，但是如果需要的话，可以对其进行改进。合并请求也可以在<a href="https://gitlab.torproject.org/tpo/tpa/status-site/" target="_blank" rel="noreferrer noopener">GitLab存储库</a>上发出，然后由授权人员自然地推送。</p>
+<h2 class="wp-block-heading" id="availability">可用性</h2>
+<p>作者所担心的问题之一是，该网站是在我们正常的镜像基础设施内托管。自然，如果那里发生故障，网站就会瘫痪。但我想这是一座桥，当我们到达那里时，我们就会跨越它。由于从头开始建立网站非常容易，在任何GitLab服务器上托管网站的副本都是很容易的，这要归功于仓库中的.gitlab-ci.yml文件（但目前没有使用）。如果迫不得已，我们可以把网站发布到其他地方，然后把DNS指向那里。</p>
+<p>当然，如果DNS让我们失望了，那我们就有麻烦了，但不管怎样，情况就是这样：当我们需要的时候，我们总是可以为状态页注册一个新域名。目前看来，这并不是一个优先事项。</p>
+ </div>

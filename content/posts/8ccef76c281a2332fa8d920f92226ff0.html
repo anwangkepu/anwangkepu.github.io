@@ -1,0 +1,39 @@
++++
+title = "非营利网络安全咨询公司对Tor开展代码审计，发现了17个安全漏洞"
+date = 2024-02-03T14:38:00+08:00
+categories = ["Tor官方动态", "暗网动态", "暗网技术"]
+tags = ["Radially Open Security", "Tor官方", "代码审计"]
+thumbnail = ""
++++
+
+<div class="entry-content clearfix">
+<div class="wp-block-image">
+<figure class="aligncenter size-full"><noscript><img fetchpriority="high" decoding="async" width="940" height="529" src="/images/9a97f0dadfb5e6ebd4a7a1c0ba32ecbb.webp" alt="非营利网络安全咨询公司对Tor开展代码审计，发现了17个安全漏洞" class="wp-image-3104"></noscript><img fetchpriority="high" decoding="async" width="940" height="529" src="/images/9a97f0dadfb5e6ebd4a7a1c0ba32ecbb.webp" alt="非营利网络安全咨询公司对Tor开展代码审计，发现了17个安全漏洞" class="wp-image-3104 j-lazy"></figure></div>
+<p>近日，<a href="https://blog.torproject.org/code-audit-tor-ecosystem-components/" target="_blank" rel="noreferrer noopener">Tor官方发布公告</a>称，<a href="https://www.radicallyopensecurity.com/" target="_blank" rel="noreferrer noopener">Radially Open Security</a>完成Tor项目的<span class="wpcom_tag_link">代码审计</span>。针对Tor匿名网络的多个组件的全面代码安全审计发现了十多个漏洞，其中包括一个被归类为“高风险”的问题。</p>
+<p>这项审计由非营利网络安全咨询公司Radiically Open Security在2023年4月至8月期间进行，涵盖了Tor浏览器、出口中继、暴露的服务、基础设施以及测试和分析工具。评估结果已经于本周公布。</p>
+<p>根据<a href="https://blog.torproject.org/code-audit-tor-ecosystem-components/" target="_blank" rel="noreferrer noopener">Tor博客发布的公告</a>，本次代码审计重点关注Tor生态系统的几个组成部分：</p>
+<ul>
+<li>Tor浏览器和安卓版Tor浏览器；</li>
+<li>出口中继器（Tor核心）；</li>
+<li>公开服务（度量服务器、SWBS、Onionoo API）；</li>
+<li>基础设施组件（监控和警报）以及测试/归档工具。</li>
+</ul>
+<p>此次审计是一项水晶盒（白盒）渗透测试（测试人员可以访问源代码），主要目的是评估为<a href="https://blog.torproject.org/introducing-proof-of-work-defense-for-onion-services/" target="_blank" rel="noreferrer noopener">提高Tor网络速度和可靠性</a>而进行的软件更改，总共发现了17个安全问题，并提出了一系列建议，例如：</p>
+<ul>
+<li>减少面向公众的基础设施的潜在攻击面；</li>
+<li>解决过时的库和软件问题；</li>
+<li>实施现代网络安全标准；</li>
+<li>在所有HTTP客户端中默认遵循重定向。</li>
+</ul>
+<p>发现的问题大多数是中低风险缺陷，可被利用来发起DoS攻击、降级或绕过安全性以及获取信息访问权限。有些问题与使用过时或未维护的第三方组件有关。</p>
+<p>最严重的漏洞是影响洋葱带宽扫描器（Onbasca）的跨站点请求伪造（CSRF）错误。此高风险漏洞可能允许未经身份验证的攻击者向数据库注入桥接程序。</p>
+<p>Onbasca是一种带宽扫描器，由目录管理机构（维护当前运行中继站列表的特殊中继站）运行。带宽扫描器可以帮助监控性能、分配Tor网络的负载和检测攻击。</p>
+<p>桥接器是一种未列入名单的中继器，由于更难被阻止，因此对高压政权下的用户很有帮助。</p>
+<p>“只要受害者的浏览器与Onbasca在同一个网络中运行，攻击者就能将目录授权受害者引诱到他们的网站，并成功实施CSRF攻击。当受害者使用Django Web界面时就是这种情况。因此，经过预先身份验证的攻击者可以将攻击者控制的IP注入数据库。”Radically Open Security在其报告中解释道。</p>
+<p>Radically Open Security补充说：“当调用定期运行的bridgescan（桥接扫描）命令时，Onbasca应用程序将连接到攻击者控制的网桥。通过这样做，攻击者可能能够对Onbasca的托管实例进行守护进程，或实施进一步的攻击。”</p>
+<p>此外，修复与拒绝服务漏洞、本地攻击、不安全权限和输入验证不足相关的问题也被认为是当务之急。</p>
+<p>在这次最新的安全审计之前，渗透测试公司Cure53进行了一次安全评估，该评估的重点是<a href="https://blog.torproject.org/security-audit-report-tor-browser-ooni/TTP-02-report.pdf" target="_blank" rel="noreferrer noopener">识别用户界面变化带来的漏洞</a>以及与<a href="https://blog.torproject.org/security-audit-report-tor-browser-ooni/TTP-01-report.pdf" target="_blank" rel="noreferrer noopener">规避审查制度</a>相关的审计。</p>
+<p><span class="wpcom_tag_link">Radially Open Security</span>（<a href="https://twitter.com/ROSecurity" target="_blank" rel="noreferrer noopener">@ROSecurity</a>）提供非营利计算机安全咨询，介绍自己是一群理想主义的安全研究人员、网络/取证极客和夺旗获胜者，他们热衷于让世界变得更加安全，他们相信透明度和开放性，目标是首先确保社会的安全，让他们能够经营一家公司。</p>
+<p><span class="wpcom_tag_link">Tor官方</span>表示，衷心感谢开放安全公司（Radically Open Security）执行此次审计，感谢美国国务院民主、人权和劳工局（DRL）赞助此项目，并“<a href="https://gitlab.torproject.org/tpo/team/-/wikis/sponsors-2022#making-the-tor-network-faster-more-reliable-for-users-in-internet-repressive-places-s61" target="_blank" rel="noreferrer noopener">为全球各地的互联网用户提供更快、更可靠的Tor网络</a>”。</p>
+<p>如果您是技术人员，想要了解更多详情和信息，请<a href="https://blog.torproject.org/code-audit-tor-ecosystem-components/The%20Tor%20Project%20Pentest%20Report%202023%201.0" target="_blank" rel="noreferrer noopener">点击此处查阅完整的审计报告</a>。</p>
+ </div>

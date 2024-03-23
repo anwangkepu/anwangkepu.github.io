@@ -1,0 +1,37 @@
++++
+title = "新技术：使用Etag来发现暗网里的Tor隐藏Web服务"
+date = 2023-06-19T11:42:30+08:00
+categories = ["暗网技术"]
+tags = ["洋葱服务"]
+thumbnail = ""
++++
+
+<div class="entry-content clearfix">
+<div class="wp-block-image">
+<figure class="aligncenter size-full"><noscript><img fetchpriority="high" decoding="async" width="850" height="425" src="/images/55316ba157bddcb5000fe6f9cc38b028.png" alt="新技术：使用Etag来发现暗网里的Tor隐藏Web服务" class="wp-image-1466"></noscript><img fetchpriority="high" decoding="async" width="850" height="425" src="/images/55316ba157bddcb5000fe6f9cc38b028.png" alt="新技术：使用Etag来发现暗网里的Tor隐藏Web服务" class="wp-image-1466 j-lazy"></figure></div>
+<p>安全研究员Sh1ttyKids近日发布了一种新方法的详细信息，该方法基于HTTP响应标头中的实体标签（ETag）对Tor服务器进行去匿名化，从而找到暗网网站的真实IP。</p>
+<p>该技术最初于2020年11月发现，并私下捐赠给了美国安全部队。</p>
+<p>调查主要通过Shodan和Censys等开源资产扫描服务以及暗网社区的来源进行。</p>
+<p>原因是勒索软件团伙Ragnar Locker对视频游戏公司Capcom的攻击事件，勒索者从中窃取了1TB的数据。</p>
+<p>对泄漏站点的分析使研究人员能够找到用于托管受损数据的洋葱地址的原始IP地址。</p>
+<p>同时，使用Etag发现的去匿名化方法至今几乎不为公众所知。</p>
+<p>并且FBI似乎成功地使用这种技术对勒索软件组织Ragnar Locker的暗网泄密站点进行了去匿名化处理，并且嫌疑人受到了指控。</p>
+<p>原来该勒索组织是臭名昭著的Wazawaka（又名m1x，又名Boriselcin，又名Uhodiransomwar）。</p>
+<p>原文的一些流程：</p>
+<h3 class="wp-block-heading">介绍</h3>
+<p>臭名昭著的勒索软件团伙Ragnar Locker攻击了视频游戏公司Capcom，声称窃取了1TB的数据。Capcom拒绝了Ragnar Locker的要求，并将67GB的被盗文件发布在了暗网上。</p>
+<h3 class="wp-block-heading">研究</h3>
+<p>该泄漏站点仅包含一个链接，不包含文件本身。相反，有一个专门的Onion地址（<a rel="noreferrer noopener" href="http://rgleaktxuey67yrgspmhvtnrqtgogur35lwdrup4d3igtbm3pupc4lyd.onion/" target="_blank">http://rgleaktxuey67yrgspmhvtnrqtgogur35lwdrup4d3igtbm3pupc4lyd.onion/</a>，该勒索组织的暗网网站）用于托管泄露数据等文件，这似乎是由Ragnar Locker勒索组织背后的运营者准备的。文件本身被分成多个文件并托管在以t2w…开头的Onion地址上（t2w5byhtkqkaw6m543i6ax3mamfdy7jkkqsduzzfwhfcep4shqqsd5id.onion）。</p>
+<p>直接访问这个Onion地址会出现一个空白页面，这让我推测这是一个专门用于托管Capcom泄露数据的地址，且没有证据表明该地址用于托管Capcom泄露的数据以外的任何用途。</p>
+<h3 class="wp-block-heading">空页面和响应头</h3>
+<p>一般在暗网上寻找网站的源站IP地址时，会检查网站的源代码、SSL证书、响应头等，获取唯一字符串和指纹信息，然后扫描Shodan等服务，Censys等用于搜索IP地址。很多时候是使用Shodan、Censys等扫描服务来查找IP地址，但在这种情况下，我无法获取到网站源代码等信息。</p>
+<p>然后，我检查了响应标头。除了源代码之外，扫描服务还获取响应标头。因此，如果响应头中包含一个唯一的字符串，就有可能获取到源IP地址。</p>
+<p><code>HTTP/1.1 304 Not Modified<br>Date: Wed, 11 Nov 2020 17:09:12 GMT<br>Server: Apache/2.4.6 (CentOS) mpm-itk/2.4.7–04 OpenSSL/1.0.2k-fips PHP/5.4.16 Connection: Keep-Alive<br>Keep-Alive: timeout=5, max=100<br>ETag: "0–5a4a8aa76f2f0"</code></p>
+<p>我尝试在服务器标头和其他地方搜索，但无法像我希望的那样缩小搜索范围，可能是因为它不是唯一的字符串。看了下有没有其他地方可以用来缩小搜索范围，想到可以利用response header中的ETag信息来进行识别。</p>
+<p>ETag是响应头中包含的信息，它是为每个内容生成的，作为响应头的一部分发送给浏览器。使用Shodan，我搜索了ETag信息0–5a4a8aa76f2f0并找到了一个命中。</p>
+<p>如果您尝试直接访问该IP地址，您将看到一个空白页面，就像您直接访问t2w5by….的onion地址一样。</p>
+<p>我检查了响应头，发现它是相同的ETag；服务器不匹配等其他标头的原因未知。</p>
+<p>我尝试在Onion地址和IP地址上下载同名文件，并确认同名文件位于如下图所示的位置。所以，可以说t2w5by….onion的Onion地址的源IP地址是5[.]45[.]65[.]52。</p>
+<p>根据托管Capcom被窃取数据的洋葱地址(t2w5by….onion)，一项使用Etag信息的研究揭示了原始IP地址(5[.]45[.]65[.]52)。例如，如果当地执法部门获得了这些信息，他们可能会没收服务器并将其用于调查。</p>
+<p>后来从FBI Flash Report中得知，5[.]45[.] 65[.]52，是FBI Flash Report 中提到的一个IP地址。它没有提及有关此IP地址的任何进一步信息，但正如上面的研究所示，它被用作托管Capcom被窃取数据的服务器。</p>
+ </div>

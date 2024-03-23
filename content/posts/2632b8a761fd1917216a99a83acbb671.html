@@ -1,0 +1,27 @@
++++
+title = "暗网下常用的端对端加密聊天协议Tox，基于Tox协议的客户端软件介绍"
+date = 2022-08-15T10:05:48+08:00
+categories = ["工具", "暗网技术"]
+tags = ["Tox"]
+thumbnail = ""
++++
+
+<div class="entry-content clearfix">
+<div class="wp-block-image">
+<figure class="aligncenter size-full"><noscript><img fetchpriority="high" decoding="async" width="829" height="499" src="/images/7b8f0c5ff08b0b1611e5f71ad8eed65d.jpg" alt="暗网下常用的端对端加密聊天协议Tox，基于Tox协议的客户端软件介绍" class="wp-image-1974"></noscript><img fetchpriority="high" decoding="async" width="829" height="499" src="/images/7b8f0c5ff08b0b1611e5f71ad8eed65d.jpg" alt="暗网下常用的端对端加密聊天协议Tox，基于Tox协议的客户端软件介绍" class="wp-image-1974 j-lazy"></figure></div>
+<p><span class="wpcom_tag_link">Tox</span>是一个免费的点对点即时消息传递和视频电话网络协议，可实现加密数据交换。该项目的目标是创建一个安全且易于使用的通信平台。该协议的参考实现根据GNU GPL-3.0 或更高版本的条款作为免费和开源软件发布。Tox与Tor的结合，可以实现在暗网下完全匿名点对点通信。</p>
+<p>Tox始于爱德华·斯诺登 (Edward Snowden) 泄露美国国家安全局 (NSA) 间谍活动之后。这个想法是创建一个无需使用中央服务器即可运行的即时消息应用程序。该系统将是分布式的、点对点的和端到端加密的，无法禁用任何加密功能；同时，没有密码学或分布式系统实践知识的外行也可以轻松使用该应用程序。2013 年夏天，来自世界各地的一小群开发人员组成并开始着手开发一个实现Tox协议的库。该库提供所有消息传递和加密设施，并且与任何用户界面完全解耦；要让最终用户使用Tox，他们需要一个Tox客户端。快进几年到今天，存在多个独立的Tox客户端项目，并且最初的Tox核心库实现不断改进。Tox（核心库和客户端）拥有数千名用户、数百名贡献者，并且该项目没有放缓的迹象。</p>
+<p>Tox是一个FOSS（免费和开源）项目。所有的Tox代码都是开源的，所有的开发都是公开的。Tox是由志愿者开发人员开发的，他们将空闲时间花在它上面，相信该项目的想法。Tox不属于任何公司或任何其他合法组织。</p>
+<p>Tox对任何人来说都很容易使用。选择任何一款客户端，无需注册，只需打开它并开始添加朋友或给您的朋友您的Tox ID，以便他们添加您。您可以在设置选项卡中找到您的Tox ID。</p>
+<p>2013年6月23日，一个名为irungentoo的用户推送了对GitHub的初始提交：<a href="https://github.com/irungentoo/toxcore" target="_blank" rel="noreferrer noopener">https://github.com/irungentoo/toxcore</a>，这也是Tox的核心代码。</p>
+<h2 class="wp-block-heading">Tox协议特点</h2>
+<p><strong>流量加密</strong><br>用户被分配了一个公钥和私钥，他们在一个完全分布式的点对点网络中直接相互连接。用户可以向朋友发送消息、与朋友或陌生人加入聊天室、语音/视频聊天以及相互发送文件。Tox上的所有流量都使用NaCl库进行端到端加密，该库提供经过身份验证的加密和完美的前向保密。</p>
+<p><strong>向好友透露IP地址</strong><br>Tox在与好友交流时不会隐藏您的IP 地址，因为点对点网络的全部意义在于将您直接连接到您的朋友。确实存在一种解决方法，即通过Tor建立Tox连接的隧道。但是，非好友用户无法仅使用Tox ID轻松发现您的 IP 地址；只有当您将他们添加到您的联系人列表时，您才会向某人透露您的IP地址。</p>
+<p><strong>附加消息功能</strong><br>Tox客户端旨在为各种安全和匿名通信功能提供支持；虽然每个客户端都支持消息传递，但移动和桌面客户端在不同程度上支持群消息、语音和视频通话、语音和视频会议、打字指示器、消息阅读回执、文件共享、配置文件加密和桌面流媒体等附加功能。只要核心协议支持，任何客户端都可以实现附加功能。与核心网络系统无关的功能由客户端决定。强烈建议客户开发人员遵守Tox客户标准以保持跨客户端兼容性并维护最佳安全实践。</p>
+<p><strong>作为即时通讯工具的可用性</strong><br>尽管一些使用 Tox 协议的应用程序在功能上看起来与常规即时消息应用程序相似，但目前缺少类似于XMPP或Matrix的中央服务器导致聊天双方都需要在线才能发送和接收消息. 启用Tox的信使以不同的方式处理此问题，有些会阻止用户在对方断开连接时发送消息，而另一些会显示消息正在发送，而实际上它存储在发件人的手机中等待接收时发送方重新连接到网络。</p>
+<h2 class="wp-block-heading">常用的基于Tox协议的客户端软件</h2>
+<p>以下列表是目前仍然在维护的Tox客户端：</p>
+<figure class="wp-block-table"><table><tbody><tr><td>名称</td><td>兼容平台</td><td>开发语言</td><td>源码仓库</td></tr><tr><td>aTox</td><td>Android</td><td>Kotlin</td><td><a href="https://github.com/evilcorpltd/aTox" target="_blank" rel="noreferrer noopener">https://github.com/evilcorpltd/aTox</a></td></tr><tr><td>qTox</td><td>Linux, FreeBSD, OS X, Windows</td><td>C++ (Qt)</td><td><a href="https://github.com/qTox/qTox" target="_blank" rel="noreferrer noopener">https://github.com/qTox/qTox</a></td></tr><tr><td>Toxic</td><td>Linux, FreeBSD, OpenBSD, DragonflyBSD, NetBSD, Solaris, macOS, Android</td><td>C (Ncurses)</td><td><a rel="noreferrer noopener" href="https://github.com/TokTok/toxic/" target="_blank">https://github.com/TokTok/toxic</a></td></tr><tr><td>Toxygen</td><td>Linux, Windows</td><td>Python (Qt via PySide)</td><td><a href="https://github.com/toxygen-project/toxygen" target="_blank" rel="noreferrer noopener">https://github.com/toxygen-project/toxygen</a></td></tr><tr><td>TRIfA</td><td>Android</td><td>C, Java Active</td><td><a href="https://github.com/zoff99/ToxAndroidRefImpl" target="_blank" rel="noreferrer noopener">https://github.com/zoff99/ToxAndroidRefImpl</a></td></tr><tr><td>µTox</td><td>Linux, FreeBSD, OS X, Windows</td><td>C</td><td><a href="https://github.com/uTox/uTox" target="_blank" rel="noreferrer noopener">https://github.com/uTox/uTox</a></td></tr><tr><td>yat</td><td>Linux, Windows, macOS</td><td>Vala</td><td><a href="https://gitlab.com/neva_blyad/yat" target="_blank" rel="noreferrer noopener">https://gitlab.com/neva_blyad/yat</a></td></tr></tbody></table></figure>
+<p>其中，qTox是使用比较多的客户端，又很多针对性的宣传：</p>
+<blockquote class="wp-block-quote"><p>如今，每个政府似乎都对我们在网上所说的话感兴趣。qTox 建立在“隐私至上”的议程之上，我们绝不妥协。您的安全是我们的首要任务，世界上没有任何事情可以改变这一点。<br>qTox 既免费供您使用，也免费供您更改。您可以完全自由地使用和修改 qTox。此外，qTox 绝不会用广告骚扰您，或要求您为功能付费。<br>qTox 非常重视您的隐私。借助一流的加密技术，您可以放心，只有您发送邮件的人才能阅读您的邮件。<br>https://qtox.github.io</p></blockquote>
+ </div>

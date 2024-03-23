@@ -1,0 +1,42 @@
+{{ define "main" }}
+<header class="text-center p-1 mb-1 border-solid">
+  <h1 class="text-xl font-bold">{{ .Title }}</h1>
+</header>
+<div class="text-sm text-gray-400 text-center mb-2">
+  <!--<span>分类:</span>
+  {{- range .Params.Categories }}
+  <a href="{{ print "/categories/" (urlize .) "/" | absURL }}"><i class="fa fa-bookmark fa-fw"></i>{{ . }}</a>
+  {{- end }}-->
+  <span>标签:</span>
+  {{- range .Params.tags }}
+  <a href="{{ print "/tags/" (urlize .) "/" | absURL }}"><i class="fa fa-bookmark fa-fw"></i>{{ . }}</a>
+  {{- end }}
+  <span class="ml-2">日期:</span>
+  <time datetime="{{ .Params.Date.Format "2006-01-02T15:04:05Z07:00" }}"><i class="fa fa-clock-o fa-fw"></i>{{ .Params.date.Format "2006-01-02" }}</time>
+</div>
+<div class="mb-2">
+  {{.Content}}
+  {{- if .Params.Image_urls }}
+  {{- $alttext := .Title }}
+    {{- range $i, $url := .Params.Image_urls }}
+    <img src="{{$url}}" alt="{{ print $alttext "(" (add $i 1) ")" }}" title="{{ print $alttext "(" (add $i 1) ")" }}" class="block my-2 mx-auto" referrerpolicy="no-referrer" />
+    {{- end }}
+  {{- end }}
+</div>
+<!--<div class="text-sm text-gray-400 mb-2">
+  <span>标签:</span>
+  {{- range .Params.Tags }}
+  <a href="{{ print "/tags/" (urlize .) "/" | absURL }}"><i class="fa fa-tag fa-fw"></i>{{ . }}</a>
+  {{- end }}
+</div>-->
+<!-- 上一篇下一篇 -->
+{{ partial "sibling-posts.html" . }}
+<!-- 相关文章 -->
+{{- $related := .Site.RegularPages.Related . | first 12 }}
+{{- with $related }}
+<div class="mb-1">
+  <header class="p-2 bg-gray-800 text-white text-center font-semibold rounded-t-md">相关推荐</header>
+  {{ partial "list-posts.html" . }}
+</div>
+{{- end }}
+{{ end }}

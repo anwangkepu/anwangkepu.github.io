@@ -1,0 +1,42 @@
+<!-- 搜索 -->
+<div class="mb-1">
+  <header class="p-2 bg-gray-800 text-white text-center font-semibold rounded-t-md">搜索</header>
+  <form class="p-2 font-medium" action="{{ absURL "/search/" }}">
+    <input class="block w-full text-black" type="text" name="kw" placeholder="搜索">
+    <button class="block mt-2 p-1 rounded-md bg-gray-800 text-white" type="submit">搜索</button>
+  </form>
+</div>
+<!-- announcement -->
+<!-- <div class="mb-1">
+  <header class="p-2 bg-gray-800 text-white text-center font-semibold rounded-t-md">注意</header>
+  <div class="p-2 font-medium">
+    <p class="text-red-500">{{ .Site.Params.Announcement }}</p>
+  </div>
+</div> -->
+<!-- 最新文章 -->
+<div class="mb-1">
+ <header class="p-2 bg-gray-800 text-white text-center font-semibold rounded-t-md">最近更新</header>
+ <div class="p-2 font-medium">
+   {{- range first 12 site.RegularPages }}
+   <a class="block mb-2 border-b border-solid border-gray-800" href="{{ .Permalink }}">{{ .Title }}</a>
+   {{- end }}
+ </div>
+</div>
+<!-- 分类列表 -->
+<div class="mb-1">
+  <header class="p-2 bg-gray-800 text-white text-center font-semibold rounded-t-md">分类列表</header>
+  <div class="p-2 font-medium">
+    {{- range site.Taxonomies.categories.ByCount }}
+    <a href="{{ print "/categories/" (urlize .Name) "/" | absURL}}" class="inline-block m-0.5 p-1 rounded-md bg-gray-800 text-white">{{ .Name }}</a>
+    {{- end }}
+  </div>
+</div>
+<!-- 标签列表 -->
+<div class="mb-1">
+  <header class="p-2 bg-gray-800 text-white text-center font-semibold rounded-t-md">标签列表</header>
+  <div class="p-2 font-medium">
+    {{- range site.Taxonomies.tags.ByCount }}
+    <a href="{{ print "/tags/" (urlize .Name) "/" | absURL}}" class="inline-block m-0.5 p-1 rounded-md bg-gray-800 text-white">{{ .Name }}</a>
+    {{- end }}
+  </div>
+</div>

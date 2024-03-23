@@ -1,0 +1,25 @@
++++
+title = "请注意，境内苹果手机IOS系统将无法直接访问暗网"
+date = 2023-06-28T11:43:01+08:00
+categories = ["工具", "暗网技术"]
+tags = ["onionbrowser", "Tor浏览器", "暗网ios", "暗网浏览器ios", "苹果"]
+thumbnail = ""
++++
+
+<div class="entry-content clearfix">
+<div class="wp-block-image">
+<figure class="aligncenter size-full"><noscript><img fetchpriority="high" decoding="async" width="700" height="400" src="/images/ad1be80b62e855ed38abaa9816273d65.png" alt="请注意，境内苹果手机IOS系统将无法直接访问暗网" class="wp-image-2665"></noscript><img fetchpriority="high" decoding="async" width="700" height="400" src="/images/ad1be80b62e855ed38abaa9816273d65.png" alt="请注意，境内苹果手机IOS系统将无法直接访问暗网" class="wp-image-2665 j-lazy"></figure></div>
+<p>“暗网下/AWX”曾经给大家介绍了苹果手机IOS系统访问暗网的方法，那就是下载使用开源的IOS版本<span class="wpcom_tag_link">Tor浏览器</span>“Onion Browser”。但是现在，境内<span class="wpcom_tag_link">苹果</span>手机使用该方法已经无法访问暗网。</p>
+<h2 class="wp-block-heading">“Onion Browser”是Tor项目认可推荐的基于IOS系统的浏览器</h2>
+<p>Tor项目没有推出官方IOS浏览器，但是主页推荐了一款第三方浏览器，网站为：<a rel="noreferrer noopener" href="https://onionbrowser.com/" target="_blank">https://onionbrowser.com</a></p>
+<h2 class="wp-block-heading">“Onion Browser”新的升级</h2>
+<p>6月中旬，Tor项目官方认可的IOS版本Tor浏览器“Onion Browser”进行一次<a href="https://onionbrowser.com/faqs" target="_blank" rel="noreferrer noopener">重大升级</a>，<a rel="noreferrer noopener" href="https://github.com/OnionBrowser/OnionBrowser/releases" target="_blank">升级到v3.0.0版本</a>，根据<a rel="noreferrer noopener" href="https://github.com/OnionBrowser/OnionBrowser/releases/tag/v3.0.0" target="_blank">更新日志</a>，新版本依赖Orbot进行Tor网络访问。Orbot处理所有的网络路由，而Orbot停止时，“Onion Browser”确保所有的请求都将被取消。</p>
+<p>也就意味着，只有当Orbot正常连接Tor网络后，“Onion Browser”才开始正常工作。而不再是“Onion Browser”应用自行接入Tor网络，并访问onion站点。现在打开“Onion Browser”，会显示“Onion Browser wants to access Orbot.”，但是“Grant”后发现，Orbot根本无法成功连接。</p>
+<h2 class="wp-block-heading">iOS系统上的Tor：“Orbot”</h2>
+<p>Orbot是Guardian项目开发的基于Tor网络的代理，自称“适用于智能手机的TOR VPN”，号称可以“保持您的应用程序流量私密且畅通”，官网为：<a href="https://orbot.app/" target="_blank" rel="noreferrer noopener">https://orbot.app/</a></p>
+<p>Orbot是一款免费应用程序，于2008年在Android系统上发布，2022年在iOS系统上推出。</p>
+<p>Orbot不是一个独立的Tor浏览器。它的作用与VPN类似，通过Tor网络路由所有流量。</p>
+<p>Orbot允许任何应用程序连接到洋葱站点，并允许你的手机自己托管一个洋葱服务器。</p>
+<h2 class="wp-block-heading">“Onion Browser”境内无法访问的原因</h2>
+<p>技术上而言，Orbot其实就是一个VPN，所以由于众所周知的原因，Orbot在境内无法访问。但是“Onion Browser”却依赖Orbot开启前置连接后，才能使用。因此在境内“Onion Browser”再也无法使用，除非路由层面已经跨境，或者，自行架设网桥（bridge）。</p>
+ </div>

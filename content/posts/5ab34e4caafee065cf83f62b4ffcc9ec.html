@@ -1,0 +1,17 @@
++++
+title = "Brave浏览器的Tor模式使用公开DNS暴露了用户的暗网活动记录"
+date = 2021-03-10T08:00:25+08:00
+categories = ["工具", "暗网动态", "美国暗网动态"]
+tags = []
+thumbnail = ""
++++
+
+<div class="entry-content clearfix">
+<p class="has-text-align-center"><noscript><img fetchpriority="high" decoding="async" width="960" height="420" class="wp-image-685" style="width: 700px;" src="/images/2cc6a6ef72b78a627a4e943ab2acd633.jpg" alt=""></noscript><img fetchpriority="high" decoding="async" width="960" height="420" class="wp-image-685 j-lazy" style="width: 700px;" src="/images/2cc6a6ef72b78a627a4e943ab2acd633.jpg" alt></p>
+<p>私密性最高的浏览器之一Brave已经修复了其Private Windows with Tor功能中的一个Bug，该Bug泄露了用户访问的网站的.onion网址。根据一位匿名研究人员的<a rel="noreferrer noopener" href="https://ramble.pw/f/privacy/2387" target="_blank">报告</a>，该浏览器内置的Tor模式–通过允许用户在无需安装Tor的情况下浏览暗网上的.onion网站，将隐私浏览提升到一个新的水平–泄露了网站的域名系统（DNS）请求。</p>
+<p>“如果你在使用Brave，你可能是因为你希望有一定程度的隐私/匿名性。通过DNS管道发送.onion请求，让你的ISP或DNS提供商可以看到你对.onion网站的请求，这就违背了这一目的，”帖子中写道。</p>
+<p>研究人员发现，当使用Tor的Private Window时对.onion域名提出请求时，请求会进入DNS服务器，并被标记上请求者的互联网协议（IP）地址。</p>
+<p>“这不应该发生。没有任何理由让Brave试图通过传统手段解析一个.onion域名，就像使用普通的clearnet网站一样，”研究人员说。因此，如果你使用Brave的Tor并访问了一个Tor网站，你的互联网服务提供商(ISP)或DNS提供商可能会告诉你，对该特定网站的请求是从你的IP地址发出的。</p>
+<p>根据 Brave首席信息安全官Yan Zhu的 <a rel="noreferrer noopener" href="https://twitter.com/bcrypt/status/1362796915063021569?s=20" target="_blank">推文</a>，Brave已经知道此问题，因为先前已在HackerOne上进行了报道。此后，它推出了一个 <a rel="noreferrer noopener" href="https://community.brave.com/t/release-channel-1-20-108/208452" target="_blank">修复程序</a> 来解决该问题，该问题被追溯到浏览器的广告屏蔽组件，该组件使用了一个单独的DNS查询。</p>
+<p>这款基于Chromium的浏览器在2018年6月首次发布了 “Private tabs with Tor “的Beta版，旨在保护用户的隐私，不仅在设备上，而且在网络上。”Private Tabs with Tor有助于保护Brave用户免受ISP（互联网服务提供商）、客座Wi-Fi提供商和访问过的网站的影响，这些网站可能会监视他们的互联网连接，甚至跟踪和收集IP地址，即设备的互联网标识符，”它的<a rel="noreferrer noopener" href="https://brave.com/tor-tabs-beta/" target="_blank">博客</a>中写道，宣传这项新功能。2020年，它还推出了自己的<a rel="noreferrer noopener" href="https://brave.com/new-onion-service/" target="_blank">Tor Onion服务</a>。</p>
+ </div>

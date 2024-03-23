@@ -1,0 +1,31 @@
++++
+title = ".onion域名介绍"
+date = 2020-04-19T08:08:24+08:00
+categories = ["域名", "暗网技术"]
+tags = []
+thumbnail = ""
++++
+
+<div class="entry-content clearfix">
+<p>.onion是一个用于在Tor网络上寻址特殊用途的顶级域后缀。这种后缀不属于实际的域名，也并未收录于域名根区中。但只要安装了正确的代理软件，如类似于浏览器的网络软件，即可通过Tor服务器发送特定的请求来访问.onion地址。使用这种技术可以使得信息提供商与用户难以被中间经过的网络主机或外界用户所追踪。</p>
+<p><noscript><img fetchpriority="high" decoding="async" width="1280" height="720" class="wp-image-60" style="width: 800px;" src="/images/802d2d29e40dc696f42c05fd3b6be0c1.jpg" alt=""></noscript><img fetchpriority="high" decoding="async" width="1280" height="720" class="wp-image-60 j-lazy" style="width: 800px;" src="/images/802d2d29e40dc696f42c05fd3b6be0c1.jpg" alt></p>
+<p><strong>格式</strong></p>
+<p>.onion顶级域的地址为Tor服务配置完成后，由公钥自动生成的难以记忆且不便理解的十六位半字母半数字hash。这种十六位的hash由字母表内任意字母与2至7的十进制数字所组成，以此来表示使用base32加密后的80位数字。通过并行计算生成大量的密钥对的方式来寻找合适的URL并设立起人类可读的.onion地址是可行的（例如以组织名开头）。</p>
+<p>此名称中的“onion”代指为达到匿名目的的洋葱路由技术。</p>
+<p><strong>万维网至.onion网关</strong></p>
+<p>诸如Tor2web等的代理服务允许不使用Tor技术的浏览器与搜索引擎访问Tor网络上的隐藏服务。若使用这种网关，用户就放弃了自己的匿名身份并只得相信网关传送的内容是正确的。网关和隐藏服务均可识别出浏览器并得知用户IP地址数据。部分代理使用缓存技术来提供比Tor浏览器更快的访问速度。</p>
+<p>.exit</p>
+<p>.exit是一个被Tor用户所使用的伪顶级域（英文：pseudo-top-level domain），用于指示Tor在连接到诸如网页服务器的服务时应该使用的首选出口节点，而无需编辑配置文件 Tor（torrc）。</p>
+<p>使用这种伪顶级域的语法是：主机名 + .出口节点 + .exit。如果用户想使用节点tor26访问 http://www.torproject.org/ 的话，输入 http://www.torproject.org.tor26.exit 即可。</p>
+<p>这方面的示例包括访问仅适用于特定国家/地区的站点，或检查某个节点是否正常工作。</p>
+<p>用户也可直接输入出口节点.exit以访问出口节点的IP地址。</p>
+<p>.exit功能由于潜在的应用层的攻击风险而在版本0.2.2.1-alpha中被默认关闭。</p>
+<p><strong>官方指定</strong></p>
+<p>.onion域名曾为伪顶级域主机后缀，在概念上与.bitnet以及.uucp的早期使用大致相同。</p>
+<p>在2015年9月9日，根据Tor项目的雅各布·阿佩尔鲍姆（英文：Jacob Appelbaum）和Facebook安全工程师Alec Muffett的建议，ICANN、互联网号码分配局以及互联网工程任务组将.onion指定为“特殊用途域名”，将其归于官方地位。</p>
+<p><strong>对HTTPS的支持</strong></p>
+<p>来源于Tor网络上恶意出口节点的SSL剥离（英文：SSL Stripping）攻击足以威胁到访问明网上传统的HTTPS站点。尽管加密本身在技术上是冗余的，但.onion地址的网站可以通过证书提供身份保证的附加层赋予Tor原生加密功能。提供HTTPS证书还需启用浏览器功能，否则这些功能将无法用于.onion站点的用户。</p>
+<p>在采用CA/浏览器论坛第144号投票（英文：CA/Browser Forum Ballot 144）之前，只能通过将.onion视为内部服务器名称来获取.onion名称的HTTPS证书。根据CA/浏览器论坛的基准要求，这些证书可能会发布，但必须在2015年11月1日之前到期。尽管有这些限制，四个组织（包括于2013年7月签署的DuckDuckGo，2014年10月签署的Facebook，2014年12月签署的Blockchain.info以及2015年4月签署的The Intercept）仍然签署了认证机构合作伙伴关系。</p>
+<p>在2015年9月通过CA/浏览器论坛第144号投票和采用.onion为“特殊用途域名”之后，.onion域名通过了RFC 6761的标准。证书颁发机构可以根据CA/浏览器论坛引入于第144号投票里的基准要求中记录的过程来发布.onion站点的SSL证书。</p>
+<p>截至2016年8月，DigiCert已签署了7个不同组织的13个.onion域名。</p>
+ </div>

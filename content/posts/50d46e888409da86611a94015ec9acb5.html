@@ -1,0 +1,27 @@
++++
+title = "Tor官方正式宣布终止Onion V2地址的最后期限"
+date = 2021-04-25T03:45:38+08:00
+categories = ["Tor官方动态", "暗网动态", "暗网技术"]
+tags = []
+thumbnail = ""
++++
+
+<div class="entry-content clearfix">
+<div class="wp-block-image"><figure class="aligncenter size-large"><noscript><img fetchpriority="high" decoding="async" width="1000" height="563" src="/images/8981fdd9931a096f0b061b94750c1d2b.jpg" alt="Tor官方正式宣布终止Onion V2地址的最后期限" class="wp-image-786"></noscript><img fetchpriority="high" decoding="async" width="1000" height="563" src="/images/8981fdd9931a096f0b061b94750c1d2b.jpg" alt="Tor官方正式宣布终止Onion V2地址的最后期限" class="wp-image-786 j-lazy"></figure></div>
+<p>早在2020年，Tor官方就宣布：<strong>由于使用的密码学中存在漏洞</strong>，V2版本的洋葱地址将被终止。最近，Tor官方开发团队正式确认：将从2021年7月开始停止使用旧版本，要求所有用户迁移到Onion V3。</p>
+<p>该事件的提醒来自<a rel="noreferrer noopener" href="https://twitter.com/torproject/status/1384185063340871688" target="_blank">官方的Tor官方Twitter</a>，Tor官方给出的具体时间点是：Tor将在2021年7月15日发布一个新版本，该版本将禁用对Onion V2地址的支持。<strong>最终决定于今年10月15日结束</strong>，届时，Tor Explorer的稳定版本将完全禁用此版本。</p>
+<div class="wp-block-image"><figure class="aligncenter size-large"><noscript><img decoding="async" width="1024" height="1017" src="/images/85ab40d8398bc73a13e648af5d2eb408.png" alt="Tor官方正式宣布终止Onion V2地址的最后期限" class="wp-image-788"></noscript><img decoding="async" width="1024" height="1017" src="/images/85ab40d8398bc73a13e648af5d2eb408.png" alt="Tor官方正式宣布终止Onion V2地址的最后期限" class="wp-image-788 j-lazy"></figure></div>
+<p>这两个阶段之间的区别在于，在对应于2021年7月15日的一个阶段中，尽管用户仍可以通过在浏览器中进行一些内部配置来使用它，但建议中止与Onion V2的默认兼容性。取而代之的是，从10月15日起，<strong>Tor将完全不再与该旧版本兼容</strong>。</p>
+<p>这项变更是在2018年1月9日推出的Onion V3地址发布了三年之后进行的，根据开发团队本身的说法，与之前的版本相比，它<strong>具有更好的密码学和更高的安全性</strong>。同样，由于V3当前是标准版本，因此在Tor网络的所有节点上成功实施版本V3之后，才进行修改。</p>
+<p>版本更改将会大大改善使用Tor服务的用户的安全性和隐私性，但是应该注意的是，V2版本的停用不会直接影响用户，而是使用V2版本地址域名的网站。</p>
+<h2 class="wp-block-heading" id="h-el-porqu-del-cambio-de-onion-v2-a-v3">从洋葱V2更改为V3的原因</h2>
+<p>Tor浏览器中的网址具有.onion域后缀，它对应着例如<em>.com</em>，<em>.io</em>，<em>.org</em>或传统网站中的任何其他网址后缀。这些提供了从Web到用户的一种加密类型，从而创建了无法追踪的加密连接。</p>
+<p><em>.onion的</em>第2版​​与Tor的地址第1版一起在2004年Tor发布后不久开发。</p>
+<p>目的是使用为此目的的算法对连接进行加密，在Onion V2的情况下，使用SHA-1。这种加密算法是比特币（SHA256）使用的加密算法的前身之一，当时该加密算法为用户提供了中等级别的安全加密。</p>
+<p>随着近年来计算的指数增长，该算法变得脆弱，甚至在实践中也<a href="https://shattered.io/" target="_blank" rel="noreferrer noopener">被打破了</a>。这导致它被各种程序终止。<a href="https://security.googleblog.com/2016/11/sha-1-certificates-in-chrome.html" target="_blank" rel="noreferrer noopener">Chrome</a>浏览器本身<a href="https://security.googleblog.com/2016/11/sha-1-certificates-in-chrome.html" target="_blank" rel="noreferrer noopener">显示</a>有关那些使用带有SHA-1加密的<a href="https://es.wikipedia.org/wiki/Seguridad_de_la_capa_de_transporte" target="_blank" rel="noreferrer noopener">SSL证书的</a>网站<a href="https://security.googleblog.com/2016/11/sha-1-certificates-in-chrome.html" target="_blank" rel="noreferrer noopener">的警告</a>。</p>
+<div class="wp-block-image"><figure class="aligncenter size-large"><noscript><img decoding="async" width="420" height="470" src="/images/e9b575df27c334c1141660fb58cb1095.png" alt="Tor官方正式宣布终止Onion V2地址的最后期限" class="wp-image-787"></noscript><img decoding="async" width="420" height="470" src="/images/e9b575df27c334c1141660fb58cb1095.png" alt="Tor官方正式宣布终止Onion V2地址的最后期限" class="wp-image-787 j-lazy"><figcaption>SHA-1算法容易受到冲突攻击，其中2个不同的输入可以生成相同的哈希。资料来源：shattered.io。</figcaption></figure></div>
+<p>考虑到可能存在的漏洞，Tor开发团队计划在2015年之前将安全级别提高到一个新水平。<a rel="noreferrer noopener" href="https://es.wikipedia.org/wiki/Curve25519" target="_blank"><strong>到2018年，该产品已经准备就绪，展示了洋葱地址的第3版，该版本</strong></a>使用<a rel="noreferrer noopener" href="https://es.wikipedia.org/wiki/Curve25519" target="_blank">ed25519</a>改进了其密码签名算法，该算法提供了比其前身更好的加密功能。</p>
+<h2 class="wp-block-heading" id="h-tor-y-bitcoin">Tor和比特币</h2>
+<p>Tor是一个安全的网络架构，它基于分布式网络范式，与比特币使用的一样，节点之间的通信是分散的。它对用户的连接进行加密并保护其免受第三方追踪。</p>
+<p>正因为如此，Tor和比特币经常被紧密联系在一起。有一个具体例子就是当时的CriptoNoticias<a rel="noreferrer noopener" href="https://www.criptonoticias.com/tecnologia/propuesta-privacidad-bitcoin-gana-hackathon-mit/" target="_blank">报道</a>的MIT比特币2021年世博会黑客马拉松的获奖项目，该项目被称为Onion’78。其目标是<strong>使用PayJoin系统和Tor网络架构</strong>来改善比特币交易<strong>中的</strong>隐私，从而允许使用更多的私人连接。这只是利用Tor来增加隐私的比特币项目的众多示例之一。</p>
+ </div>

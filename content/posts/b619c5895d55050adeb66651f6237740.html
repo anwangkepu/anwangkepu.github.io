@@ -1,0 +1,24 @@
++++
+title = "Tor浏览器10.5版本发布，提升连接Tor的用户体验，雪花成为默认代理选项"
+date = 2021-07-08T11:56:33+08:00
+categories = ["Tor官方动态", "暗网动态"]
+tags = ["torproject", "Tor浏览器"]
+thumbnail = ""
++++
+
+<div class="entry-content clearfix">
+<div class="wp-block-image"><figure class="aligncenter size-large"><noscript><img fetchpriority="high" decoding="async" width="1024" height="576" src="/images/7ead038af6b7f7949c67eb3fcfddce2b.png" alt="Tor浏览器10.5版本发布，提升连接Tor的用户体验，雪花成为默认代理选项" class="wp-image-1064"></noscript><img fetchpriority="high" decoding="async" width="1024" height="576" src="/images/7ead038af6b7f7949c67eb3fcfddce2b.png" alt="Tor浏览器10.5版本发布，提升连接Tor的用户体验，雪花成为默认代理选项" class="wp-image-1064 j-lazy"></figure></div>
+<p><span class="wpcom_tag_link">Tor浏览器</span>10.5版本的更新重点是改善用户在第一次连接到Tor时的流程，以及通过移除Tor Launcher UI，使Tor自动启动，并依靠嵌入到浏览器主屏幕中的更好的UI来提供视觉反馈的后续使用。另外，雪花（Snowflake）将作为Tor浏览器稳定版本的默认桥接选项之一发布。</p>
+<h3 class="wp-block-heading" id="what-s-new?">什么是新的改变？</h3>
+<p><strong>访问V2域名将看到提示警告V2洋葱服务弃用</strong></p>
+<div class="wp-block-image"><figure class="aligncenter size-large"><noscript><img decoding="async" width="992" height="969" src="/images/d5f34889169d80a703a96df986e0209e.png" alt="Tor浏览器10.5版本发布，提升连接Tor的用户体验，雪花成为默认代理选项" class="wp-image-1065"></noscript><img decoding="async" width="992" height="969" src="/images/d5f34889169d80a703a96df986e0209e.png" alt="Tor浏览器10.5版本发布，提升连接Tor的用户体验，雪花成为默认代理选项" class="wp-image-1065 j-lazy"></figure></div>
+<p>正如<a href="https://blog.torproject.org/v2-deprecation-timeline">去年宣布的那样</a>，一旦Tor浏览器在2021年10月迁移到 Tor 0.4.6.x，v2洋葱服务将完全无法访问。从现在到那时，Tor浏览器会在访问v2洋葱网站时警告您即将弃用。</p>
+<p><strong>雪花（snowflake）现在可用作桥梁</strong></p>
+<figure class="wp-block-image size-large"><noscript><img decoding="async" width="992" height="969" src="/images/2498c7f25687a90fea24436ca3b534f9.png" alt="Tor浏览器10.5版本发布，提升连接Tor的用户体验，雪花成为默认代理选项" class="wp-image-1066"></noscript><img decoding="async" width="992" height="969" src="/images/2498c7f25687a90fea24436ca3b534f9.png" alt="Tor浏览器10.5版本发布，提升连接Tor的用户体验，雪花成为默认代理选项" class="wp-image-1066 j-lazy"></figure>
+<p>使用<a href="https://snowflake.torproject.org/">Snowflake</a>，受审查的用户可以依靠志愿者运行的代理连接到互联网。</p>
+<p>今年第一季度，<a href="https://blog.torproject.org/snowflake-in-tor-browser-stable">UX团队对Tor Browser Alpha进行了一项调查，以更好地了解Snowflake的用户体验</a>。该调查收到了 1,795 份完整回复，其中 726 名参与者确认他们使用Snowflake作为可插拔传输。大多数完成调查的Snowflake用户在过去一年中每周开始使用Tor浏览器数次。75%的用户对Snowflake持正面看法，尽管许多用户在浏览时遇到了连接问题和速度缓慢的问题。这些事实和稳定的志愿者网络使我们能够在此版本中提供它。</p>
+<blockquote class="wp-block-quote"><p>Snowflake是一种可插拔传输，它结合使用域前端和客户端与志愿者之间的点对点WebRTC连接来规避互联网审查。雪花，它是<a href="https://www.bamsoftware.com/papers/flashproxy.pdf">flashproxy</a>的精神继承者<a href="https://www.bamsoftware.com/papers/flashproxy.pdf"></a>，旨在降低运行反审查代理的障碍，从而产生大量代理供用户连接。Snowflake代理不需要具有一致正常运行时间的服务器，而是在浏览器中作为插件或扩展程序运行。这些代理可以在用户连接到不同网络时移动位置，从而提供更难以阻止的移动目标。我们目前每天有大约8000个可用的Snowflake代理。当用户连接到 Snowflake以规避审查时，他们会与当前可用的代理相匹配。如果此代理“融化”或消失，用户将与新代理无缝匹配。</p><p>Snowflake目前使用<a href="https://www.icir.org/vern/papers/meek-PETS-2015.pdf">域前端</a>进行初始连接，以将用户与Snowflake代理进行匹配，并允许每个对等方交换WebRTC所需的连接信息。该通道具有高度抗审查性，仅用于连接的初始引导。因此，与现有的面向域的可插拔传输（如<a href="https://gitweb.torproject.org/pluggable-transports/meek.git/">meek）</a>相比，它需要更低的带宽和更短的连接，使其成为更具可扩展性的替代方案。</p></blockquote>
+<p><strong>改善连接Tor的用户体验</strong></p>
+<figure class="wp-block-image size-large"><noscript><img loading="lazy" decoding="async" width="992" height="969" src="/images/6854be4622797386c1b8178b7daf3fc0.png" alt="Tor浏览器10.5版本发布，提升连接Tor的用户体验，雪花成为默认代理选项" class="wp-image-1067"></noscript><img loading="lazy" decoding="async" width="992" height="969" src="/images/6854be4622797386c1b8178b7daf3fc0.png" alt="Tor浏览器10.5版本发布，提升连接Tor的用户体验，雪花成为默认代理选项" class="wp-image-1067 j-lazy"></figure>
+<p><a href="https://support.torproject.org/glossary/tor-launcher/"></a>多年来，<a href="https://support.torproject.org/glossary/tor-launcher/">Tor Launcher</a>一直充当高级 Tor 网络配置的选项面板。它还充当受审查网络中用户的控制点。UX和反审查团队共同努力改善 Tor 浏览器用户的连接流程。此版本是即将推出的系列中的第一个，通过简化连接流程、检测审查和提供桥梁，帮助受审查用户无缝访问开放的互联网。</p>
+ </div>

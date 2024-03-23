@@ -1,0 +1,15 @@
+[build]
+publish = "public"
+command = "NODE_ENV=production hugo"
+
+[build.environment]
+TZ = "Asia/Singapore"
+
+[context.production.environment]
+HUGO_VERSION = "0.86.0"
+
+[[redirects]]
+  from = "https://flasmr.netlify.app/*"
+  to = "https://flasmr.link/:splat"
+  status = 301
+  force = true

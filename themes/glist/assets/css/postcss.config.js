@@ -1,0 +1,9 @@
+// postcss.config.js
+
+const themeDir = __dirname + "/../../";
+
+module.exports = {
+    plugins: [
+      require("tailwindcss")(themeDir + "assets/css/tailwind.config.js")
+    ]
+  }

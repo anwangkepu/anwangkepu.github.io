@@ -1,0 +1,27 @@
++++
+title = "Tor项目发布Tor浏览器新版本13.0.11，修复Snowflake出现的连接问题"
+date = 2024-03-07T10:24:17+08:00
+categories = ["Tor官方动态", "工具", "暗网动态"]
+tags = ["Snowflake", "Tor浏览器"]
+thumbnail = ""
++++
+
+<div class="entry-content clearfix">
+<div class="wp-block-image">
+<figure class="aligncenter size-full"><noscript><img fetchpriority="high" decoding="async" width="940" height="529" src="/images/a9da4bfbb95efc93991e1bc7622ba5c0.jpg" alt="Tor项目发布Tor浏览器新版本13.0.11，修复Snowflake出现的连接问题" class="wp-image-2860"></noscript><img fetchpriority="high" decoding="async" width="940" height="529" src="/images/a9da4bfbb95efc93991e1bc7622ba5c0.jpg" alt="Tor项目发布Tor浏览器新版本13.0.11，修复Snowflake出现的连接问题" class="wp-image-2860 j-lazy"></figure></div>
+<p>3月6日，Tor项目发布了<span class="wpcom_tag_link">Tor浏览器</span>13.0.11小版本，Tor项目称这是一个紧急更新版本，修复了域名前置（domain fronting）问题引起的snowflake连接问题。</p>
+<p>Tor项目官方博客发布<a href="https://blog.torproject.org/new-release-tor-browser-13011/" target="_blank" rel="noreferrer noopener">更新公告</a>，宣布Tor浏览器 13.0.11现在已经可以从<a href="https://www.torproject.org/download/" target="_blank" rel="noreferrer noopener">Tor浏览器下载页面</a>以及<a href="https://www.torproject.org/dist/torbrowser/13.0.11/" target="_blank" rel="noreferrer noopener">Tor项目的分发目录</a>中获取。文章称这是一个紧急版本，更新了<span class="wpcom_tag_link">Snowflake</span>可插拔传输的域前端配置，以及审查规避系统使用的rdsys 后端的Moat连接。</p>
+<p>根据<a href="https://mastodon.social/@tor4zh/112038356787525301" target="_blank" rel="noreferrer noopener">@tor4zh</a>之前的说法，部分用户反馈，2024年3月1日起，Tor浏览器内置的Snowflake开始在俄罗斯等部分国家出现连接问题，影响了Tor浏览器用户和Orbot用户的使用。</p>
+<p>具体表现为Tor浏览器无法启动引导，如果<a href="https://support.torproject.org/zh-CN/glossary/tor-log/" target="_blank" rel="noreferrer noopener">检查日志文件</a>，会显示类似这样的提醒：</p>
+<pre class="wp-block-code"><code>[notice] Managed proxy "./client": offer created<br>[notice] Managed proxy "./client": broker failure Unexpected error, no answer.</code></pre>
+<p>原因似乎因为这个（Fastly阻止了域名前置）：</p>
+<p><a href="https://lists.torproject.org/pipermail/anti-censorship-team/2023-October/000328.html">https://lists.torproject.org/pipermail/anti-censorship-team/2023-October/000328.html</a></p>
+<p>Tor官方论坛提醒大家：如果遇到这个问题，可以尝试<a href="https://tb-manual.torproject.org/bridges/" target="_blank" rel="noreferrer noopener">手动添加网桥地址</a>来解决。具体地址请见官方论坛的这个帖子：</p>
+<p><a href="https://forum.torproject.org/t/fix-problems-with-snowflake-since-2024-03-01-broker-failure-unexpected-error-no-answer/11755">https://forum.torproject.org/t/fix-problems-with-snowflake-since-2024-03-01-broker-failure-unexpected-error-no-answer/11755</a></p>
+<p>本次更新后，Tor浏览器 13.0.11修复了此问题，增强了Tor浏览器连接的稳定性。</p>
+<h3 class="wp-block-heading">获取网桥地址</h3>
+<p>由于网桥地址不是公开的，用户需自行索取。方式如下：</p>
+<p>1、访问 bridges.torproject.org 并按照说明操作，或者使用 Gmail 或 Riseup 的邮箱服务发送电子邮件至<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="0361716a6764667043776c7173716c696660772d6c7164">[email protected]</a><br>2、在 Tor 浏览器中使用 Moat 获取网桥。<br>3、通过 Telegram 向 @GetBridgesBot 发送消息。在聊天中点击“开始”，或者输入/Start或/bridges。</p>
+<h3 class="wp-block-heading">使用网桥地址</h3>
+<p>Tor 浏览器桌面版：点击汉堡菜单 (≡) 的“设置”，然后点击侧栏中的“连接”。 在“网桥”部分，找到选项“输入已知网桥”，点击“手动添加网桥”，然后分行输入网桥地址。<br>Tor 浏览器 Android 版：点击“设置”'(⚙️)，然后点击“配置网桥”。开启“使用网桥”并选择“输入已知网桥”，并输入网桥地址。</p>
+ </div>

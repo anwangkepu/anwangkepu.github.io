@@ -1,0 +1,62 @@
++++
+title = "如何使用TorRequests和Python进行匿名请求"
+date = 2020-05-16T00:17:07+08:00
+categories = ["工具", "暗网技术"]
+tags = []
+thumbnail = ""
++++
+
+<div class="entry-content clearfix">
+<p><noscript><img fetchpriority="high" decoding="async" width="768" height="403" class="wp-image-159" style="width: 600px;" src="/images/4cebd13d971e7185e48d9136abc01248.png" alt=""></noscript><img fetchpriority="high" decoding="async" width="768" height="403" class="wp-image-159 j-lazy" style="width: 600px;" src="/images/4cebd13d971e7185e48d9136abc01248.png" alt></p>
+<p>当您必须使用请求而不透露IP地址时，Tor非常有用，尤其是在进行网络抓取时。本教程将在python中使用包装器，以帮助您解决此问题。</p>
+<h2 class="wp-block-heading">什么是TOR？</h2>
+<p>TOR是“洋葱计划”的缩写，“洋葱计划”是美国海军使用的全球服务器网络。TOR在使人们能够匿名浏览Internet的同时，还充当着非盈利组织的角色，致力于研究和开发在线隐私工具。</p>
+<p>TOR可能意味着两件事</p>
+<ol><li>您安装在计算机上以运行TOR的软件</li><li>管理TOR连接的计算机网络</li></ol>
+<p>简而言之，TOR允许您通过其他几台计算机路由Web流量，以使第三方无法将流量追溯到用户。任何尝试查找流量的人都会在TOR网络上看到随机的不可追踪节点。</p>
+<h2 class="wp-block-heading">安装TOR</h2>
+<p>TorRequest将TOR作为依赖项。首先安装TOR。</p>
+<p>这些说明适用于Ubuntu / Debian用户。要在Windows或Mac上安装，请<a href="https://www.torproject.org/docs/installguide.html.en" target="_blank" rel="noreferrer noopener">在此处</a>检查<a href="https://www.torproject.org/docs/installguide.html.en" target="_blank" rel="noreferrer noopener">。</a></p>
+<pre class="wp-block-preformatted">sudo apt-get更新
+sudo apt-get安装</pre>
+<p>重新启动TOR服务</p>
+<pre class="wp-block-preformatted">sudo /etc/init.d/tor重新启动</pre>
+<h2 class="wp-block-heading">配置TOR</h2>
+<p>让我们对新密码进行哈希处理，以防止外部代理随机访问端口。</p>
+<pre class="wp-block-preformatted">tor --hash-password &lt;在此处输入密码&gt;</pre>
+<p>您将获得字母和数字的长组合作为新的哈希密码。现在，我们转到TOR配置文件（torrc）并进行必要的更改。</p>
+<p>放置torrc文件的位置取决于您使用的操作系统以及从中接收tor的位置。我的位置在./etc/tor/torrc。您可以参考<a href="https://tor.stackexchange.com/questions/13037/how-to-config-the-torrc-file" target="_blank" rel="noreferrer noopener">此</a>以了解更多信息。</p>
+<p>我们有三件事要做</p>
+<ol><li>为TOR启用“ ControlPort”侦听器以侦听端口9051，因为这是TOR侦听来自与Tor控制器进行通信的应用程序的任何通信的端口。</li><li>更新哈希密码</li><li>实施Cookie身份验证</li></ol>
+<p>您可以通过取消注释和编辑位置隐藏服务部分上方的以下行来实现此目的。</p>
+<pre class="wp-block-preformatted">SOCKSPort 9050 
+HashedControlPassword &lt;您在此处较早获得的哈希密码&gt; 
+CookieAuthentication 1 
+
+###本部分仅用于位置隐藏的服务###</pre>
+<p>保存并退出并重新启动TOR。</p>
+<pre class="wp-block-preformatted">sudo /etc/init.d/tor重新启动</pre>
+<p>现在，TOR已全部设置好！荣誉！</p>
+<h2 class="wp-block-heading">什么是TorRequest？</h2>
+<p><a rel="noreferrer noopener" href="https://pypi.org/project/torrequests/" target="_blank">TorRequest</a>是围绕请求和主干库的封装库，允许通过TOR发出请求。在<a rel="noreferrer noopener" href="https://github.com/erdiaker/torrequest" target="_blank">此处</a>查看项目<a rel="noreferrer noopener" href="https://github.com/erdiaker/torrequest" target="_blank">。</a></p>
+<p>您可以通过PyPI安装torrequest：</p>
+<pre class="wp-block-preformatted">pip安装torrequest</pre>
+<p>让我们尝试TorRequest。打开您的python终端。</p>
+<pre class="wp-block-preformatted">从torrequest导入TorRequest</pre>
+<p>将密码传递给Tor</p>
+<pre class="wp-block-preformatted">tr = TorRequest（密码='这里您的未使用密码'）</pre>
+<pre class="wp-block-preformatted">让我们检查一下当前的IP地址
+
+导入请求
+response = request.get（' <a href="http://ipecho.net/plain%27" target="_blank" rel="noreferrer noopener">http://ipecho.net/plain'</a>）
+打印（“我的原始IP地址：”，response.text）</pre>
+<p>我的回应是</p>
+<pre class="wp-block-preformatted">我的原始IP地址：45.55.117.170</pre>
+<p>让我们通过TorRequest尝试相同的方法</p>
+<pre class="wp-block-preformatted">tr.reset_identity（）＃重置Tor 
+响应= tr.get（' <a href="http://ipecho.net/plain%27" target="_blank" rel="noreferrer noopener">http://ipecho.net/plain'</a>）
+打印（“新IP地址”，response.text）</pre>
+<p>您现在将获得另一个IP地址。再次重置Tor，以再次获得新的IP地址。</p>
+<p>现在，您可以使用Torrequests在python中轻松屏蔽IP地址。</p>
+<p>祝一切顺利！</p>
+ </div>

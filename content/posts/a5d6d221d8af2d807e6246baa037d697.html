@@ -1,0 +1,70 @@
++++
+title = "使用Vanity .onion地址托管Tor隐藏服务"
+date = 2021-07-26T10:08:18+08:00
+categories = ["工具", "暗网技术"]
+tags = ["暗网教程", "洋葱服务"]
+thumbnail = ""
++++
+
+<div class="entry-content clearfix">
+<div class="wp-block-image"><figure class="aligncenter size-full"><noscript><img fetchpriority="high" decoding="async" width="640" height="423" src="/images/202d1eb332cb62860da01cba327be853.jpg" alt="使用Vanity .onion地址托管Tor隐藏服务" class="wp-image-155"></noscript><img fetchpriority="high" decoding="async" width="640" height="423" src="/images/202d1eb332cb62860da01cba327be853.jpg" alt="使用Vanity .onion地址托管Tor隐藏服务" class="wp-image-155 j-lazy"></figure></div>
+<p>作为”暗网”的一部分，<span class="wpcom_tag_link">洋葱服务</span>在犯罪之外的许多不同领域都很受欢迎。美国海军研究实验室在20世纪90年代中期开发了洋葱路由协议，以保护美国的在线情报通信。多年来，它得到了进一步的发展，并从DARPA、美国国务院的互联网自由倡议、EFF和其他一些组织获得了大量的资金。Tor项目于2006年作为一个非营利组织成立。在一个审查制度、跟踪、隐私入侵和监视日益增加的世界里，Tor提供了一种保持匿名、访问可能受限制或敏感的内容并提供优质教育材料的方法。</p>
+<h2 class="wp-block-heading" id="the-tor-network">Tor网络</h2>
+<p>Tor网络由客户端和服务器构建。Tor浏览器使客户端能够访问网络并匿名浏览明网和暗网。隐藏服务是您在Tor网络上访问的具有端到端加密和隐私的站点，其中该服务的所有者也是匿名的。许多当前可用的服务都非常不稳定，而且大多数服务都不会停留很长时间（请参阅<a rel="noreferrer noopener" href="https://en.wikipedia.org/wiki/Lindy_effect" target="_blank">林迪效应</a>）。很少有洋葱服务广为人知，而且往往是出于错误的原因。本文是作为学习资料和关于如何<strong>在OpenBSD</strong>服务器<strong>上</strong>设置<strong>Tor v3隐藏服务</strong>的技术笔记，请勿用于非法用途。</p>
+<p>请注意，洋葱服务提供了足够的安全性，以抵御大多数现实生活中的对手，这些对手将试图使你匿名。如果有像政府这样财力雄厚的对手在追求该服务，你将需要增加更多的匿名层，用加密货币购买服务器和带宽进行托管，甚至在你ssh进入你的机器时也要小心，以隐蔽你的入口IP。</p>
+<h2 class="wp-block-heading" id="generate-a-vanity-v3-hidden-service-onion-address">生成 Vanity v3隐藏服务洋葱地址</h2>
+<p>洋葱地址是洋葱服务公钥哈希值的编码。请注意，完全随机的地址以及生成的名称很容易被欺骗，因为访问者点击某个地方的链接可能会被看似正确的 .onion 前缀所欺骗，而无需检查整个地址。我们生成一个自定义的 .onion地址只是为了在地址列表中有一个更容易识别的地址。Tor Onion v3隐藏服务地址遵循<a rel="noreferrer noopener" href="https://gitweb.torproject.org/torspec.git/tree/proposals/224-rend-spec-ng.txt" target="_blank">torspec/224</a>。</p>
+<p>我们正在使用工具<a rel="noreferrer noopener" href="https://github.com/cathugger/mkp224o" target="_blank">mkp224o</a>，它允许使用暴力方法产生一个（部分）定制的vanity .onion地址。我们可以从github克隆源代码并构建它：</p>
+<pre class="wp-block-code"><code>git clone https://github.com/cathugger/mkp224o.git
+./autogen.sh
+./configure
+make</code></pre>
+<p>然后，我们用前缀noxim来暴力计算地址，鉴于它只有短短5个字符，这应该需要几秒钟。</p>
+<pre class="wp-block-code"><code>mkdir -p keys
+./mkp224o -d ./keys noxim</code></pre>
+<pre class="wp-block-code"><code>noximfcmcizkdxdaryrf56sypldotfz3b2pqdenjkc4zk4t6nmoghwid.onion
+noximfusrfrcr75ry57pkv2uzqrkvxseluzl54zi2andktjlcoxhxaqd.onion
+noximugpgjva2sjfsulos3bidudnku2tmiofzsobfzvlt4ffizspqjad.onion
+noximwc5zsk6jh5jzkiljjtik3tkuue7w7byobvjz6is7tdu4dousfyd.onion
+noximuifbmzya75bljh2nvu57pbf76bjbwtnrp3ilto753bnbjvgbgyd.onion
+noximhkcqevri46e2kuthman5o6emplfcevppx3hvsvu55qcygj5elyd.onion
+...</code></pre>
+<p>其中我使用了最后一个并将其复制到服务器：</p>
+<pre class="wp-block-code"><code>scp -r keys/noximhkcqevri46e2kuthman5o6emplfcevppx3hvsvu55qcygj5elyd.onion <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="0f6b7d6a4f616077216662">[email protected]</a>:~</code></pre>
+<p>有作用的文件：</p>
+<pre class="wp-block-code"><code>hs_ed25519_public_key
+hs_ed25519_secret_key
+hostname</code></pre>
+<p>在服务器上，我们将私钥和主机名复制到它的位置以供后续步骤使用：</p>
+<pre class="wp-block-code"><code>doas mkdir -p /var/tor/hidden_service
+doas chown -R _tor:_tor /var/tor/
+doas cp hostname /var/tor/hidden_service
+doas cp hs_ed25519_secret_key /var/tor/hidden_service/
+doas cp hs_ed25519_public_key /var/tor/hidden_service/</code></pre>
+<p>请注意，如果我们计划保留此服务，我们将要备份此密钥。</p>
+<h2 class="wp-block-heading" id="setup-tor-and-the-hidden-service">设置Tor和隐藏服务</h2>
+<p>安装tor服务：</p>
+<pre class="wp-block-code"><code>doas pkg_add tor</code></pre>
+<p>编辑<code>/etc/tor/torrc</code>，这里展示<code>grep -v -E '^#|^$' /etc/tor/torrc</code>的输出，所有未注释和非空行：</p>
+<pre class="wp-block-code"><code>Log notice file /var/log/tor/notices.log
+RunAsDaemon 1
+DataDirectory /var/tor
+HiddenServiceDir /var/tor/hidden_service/
+HiddenServiceVersion 3
+HiddenServicePort 80 127.0.0.1:8080
+User _tor</code></pre>
+<p>我们已经将httpd绑定到端口80，并将洋葱地址重定向到端口8080以正确连接。启动并启用tor服务：</p>
+<pre class="wp-block-code"><code>rcctl start tor
+rcctl enable tor</code></pre>
+<p>如果它由于权限问题或其他原因没有启动，您可以尝试从命令行运行它以获取可能出错的提示： <code>doas -u _tor /usr/local/bin/tor</code>.</p>
+<h2 class="wp-block-heading" id="serve-content-on-the-onion-address-with-httpd">使用httpd在 .onion地址上提供内容</h2>
+<p>然后我们用另一个服务器部分为我们的隐藏服务v3 .onion地址配置httpd：</p>
+<pre class="wp-block-code"><code>server "noximhkcqevri46e2kuthman5o6emplfcevppx3hvsvu55qcygj5elyd.onion" {
+    listen on * port 8080
+    root "/htdocs/nox.im"
+}</code></pre>
+<p>测试配置是否可用<code>doas httpd -n</code>，然后重新启动httpd：</p>
+<pre class="wp-block-code"><code>doas rcctl restart httpd</code></pre>
+<p>现在我们可以通过tor浏览器进行访问，在我们的access.log中，我们将看到虚拟服务器从localhost被请求：</p>
+<pre class="wp-block-code"><code>noximhkcqevri46e2kuthman5o6emplfcevppx3hvsvu55qcygj5elyd.onion 127.0.0.1 - - [24/Jul/2021:13:56:49 +0000] "GET / HTTP/1.1" 200 4350</code></pre>
+ </div>

@@ -1,0 +1,244 @@
++++
+title = "Tor Onion v3地址生成"
+date = 2020-04-29T05:17:05+08:00
+categories = ["域名", "暗网技术"]
+tags = []
+thumbnail = ""
++++
+
+<div class="entry-content clearfix">
+<h2 class="wp-block-heading" id="mkp224o">mkp224o</h2>
+<p>mkp224o是Tor Onion v3隐藏服务的虚荣地址生成器，由<a href="https://github.com/cathugger/mkp224o" target="_blank" rel="noreferrer noopener">cathugger</a>创建   ，可  <a href="https://github.com/cathugger/mkp224o" target="_blank" rel="noreferrer noopener">在Github上使用</a>。</p>
+<figure class="wp-block-image size-large"><noscript><img fetchpriority="high" decoding="async" width="1024" height="571" src="/images/8a5fd08543c449b6bc4f090df029032e.png" alt="Tor Onion v3地址生成" class="wp-image-201"></noscript><img fetchpriority="high" decoding="async" width="1024" height="571" src="/images/8a5fd08543c449b6bc4f090df029032e.png" alt="Tor Onion v3地址生成" class="wp-image-201 j-lazy"></figure>
+<p><em>cathugger的GitHub帐户上的mkp224o存储库。</em></p>
+<p><a href="https://gitweb.torproject.org/torspec.git/tree/proposals/224-rend-spec-ng.txt" target="_blank" rel="noreferrer noopener">Tor提案224</a>  是新的Onion v3规范的提案，因此就是mkp224o的名字。</p>
+<p>mkp224o非常易于安装和运行。从GitHub下载并提取最新版本，然后在基于Debian的系统上，可以使用：</p>
+<pre class="wp-block-code"><code>#Install dependencies if required
+sudo apt-get install autoconf libsodium-dev
+
+#Build
+./autogen
+./configure
+make</code></pre>
+<p>您可以运行“ ./mkp224o -h”以查看可用选项：</p>
+<pre class="wp-block-code"><code>js@node0:~/onionv3/mkp224o$ ./mkp224o
+Usage: ./mkp224o filter [filter...] [options]
+       ./mkp224o -f filterfile [options]
+Options:
+	-h  - print help
+	-f  - instead of specifying filter(s) via commandline, specify filter file which contains filters separated by newlines
+	-q  - do not print diagnostic output to stderr
+	-x  - do not print onion names
+	-o filename  - output onion names to specified file
+	-F  - include directory names in onion names output
+	-d dirname  - output directory
+	-t numthreads  - specify number of threads (default - auto)
+	-j numthreads  - same as -t
+	-n numkeys  - specify number of keys (default - 0 - unlimited)
+	-N numwords  - specify number of words per key (default - 1)
+	-z  - use faster key generation method. this is now default
+	-Z  - use slower key generation method
+	-s  - print statistics each 10 seconds
+	-S t  - print statistics every specified amount of seconds
+	-T  - do not reset statistics counters when printing</code></pre>
+<p>然后，您可以运行mkp224o来搜索地址。“ -S”参数将使mkp224o每5秒输出一次统计信息，“-d”参数使您可以指定一个目录来存储生成的密钥。</p>
+<pre class="wp-block-code"><code>js@node0:~/onionv3/mkp224o$ ./mkp224o -S 5 -d onions jamie
+set workdir: onions/
+sorting filters... done.
+filters:
+	jamie
+in total, 1 filter
+using 4 threads
+&gt;calc/sec:17035.009192, succ/sec:0.000000, rest/sec:39.964831, elapsed:0.100088sec
+&gt;calc/sec:22250.236672, succ/sec:0.000000, rest/sec:0.000000, elapsed:5.103855sec
+&gt;calc/sec:22272.487630, succ/sec:0.000000, rest/sec:0.000000, elapsed:10.107517sec
+&gt;calc/sec:22256.077578, succ/sec:0.000000, rest/sec:0.000000, elapsed:15.111813sec
+&gt;calc/sec:22278.089855, succ/sec:0.000000, rest/sec:0.000000, elapsed:20.116102sec
+&gt;calc/sec:22253.435622, succ/sec:0.000000, rest/sec:0.000000, elapsed:25.120363sec
+&gt;calc/sec:21762.771552, succ/sec:0.000000, rest/sec:0.000000, elapsed:30.142012sec
+&gt;calc/sec:22258.870726, succ/sec:0.000000, rest/sec:0.000000, elapsed:35.146309sec
+&gt;calc/sec:22282.575137, succ/sec:0.000000, rest/sec:0.000000, elapsed:40.150578sec
+&gt;calc/sec:22258.577166, succ/sec:0.000000, rest/sec:0.000000, elapsed:45.154941sec
+&gt;calc/sec:22198.079226, succ/sec:0.000000, rest/sec:0.000000, elapsed:50.159383sec
+&gt;calc/sec:22253.661568, succ/sec:0.000000, rest/sec:0.000000, elapsed:55.163728sec
+&gt;calc/sec:22276.712822, succ/sec:0.000000, rest/sec:0.000000, elapsed:60.168057sec
+&gt;calc/sec:22254.261335, succ/sec:0.000000, rest/sec:0.000000, elapsed:65.172357sec
+&gt;calc/sec:22277.632325, succ/sec:0.000000, rest/sec:0.000000, elapsed:70.176659sec
+&gt;calc/sec:22256.428313, succ/sec:0.000000, rest/sec:0.000000, elapsed:75.180966sec
+^Cwaiting for threads to finish... done.</code></pre>
+<p>在上面的示例中，我使用Ctrl + C 75秒后退出了mkp224o。</p>
+<p>匹配的地址将自动保存到运行mkp224o的目录中，或使用“ -d”开关指定的目录中。</p>
+<pre class="wp-block-code"><code>js@node0:~/onionv3/mkp224o$ ls onions/ | head -n 5
+jamie22ezawwi5r3o7lrgsno43jj7vq5en74czuw6wfmjzkhjjryxnid.onion
+jamie22jd4c7g7osiio7jnqnsqj4w7dpqmit32easwp2igjge67nktid.onion
+jamie233pm4t6zkbkdyiu7yknnqccirtkcwne2h5nc73mykvckg76sqd.onion
+jamie23kp7n6xgk3lvy6wnse4cuk4dawfpwl52img7za35tiyex2mvyd.onion
+jamie24hjpe7ia2usa6odvoi3s77j4uegeytk7c3syfyve2t33curbyd.onion
+
+js@node0:~/onionv3/mkp224o$ ls jamie22ezawwi5r3o7lrgsno43jj7vq5en74czuw6wfmjzkhjjryxnid.onion/
+hostname  hs_ed25519_public_key  hs_ed25519_secret_key</code></pre>
+<p>您还可以设置一个cronjob以在独立屏幕会话中的启动时运行mkp224o：</p>
+<pre class="wp-block-code"><code>@reboot cd /path/to/mkp224o &amp;&amp; screen -dmS onionv3 ./mkp224o -S 600 -d onions jamie</code></pre>
+<p>然后，您可以使用“屏幕-r onionv3”检查mkp224o。使用Ctrl + A，然后使用Ctrl + D，可以从屏幕会话中分离出来而不终止它。</p>
+<h2 class="wp-block-heading" id="performance">性能</h2>
+<p>在Raspberry Pi 2B上运行时，mkp224o每秒可实现22200次一致的计算，其中1个过滤器在4个线程上运行。</p>
+<p>4个Raspberry Pi零点均实现了大约每秒4,180次计算，其中1个过滤器在1个线程上运行。</p>
+<p>mkp224o每天24小时运行21天。每个设备生成的地址总数如下所示：</p>
+<pre class="wp-block-code"><code>Master (RPi 2B)   : 1014
+Node 1 (RPi Zero) : 222
+Node 2 (RPi Zero) : 192
+Node 3 (RPi Zero) : 212
+Node 4 (RPi Zero) : 235</code></pre>
+<p>这样一共有1,875个地址，大约每16分钟8秒（即967.68秒）找到1个匹配地址。</p>
+<h2 class="wp-block-heading" id="generation-times">地址生成时间</h2>
+<p>为了对每个虚荣长度的地址生成时间进行非常粗略的估算，我使用了我在21天内生成的1,875个地址的总生成时间，并使用可能的字符总数（32，az， 2-7）以获得其他虚荣地址长度的值。</p>
+<p>这些值是使用mkp224o的组合数据估算的，这些数据同时运行在1个Raspberry Pi 2B和4个Raspberry Pi Zeros上，同时运行24天和7天，运行21天。</p>
+<pre class="wp-block-code"><code>Vanity Characters : Approximate Generation Time
+1  : &lt;1 second
+2  : &lt;1 second
+3  : 1 second
+4  : 30 seconds
+5  : 16 minutes
+6  : 8.5 hours
+7  : 11.5 days
+8  : 1 year
+9  : 32 years
+10 : 1,024 years
+11 : 32,768 years
+12 : 1 million years
+13 : 32 million years
+14 : 1 billion years
+15 : 32 billion years
+16 : 1 trillion years
+17 : 32 trillion years
+18 : 1 quadrillion years
+19 : 32 quadrillion years
+20 : 1 quintillion years
+21 : 32 quintillion years
+22 : 1 sextillion years
+23 : 32 sextillion years
+24 : 1 septillion years
+25 : 32 septillion years
+26 : 1 octillion years
+27 : 32 octillion years
+28 : 1 nonillion years
+29 : 32 nonillion years
+30 : 1 decillion years
+31 : 32 decillion years
+32 : 1 undecillion years
+33 : 32 undecillion years
+34 : 1 duodecillion years
+35 : 32 duodecillion years
+36 : 1 tredecillion years
+37 : 32 tredecillion years
+38 : 1 quattuordecillion years
+39 : 32 quattuordecillion years
+40 : 1 quindecillion years
+41 : 32 quindecillion years
+42 : 1 sexdecillion years
+43 : 32 sexdecillion years
+44 : 1 septendecillion years
+45 : 32 septendecillion years
+46 : 1 octodecillion years
+47 : 32 octodecillion years
+48 : 1 novemdecillion years
+49 : 32 novemdecillion years
+50 : 1 vigintillion years
+51 : 32 vigintillion years
+52 : 10^66 years
+53 : 10^69 years
+54 : 10^72 years
+55 : 10^75 years
+56 : 10^78 years (1,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000)</code></pre>
+<p>如果您希望不滚动而查看它，则可以在我的Pastebin上找到它的副本：<a href="https://pastebin.com/hdB8QU6z" target="_blank" rel="noreferrer noopener">https</a> :  <a href="https://pastebin.com/hdB8QU6z" target="_blank" rel="noreferrer noopener">//pastebin.com/hdB8QU6z</a></p>
+<p>我认为，鉴于足够的计算能力，可以实现11个虚荣字符，例如，当Facebook将其隐藏服务升级到Onion v3时。与专用GPU加密设备相比，我使用的Raspberry Pi群集是一种性能非常低的设备。</p>
+<h2 class="wp-block-heading" id="filtering">过滤生成的地址</h2>
+<p>在运行mkp224o 21天之后，我需要将群集用于其他用途，因此是时候选择地址了。浏览结果，没有什么特别的，所以我用grep在其中搜索了各种关键字和首字母缩写（例如：sec，pgp，php等），但是没有什么特别好。</p>
+<p>我想在输出中搜索英语单词，因此我在基于Debian的系统上使用了/ usr / share / dict / british-english文件，该文件包含在软件包“ wbritish”中。</p>
+<p>最初，我尝试了以下操作，但结果  <strong>效率极低，</strong>  并且可能  <strong>导致系统崩溃</strong>，因此，我不建议自己尝试以下操作！</p>
+<pre class="wp-block-code"><code>#Install wbritish if required
+sudo apt-get install wbritish
+
+#Make a copy of the british-english dictionary for searching
+cp /usr/share/dict/british-english wordlist.txt
+
+#Remove one character words
+grep -v "^[A-Za-z]$" wordlist.txt &gt; wordlist2.txt
+
+#Remove two character words
+grep -v "^[A-Za-z][A-Za-z]$" wordlist2.txt &gt; wordlist.txt
+
+#Remove "onion", "Onion", "Jamie", "ion", "Jami", "jam" &amp; "Amie"
+egrep -v "(^onion$|^Onion$|^ion$|^Jamie$|^Amie$|^Jami$|^jam$)" wordlist.txt &gt; wordlist2.txt
+
+#Find words from wordlist2.txt in onion-v3-export.txt
+This could crash your system, be careful!
+grep -iFf wordlist2.txt onion-v3-export.txt</code></pre>
+<p>这种技术效率如此低下的原因是，它只对整个搜索使用grep的一个实例，而grep并不是为了处理这种情况而设计的。我运行了大约5分钟，它慢慢建立了16 GB的RAM使用率，并开始吞噬掉我的交换分区，这不好！Grep不是为处理这种处理而设计的，因此针对这种内存处理行为对其打折是不公平的。</p>
+<figure class="wp-block-image size-large"><noscript><img decoding="async" width="1024" height="192" src="/images/2335e013d5f8e9dd852ecbaa1fba143a.png" alt="Tor Onion v3地址生成" class="wp-image-202"></noscript><img decoding="async" width="1024" height="192" src="/images/2335e013d5f8e9dd852ecbaa1fba143a.png" alt="Tor Onion v3地址生成" class="wp-image-202 j-lazy"></figure>
+<p>效果很好的技术是为每个单词使用单独的grep实例进行搜索，而不是尝试一次全部搜索它们。这是一种较慢的搜索方法，但是它使用的内存最少。</p>
+<p>我还决定削减地址以仅搜索前12个字符，因为在大多数情况下，不在地址开头的单词没有太大价值。</p>
+<pre class="wp-block-code"><code>cut -c 1-12 onion-v3-export.txt &gt; onion-cut.txt</code></pre>
+<p>然后使用一个简单的bash for循环，以便针对地址列表分别检查每个词典单词：</p>
+<pre class="wp-block-code"><code>for word in `cat wordlist2.txt`; do grep --colour=always -i "$word" onion-cut.txt; done</code></pre>
+<p>我将其设置为在Raspberry Pi 2B上运行，并且花了大约5个小时来搜索1875个地址中的大约90,000个字典单词。</p>
+<p>输出如下所示：</p>
+<pre class="wp-block-code"><code>jamieiabe7a4
+jamie6r6zala
+jamiearkjlxm
+jamiecq7kaug
+jamiefzubmwi
+jamieshbikol
+jamieyvh7chi
+jamielwsclem
+jamied4coltx
+jamied4coltx
+jamieigdelcr
+jamie35cjdoe
+jamieolrdowa
+jamieastrwc5
+jamiecojx25o
+...</code></pre>
+<p>附带说明一下，为了生成ANSI编码的终端仿真器颜色的HTML输出，可以使用“ aha”命令：</p>
+<pre class="wp-block-code"><code>for word in `cat wordlist4.txt`; do grep --colour=always -i "$word" onion-cut.txt; done | aha</code></pre>
+<p>…将使用内联颜色样式和以下标头将输入转换为HTML：</p>
+<pre class="wp-block-code"><code>&lt;?xml version="1.0" encoding="UTF-8" ?&gt;
+&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"&gt;
+&lt;!-- This file was created with the aha Ansi HTML Adapter. https://github.com/theZiz/aha --&gt;
+&lt;html xmlns="http://www.w3.org/1999/xhtml"&gt;
+&lt;head&gt;
+&lt;meta http-equiv="Content-Type" content="application/xml+xhtml; charset=UTF-8" /&gt;
+&lt;title&gt;stdin&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+...</code></pre>
+<p>然后，我编辑了内联样式，并改用了我的CSS文件，以便与我的Content-Security-Policy兼容。</p>
+<p>过滤虚荣地址的一种更好的方法是将其全部放入数据库中并进行查询，因为对数据库软件进行了高度优化以处理此类计算。</p>
+<p>我确实希望获得一个^ jamieweb地址，以与我的Onion v2服务jamiewebgbelqfno.onion一起使用，但是对于Onion v3和mkp224o，我的估计显示大约需要一年时间。使用Onion v2和  <a href="https://github.com/katmagic/Shallot" target="_blank" rel="noreferrer noopener">Shallot</a>，大约需要25天。</p>
+<p>荣誉提名：</p>
+<pre class="wp-block-code"><code>jamie4debrkhllykiyiztbpg6fokecmzhxvj4buig5qss5m4wasn5yyd.onion - Debian?
+jamiedgraphfwrf2mfhc4iprjjpgzapiqikjxz4yseodq2bvnqcicoad.onion - Fast Graph Database?
+jamiedigjmx56qpxfwht6pniy2jibt6lpled4juja3wmyuk7bfeaczad.onion - DNS Lookup Utility?
+jamieoslok3jxyg223xdm2fftsdd33cio2p5hozkipj27wcygomy4yid.onion - Capital of Norway?
+jamietap7o7pux6fxpnxrbqvto6dypr3tx3befc7bpon6gn5m4tsftqd.onion - Network Tap?</code></pre>
+<p><a rel="noreferrer noopener" href="https://pastebin.com/eiFYaCHG" target="_blank"></a></p>
+<h2 class="wp-block-heading" id="implementation">实作</h2>
+<p>在撰写本文时，Onion v3支持仅是Tor的Alpha版本，但是目前具有第二个候选版本的具有Onion v3功能的Tor构建，因此应该很快到达稳定分支。</p>
+<p>只要Tor Onion v3功能仅保留在Alpha中，我将保留当前的隐藏服务地址（http://32zzibxmqi2ybxpqyggwwuwz7a3lbvtzoloti7cxoevyvijexvgsfeid.onion），并在单独的隔离服务器上运行Tor alpha实例。</p>
+<p>当Onion v3达到Tor稳定水平时，我会将其移到主服务器上并开始使用jamie3vkiwi虚荣地址。 在安全的<a href="https://www.jamieweb.net/blog/tor-hidden-service/" target="_blank" rel="noreferrer noopener">前提下，</a>我还将继续托管我的  <a href="https://www.jamieweb.net/blog/tor-hidden-service/" target="_blank" rel="noreferrer noopener">Onion v2隐藏服务</a>。</p>
+<p>幸运的是，使用同一个Tor实例托管多个隐藏服务非常容易。在您的torc中，只需添加多个隐藏的服务配置：</p>
+<pre class="wp-block-code"><code>HiddenServiceDir /desired/path/to/v3/hidden/service/config
+HiddenServiceVersion 3
+HiddenServicePort &lt;localport&gt; &lt;server&gt;
+
+HiddenServiceDir /desired/path/to/v2/hidden/service/config
+HiddenServiceVersion 2
+HiddenServicePort &lt;localport&gt; &lt;server&gt;</code></pre>
+<h2 class="wp-block-heading" id="other-programs">其他Onion v3虚荣地址生成程序</h2>
+<p>除了  <a href="https://github.com/cathugger/mkp224o" target="_blank" rel="noreferrer noopener">cathugger</a>  的  <a href="https://github.com/cathugger" target="_blank" rel="noreferrer noopener">mkp224o</a>  （这是我所使用的）之外，还有其他Onion v3虚荣地址生成程序：</p>
+<ul><li>horse25519: <a rel="noreferrer noopener" href="https://github.com/Yawning/horse25519" target="_blank">https://github.com/Yawning/horse25519</a></li><li>oniongen-go: <a rel="noreferrer noopener" href="https://github.com/rdkr/oniongen-go" target="_blank">https://github.com/rdkr/oniongen-go</a></li><li>oniongen-c: <a rel="noreferrer noopener" href="https://github.com/rdkr/oniongen-c" target="_blank">https://github.com/rdkr/oniongen-c</a></li></ul>
+<p>除了mkp224o之外，我个人还尝试了oniongen-go和oniongen-c。</p>
+<h2 class="wp-block-heading" id="conclusion">结论</h2>
+<p>总而言之，我认为mkp224o是出色的软件，可以在低端硬件上长时间稳定地工作。如果您想为自己的Onion v3服务生成虚荣地址，请一定要签出mkp224o。</p>
+<p>我对Onion v3地址肯定不如对Onion v2地址满意  ，但是由于Onion v3的加密安全性大大提高，虚荣地址的生成会花费更长的时间。不过，这对我来说不是问题，因为安全总是比虚荣更重要，尤其是对于Tor之类的软件而言。</p>
+ </div>

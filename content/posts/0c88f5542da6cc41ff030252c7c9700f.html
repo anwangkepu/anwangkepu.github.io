@@ -1,0 +1,22 @@
++++
+title = "Tor恶意软件正成为一种令人担忧的勒索软件工具"
+date = 2020-12-19T10:30:36+08:00
+categories = ["暗网纵论"]
+tags = []
+thumbnail = ""
++++
+
+<div class="entry-content clearfix">
+<p><noscript><img fetchpriority="high" decoding="async" width="970" height="546" class="wp-image-594" style="width: 700px;" src="/images/b8b7ae5e6cd97a241bcfd1c138cbb27e.jpg" alt=""></noscript><img fetchpriority="high" decoding="async" width="970" height="546" class="wp-image-594 j-lazy" style="width: 700px;" src="/images/b8b7ae5e6cd97a241bcfd1c138cbb27e.jpg" alt></p>
+<p>Sophos实验室的研究人员一直在追踪一种在地下黑客论坛上提供的新型勒索软件工具，该工具已经演变成一种Tor代理和远程控制工具，目前正在野外使用。</p>
+<p>该工具被称为SystemBC，它作为一个后门，为攻击者提供与受害者系统的持久连接。</p>
+<p>去年首次被观察到，它既可以作为网络代理进行隐蔽的通信，也可以作为远程管理工具（RAT），能够执行Windows命令，以及传递和执行脚本、恶意可执行文件和动态链接库（DLL）。</p>
+<ul><li>我们汇总了最好的恶意软件清除软件列表</li><li>这些是市场上最好的灾难恢复服务</li><li>同时查看我们对最佳勒索软件防护的综述</li></ul>
+<p>SystemBC在过去的一年里，从通过SOCKS5代理作为虚拟专用网络（VPN），发展到使用Tor网络加密和隐藏命令和控制流量的目的地。</p>
+<h2 class="wp-block-heading" id="systembc-rat">SystemBC RAT</h2>
+<p>在最近的调查过程中，Sophos MTR的快速响应团队看到SystemBC在最近的Ryuk和Egregor勒索软件攻击中被使用，尽管它经常与Cobalt Strike等其他爆炸后工具一起使用。然而，在某些情况下，SystemBC RAT是在攻击者获得管理凭证并深入到目标网络后部署到服务器上的。</p>
+<p>部署时，该工具会将自己作为服务进行复制和调度，但如果在受害者的系统中检测到Emsisoft防病毒软件，则会跳过这一步。然后，SystemBC会使用信标连接到一个命令和控制服务器，建立一个连接，连接到基于两个硬编码域之一的远程服务器。</p>
+<p>在<a href="https://news.sophos.com/en-us/2020/12/16/systembc/" target="_blank" rel="noreferrer noopener">一篇新的博客文章</a>中，Sophos的高级威胁研究员Sean Gallagher和威胁研究员Sivagnanam Gn对SystemBC现在如何连接到Tor网络提供了进一步的见解，他说。</p>
+<p>“SystemBC的Tor通信元素似乎是基于mini-tor，这是一个用于轻量级连接Tor匿名网络的开源库。mini-Tor的代码并没有在SystemBC中重复（因为mini-Tor是用C++编写的，而SystemBC是从C语言编译而来的）。但该机器人对Tor客户端的实现与开源程序中使用的实现非常相似，包括其大量使用Windows Crypto Next Gen（CNG）API的基础加密（BCrypt）函数。”</p>
+<p>由于SystemBC经常作为现成的工具部署，其很可能是勒索软件攻击者从地下论坛的恶意软件即服务操作中获取的。由于该工具可以同时对多个目标进行工作，因此在网络犯罪分子中越来越受欢迎。</p>
+ </div>

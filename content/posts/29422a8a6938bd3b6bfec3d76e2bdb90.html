@@ -1,0 +1,30 @@
++++
+title = "网传Tor浏览器的网桥WebTunnel存在被流量识别问题"
+date = 2024-03-11T12:01:27+08:00
+categories = ["暗网技术", "独家报道"]
+tags = ["Tor浏览器", "WebTunnel"]
+thumbnail = ""
++++
+
+<div class="entry-content clearfix">
+<div class="wp-block-image">
+<figure class="aligncenter size-large"><noscript><img fetchpriority="high" decoding="async" width="1024" height="708" src="/images/944391794aa43aa52050c5dbebb22ac1.jpg" alt="网传Tor浏览器的网桥WebTunnel存在被流量识别问题" class="wp-image-3180"></noscript><img fetchpriority="high" decoding="async" width="1024" height="708" src="/images/944391794aa43aa52050c5dbebb22ac1.jpg" alt="网传Tor浏览器的网桥WebTunnel存在被流量识别问题" class="wp-image-3180 j-lazy"></figure></div>
+<p>近日，有网友向“<mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-vivid-red-color">暗网下/AWX</mark>”表示，<a href="https://gitlab.torproject.org/tpo/anti-censorship/pluggable-transports/webtunnel/-/blob/main/transport/tls/tls.go?ref_type=heads" target="_blank" rel="noreferrer noopener">Tor浏览器的网桥WebTunnel</a>存在被审查机构的流量识别的潜在问题，原因是：</p>
+<p>一是传输的TLS是Go语言的crypto/tls库。通过测试发现，网桥的TLS Client Hello长度是317字节，而正常浏览器流量的长度是517-650字节。前者相比被普遍认为是正常流量的后者短很多，暴露了Go普遍使用的TLS库不规范的短板。</p>
+<p>二是大多数用于<span class="wpcom_tag_link">WebTunnel</span>网桥的服务器普遍使用Nginx。Nginx服务器未配置的情况下会出现默认页面，并没有任何伪装，很容易被识别。</p>
+<figure class="wp-block-embed is-type-rich is-provider-twitter wp-block-embed-twitter"><div class="wp-block-embed__wrapper">
+<blockquote class="twitter-tweet" data-width="500" data-dnt="true"><p lang="zh" dir="ltr"><span class="wpcom_tag_link">Tor浏览器</span>的网桥WebTunnel存在被审查机构的流量识别的潜在问题：<br><br>一、传输的TLS是Go语言的crypto/tls库。我们通过测试发现，网桥的TLS Client Hello长度是317字节，而正常浏览器流量的长度是517-650字节。前者相比被普遍认为是正常流量的后者短很多，暴露了Go普遍使用的TLS库不规范的短板。<br>[…] <a href="https://t.co/TCPjb8STmO">pic.twitter.com/TCPjb8STmO</a></p>— 稀神サグメ⭐️ @<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="73181a001b1a1d0012141a331e1200071c171c1d5d001c101a121f">[email protected]</a> (@kishinsagi) <a href="https://twitter.com/kishinsagi/status/1766776651197681783?ref_src=twsrc%5Etfw">March 10, 2024</a></blockquote><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</div></figure>
+<p>该网友建议的解决办法是换用比较规范的Rust，其TLS Client Hello长度达到517字节。或直接使用C语言的TLS库，如Chromium的tls.h，以达到伪装浏览器流量的目的。</p>
+<p>该网友还建议将crypto/tls库替换为uTLS亦可缓解此TLS指纹。uTLS 是“crypto/tls”的一个分支，它提供了 ClientHello 指纹识别、握手的低级访问、伪造会话票证和一些其他功能。握手仍然由“crypto/tls”执行，该库仅更改其中的 ClientHello 部分并提供低级访问。</p>
+<p>tls.go的代码：</p>
+<blockquote class="wp-block-quote">
+<p>package tls</p>
+<p>import (<br>“crypto/tls”<br>“errors”<br>“net”<br>)</p>
+<p>type Config struct {<br>ServerName string<br>}</p>
+<p>func NewTLSTransport(config *Config) (Transport, error) {<br>return Transport{kind: “tls”, serverName: config.ServerName}, nil<br>}</p>
+<p>type Transport struct {<br>kind string<br>serverName string<br>}</p>
+<p>func (t Transport) Client(conn net.Conn) (net.Conn, error) {<br>switch t.kind {<br>case “tls”:<br>conf := &amp;tls.Config{ServerName: t.serverName}<br>return tls.Client(conn, conf), nil<br>}<br>return nil, errors.New(“unknown kind”)<br>}</p>
+</blockquote>
+<p>“<mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-vivid-red-color">暗网下/AWX</mark>”希望精通技术的网友帮忙核实下该说法，是否真的可以轻易识别Tor网桥的流量。</p>
+ </div>

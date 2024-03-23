@@ -1,0 +1,31 @@
++++
+title = "洋葱服务版本2弃用时间表"
+date = 2020-07-07T20:58:19+08:00
+categories = ["Tor官方动态", "域名", "暗网动态", "暗网技术"]
+tags = []
+thumbnail = ""
++++
+
+<div class="entry-content clearfix">
+<div class="wp-block-image"><figure class="aligncenter size-large"><noscript><img fetchpriority="high" decoding="async" width="600" height="349" src="/images/ec0be61cd1677f51e6f814b1a5a00f55.png" alt="洋葱服务版本2弃用时间表" class="wp-image-362"></noscript><img fetchpriority="high" decoding="async" width="600" height="349" src="/images/ec0be61cd1677f51e6f814b1a5a00f55.png" alt="洋葱服务版本2弃用时间表" class="wp-image-362 j-lazy"><figcaption><em>从今天（2020年7月2日）开始，互联网大约有16个月的时间从洋葱服务v2一次迁移到v3。</em></figcaption></figure></div>
+<p><strong>怀旧</strong></p>
+<p>15年前，洋葱服务（当时称为“隐藏服务”）日渐成熟。最初是一个实验，目的是了解更多有关Tor网络可以提供的内容。该协议在部署后不久便达到了其版本2。</p>
+<p>多年以来，洋葱服务不断发展，第2版已发展成为一款功能强大且稳定的产品，至今已使用了十多年。在所有这些年中，洋葱服务的采用量急剧增加。从ICANN认可的.onion tld到颁发给.onion地址的SSL证书。如今，洋葱服务支持整个客户端应用程序生态系统：从Web浏览到文件共享和私人消息传递。</p>
+<p>随着人类对数学和密码学的理解的发展，版本2的基础变得脆弱，并且在此时不安全。如果您想了解有关版本2面临的技术问题的更多信息，请阅读这篇文章，不要犹豫问任何问题。</p>
+<p>这导致我们进入2015年：历时3年的大规模开发工作产生了版本3。2018年1月9日，Tor版本0.3.2.9发布，这是第一个支持洋葱服务版本3的Tor。我敢打赌，您遇到了它们有56个字符，并以.onion;）结尾。</p>
+<p>现在，Tor网络上的每个中继都支持版本3。在创建洋葱服务时，它也是今天的默认版本。</p>
+<p>随着洋葱v3的稳固发展，我们处于淘汰第2版的良好位置：第2版已经完成。顺其自然，它为全球无数人提供了安全和隐私。但更重要的是，它创造并推动了私人和安全通信的新时代。</p>
+<p><strong>退休</strong></p>
+<p>这是我们计划的弃用时间表：</p>
+<ol><li><strong>2020年9月15日</strong><br>0.4.4.x：Tor将开始警告洋葱服务运营商和客户v2已过时，并且在0.4.6版本中已过时。</li><li><strong>2021年7月15日</strong><br>0.4.6.x：Tor将不再支持v2，并且支持将从代码库中删除。</li><li><strong>2021年10月15日，</strong><br>我们将为所有受支持的系列发布新的Tor客户端稳定版本，这些版本将禁用v2。</li></ol>
+<p>这实际上意味着，从今天（2020年7月2日）开始，互联网将有大约16个月的时间从v2永久迁移到v3。</p>
+<p>我们在这里可能会遇到一些困难。无论我们认为自己有多准备，我们都会发现总是有更多的惊喜。尽管如此，我们会尽力解决出现的问题，并尝试使此过程尽可能顺利。</p>
+<p><strong>从v2过渡到v3</strong></p>
+<p>本节详细介绍如何从现有v2服务设置v3服务。不幸的是，没有机制可以交叉验证这两个地址。</p>
+<p>在torrc中，要创建第3版地址，您只需要添加这两行。现在，默认版本设置为3，因此您无需显式设置它。</p>
+<p><code>HiddenServiceDir /full/path/to/your/hs/v3/directory/  <br>HiddenServicePort &lt;virtual port&gt; &lt;target-address&gt;:&lt;target-port&gt;</code></p>
+<p>最后，如果您希望一直运行版本2服务，直到不建议使用它来为用户提供过渡路径，请将此行添加到版本2服务的配置块中：</p>
+<p><code>HiddenServiceVersion 2</code></p>
+<p>这将允许您在配置文件中标识哪个版本。</p>
+<p>祝您迁移顺利。</p>
+ </div>
