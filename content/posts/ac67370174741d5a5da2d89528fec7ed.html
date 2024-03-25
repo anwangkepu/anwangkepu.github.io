@@ -1,0 +1,40 @@
++++
+title = "Tor浏览器连续发布两个小版本紧急更新，修复多个重大安全漏洞"
+date = 2024-03-23T22:33:00+08:00
+categories = ["Tor官方动态", "工具", "暗网动态"]
+tags = ["Tor浏览器", "Tor项目", "安全更新"]
+thumbnail = ""
++++
+
+<div class="entry-content clearfix">
+<div class="wp-block-image">
+<figure class="aligncenter size-full"><noscript><img fetchpriority="high" decoding="async" width="940" height="529" src="/images/866ce27ff8bab0a28112b124323a088d.webp" alt="Tor浏览器连续发布两个小版本紧急更新，修复多个重大安全漏洞" class="wp-image-3210"></noscript><img fetchpriority="high" decoding="async" width="940" height="529" src="/images/866ce27ff8bab0a28112b124323a088d.webp" alt="Tor浏览器连续发布两个小版本紧急更新，修复多个重大安全漏洞" class="wp-image-3210 j-lazy"></figure></div>
+<p>3月19日与3月22日，<span class="wpcom_tag_link">Tor项目</span>连续发布<span class="wpcom_tag_link">Tor浏览器</span>的两个小版本紧急更新，修复了Firefox多个重大安全漏洞。”<mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-vivid-red-color">暗网下/AWX</mark>“提醒大家尽快升级最新版本的Tor浏览器。</p>
+<h2 class="wp-block-heading">Tor浏览器 13.0.12 版本</h2>
+<p>3月19日，Tor项目<a href="https://blog.torproject.org/new-release-tor-browser-13012/" target="_blank" rel="noreferrer noopener">发布Tor浏览器 13.0.12 版本</a>，该版本一方面取消了.onion网站的自动优先级排序，另一方面完成了Firefox的重要<span class="wpcom_tag_link">安全更新</span>。</p>
+<p>Tor项目表示最近收到了通知，称有关自动”洋葱位置“（Onion-Location）重定向存在潜在的指纹识别漏洞。为了谨慎起见，暂时从Tor浏览器中删除了“已知.onion网站时优先处理”的选项。Tor团队正在进一步研究这个问题，一旦有更多研究成果和建议将及时提供更新。</p>
+<p>根据<a href="https://support.torproject.org/glossary/browser-fingerprinting/" target="_blank" rel="noreferrer noopener">Tor官网的介绍</a>：</p>
+<blockquote class="wp-block-quote">
+<p>浏览器指纹识别<br>指纹识别是收集有关设备或服务的信息，以便对其身份或特征进行推测的过程。独特的行为或响应可用于识别所分析的设备或服务。Tor浏览器可防止指纹识别。</p>
+</blockquote>
+<p>根据<a href="https://www.mozilla.org/en-US/security/advisories/mfsa2024-13/" target="_blank" rel="noreferrer noopener">Mozilla基金会的安全公告</a>，Tor浏览器 13.0.12 版本（基于Firefox ESR 115.9）中修复的安全漏洞如下：</p>
+<ul>
+<li>CVE-2024-0743：NSS TLS 方法崩溃</li>
+<li>CVE-2024-2605：Windows 错误报告器可用作沙箱逃逸向量</li>
+<li>CVE-2024-2607：JIT 代码无法保存 Armv7-A 上的返回寄存器</li>
+<li>CVE-2024-2608：整数溢出可能导致越界写入</li>
+<li>CVE-2024-2616：改进 ICU 内存不足情况的处理</li>
+<li>CVE-2023-5388：NSS 容易受到针对 RSA 解密的定时攻击</li>
+<li>CVE-2024-2610：html 和 body 标签处理不当导致 CSP 随机数泄漏</li>
+<li>CVE-2024-2611：点击劫持漏洞可能导致用户意外授予权限</li>
+<li>CVE-2024-2612：自引用对象可能会导致释放后使用</li>
+<li>CVE-2024-2614：Firefox 124、Firefox ESR 115.9 和 Thunderbird 115.9 中修复的内存安全错误</li>
+</ul>
+<h2 class="wp-block-heading">Tor浏览器 13.0.13 版本</h2>
+<p>3月22日，Tor项目<a href="https://blog.torproject.org/new-release-tor-browser-13013/" target="_blank" rel="noreferrer noopener">发布Tor浏览器 13.0.13 版本</a>，该版本是一个计划之外的紧急更新版本，其中包含针对桌面平台Firefox的重要安全更新。安卓版本的Tor浏览器不受影响。</p>
+<p>根据<a href="https://www.mozilla.org/en-US/security/advisories/mfsa2024-16/" target="_blank" rel="noreferrer noopener">Mozilla基金会的安全公告</a>，Tor浏览器 13.0.13 版本（基于Firefox ESR 115.9.1）中修复的安全漏洞如下：</p>
+<blockquote class="wp-block-quote">
+<p>CVE-2024-29944：通过事件处理程序执行特权 JavaScript （攻击者能够将事件处理程序注入特权对象，从而允许在父进程中执行任意 JavaScript。注意：此漏洞仅影响桌面版 Firefox，不影响移动版 Firefox。）</p>
+</blockquote>
+<p>如果您已经安装了Tor浏览器，请尽快通过Tor浏览器本身的“检查更新”按钮及时进行更新。</p>
+ </div>
