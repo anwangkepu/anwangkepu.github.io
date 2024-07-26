@@ -1,0 +1,49 @@
++++
+title = "第一版BreachForums论坛数据库泄露背后的故事，包含会员信息与私信在内的大量数据泄露会带来什么"
+date = 2024-07-25T15:01:00+08:00
+categories = ["暗网网站", "独家报道"]
+tags = ["BreachForums", "数据泄露", "暗网论坛", "蜜罐"]
+thumbnail = ""
++++
+
+<div class="entry-content clearfix">
+<div class="wp-block-image">
+<figure class="aligncenter size-full"><noscript><img fetchpriority="high" decoding="async" width="847" height="521" src="/images/5b118a3585954c83cefbdf6093851b45.webp" alt="第一版BreachForums论坛数据库泄露背后的故事，包含会员信息与私信在内的大量数据泄露会带来什么" class="wp-image-3533"></noscript><img fetchpriority="high" decoding="async" width="847" height="521" src="/images/5b118a3585954c83cefbdf6093851b45.webp" alt="第一版BreachForums论坛数据库泄露背后的故事，包含会员信息与私信在内的大量数据泄露会带来什么" class="wp-image-3533 j-lazy"></figure></div>
+<p>本周，第一版<span class="wpcom_tag_link">BreachForums</span>论坛（BreachForums v1）的<span class="wpcom_tag_link">数据泄露</span>事件持续发酵，”<mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-vivid-red-color">暗网下/AWX</mark>“一直在追踪此事件。从初始仅公开了用户信息数据，到后来整个论坛的完整数据库泄出，这为执法部门及网络安全情报分析人员提供了绝佳情报源。</p>
+<p>第一版BreachForums论坛的21万名成员的个人信息以及论坛完整的数据库，是一位名为emo的知名威胁行为者在自己的Telegram频道泄露的，”暗网下“作为该频道的长期关注者，看到emo的许多吐槽，也能理解其为什么会释出该数据库。</p>
+<p>emo在7月20日一开始只是发布了用户数据，文件名为”breachtoleak.tsv“，大小为15MB，共有212214行数据，也就意味着超过21万会员，该数据已经治理好，仅有5列，分别为论坛成员的用户ID、登录名、电子邮件地址、注册IP地址以及访问网站时最后使用的IP地址。随后，7月24日，emo进一步发布了第一版BreachForums论坛的完整数据库，这是一个Mysql的备份文件，文件名为”backup__20221129_000001_2kQ3WCQe2odVrejd.sql“，也就是数据库的备份时间为2022年11月29日，包含论坛私信、主题帖、回复、付款日志、论坛用户数据等全部数据表，该sql文件大小为2.05GB，文件的注释显示”– MyBB Database Backup — Generated: 29th November 2022 at 00:00“。</p>
+<p>据emo称，这些数据直接来自第一版BreachForums论坛的创始人Conor Fitzpatrick，据称他在2023年6月保释期间试图以4000美元的价格出售这些数据。emo说，这些数据最终被三名威胁行为者购买。</p>
+<p>在此之前，2023年7月，名为“breached_db_person”的人曾试图在BreachForums论坛上以100000至150000美元的价格出售BreachForums论坛数据库，但是否成功售出，不得而知。</p>
+<p>虽然该论坛前期已经被查封，意味着该数据库已经落入了FBI手中，但除了执法部门，这些数据对于安全研究人员来说，同样可以提供许多帮助：利用泄露的电子邮件地址和IP地址，研究人员和执法人员可以将BreachForums成员与其他网站、他们的地理位置甚至真实姓名联系起来。</p>
+<h2 class="wp-block-heading">第一版BreachForums论坛数据库来自哪里</h2>
+<p>早在7月19日，在Telegram频道”explain“（ugly inside and out）里，频道管理员emo透露了许多内幕消息。emo称BreachForums是一个令人尴尬的论坛，由一名FBI线人和一名“Blooket”黑客运营了一年，他们还在试图出卖论坛的用户信息。emo表示在原管理员pompompurin在2023年被捕后曾与多人联系过，第二版BreachForums的工作人员得知Baphomet很可能已被FBI识别，但不知道出于什么原因，他们决定忽略所有警告。</p>
+<p>emo称自己掏腰包，花了将近0.5个BTC，从BreachForums论坛的版主”Dedale“那里购买了第一版BreachForums论坛的数据，以防止它被出售而导致最终泄露。此外，他还自掏腰包支付了人肉”Dedale“的费用。</p>
+<p>据emo称，开发者和版主“Dedale”试图在BreachForums上出售以前的论坛数据库，因此他对“Dedale”进行了人肉搜索，由于“Dedale”的安全防护意识（opsec）极其糟糕，他发现了“Dedale”的许多信息。在成为版主之前，Dedale曾使用别名Gliz，他通过编写糟糕的Python脚本来操纵Blooket游戏大厅（Blooket是一款面向儿童的互动教育类儿童游戏），扮演一名黑客。Gliz非常愚蠢，在github提交中泄露了他的一封私人电子邮箱：<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="563f22242e262c2c6616313b373f3a7835393b">[email protected]</a>，而该邮箱与其别名”Gliz“、oblox的用户名”xXCOOLKID_MONEYxX“和fortnite的用户名”Trxpzz“都关联上了。emo称Gliz去年年底入侵并联手ShinyHunters从U-Haul勒索了高达7位数的款项！此外，由于Dedale没有安全意识，emo还有两点发现：</p>
+<blockquote class="wp-block-quote is-layout-flow wp-block-quote-is-layout-flow">
+<ol class="wp-block-list">
+<li>在Steam上搜索Dedale的独特用户名，会显示“Wasil”这个名字（ https://steamcommunity.com/search/users/#text=itrxpzz0 ）</li>
+<li>在BreachForum数据库中，Dedale多次泄露自己的家庭IP地址，该地址位于伊利诺伊州德斯普兰斯。</li>
+</ol>
+</blockquote>
+<p>emo称，如果想知道这个数据库是如何存在的……首先，数据库并没有被“破解”，pompompurin同意在2023年6月以4000美元的价格将数据库卖给他的一个密友，但他的朋友没有足够的钱购买数据库，所以他们找到了版主“Dedale”，后者也没有足够的钱购买数据库，所以Dedale找到了ShinyHunters组织（他联合这个组织一起勒索了U-Haul）。ShinyHunters提供了资金，朋友、Dedale和ShinyHunters三个人都拿到了数据库。Dedale后来试图在论坛上以“breached_db_person”的名义出售数据库，因为只有3个人拥有数据库（不包括pom本人），很明显ShinyHunters知道并愿意Dedale背叛、允许其出卖论坛的用户信息，从而获得5位数的金钱。</p>
+<h2 class="wp-block-heading">多个版本的BreachForums论坛</h2>
+<p>正如”<mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-vivid-red-color">暗网下/AWX</mark>“曾经报道，近年来有多个论坛以数据泄露论坛的名义在运营，致力于建立一个云集黑客、数据收集者和威胁行为者的社区，他们交易、出售和泄露从被入侵公司窃取的数据。</p>
+<p>第一个声名鹊起的数据泄露论坛是RaidForums，在2022年被FBI查封之后，一个名为Pompompurin的威胁行为者推出了一个名为BreachForums（又名Breached）的新论坛来填补空白，这就是第一版BreachForums（BreachForums v1）。</p>
+<p>BreachForums论坛迅速崛起，威胁行为者自豪地泄露了大量被盗数据，包括来自美国国会医疗保健提供商DC Health Link、RobinHood的数据，以及使用暴露的API爬取的Twitter数据。</p>
+<p>然而，在DC Health Link数据泄露后不久，FBI于2023年3月逮捕了第一版BreachForums论坛的创始人Conor Fitzpatrick（论坛昵称为Pompompurin）。</p>
+<p>不久之后，第一版BreachForums论坛的一位前管理员（昵称为Baphomet）与臭名昭著的被盗数据卖家ShinyHunters合作，创建了第二版BreachForums论坛（BreachForums v2）。</p>
+<p>今年5月，第二版BreachForums论坛突然被FBI查封，据称Baphomet被捕，几天后ShinyHunters抢回域名BreachForums.st并恢复了论坛的访问，因此本站（anwangxia.com）将目前的BreachForums称为第三版BreachForums（BreachForums v3）。</p>
+<p>由于存在多个版本的BreachForums论坛，根据emo泄露的文件名称，本次泄露的论坛备份文件时间为2022年11月29日，也就意味着最近泄露的数据来自第一版BreachForums论坛，该网站最初由Pompompurin于2022年创建，后来被FBI查封。</p>
+<h2 class="wp-block-heading">emo坚称BreachForums论坛是FBI的<span class="wpcom_tag_link">蜜罐</span></h2>
+<p>根据”<mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-vivid-red-color">暗网下/AWX</mark>“对网络犯罪圈子的长期研究，多数黑客以及威胁行为者均认为BreachForums论坛是FBI的蜜罐，emo同样如此，他也坚称BreachForums论坛是FBI的蜜罐。</p>
+<p>emo表示，如果在经历了这一切之后你还继续使用BreachForums论坛，那你就太弱智了。emo称，请远离BreachForums，这是一个真实存在的蜜罐，由三人运营，这三人分别是：</p>
+<blockquote class="wp-block-quote is-layout-flow wp-block-quote-is-layout-flow">
+<ol class="wp-block-list">
+<li>ShinyHunters（阿纳斯塔西娅）——这个团体的核心成员被美国司法部起诉，但却没有被关进监狱？？？好奇🤔</li>
+<li>Armadyl – 一名同性恋吸毒成瘾者，被我曝光了XD</li>
+<li>WillyWonka – 这黑鬼到底是谁啊😹</li>
+</ol>
+</blockquote>
+<p>很奇怪的是，Baphomet（一名FBI线人）将BreachForums的控制权移交给了ShinyHunters。但不知何故ShinyHunters却没有被关进监狱；更奇怪的是ShinyHunters位于法国，其论坛托管着许多法国数据库。。，但他们并没有入狱，也没有因为运营论坛而遇到任何法律问题！</p>
+<p>emo说自从这个狗屁蜜罐论坛开始以来，他和其他人也一直在幕后表达担忧，来提高人们对该论坛可疑程度的认识。这个论坛曾三次向FBI泄露其成员的信息，并由一名FBI线人担任管理员。一个论坛将其自己的数据库转储到网站根目录，从而泄露了自己的数据库……一个论坛的管理员是FBI线人……一个论坛的版主试图出售自己的数据库。这样的论坛还能使用？</p>
+ </div>
