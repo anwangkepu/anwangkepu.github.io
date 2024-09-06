@@ -1,0 +1,73 @@
++++
+title = "Tor项目发布Arti以及Tor浏览器的最新版本更新"
+date = 2024-09-06T11:47:01+08:00
+categories = ["Tor官方动态", "暗网动态"]
+tags = ["Arti", "Tor浏览器", "Tor项目"]
+thumbnail = ""
++++
+
+<div class="entry-content clearfix">
+<div class="wp-block-image">
+<figure class="aligncenter size-full"><noscript><img fetchpriority="high" decoding="async" width="940" height="529" src="/images/491b4aeffbdf76a515b1c1fff51c66ff.jpg" alt="Tor项目发布Arti以及Tor浏览器的最新版本更新" class="wp-image-2016"></noscript><img fetchpriority="high" decoding="async" width="940" height="529" src="/images/491b4aeffbdf76a515b1c1fff51c66ff.jpg" alt="Tor项目发布Arti以及Tor浏览器的最新版本更新" class="wp-image-2016 j-lazy"></figure></div>
+<p>根据<a href="https://blog.torproject.org/" target="_blank" rel="noreferrer noopener">Tor项目的官方博客</a>：<span class="wpcom_tag_link">Arti</span>是<span class="wpcom_tag_link">Tor项目</span>正在进行的用Rust语言创建的下一代Tor客户端的项目，现在发布最新版本Arti 1.2.7；<span class="wpcom_tag_link">Tor浏览器</span>更新13.5.3版本，现在可以从Tor浏览器下载页面以及Tor项目的分发目录中获取。</p>
+<p>根据<a href="https://x.com/torproject/status/1831478231117263134" target="_blank" rel="noreferrer noopener">@torproject在X发表的推文</a>，🦀 Arti 1.2.7添加了对受限发现模式的支持，并包含错误修复、清理以及对DoS抗性和中继基础设施等方面的改进。🖥️ Tor 浏览器 13.5.3 包含对 Firefox 的重要安全更新。</p>
+<figure class="wp-block-embed is-type-rich is-provider-twitter wp-block-embed-twitter"><div class="wp-block-embed__wrapper">
+<blockquote class="twitter-tweet" data-width="500" data-dnt="true"><p lang="en" dir="ltr">Latest release alert:<br>🦀 Arti 1.2.7 adds support for restricted discovery mode &amp; contains bugfixes, cleanup, and improvements to DoS resistance and relay infrastructure among others.<br>🖥️ Tor Browser 13.5.3 includes important security updates to Firefox<br>For full details, visit our…</p>— The Tor Project (@torproject) <a href="https://twitter.com/torproject/status/1831478231117263134?ref_src=twsrc%5Etfw">September 4, 2024</a></blockquote><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</div></figure>
+<p>对于<a href="https://blog.torproject.org/arti_1_2_7_released/" target="_blank" rel="noreferrer noopener">Arti 1.2.7</a>，该版本在 Arti 的隐藏服务（.onion 服务）实现中添加了对受限发现模式（之前称为 “客户端授权”）的支持。该版本还包含大量错误修复、清理和改进，以及 RPC 子系统、DoS 防御和中继基础架构的幕后工作。Tor项目表示，如需了解这些工作的全部细节，以及许多较小和不太明显的改动，可以参阅<a href="https://gitlab.torproject.org/tpo/core/arti/-/blob/main/CHANGELOG.md#arti-127--3-september-2024" target="_blank" rel="noreferrer noopener">更新日志</a>。</p>
+<p>对于<a href="https://blog.torproject.org/new-release-tor-browser-1353/" target="_blank" rel="noreferrer noopener">Tor浏览器 13.5.3</a>，该版本主要包含Firefox的重要安全更新。Tor 浏览器 13.5.2以来的完整更新日志如下：</p>
+<ul class="wp-block-list">
+<li>所有平台
+<ul class="wp-block-list">
+<li>NoScript 已更新至 11.4.35</li>
+<li><a href="https://gitlab.torproject.org/tpo/applications/tor-browser/-/issues/40056" target="_blank" rel="noreferrer noopener">Bug tor-browser#40056</a>：确保在禁用脚本的文档中忽略延迟加载属性</li>
+<li><a href="https://gitlab.torproject.org/tpo/applications/tor-browser/-/issues/42686" target="_blank" rel="noreferrer noopener">Bug tor-browser#42686</a>：反向移植 Mozilla 1885101</li>
+<li><a href="https://gitlab.torproject.org/tpo/applications/tor-browser/-/issues/42829" target="_blank" rel="noreferrer noopener">Bug tor-browser#42829</a>：阻止基于 CSS 的无脚本交互跟踪</li>
+<li><a href="https://gitlab.torproject.org/tpo/applications/tor-browser/-/issues/43084" target="_blank" rel="noreferrer noopener">Bug tor-browser#43084</a>：将 Tor 浏览器稳定版重新定位到 115.15.0esr</li>
+<li><a href="https://gitlab.torproject.org/tpo/applications/tor-browser/-/issues/43100" target="_blank" rel="noreferrer noopener">Bug tor-browser#43100</a>：从 Firefox 130 反向移植安全修复</li>
+<li><a href="https://gitlab.torproject.org/tpo/applications/tor-browser-build/-/issues/41207" target="_blank" rel="noreferrer noopener">Bug tor-browser-build#41207</a>：将 lyrebird 升级至 0.3.0</li>
+</ul>
+</li>
+<li>Windows + macOS + Linux
+<ul class="wp-block-list">
+<li>将 Firefox 更新至 115.15.0esr</li>
+<li><a href="https://gitlab.torproject.org/tpo/applications/tor-browser/-/issues/42596" target="_blank" rel="noreferrer noopener">Bug tor-browser#42596</a>：几个控制台错误：Console.maxLogLevelPref 与不存在的首选项一起使用：</li>
+<li><a href="https://gitlab.torproject.org/tpo/applications/tor-browser/-/issues/42622" target="_blank" rel="noreferrer noopener">Bug tor-browser#42622</a>：在 about:torconnect 中无法访问离线状态（第一次引导尝试）</li>
+<li><a href="https://gitlab.torproject.org/tpo/applications/tor-browser/-/issues/42642" target="_blank" rel="noreferrer noopener">Bug tor-browser#42642</a>：Orca 上不再显示下载按钮警告</li>
+<li><a href="https://gitlab.torproject.org/tpo/applications/tor-browser/-/issues/42661" target="_blank" rel="noreferrer noopener">Bug tor-browser#42661</a>：重新运行 update_emojis.py 并更新语言环境</li>
+<li><a href="https://gitlab.torproject.org/tpo/applications/tor-browser/-/issues/42691" target="_blank" rel="noreferrer noopener">Bug tor-browser#42691</a>：简化的桥接卡可防止受审查的用户修改内置桥接</li>
+<li><a href="https://gitlab.torproject.org/tpo/applications/tor-browser/-/issues/42696" target="_blank" rel="noreferrer noopener">Bug tor-browser#42696</a>：更新“查找更多桥梁”中使用的邮件图标</li>
+<li><a href="https://gitlab.torproject.org/tpo/applications/tor-browser/-/issues/42697" target="_blank" rel="noreferrer noopener">Bug tor-browser#42697</a>：移除“查找更多桥梁”下 tor-bridges-provider-list 左侧的衬垫</li>
+<li><a href="https://gitlab.torproject.org/tpo/applications/tor-browser/-/issues/43059" target="_blank" rel="noreferrer noopener">Bug tor-browser#43059</a>：新更新 13.5.2 中的拖放问题</li>
+<li><a href="https://gitlab.torproject.org/tpo/applications/tor-browser/-/issues/43066" target="_blank" rel="noreferrer noopener">Bug tor-browser#43066</a>：about:torconnect 不再更改错误时的标题图标</li>
+</ul>
+</li>
+<li>Linux
+<ul class="wp-block-list">
+<li><a href="https://gitlab.torproject.org/tpo/applications/tor-browser/-/issues/43064" target="_blank" rel="noreferrer noopener">Bug tor-browser#43064</a>：使复制/粘贴和拖放文件过滤更加具体</li>
+</ul>
+</li>
+<li>安卓
+<ul class="wp-block-list">
+<li>已将 GeckoView 更新至 115.15.0esr</li>
+</ul>
+</li>
+<li>构建系统
+<ul class="wp-block-list">
+<li>所有平台
+<ul class="wp-block-list">
+<li>已更新至 1.21.13</li>
+<li><a href="https://gitlab.torproject.org/tpo/applications/tor-browser-build/-/issues/41213" target="_blank" rel="noreferrer noopener">Bug tor-browser-build#41213</a>：更新 update_manual.py 脚本以在不需要更改时通知</li>
+<li><a href="https://gitlab.torproject.org/tpo/applications/tor-browser-build/-/issues/41218" target="_blank" rel="noreferrer noopener">Bug tor-browser-build#41218</a>：使用新的 Tor Browser gpg 子密钥签署稳定版本</li>
+<li><a href="https://gitlab.torproject.org/tpo/applications/tor-browser-build/-/issues/41222" target="_blank" rel="noreferrer noopener">Bug tor-browser-build#41222</a>：link_old_mar_filenames 仍在 torbrowser-incrementals-{release,alpha}-unsigned 中引用</li>
+</ul>
+</li>
+<li>安卓
+<ul class="wp-block-list">
+<li><a href="https://gitlab.torproject.org/tpo/applications/tor-browser-build/-/issues/41206" target="_blank" rel="noreferrer noopener">Bug tor-browser-build#41206</a>：GeckoView 忽略了处理器的数量</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+ </div>
