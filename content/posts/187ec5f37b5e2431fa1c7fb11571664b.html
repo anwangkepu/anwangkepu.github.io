@@ -1,0 +1,65 @@
++++
+title = "Tails操作系统6.7版本发布，Tor浏览器13.5.4版本发布"
+date = 2024-09-20T11:28:40+08:00
+categories = ["Tor官方动态", "暗网动态"]
+tags = ["Tails", "Tor浏览器"]
+thumbnail = ""
++++
+
+<div class="entry-content clearfix">
+<div class="wp-block-image">
+<figure class="aligncenter size-full"><noscript><img fetchpriority="high" decoding="async" width="1000" height="630" src="/images/73b7af5aee9ad6990a5650ce44c0c065.jpg" alt="Tails操作系统6.7版本发布，Tor浏览器13.5.4版本发布" class="wp-image-1750"></noscript><img fetchpriority="high" decoding="async" width="1000" height="630" src="/images/73b7af5aee9ad6990a5650ce44c0c065.jpg" alt="Tails操作系统6.7版本发布，Tor浏览器13.5.4版本发布" class="wp-image-1750 j-lazy"></figure></div>
+<p><span class="wpcom_tag_link">Tails</span>是一款以安全为重点的基于 Debian的Linux 发行版，旨在保护隐私和匿名性，防止监视。它仅通过匿名网络Tor连接到互联网。该系统设计为以实时 DVD或实时 USB启动，永远不会写入硬盘或SSD，除非明确指示这样做，否则不会在机器上留下任何数字足迹。它也可以作为虚拟机运行，但存在一些额外的安全风险。</p>
+<p>根据Tor项目官方博客的消息，本月，<a href="https://blog.torproject.org/new-release-tails-67/" target="_blank" rel="noreferrer noopener">Tails操作系统正式推出6.7版本</a>，同时近期，<a href="https://blog.torproject.org/new-release-tor-browser-1354/" target="_blank" rel="noreferrer noopener">Tor浏览器发布了13.5.4版本</a>，请及时更新最新版本。</p>
+<h2 class="wp-block-heading">Tails 6.7 新版本</h2>
+<h3 class="wp-block-heading">变更和更新</h3>
+<p>将<span class="wpcom_tag_link">Tor浏览器</span>更新至<a href="https://blog.torproject.org/new-release-tor-browser-1353" target="_blank" rel="noreferrer noopener">13.5.3版本</a>。</p>
+<p>将Thunderbird更新至1<a href="https://www.thunderbird.net/en-US/thunderbird/115.15.0esr/releasenotes/" target="_blank" rel="noreferrer noopener">15.15.0版本</a>。</p>
+<p>将OnionShare从2.2版本更新到2.6版本，其中包含创建匿名聊天室的功能。</p>
+<h3 class="wp-block-heading">已修复的问题</h3>
+<p>即使在关机期间也要保持防火墙开启。（<a href="https://gitlab.tails.boum.org/tails/tails/-/issues/20536" target="_blank" rel="noreferrer noopener">#20536</a>）</p>
+<p>启动系统分区为2.5 GB的旧Tails USB驱动器时停止报告错误。（<a href="https://gitlab.tails.boum.org/tails/tails/-/issues/20519" target="_blank" rel="noreferrer noopener">#20519</a>）</p>
+<p>欲了解更多详细信息，请阅读<a href="https://gitlab.tails.boum.org/tails/tails/-/blob/master/debian/changelog" target="_blank" rel="noreferrer noopener">更新日志</a>。</p>
+<h3 class="wp-block-heading">已知问题</h3>
+<p>Shim SBAT 验证错误</p>
+<h2 class="wp-block-heading">Tor浏览器 13.5.4 新版本</h2>
+<h3 class="wp-block-heading">下载Tor浏览器</h3>
+<p>Tor 浏览器 13.5.4 现在可以从<a href="https://www.torproject.org/download/" target="_blank" rel="noreferrer noopener">Tor浏览器下载页面</a>以及Tor项目的<a href="https://www.torproject.org/dist/torbrowser/13.5.4/" target="_blank" rel="noreferrer noopener">分发目录</a>中获取。</p>
+<p>此版本包含 Firefox 的重要<a href="https://www.mozilla.org/en-US/security/advisories/" target="_blank" rel="noreferrer noopener">安全更新</a>。</p>
+<h2 class="wp-block-heading">完整更新日志</h2>
+<p>Tor浏览器13.5.3版本以来的完整更新日志如下：</p>
+<ul class="wp-block-list">
+<li>所有平台
+<ul class="wp-block-list">
+<li>已将 NoScript 更新至 11.4.37</li>
+<li>OpenSSL 已更新至 3.0.15</li>
+</ul>
+</li>
+<li>Windows + macOS + Linux
+<ul class="wp-block-list">
+<li><a href="https://gitlab.torproject.org/tpo/applications/tor-browser/-/issues/41835" target="_blank" rel="noreferrer noopener">Bug tor-browser#41835</a>：检查默认搜索引擎选项</li>
+</ul>
+</li>
+<li>安卓
+<ul class="wp-block-list">
+<li><a href="https://gitlab.torproject.org/tpo/applications/tor-browser/-/issues/43124" target="_blank" rel="noreferrer noopener">Bug tor-browser#43124</a>：为 Android 实现迁移程序</li>
+<li><a href="https://gitlab.torproject.org/tpo/applications/tor-browser/-/issues/43145" target="_blank" rel="noreferrer noopener">Bug tor-browser#43145</a>：从 130.0.1 反向移植 Android 安全修复</li>
+</ul>
+</li>
+<li>构建系统
+<ul class="wp-block-list">
+<li>所有平台
+<ul class="wp-block-list">
+<li><a href="https://gitlab.torproject.org/tpo/applications/tor-browser-build/-/issues/41229" target="_blank" rel="noreferrer noopener">Bug tor-browser-build#41229</a>：将 OpenSSL 下载位置迁移至 github 版本</li>
+</ul>
+</li>
+<li>macOS
+<ul class="wp-block-list">
+<li><a href="https://gitlab.torproject.org/tpo/applications/tor-browser-build/-/issues/41231" target="_blank" rel="noreferrer noopener">Bug tor-browser-build#41231</a>：在 tools/signing/gatekeeper-bundling.sh 中使用 var/browser_release_date</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p></p>
+ </div>
