@@ -1,0 +1,93 @@
++++
+title = "随着Firefox发布更新修复严重安全漏洞，Tor浏览器与Tails操作系统同步发布更新"
+date = 2024-10-12T10:57:01+08:00
+categories = ["Tor官方动态", "暗网动态"]
+tags = ["Firefox", "Tails", "Tor浏览器", "安全更新"]
+thumbnail = ""
++++
+
+<div class="entry-content clearfix">
+                            <div class="wp-block-image">
+<figure class="aligncenter size-full"><noscript><img fetchpriority="high" decoding="async" width="728" height="380" src="/images/56a7b0284e60db3e6e6fc3830a408ca4.webp" alt="随着Firefox发布更新修复严重安全漏洞，Tor浏览器与Tails操作系统同步发布更新" class="wp-image-3707"></noscript><img fetchpriority="high" decoding="async" width="728" height="380" src="/images/56a7b0284e60db3e6e6fc3830a408ca4.webp" alt="随着Firefox发布更新修复严重安全漏洞，Tor浏览器与Tails操作系统同步发布更新" class="wp-image-3707 j-lazy"></figure></div>
+
+
+<p>10月9日，Mozilla已向<span class="wpcom_tag_link">Firefox</span>浏览器发布了131.0.2版本的紧急更新，<a href="https://www.mozilla.org/en-US/security/advisories/mfsa2024-51/#CVE-2024-9680">该更新修复了一个远程代码执行漏洞</a>。紧接着，Tor项目发布<span class="wpcom_tag_link">Tor浏览器</span>13.5.7版本以及<span class="wpcom_tag_link">Tails</span>操作系统6.8.1版本来跟进修复该漏洞。</p>
+
+
+
+<h2 class="wp-block-heading">Firefox 131.0.2的安全修复（MFSA 2024-51）</h2>
+
+
+
+<p>根据Mozilla的<a href="https://www.mozilla.org/en-US/security/advisories/mfsa2024-51/#CVE-2024-9680" target="_blank" rel="noreferrer noopener">安全公告报告</a>，该漏洞（CVE-2024-9680）与使用后释放CSS动画有关。网络犯罪分子可以利用此漏洞注入并执行任意恶意代码。</p>
+
+
+
+<figure class="wp-block-table is-style-stripes"><table class="has-fixed-layout"><tbody><tr><td>发布时间</td><td>2024年10月9日</td></tr><tr><td>影响</td><td>关键</td></tr><tr><td>产品</td><td>Firefox, Firefox ESR</td></tr><tr><td>修复版本</td><td>Firefox 131.0.2<br>Firefox ESR 115.16.1<br>Firefox ESR 128.3.1</td></tr></tbody></table></figure>
+
+
+
+<p>该漏洞编号为CVE-2024-9680： 动画时间线中的 “释放后使用”（use-after-free），漏洞发现者为来自安全公司ESET的 Damien Schaeffer，攻击者可利用 Animation timelines 中的 “use-after-free ”漏洞，在内容进程中执行代码。目前已经收到过关于此漏洞在野外被利用的报告。参考：<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1923344">Bug 1923344</a></p>
+
+
+
+<h2 class="wp-block-heading">Tor浏览器 13.5.7</h2>
+
+
+
+<p>Tor浏览器专为访问暗网而设计，基于Firefox而构建，因此也<a href="https://blog.torproject.org/new-release-tor-browser-1357/" target="_blank" rel="noreferrer noopener">同步修复了该安全漏洞</a>。它还修复了一些bug。</p>
+
+
+
+<p>Mozilla已经意识到这种攻击正在野外针对Tor浏览器用户进行。</p>
+
+
+
+<p><a href="https://gitlab.torproject.org/tpo/applications/tor-browser-build/-/raw/maint-13.5/projects/browser/Bundle-Data/Docs-TBB/ChangeLog.txt" target="_blank" rel="noreferrer noopener">Tor浏览器 13.5.6</a>以来的完整更新日志如下：</p>
+
+
+
+<ul class="wp-block-list">
+<li>所有平台
+<ul class="wp-block-list">
+<li><a href="https://gitlab.torproject.org/tpo/applications/tor-browser/-/issues/43201" target="_blank" rel="noreferrer noopener">Bug tor-browser#43201</a>：Firefox 131.0.2 的安全修复</li>
+
+
+
+<li><a href="https://gitlab.torproject.org/tpo/applications/mullvad-browser/-/issues/361">Bug mullvad-browser#36</a><a href="https://gitlab.torproject.org/tpo/applications/mullvad-browser/-/issues/361" target="_blank" rel="noreferrer noopener">1</a>：巴西一些政府网站上的 SSL_ERROR_NO_CYPHER_OVERLAP</li>
+</ul>
+</li>
+
+
+
+<li>构建系统
+<ul class="wp-block-list">
+<li>Windows + macOS + Linux
+<ul class="wp-block-list">
+<li><a href="https://gitlab.torproject.org/tpo/applications/tor-browser-build/-/issues/41254">Bug tor-browser-build#41254</a>：删除 cryptoSafetyPrompt.properties 行</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+
+
+<h2 class="wp-block-heading">Tails 6.8.1</h2>
+
+
+
+<p>Tails专为匿名浏览而设计，同步修复了Firefox浏览器（Tor浏览器的基础）中的这个严重安全漏洞，它还改进了持久内存的处理。</p>
+
+
+
+<p>根据Tor项目的<a href="https://blog.torproject.org/new-release-tails-6-8-1/" target="_blank" rel="noreferrer noopener">官方描述</a>，将Tor浏览器更新至<a href="https://www.mozilla.org/en-US/security/advisories/mfsa2024-51/" target="_blank" rel="noreferrer noopener">13.5.7 版</a>，可修复<a href="https://www.mozilla.org/en-US/security/advisories/mfsa2024-51/">MFSA 2024-51</a>，这是一个重大的释放后使用漏洞。利用此漏洞，攻击者可以控制Tor浏览器，但可能无法在Tails中将您匿名化。</p>
+
+
+
+<p><span class="wpcom_tag_link">安全更新</span>是Tails 6.8.1中唯一的变化，它使用了Tor浏览器的补丁修复版本13.5.7。但周三晚上发布的Tails 6.8还有一些变化。开发人员写道，现在可以修复解锁持久存储时检测到的文件系统错误。然而，并非所有文件系统错误都可以安全修复，这就是为什么他们还创建了更详细的文档，其中包含进一步可能的解决方案。</p>
+
+
+
+<p>9月中旬发布的Tails 6.7大版本包含匿名聊天功能，如果安全启动出现问题，它可以提供如何启动计算机的说明。9月底，Tails和Tor项目宣布未来将联手，他们希望联手保护全球用户免受监视和审查。</p>
+                                                                                </div>
