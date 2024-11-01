@@ -1,0 +1,95 @@
++++
+title = "Tor项目在万圣节前夜发布Tor浏览器、Tails系统以及Arti新版本"
+date = 2024-11-01T09:01:07+08:00
+categories = ["Tor官方动态", "暗网动态"]
+tags = []
+thumbnail = ""
++++
+
+<div class="entry-content clearfix">
+                            <div class="wp-block-image">
+<figure class="aligncenter size-full"><noscript><img fetchpriority="high" decoding="async" width="940" height="470" src="/images/81d27442544a8e738231458d0eb18e53.webp" alt="Tor项目在万圣节前夜发布Tor浏览器、Tails系统以及Arti新版本" class="wp-image-3744"></noscript><img fetchpriority="high" decoding="async" width="940" height="470" src="/images/81d27442544a8e738231458d0eb18e53.webp" alt="Tor项目在万圣节前夜发布Tor浏览器、Tails系统以及Arti新版本" class="wp-image-3744 j-lazy"></figure></div>
+
+
+<p>10月31日是万圣节前夜，”<mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-vivid-red-color">暗网下/AWX</mark>“注意到，Tor官方一口气发布了Tor浏览器、Tails操作系统以及新Tor客户端Arti三个正在维护中的项目的版本更新，修复了一些安全问题以及Bug错误。Tor项目目前正在密集举办和参与各类会议和活动，以推广和宣称Tor网络；同时，积极完善其产品，以保证Tor网络的安全性与匿名性。</p>
+
+
+
+<h2 class="wp-block-heading">新版本：Tor浏览器 14.0.1</h2>
+
+
+
+<p>一周前，Tor官方刚刚发布了基于Firefox ESR最新版本的Tor浏览器14.0版本，现在<a href="https://blog.torproject.org/new-release-tor-browser-1401/" target="_blank" rel="noreferrer noopener">又更新了一个新的小版本14.0.1</a>。</p>
+
+
+
+<p>Tor浏览器14.0.1现在可以从<a href="https://www.torproject.org/download/" target="_blank" rel="noreferrer noopener">Tor浏览器下载页面</a>以及Tor官方网站的<a href="https://www.torproject.org/dist/torbrowser/14.0.1/" target="_blank" rel="noreferrer noopener">分发目录</a>中获取。</p>
+
+
+
+<p>此版本包含Firefox的<a href="https://www.mozilla.org/en-US/security/advisories/" target="_blank" rel="noreferrer noopener">重要安全更新</a>。</p>
+
+
+
+<h3 class="wp-block-heading">已修复的问题</h3>
+
+
+
+<p>aarch64 macOS（M1及以上版本）的Tor守护进程在访问某些洋葱服务网站时会崩溃，导致Tor浏览器无法运行。虽然用户可以通过重新启动Tor浏览器来暂时解决这个问题，但在新的修复程序推出之前，特定的导致访问失败的洋葱服务网站将持续无法访问。此问题正在<a href="https://gitlab.torproject.org/tpo/applications/tor-browser/-/issues/43245" target="_blank" rel="noreferrer noopener">tor-browser#43245</a>中跟踪。</p>
+
+
+
+<h2 class="wp-block-heading">新版本：Tails 6.9</h2>
+
+
+
+<p>Tails是一个侧重安全，基于Debian专注于个人隐私和匿名性，并将非匿名通信进行封锁的操作系统。 这个系统所有的外部通信均强制通过Tor进行传送， 此系统设计为使用Live DVD或者Live USB进行引导，且不让计算机在非显式行为下留下数据痕迹。另外，Tor Project对于此项开发提供经济支持，并在近期已经与Tor项目合作运营。</p>
+
+
+
+<h3 class="wp-block-heading">变更和更新</h3>
+
+
+
+<p>将Tor浏览器更新至<a href="https://blog.torproject.org/new-release-tor-browser-1401/" target="_blank" rel="noreferrer noopener">14.0.1</a>。</p>
+
+
+
+<p>将Tor客户端更新至0.4.8.13。</p>
+
+
+
+<p>将Thunderbird更新至<a href="https://www.thunderbird.net/en-US/thunderbird/115.16.0esr/releasenotes/" target="_blank" rel="noreferrer noopener">115.16.0</a>。</p>
+
+
+
+<h3 class="wp-block-heading">已修复的问题</h3>
+
+
+
+<p>修复自动升级在下载成功后仍会出现 “无法下载升级 ”的错误信息。(<a href="https://gitlab.tails.boum.org/tails/tails/-/issues/20593" target="_blank" rel="noreferrer noopener">#20593</a>)</p>
+
+
+
+<p>欲了解更多详情，可以阅读Tails的<a href="https://gitlab.tails.boum.org/tails/tails/-/blob/master/debian/changelog" target="_blank" rel="noreferrer noopener">更新日志</a>。</p>
+
+
+
+<h2 class="wp-block-heading">Arti 1.3.0发布：内存配额跟踪、洋葱服务等</h2>
+
+
+
+<p>Arti是Tor官方正在进行的项目，旨在用Rust创建下一代Tor客户端。现在Tor官方在其官方博客宣布<a href="https://blog.torproject.org/arti_1_3_0_released/" target="_blank" rel="noreferrer noopener">正式发布了最新版本Arti 1.3.0</a>。</p>
+
+
+
+<p>此版本是Arti的一个重要的里程碑：Tor官方称Rust版本在大多数主要客户端功能上已与C版本的Tor实现对等，并表示许多其他主要工作也在进行中！Arti Relay的工作正在加速进行，RPC系统也在进行中。</p>
+
+
+
+<p>有关Arti的完整详细信息，以及许多较小和不太明显的变化的信息，请参阅<a href="https://gitlab.torproject.org/tpo/core/arti/-/blob/main/CHANGELOG.md#arti-130---31-october-2024" target="_blank" rel="noreferrer noopener">CHANGELOG</a>。</p>
+
+
+
+<p>有关使用Arti的更多信息，可以参阅顶级<a href="https://gitlab.torproject.org/tpo/core/arti/-/blob/main/README.md" target="_blank" rel="noreferrer noopener">README</a>和<a href="https://gitlab.torproject.org/tpo/core/arti/-/tree/main/crates/arti" target="_blank" rel="noreferrer noopener">arti二进制文件的文档</a>。</p>
+                                                                                </div>
