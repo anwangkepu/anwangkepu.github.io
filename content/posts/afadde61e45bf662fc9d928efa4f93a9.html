@@ -1,0 +1,103 @@
++++
+title = "针对Tor节点的IP欺骗正在摧毁Tor网络，Tor官方称已经成功处置"
+date = 2024-11-09T23:33:00+08:00
+categories = ["Tor官方动态", "暗网动态", "暗网技术"]
+tags = ["IP欺骗", "Tor官方", "中继节点", "出口节点"]
+thumbnail = ""
++++
+
+<div class="entry-content clearfix">
+                            <div class="wp-block-image">
+<figure class="aligncenter size-full"><noscript><img fetchpriority="high" decoding="async" width="940" height="529" src="/images/2667d40b345fd0e4bc8d6096509c197a.webp" alt="针对Tor节点的IP欺骗正在摧毁Tor网络，Tor官方称已经成功处置" class="wp-image-3757"></noscript><img fetchpriority="high" decoding="async" width="940" height="529" src="/images/2667d40b345fd0e4bc8d6096509c197a.webp" alt="针对Tor节点的IP欺骗正在摧毁Tor网络，Tor官方称已经成功处置" class="wp-image-3757 j-lazy"></figure></div>
+
+
+<p>11月6日，X用户Andrew Morris（@Andrew___Morris）<a href="https://x.com/Andrew___Morris/status/1854289771197329517" target="_blank" rel="noreferrer noopener">发布推文</a>称，有人正在攻击Tor，而且已经持续了几周。攻击者伪造了Tor出口和目录节点的IP地址，并在TCP/22端口上肆意发送TCP SYN数据包——这引发了托管服务提供商大量的滥用投诉，然后托管服务提供商就会临时屏蔽/禁止实际上并没有做错任何事的Tor基础设施。</p>
+
+
+
+<figure class="wp-block-embed is-type-rich is-provider-twitter wp-block-embed-twitter"><div class="wp-block-embed__wrapper">
+<blockquote class="twitter-tweet" data-width="500" data-dnt="true"><p lang="en" dir="ltr">Quick PSA: Someone is attacking Tor right now and has been for a few weeks. <br><br>The attacker is spoofing the IPs of Tor Exit and Directory nodes, and blasting TCP SYN packets indiscriminately  on 22/TCP- spurring a large amount of abuse complaints to hosting providers, which are…</p>— Andrew Morris (@Andrew___Morris) <a href="https://twitter.com/Andrew___Morris/status/1854289771197329517?ref_src=twsrc%5Etfw">November 6, 2024</a></blockquote><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</div></figure>
+
+
+
+<p>目前，Andrew Morris建议所有主机提供商<em>忽略</em>“SSH 扫描”或 “22/TCP 端口扫描”并来自以下任何 IP 的滥用投诉：<a href="https://x.com/Andrew___Morris/status/1854289771197329517" target="_blank" rel="noreferrer noopener">https://pastebin.com/idKU0agt</a>。Andrew Morris表示这是一种巧妙的攻击，他正在与合作伙伴合作，以三角测量这些流量的真正来源，然后设法断开连接。他在推文后面提供了来自攻击者的奇怪网站：r00t[.]monster，并给出了社区报告的参考：</p>
+
+
+
+<p><a href="https://gitlab.torproject.org/tpo/network-health/analysis/-/issues/85" target="_blank" rel="noreferrer noopener">https://gitlab.torproject.org/tpo/network-health/analysis/-/issues/85</a></p>
+
+
+
+<p><a href="https://archive.torproject.org/websites/lists.torproject.org/pipermail/tor-relays/2024-October/021953.html" target="_blank" rel="noreferrer noopener">https://archive.torproject.org/websites/lists.torproject.org/pipermail/tor-relays/2024-October/021953.html</a></p>
+
+
+
+<p>11月8日，<span class="wpcom_tag_link">Tor官方</span><a href="https://blog.torproject.org/defending-tor-mitigating-IP-spoofing/" target="_blank" rel="noreferrer noopener">在博客做出回复</a>，称正在保卫Tor网络，号召社区共同努力，减少针对Tor的<span class="wpcom_tag_link">IP欺骗</span>。</p>
+
+
+
+<p>Tor官方称，10月底，<a href="https://community.torproject.org/relay/governance/policies-and-proposals/directory-authority/" target="_blank" rel="noreferrer noopener">Tor目录管理机构</a>、<a href="https://community.torproject.org/relay/" target="_blank" rel="noreferrer noopener">中继运营者</a>，甚至<a href="https://gitlab.torproject.org/tpo/tpa/team/-/issues/41840" target="_blank" rel="noreferrer noopener">Tor项目系统管理团队</a>都收到了来自其提供商的关于端口扫描的多项滥用投诉。这些投诉被追溯到一次有组织的IP欺骗攻击，攻击者欺骗非出口中继和其他Tor相关IP，以触发滥用报告，目的是破坏Tor项目和Tor网络。</p>
+
+
+
+<p>Tor官方表示，<a href="https://www.opentech.fund/projects-we-support/supported-projects/interseclab/" target="_blank" rel="noreferrer noopener">感谢Tor社区和InterSecLab的共同努力</a>，以及Andrew Morris和<a href="https://x.com/GreyNoiseIO" target="_blank" rel="noreferrer noopener">GreyNoise团队</a>的支持，这些欺骗数据包的来源已经被识别，并于2024年11月7日关闭。</p>
+
+
+
+<p>Tor官方向大家保证，此次事件对Tor用户没有任何影响。虽然此次攻击对Tor网络的影响有限（导致一些<span class="wpcom_tag_link">中继节点</span>暂时下线），但给许多不得不处理这些投诉的中继运营商带来了不必要的压力和不便。虽然这次攻击针对的是Tor网络，但<a href="https://cyberscoop.com/spoofed-bank-ip-address-greynoise-andrew-morris-bank-of-america" target="_blank" rel="noreferrer noopener">任何在线服务都可能发生IP欺骗攻击</a>。</p>
+
+
+
+<p>Tor官方表示还有一些工作要做：需要支持中继运营商恢复他们的账户，并协助提供商为Tor目录管理机构解封IP。</p>
+
+
+
+<h2 class="wp-block-heading">主机托管服务提供商和滥用投诉</h2>
+
+
+
+<p>如果您是中继运营商，并且您的主机托管服务提供商仍因这些投诉而阻止或暂停了您的中继，您可以采取以下步骤来解决此问题：</p>
+
+
+
+<p>从您的中继检查Tor目录权限的可达性：如果您怀疑您的提供商已阻止Tor访问（即，由于您的中继脱离了Tor共识），请使用<a href="https://ooni.org/install/" target="_blank" rel="noreferrer noopener">OONI探测</a>和<a href="https://ooni.org/nettest/tor/" target="_blank" rel="noreferrer noopener">“规避”测试</a>检查Tor目录权限的可达性。如果测试显示大多数目录权限均可访问，则您的中继将成功（重新）连接到Tor网络。如果Tor目录权限仍然被阻止，请联系您的托管服务提供商支持并分享<a href="https://blog.torproject.org/defending-tor-mitigating-IP-spoofing/" target="_blank" rel="noreferrer noopener">Tor官方关于此攻击的博客文章</a>。</p>
+
+
+
+<p>回复您的托管公司：如果您的主机提供商因滥用投诉而联系您，请分享<a href="https://blog.torproject.org/defending-tor-mitigating-IP-spoofing/" target="_blank" rel="noreferrer noopener">Tor官方的博客文章</a>以帮助他们了解事件并澄清您的Tor中继是欺骗攻击的目标，并且没有产生任何可疑流量。您可以调整并使用此关于滥用投诉的模板。</p>
+
+
+
+<h2 class="wp-block-heading">背景介绍：发生了什么事？</h2>
+
+
+
+<p>10月20日，Tor目录管理机构开始收到滥用投诉，声称其服务器参与了未经授权的端口扫描。在Tor网络中，目录管理机构在维护可用中继列表方面发挥着关键作用。</p>
+
+
+
+<p>此次攻击主要针对非出口中继，使用伪造的SYN数据包使Tor中继IP地址看起来像是这些扫描的来源。这导致针对OVH、Hetzner和其他主机提供商等数据中心的自动滥用投诉。攻击者的意图似乎是通过利用这些毫无根据的投诉将这些IP列入黑名单来破坏Tor网络和Tor项目。</p>
+
+
+
+<p>中继操作员Pierre Bourdon在他的帖子“<a href="https://delroth.net/posts/spoofed-mass-scan-abuse/" target="_blank" rel="noreferrer noopener">让全世界向您最好的朋友发送滥用投诉的一个奇怪技巧</a>”中分享了对这次攻击的见解，该帖子揭示了攻击者如何使用伪造的IP数据包触发整个网络的自动滥用投诉。非常感谢Pierre的详细分析以及与社区分享他的发现！</p>
+
+
+
+<p>Tor官方表示，虽然在此次事件中得到了许多个人和组织的支持，但也遇到了一些不专业的行为，拒绝调查和缺乏勤勉的行为无意中放大了这次攻击的影响。关于这次虚假滥用攻击的大部分报道来自watchdogcyberdefense[.]com，因此Tor官方赞同网络安全社区的呼吁，建议<a href="https://seclists.org/nanog/2024/Nov/24" target="_blank" rel="noreferrer noopener">谨慎对待这些报道</a>。</p>
+
+
+
+<p>虽然欺骗活动并非Tor网络独有，但令人担忧的是，有人会故意破坏对遭受数字监控和互联网审查的人来说必不可少的服务。Tor在支持全球访问和言论自由方面发挥着关键作用，针对Tor会破坏这些基本权利。</p>
+
+
+
+<blockquote class="wp-block-quote is-layout-flow wp-block-quote-is-layout-flow">
+<p>我们感谢我们的中继运营商社区的坚韧和奉献精神，他们的共同努力确保了Tor去中心化网络的强大。</p>
+</blockquote>
+
+
+
+<p>Tor官方在博客文章中感谢每一位中继节点运营者为运行中继节点、保护网络隐私和支持Tor项目所做的不懈努力！</p>
+                                                                                </div>
