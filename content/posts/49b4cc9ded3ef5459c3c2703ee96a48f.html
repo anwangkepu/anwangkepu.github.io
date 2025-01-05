@@ -1,0 +1,87 @@
++++
+title = "Tor官方的2024年年度回顾"
+date = 2025-01-02T03:43:00+08:00
+categories = ["Tor官方动态", "暗网动态"]
+tags = ["Arti", "Onionspray", "Snowflake", "Tor官方", "Tor项目", "Vanguards", "WebTunnel"]
+thumbnail = ""
++++
+
+<div class="entry-content clearfix">
+                            <div class="wp-block-image">
+<figure class="aligncenter size-full"><noscript><img fetchpriority="high" decoding="async" width="940" height="504" src="/images/8117a63bc6b3eca844cd98b69deea4ac.webp" alt="Tor官方的2024年年度回顾" class="wp-image-3862"></noscript><img fetchpriority="high" decoding="async" width="940" height="504" src="/images/8117a63bc6b3eca844cd98b69deea4ac.webp" alt="Tor官方的2024年年度回顾" class="wp-image-3862 j-lazy"></figure></div>
+
+
+<p><span class="wpcom_tag_link">Tor官方</span>在2024年底对该非盈利性重大隐私保护工程<a href="https://blog.torproject.org/2024-year-in-review/" target="_blank" rel="noreferrer noopener">一年的工作进行了回顾</a>，“<mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-vivid-red-color">暗网下/AWX</mark>”对<span class="wpcom_tag_link">Tor项目</span>的文章进行了翻译与总结。Tor官方称，每当人们谈论Tor时，总会提到几个关键问题：性能、安全性和网络健康、审查规避以及第三方集成的兼容性。这些是Tor项目工作的重中之重，2024年Tor项目在这些领域都取得了重大进展，这篇文章里，Tor官方回顾了其是如何为解决这些核心问题和挑战而开展的一些新项目和正在进行的项目。</p>
+
+
+
+<h2 class="wp-block-heading">一、提高性能和安全性</h2>
+
+
+
+<p><strong>洋葱服务改进</strong>：洋葱服务是一种使用Tor网络交换数据的通信技术。它们通过将所有通信保留在Tor网络内，来提供端到端加密和增强的匿名性。2024年，Tor项目推出了<a href="https://onionservices.torproject.org/apps/web/onionspray/" target="_blank" rel="noreferrer noopener">OnionSpray</a>，这是一款即插即用的工具包，可以更轻松地将现有明网网站转换为可以使用.onion域名访问的暗网网站。OnionSpray具有代理功能，允许现有网站与“洋葱服务”无缝集成。通过简化设置，运营者可以快速受益于.onion暗网网站的抗审查和拒绝服务保护功能，而无需修改其现有基础设施。如需深入了解该功能，可以<a href="https://blog.torproject.org/mediapart-launches-onion-service/" target="_blank" rel="noreferrer noopener">查看Tor项目早期采用者之一的案例研究</a>。</p>
+
+
+
+<p><strong>支持<span class="wpcom_tag_link">Vanguards</span></strong>：从2024年夏天开始，<a href="https://blog.torproject.org/announcing-vanguards-for-arti" target="_blank" rel="noreferrer noopener">Arti支持Vanguards</a>，这是一种针对针对洋葱服务和洋葱服务客户端的防护发现攻击的防御措施。Vanguards于2018年首次作为v3洋葱服务的附加组件推出，旨在降低去匿名化攻击的风险并确保用户安全。</p>
+
+
+
+<p><strong>内存配额跟踪</strong>：Tor工程师和志愿者在<span class="wpcom_tag_link">Arti</span>方面取得了重大进展，<a href="https://arti.torproject.org/" target="_blank" rel="noreferrer noopener">Arti是Tor核心的现代重写版本</a>，采用Rust语言编写。Arti的模块化设计提高了可维护性、安全性和性能。为了抵御内存耗尽攻击，2024年<a href="https://blog.torproject.org/arti_1_3_0_released/" target="_blank" rel="noreferrer noopener">Tor项目实现了内存配额跟踪</a>。此功能允许Tor监控和限制其内存使用情况，优先关闭较旧的连接，以降低内存使用率并保持系统稳定性。这为所有用户提高了可靠性，并降低了高流量期间系统超负荷的风险。</p>
+
+
+
+<p><strong>带宽扫描仪</strong>：Tor保持网络稳定和健康的持续策略依赖于有效利用网络数据的能力。<a href="https://tpo.pages.torproject.net/network-health/bandwidth_scanners/index.html" target="_blank" rel="noreferrer noopener">带宽扫描仪</a>通过测量Tor网络中的中继容量，在网络的性能和安全性中发挥着重要作用。然后，这些数据会被用来指导如何构建与Tor网络连接的路径。这样做的目的是优化网络中的负载分布，最终提高浏览速度和可靠性。</p>
+
+
+
+<h2 class="wp-block-heading">二、扩大抗审查能力</h2>
+
+
+
+<p><strong>发布<span class="wpcom_tag_link">WebTunnel</span></strong>：2024年年初，Tor项目成功推出了WebTunnel，这是一种新型桥接器，旨在与普通网络流量无缝融合，使审查者更难阻止Tor连接。通过模仿常见的互联网协议，WebTunnel提高了Tor网络在审查严格的地区的适应能力和弹性。自2024年上半年推出以来，该桥接器确保优先考虑较小流量的下载，以便更方便地分发，并简化了对uTLS集成的支持，进一步模仿了更广泛使用的浏览器的特性。这使得Webtunnel对普通用户来说是安全的，因为它有助于隐藏正在使用Tor等工具的事实。在为用户提供可靠的开放网络访问方面，这种方法已经显示出良好的前景，尤其是在像俄罗斯这样审查严格的地区。Tor官方一直希望扩大这些努力，如果有用户愿意通过运行新桥接器来支持Tor，可以<a href="https://blog.torproject.org/call-for-webtunnel-bridges/" target="_blank" rel="noreferrer noopener">考虑参与并学习相关的技术知识</a>。</p>
+
+
+
+<p><strong><span class="wpcom_tag_link">Snowflake</span>更新</strong>：浏览器扩展程序Snowflake于2021年推出，是Tor对抗网络审查的一大飞跃。<a href="https://snowflake.torproject.org/" target="_blank" rel="noreferrer noopener">它使设置代理变得像打开网页一样简单</a>。为了遵守Google Chrome扩展程序框架的变化，Tor项目重新设计了Snowflake的WebExtension，以符合Manifest V3标准。更新后的版本已于9月份成功部署，确保在Google逐步停止对Manifest V2的支持后，Chrome浏览器上的用户仍可使用Snowflake。Tor项目还通过自动化发布流程、替换过时的内容交付网络和修订协议来不断改进Snowflake。这些努力确保Snowflake对全球用户保持可靠和有效。</p>
+
+
+
+<p><strong>过渡到Rdsys</strong>：2024年，Tor项目<a href="https://blog.torproject.org/making-connections-from-bridgedb-to-rdsys/" target="_blank" rel="noreferrer noopener">从BridgeDB成功过渡到Rdsys</a>，这是Tor项目的下一代桥接分发系统。Rdsys采用模块化架构，可帮助Tor项目快速适应新出现的审查策略，并允许Tor项目试验桥接分发渠道，更有效地覆盖用户所在的地理位置。</p>
+
+
+
+<h2 class="wp-block-heading">三、推进外联和宣传</h2>
+
+
+
+<p><strong>与Tails联手</strong>：合作一直是Tor项目工作的核心，例如Tor项目与Tails的合并，就是一个很好的例子。Tails是一个便携式操作系统，使用Tor保护用户免受数字监控。2024年，Tails推出了几项影响深远的更新，包括一项防止数据丢失的新备份功能。展望未来，该团队正在探索如何在Tails上支持Signal等消息应用程序，使用户能够安全地进行通信，同时将敏感通信与可能受到入侵的设备隔离开来。</p>
+
+
+
+<p><strong>分散培训工作</strong>：Tor官方从自己开展全球培训课程转变为为当地培训师提供教授Tor的技能。Tor官方将2022年首次启动的”隐私弹性资助计划“扩展到49个国家/地区，使培训师能够开展本地化的Tor活动。培训师们报告了培训带来的重大影响，例如改善了对监控和协作学习的保护。</p>
+
+
+
+<p><strong>中继倡导</strong>：Tor官方<a href="https://toruniversity.eff.org/" target="_blank" rel="noreferrer noopener">继续扩大与大学的合作伙伴关系</a>，以促进中继运营。这些努力不仅通过访问强大的中继节点增强了Tor网络，而且还通过树立积极的榜样鼓励更多组织为其基础设施做出贡献。</p>
+
+
+
+<h2 class="wp-block-heading">四、为Tor的未来做好准备</h2>
+
+
+
+<p><strong>RPC子系统</strong>：2024年Arti最重要的进展之一是开发了一个<a href="https://blog.torproject.org/arti_1_2_6_released/" target="_blank" rel="noreferrer noopener">完全重新构想的RPC子系统</a>。该系统通过提供进程外应用程序接口（out-of-process API）、改进模块化和应用隔离，重新定义了应用程序与Tor的交互方式。与现有的控制端口不同，RPC子系统可防止应用程序访问敏感信息。。这种设计将使开发人员能够更轻松、更安全地构建使用Tor的工具和服务。</p>
+
+
+
+<p><strong>人性化的.onion地址</strong>：冗长复杂的.onion域名一直是可用性方面的难题与挑战。今年，Tor官方开始研究创建更人性化的替代方案，旨在提高新用户的可访问性，同时保持强大的安全性。这些努力将使”洋葱服务“更加平易近人，更加方便用户使用。</p>
+
+
+
+<p><strong>Android版本辅助功能</strong>：为了准备使用“辅助功能”——一项意在自动规避审查的功能——Tor项目重新设计了Android版本Tor浏览器的连接体验，采用了全新的“原生”实现方式。这是Tor项目长期努力将“连接辅助”引入安卓系统的长期努力的必要步骤，并为安卓用户提供了一系列小的改进，<a href="https://blog.torproject.org/new-release-tor-browser-140/" target="_blank" rel="noreferrer noopener">使其体验与桌面更加一致</a>，并允许用户在连接前访问设置，从而实现更顺畅的故障排除和更高的可访问性。</p>
+
+
+
+<p>Tor官方最后总结称，所有这一切都得益于Tor社区和用户的持续支持。Tor官方可以共同为数字权利打造一个更强大、更具弹性的未来。</p>
+                                                                                </div>
