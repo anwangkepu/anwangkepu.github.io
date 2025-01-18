@@ -1,0 +1,87 @@
++++
+title = "1.5万份Fortinet设备的配置文件被泄露到暗网论坛BreachForums上"
+date = 2025-01-16T23:27:00+08:00
+categories = ["暗网动态", "美国暗网动态"]
+tags = ["Belsen Group", "CVE", "Fortinet", "零日漏洞"]
+thumbnail = ""
++++
+
+<div class="entry-content clearfix">
+                            <div class="wp-block-image">
+<figure class="aligncenter size-large"><noscript><img fetchpriority="high" decoding="async" width="1024" height="576" src="/images/72351ddd0e375c916701fc1c55ec0c2d.webp" alt='.5万份Fortinet设备的配置文件被泄露到暗网论坛BreachForums上"' class="wp-image-3884"></noscript><img fetchpriority="high" decoding="async" width="1024" height="576" src="/images/72351ddd0e375c916701fc1c55ec0c2d.webp" alt='.5万份Fortinet设备的配置文件被泄露到暗网论坛BreachForums上"' class="wp-image-3884 j-lazy"></figure></div>
+
+
+<p><span class="wpcom_tag_link">Fortinet</span>被盗的防火墙数据非常详尽，但已经有两年多的历史了，这意味着大多数遵循基本安全措施的企业面临的风险都很小。</p>
+
+
+
+<p><a href="https://en.wikipedia.org/wiki/Fortinet" target="_blank" rel="noreferrer noopener">Fortinet</a>,Inc.是一家美国网络安全公司，总部位于加利福尼亚州桑尼维尔。该公司开发和销售防火墙、端点安全和入侵检测系统等安全解决方案。Fortinet在世界各地设有办事处。</p>
+
+
+
+<p>Ken Xie和Michael Xie兄弟于2000年创立了Fortinet。该公司的第一款也是主要的产品是物理防火墙FortiGate。该公司后来增加了无线接入点、沙盒和消息安全。该公司于2009年11月上市。</p>
+
+
+
+<p>自称贝尔森集团（<span class="wpcom_tag_link">Belsen Group</span>）的黑客组织在暗网上泄露了Fortinet防火墙用户的详细信息。15474台Fortinet设备的过时配置数据和虚拟专用网络（VPN）凭证被免费发布到暗网上。</p>
+
+
+
+<p>安全研究员Kevin Beaumont审查了该数据转储，他相信它是真实的，因为发布数据中的设备在Shodan搜索引擎上列出，并共享相同的唯一序列号。</p>
+
+
+
+<p>1月14日，Fortinet披露了其FortiOS操作系统和FortiProxyWeb网关中存在的严重身份验证绕过漏洞（<span class="wpcom_tag_link">CVE</span>-2024-55591）。要了解此类漏洞的后果，只需看看2022年10月的一个并行漏洞，该漏洞至今仍在引起轰动。</p>
+
+
+
+<p>研究人员Amram Englander在<a href="https://github.com/arsolutioner/fortigate-belsen-leak/blob/main/affected_ips.txt" target="_blank" rel="noreferrer noopener">GitHub上发布</a>了与此次泄漏相关的15474个IP地址列表，他建议受影响的组织检查其CVE-2022-40684的补丁历史记录，这是Fortinet于2022年发现的一个<span class="wpcom_tag_link">零日漏洞</span>，影响FortiOS、FortiProxy和FortiSwitchManager，<a href="https://www.fortinet.com/blog/psirt-blogs/update-regarding-cve-2022-40684" target="_blank" rel="noreferrer noopener">已知该漏洞已被积极利用</a>。<a href="https://www.linkedin.com/feed/update/urn:li:activity:7285554495437099012/" target="_blank" rel="noreferrer noopener">Englander在LinkedIn上的一篇帖子</a>中表示，他们还应该更改设备凭据，评估防火墙规则的暴露程度并降低风险。</p>
+
+
+
+<p>当时，Fortinet发布了有关CVE-2022-40684的紧急安全警告，这是一个影响FortiOS、FortiProxy和自动FortiSwitchManager的等效身份验证绕过漏洞。它在通用漏洞评分系统(CVSS)中获得了9.8的“严重”评级，允许任何未经身份验证的攻击者通过特制的HTTP请求对易受攻击的设备执行管理操作。该漏洞被披露后，安全研究人员开发了一个概念验证（PoC）漏洞利用程序，这是一个用于扫描易受攻击设备的模板，并观察了漏洞利用尝试的不断增加。</p>
+
+
+
+<p>就在本周CVE-2024-55591被披露的同一天，一个名为“Belsen Group”的威胁行为者发布了属于15,000多台Fortinet设备的数据。CloudSEK的研究人员在一篇博文中指出，这些数据是通过CVE-2022-40684窃取的，而当时该漏洞还是零日漏洞。现在，他们写道：“一旦他们用尽了自己的用途（通过出售或使用访问权限），<a href="https://www.cloudsek.com/blog/15k-fortigate-firewall-configs-leaked-by-belsen-group-dumped-using-zero-day-in-2022" target="_blank" rel="noreferrer noopener">威胁行为者就决定在2025年将其泄露出去</a>。”</p>
+
+
+
+<h2 class="wp-block-heading">“Belsen Group”可能的起源线索</h2>
+
+
+
+<p>贝尔森集团（Belsen Group）在网络犯罪网站BreachForums上发帖称：“2025年将是世界的幸运之年”（同时巧妙地隐瞒了其数据是在两年多前收集的）。该企业在暗网网站上发布的1.6GB文件可免费访问，并按国家/地区、IP地址和防火墙端口号整齐地排列在文件夹中。</p>
+
+
+
+<p>受影响的设备似乎遍布各大洲，其中比利时、波兰、美国和英国最为集中，每个国家都有超过20台设备受害。</p>
+
+
+
+<p>另一方面，安全研究员Kevin Beaumont（又名GossiTheDog）在一篇博客文章中指出，<a href="https://doublepulsar.com/2022-zero-day-was-used-to-raid-fortigate-firewall-configs-somebody-just-released-them-a7a74e0b0c7f" target="_blank" rel="noreferrer noopener">Fortinet存在业务的每个国家都出现在数据中</a>，只有一个国家除外：<strong>伊朗</strong>，尽管Shodan显示该国目前有近2,000台可访问的Fortinet设备。此外，整个俄罗斯只有一台受影响的设备，从技术上讲，它位于俄罗斯从乌克兰吞并的克里米亚地区。</p>
+
+
+
+<p>这些数据点可能并不重要，，也可能是贝尔森集团（Belsen Group）的归属线索。它似乎是本月突然出现的，尽管CloudSEK“高度确信”该企业至少已经存在三年了，并且“他们很可能是2022年利用零日漏洞的威胁企业的一部分，尽管尚未确定直接关联。”</p>
+
+
+
+<h2 class="wp-block-heading">网络安全的风险有哪些？</h2>
+
+
+
+<p>泄露的列表包含两种类型的文件夹。第一个文件夹“config.conf”包含受影响的设备配置：IP地址、用户名和密码、设备管理证书以及受影响企业的所有防火墙规则。这些数据是通过CVE-2022-40684窃取的。另一个文件夹“vpn-password.txt”中是SSL-VPN凭据。据Fortinet称，这些凭据是通过更老的路径遍历漏洞CVE-2018-13379从设备获取的。</p>
+
+
+
+<p>尽管这些数据现在已经相当陈旧，但Beaumont写道：“虽然这些数据现在都已经相当陈旧，但拥有包括所有防火墙规则在内的完整设备配置……信息量很大。”CloudSEK也指出，泄露的防火墙配置可能会泄露有关企业内部网络结构的信息，这些信息可能至今仍然适用。</p>
+
+
+
+<p>企业通常也不会更新用户名和密码，从而允许旧用户名和密码继续引发问题。在检查转储中包含的设备时，Beaumont报告称，旧的身份验证与仍在使用的身份验证相匹配。</p>
+
+
+
+<p>Fortinet则在<a href="https://www.fortinet.com/blog/psirt-blogs/analysis-of-threat-actor-data-posting" target="_blank" rel="noreferrer noopener">1月16日发布的一份安全分析报告</a>中试图消除人们的担忧。它解释道：“如果您的企业在过去几年中一直坚持定期更新安全凭证的常规最佳做法，并采取了建议的措施，那么威胁行为者泄露企业当前配置或凭证详细信息的风险就很小。”</p>
+                                                                                </div>
