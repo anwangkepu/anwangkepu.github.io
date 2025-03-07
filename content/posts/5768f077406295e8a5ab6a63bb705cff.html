@@ -1,0 +1,91 @@
++++
+title = "微软云彻底禁止域前置技术，Tor项目删除内置网桥meek azure"
+date = 2025-03-06T22:34:23+08:00
+categories = ["暗网技术"]
+tags = ["Microsoft Azure", "Tor项目", "域前置"]
+thumbnail = ""
++++
+
+<div class="entry-content clearfix">
+                            <div class="wp-block-image">
+<figure class="aligncenter size-full"><noscript><img fetchpriority="high" decoding="async" width="940" height="584" src="/images/edddf48a86e0ebc3da339f2e1114b459.webp" alt="微软云彻底禁止域前置技术，Tor项目删除内置网桥meek azure" class="wp-image-3988"></noscript><img fetchpriority="high" decoding="async" width="940" height="584" src="/images/edddf48a86e0ebc3da339f2e1114b459.webp" alt="微软云彻底禁止域前置技术，Tor项目删除内置网桥meek azure" class="wp-image-3988 j-lazy"></figure></div>
+
+
+<p>随着<span class="wpcom_tag_link">Microsoft Azure</span>彻底禁止<span class="wpcom_tag_link">域前置</span>，<span class="wpcom_tag_link">Tor项目</span>在3周前从源代码库删除内置的meek azure网桥，它被另一个CDN77上的meek网桥替代。在2025年2月7日<a href="https://blog.torproject.org/new-release-tor-browser-1406" target="_blank" rel="noreferrer noopener">Tor浏览器14.0.6版本的更新公告中</a>，Tor项目表示已经<a href="https://gitlab.torproject.org/tpo/applications/tor-browser-build/-/issues/41362" target="_blank" rel="noreferrer noopener">从内置网桥中删除了meek azure</a>。域前置是什么技术？Tor官方为什么要删除meek azure网桥？“<mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-vivid-red-color">暗网下/AWX</mark>”搜索了一些技术资料，详解了域前置技术以及微软云政策变化带来的Tor项目的被动改变。</p>
+
+
+
+<h2 class="wp-block-heading">TLS存在主机名泄露的问题</h2>
+
+
+
+<p>TLS是SSL的后继者，是一种加密协议，旨在为应用程序之间提供完整性和隐私性。TLS最常见的用途是在HTTPS中，即TLS上的HTTP（或SSL）。借助TLS，两个端点可以通过互联网建立通信，从而防止窃听者观察、修改或伪造它们之间的消息。</p>
+
+
+
+<p>TLS协议的最新版本是TLS 1.3，于2018年获得批准。TLS1.3包含非常重要的变化；最重要的是，它删除了2018年不应使用的旧的、弃用的和不安全的加密套件，并且还附带了加速功能，例如TLS False start和0-RTT。它还强制使用称为服务器名称指示(SNI)的扩展，这是RFC4366中最初提出的扩展之一，早在2006年就已编写。</p>
+
+
+
+<p>确实有充分的理由说明为什么<a href="https://en.wikipedia.org/wiki/Server_Name_Indication#Background_of_the_problem" target="_blank" rel="noreferrer noopener">需要SNI</a>，但SNI也有一个重大缺点。SNI会在建立每个TLS 1.3连接时泄露主机名。</p>
+
+
+
+<h2 class="wp-block-heading">域前置技术</h2>
+
+
+
+<p>域前置是一种混淆TLS连接的SNI字段的技术，可有效隐藏连接的目标域。它需要找到一个托管提供商或CDN，该提供商或CDN拥有支持多个目标域（称为SAN，主题备用名称）的证书。其中一个域将是客户端想要在SNI字段中建立连接时假装定位的常用域，另一个域是连接和后续HTTP请求的实际目标。</p>
+
+
+
+<p>Tor项目的解释：域前置是一种可插入式传输，使用该技术后，Tor流量看似在与难以阻止的第三方（如Amazon或Google）通信，但实际上却是在与Tor中继通信。</p>
+
+
+
+<h2 class="wp-block-heading">可插拔传输：meek</h2>
+
+
+
+<p>2014年8月14日，Tor项目宣布<a href="https://blog.torproject.org/how-use-meek-pluggable-transport" target="_blank" rel="noreferrer noopener">发布Meek可插拔传输</a>。Meek使用域前置将目标桥接中继隐藏在非常受欢迎的域后面。例如，它可以使用google.com作为xyz-meek-relay.appspot.com的掩护。</p>
+
+
+
+<p>这样就可以在大型云（例如Google App Engine、Amazon CloudFront/EC2和Microsoft Azure）上创建温和桥接中继，将实际目标主机名隐藏在google.com、amazon.com或各种静态资产CDN等域后面。</p>
+
+
+
+<p>对于某些高风险国家的Tor用户来说，域前置无异于一场革命。它使Tor流量看起来与正常的HTTPS完全相同。封锁meek的副作用对于大多数审查者来说都是代价高昂的，在一个国家部分或全部封锁Akamai/Amazon/Google并不是一个不会被忽视的行为。</p>
+
+
+
+<h2 class="wp-block-heading">域前置技术被滥用后云厂商选择封锁该功能</h2>
+
+
+
+<p>2017年3月27日，Mandiant/FireEye<a href="https://www.fireeye.com/blog/threat-research/2017/03/apt29_domain_frontin.html" target="_blank" rel="noreferrer noopener">发布报告称</a>，他们发现俄罗斯国家支持的APT29黑客组织至少两年来一直使用域名前置技术。在此期间，域名前置技术在网络安全社区中引起了广泛关注。</p>
+
+
+
+<p>因此，谷歌悄悄地在其基础设施上关闭了域名前置功能。紧接着，亚马逊也效仿了这一做法，封锁了域名前置功能。Google和Amazon均关闭域名前置功能后，Tor的Meek网桥再也无法在这些CDN上使用，因此转向了微软的Azure云。</p>
+
+
+
+<p>在亚马逊加入谷歌封锁域名前端的一周后，Tor项目发布了新的博文“<a href="https://blog.torproject.org/domain-fronting-critical-open-web/" target="_blank" rel="noreferrer noopener">域前置对开放网络至关重要</a>”，这是一篇论述域前置技术对互联网隐私的重要性的论文，并详细介绍了向Microsoft Azure的转变。</p>
+
+
+
+<h2 class="wp-block-heading">Microsoft Azure彻底禁止域前置</h2>
+
+
+
+<p>微软在4年前<a href="https://www.microsoft.com/en-us/security/blog/2021/03/26/securing-our-approach-to-domain-fronting-within-azure/" target="_blank" rel="noreferrer noopener">也宣布他们对域前置的反对立场</a>，声称“作为一家致力于为善提供技术的公司…支持支持自由和开放沟通的某些用例是一个重要的考虑因素。然而域前置也受到从事非法活动的不良行为者和威胁行为者的滥用…在某些情况下，不良行为者会配置他们的Azure服务来实现这一点…我们正在改变我们的政策，以确保在Azure中停止和阻止域前置。”</p>
+
+
+
+<p>在多次通知和警告之后，达摩克利斯之剑终于落下。微软去年底通知用户，旧的Azure CDN将于2025年1月15日终止，建议用户迁移到类似Azure Front Door服务。在新的Azure Front Door服务下，用户只能得到唯一的专有域名，如snowflake-broker-hadmaqbnc4dmcffs.z03.azurefd.net，有效地阻止了利用域前置的可能性。</p>
+
+
+
+<p>2024年2月1日，Azure CDN彻底停止域前置的工作。</p>
+                                                                                </div>
