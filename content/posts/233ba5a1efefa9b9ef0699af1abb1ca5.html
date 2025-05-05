@@ -1,0 +1,73 @@
++++
+title = "Privacyguides称Tor浏览器的安全级别选择功能存在安全风险"
+date = 2025-05-03T23:38:00+08:00
+categories = ["暗网技术"]
+tags = ["Privacyguides", "Tor浏览器"]
+thumbnail = ""
++++
+
+<div class="entry-content clearfix">
+                            <div class="wp-block-image">
+<figure class="aligncenter size-large"><noscript><img fetchpriority="high" decoding="async" width="1024" height="576" src="/images/4c4decf80faf09a9de588ef035801281.webp" alt="Privacyguides称Tor浏览器的安全级别选择功能存在安全风险" class="wp-image-4096"></noscript><img fetchpriority="high" decoding="async" width="1024" height="576" src="/images/4c4decf80faf09a9de588ef035801281.webp" alt="Privacyguides称Tor浏览器的安全级别选择功能存在安全风险" class="wp-image-4096 j-lazy"></figure></div>
+
+
+<p>根据<a href="https://www.privacyguides.org/articles/2025/05/02/tor-security-slider-flaw/" target="_blank" rel="noreferrer noopener">Privacyguides.org向Tor浏览器用户发出的警告</a>，在不重启<span class="wpcom_tag_link">Tor浏览器</span>的情况下切换安全级别，可能会使用户面临更高的指纹识别和漏洞利用风险。</p>
+
+
+
+<figure class="wp-block-embed is-type-rich is-provider-twitter wp-block-embed-twitter"><div class="wp-block-embed__wrapper">
+<blockquote class="twitter-tweet" data-width="500" data-dnt="true"><p lang="en" dir="ltr">A warning to Tor Browser users: switching security levels without restarting your browser could potentially put you at heightened risk of fingerprinting and exploits: <a href="https://t.co/E9IFypUBZi">https://t.co/E9IFypUBZi</a></p>— Privacy Guides (@privacy_guides) <a href="https://twitter.com/privacy_guides/status/1918270227315605598?ref_src=twsrc%5Etfw">May 2, 2025</a></blockquote><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</div></figure>
+
+
+
+<p><span class="wpcom_tag_link">Privacyguides</span>表示，这是访问暗网的用户应该关注的一个安全问题，在Tor浏览器和Mullvad浏览器的“安全级别滑块“功能中存在的一个漏洞：在浏览器完全重启之前，浏览器宣传的所有保护措施并非都能正确启用。</p>
+
+
+
+<p>Privacyguides社区的一位成员匿名报告了这个漏洞，Privacyguides已通过macOS上最新的Tor浏览器14.5.1版本以及Mullvad浏览器14.5.1版本确认了此漏洞。对于在Tor浏览器中完全应用安全设置之前是否需要采取额外操作，目前找不到任何文档或者相关GitLab提示，并且Tor浏览器的文档也没有指出需要重启，也没有提示用户在进行安全更改后需重启浏览器。</p>
+
+
+
+<p>因此，对于那些为了保护自己免受浏览器漏洞攻击而在浏览过程中从”标准安全“设置切换到”更安全“设置的用户来说，这会带来很高的风险。</p>
+
+
+
+<h2 class="wp-block-heading">JavaScript测试</h2>
+
+
+
+<p>用户可以在自己的Tor浏览器中运行JavaScript基准测试（例如<a href="https://browserbench.org/JetStream/" target="_blank" rel="noreferrer noopener">JetStream 2.2</a>）来轻松演示其效果。这些基准测试依赖于一种名为即时（JIT）编译的技术来提升性能，但JIT与现代Web浏览器中的众多安全漏洞相关。“更安全”安全级别通常会完全禁用JIT以防止这些问题，但是，当用户将Tor浏览器切换到”更安全“级别（未重启Tor浏览器）并再次运行基准测试时，几乎不会看到任何性能影响，数值相差并不大（196与191）。”<mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-vivid-red-color">暗网下/AWX</mark>“在本地进行了测试，数值显示126。</p>
+
+
+
+<p>虽然这两次运行的性能几乎相同，但在重新启动Tor浏览器并重新运行测试后，我们看到性能结果大幅下降（数值变为33），这与在正确禁用JIT的情况下所预期的结果一致。所以，这清楚地表明，在Tor浏览器重新启动之前，在安全模式下应该禁用的JavaScript技术仍然可以被网站访问，如果用户不了解保护自身安全所需的额外步骤，则可能会面临浏览器漏洞的威胁。</p>
+
+
+
+<h2 class="wp-block-heading">”最安全“模式（Safest Mode）</h2>
+
+
+
+<p>目前尚未测试或验证所有需要重启浏览器的安全功能。虽然测试了切换到“更安全”模式后JIT是否仍然启用，因为这是最容易测试的功能。而“最安全”模式会完全禁用JavaScript，因此上述演示无法证明切换到“最安全”模式后仍存在此问题。</p>
+
+
+
+<p>但是，其他一些通常被“最安全”模式禁用的功能可能会一直处于启用状态，直到用户重新启动浏览器为止。出于谨慎考虑，Privacyguides建议用户在更改此设置后务必重新启动浏览器，无论用户是切换到“更安全”模式还是“最安全”模式。</p>
+
+
+
+<p>Privacyguides认为，虽然Tor项目宣传安全滑块可以方便地调整Tor浏览器提供的保护，但并未注明确保这些设置真正生效所需的额外步骤。从测试看来，如需确保用户的安全，在调整Tor浏览器的安全设置后务必彻底重启Tor浏览器。Privacyguides希望Tor浏览器在未来的更新中调整这些设置后能够提示或强制用户重新启动浏览器。</p>
+
+
+
+<h2 class="wp-block-heading">Tor项目给Privacyguides的声明</h2>
+
+
+
+<p>Tor项目在给Privacyguides的声明中表示，其已意识到此问题，并正在跟踪和积极解决。感兴趣的用户可以关注此处的讨论和进展：<a href="https://gitlab.torproject.org/tpo/applications/tor-browser/-/issues/42572" target="_blank" rel="noreferrer noopener">https://gitlab.torproject.org/tpo/applications/tor-browser/-/issues/42572</a>。</p>
+
+
+
+<p>除了重启提示之外，Tor项目还在探索对安全级别系统进行更广泛的改进，包括使其与Tor浏览器更新的威胁模型更加紧密地协调一致，并可能将更多后端委托给NoScript以增加灵活性。这些改进可能会成为即将到来的Tor浏览器15.0版本发布周期的一部分。</p>
+                                                                                </div>
