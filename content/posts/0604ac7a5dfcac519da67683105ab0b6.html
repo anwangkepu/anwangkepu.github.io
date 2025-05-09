@@ -1,0 +1,151 @@
++++
+title = "暗网勒索软件团伙LockBit遭黑客攻击：内部数据库、聊天记录、系统截图遭曝光"
+date = 2025-05-07T23:36:00+08:00
+categories = ["域名", "暗网网站", "独家报道"]
+tags = ["LockBit", "勒索软件团伙", "数据泄露", "黑客攻击"]
+thumbnail = ""
++++
+
+<div class="entry-content clearfix">
+                            <div class="wp-block-image">
+<figure class="aligncenter size-large"><noscript><img fetchpriority="high" decoding="async" width="1024" height="574" src="/images/57326eb0370bd4bf393922cb97415749.webp" alt="暗网勒索软件团伙LockBit遭黑客攻击：内部数据库、聊天记录、系统截图遭曝光" class="wp-image-4103"></noscript><img fetchpriority="high" decoding="async" width="1024" height="574" src="/images/57326eb0370bd4bf393922cb97415749.webp" alt="暗网勒索软件团伙LockBit遭黑客攻击：内部数据库、聊天记录、系统截图遭曝光" class="wp-image-4103 j-lazy"></figure></div>
+
+
+<p>臭名昭著的<span class="wpcom_tag_link">LockBit</span><span class="wpcom_tag_link">勒索软件团伙</span>的暗网网站遭遇严重入侵。5月7日，攻击者破坏了其暗网基础设施，并泄露了包含敏感操作细节的综合数据库，曝光了其勒索细节的聊天记录。</p>
+
+
+
+<p>此次<span class="wpcom_tag_link">黑客攻击</span>对全球最猖獗的勒索软件团伙之一造成了重大打击。</p>
+
+
+
+<p>首先发布该事件的是“<a href="https://twitter.com/ReyXBF" target="_blank" rel="noreferrer noopener">Rey</a>”：</p>
+
+
+
+<figure class="wp-block-embed is-type-rich is-provider-twitter wp-block-embed-twitter"><div class="wp-block-embed__wrapper">
+https://twitter.com/ReyXBF/status/1920220381681418713
+</div></figure>
+
+
+
+<p>现在，访问LockBit暗网网站（http://lockbitapyx2kr5b7ma7qn6ziwqgbrij2czhcbojuxmgnwpkgv2yx2yd[.]onion）的访客会收到一条挑衅性的信息：“不要犯罪，犯罪是坏事，来自布拉格的xoxo”，同时还附上了一个下载链接，用于下载名为“paneldb_dump.zip”的文件，其中包含MySQL数据库存储文件。</p>
+
+
+
+<h2 class="wp-block-heading">Lockbit的暗网网站确系被黑客入侵</h2>
+
+
+
+<p>在与该事件发现者Rey的Tox对话中，被称为“LockBitSupp”的LockBit运营者证实了此次泄密事件，并表示没有私钥泄露或数据丢失。</p>
+
+
+
+<p>安全研究人员已经确认泄露数据的真实性，其中包含有关勒索软件团伙操作的宝贵信息。其中“paneldb_dump.zip”压缩文档包含了从LockBit暗网网站管理后台的MySQL数据库转储的SQL文件。</p>
+
+
+
+<p>该数据库包括59975个用于支付赎金的唯一比特币钱包地址、从去年12月到今年4月下旬LockBit勒索软件团伙背后的运营者与其受害者之间的4442条赎金谈判信息，以及为特定攻击创建的自定义勒索软件版本的详细信息。</p>
+
+
+
+<p>分析该数据库，其中包含20个数据表，包括：</p>
+
+
+
+<ul class="wp-block-list">
+<li>‘btc_addresses’表包含59,975个唯一的比特币地址。</li>
+
+
+
+<li>“builds”表包含关联方为攻击创建的各个构建。表中的行包含公钥，但遗憾的是没有私钥。部分构建中还列出了目标公司的名称。</li>
+
+
+
+<li>“builds_configurations”表包含每个构建使用的不同配置，例如要跳过哪些ESXi服务器或要加密的文件。</li>
+
+
+
+<li>“chats”表非常有趣，因为它包含从12月19日到4月29日勒索软件操作与受害者之间的4442条谈判消息。</li>
+
+
+
+<li>“users”表列出了75位有权访问联盟后台管理面板的管理员和联盟会员，Michael Gillespie发现这些密码以明文形式存储。一些明文密码的示例包括“Weekendlover69”、“MovingBricks69420”和“Lockbitproud231”。</li>
+</ul>
+
+
+
+<p>后续泄露者又曝光了12张截图，其中包括LockBit的暗网服务器里多个shadow文件、PHP代码的截图以及其暗网网站后台管理的界面截图。通过以下截图可以管中窥豹，一览勒索软件内部的秘密：</p>
+
+
+<div class="wp-block-image">
+<figure class="aligncenter size-large"><noscript><img decoding="async" width="1024" height="863" src="/images/6b0230faf9be39a9ce34501ea589e2b0.webp" alt="暗网勒索软件团伙LockBit遭黑客攻击：内部数据库、聊天记录、系统截图遭曝光" class="wp-image-4104"></noscript><img decoding="async" width="1024" height="863" src="/images/6b0230faf9be39a9ce34501ea589e2b0.webp" alt="暗网勒索软件团伙LockBit遭黑客攻击：内部数据库、聊天记录、系统截图遭曝光" class="wp-image-4104 j-lazy"></figure></div>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-large"><noscript><img decoding="async" width="1024" height="863" src="/images/5ac6c8d874a52e0ef1886b5757e81372.webp" alt="暗网勒索软件团伙LockBit遭黑客攻击：内部数据库、聊天记录、系统截图遭曝光" class="wp-image-4105"></noscript><img decoding="async" width="1024" height="863" src="/images/5ac6c8d874a52e0ef1886b5757e81372.webp" alt="暗网勒索软件团伙LockBit遭黑客攻击：内部数据库、聊天记录、系统截图遭曝光" class="wp-image-4105 j-lazy"></figure></div>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-large"><noscript><img loading="lazy" decoding="async" width="1024" height="635" src="/images/845b6e889cda8ba38cc5e02695393b81.webp" alt="暗网勒索软件团伙LockBit遭黑客攻击：内部数据库、聊天记录、系统截图遭曝光" class="wp-image-4106"></noscript><img loading="lazy" decoding="async" width="1024" height="635" src="/images/845b6e889cda8ba38cc5e02695393b81.webp" alt="暗网勒索软件团伙LockBit遭黑客攻击：内部数据库、聊天记录、系统截图遭曝光" class="wp-image-4106 j-lazy"></figure></div>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-large"><noscript><img loading="lazy" decoding="async" width="1024" height="727" src="/images/a800c1bce333b0e4063f7b526fe081d2.webp" alt="暗网勒索软件团伙LockBit遭黑客攻击：内部数据库、聊天记录、系统截图遭曝光" class="wp-image-4107"></noscript><img loading="lazy" decoding="async" width="1024" height="727" src="/images/a800c1bce333b0e4063f7b526fe081d2.webp" alt="暗网勒索软件团伙LockBit遭黑客攻击：内部数据库、聊天记录、系统截图遭曝光" class="wp-image-4107 j-lazy"></figure></div>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-large"><noscript><img loading="lazy" decoding="async" width="1024" height="881" src="/images/4d74b7c50269125954fc159db553aaf7.webp" alt="暗网勒索软件团伙LockBit遭黑客攻击：内部数据库、聊天记录、系统截图遭曝光" class="wp-image-4108"></noscript><img loading="lazy" decoding="async" width="1024" height="881" src="/images/4d74b7c50269125954fc159db553aaf7.webp" alt="暗网勒索软件团伙LockBit遭黑客攻击：内部数据库、聊天记录、系统截图遭曝光" class="wp-image-4108 j-lazy"></figure></div>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-large"><noscript><img loading="lazy" decoding="async" width="1024" height="881" src="/images/25836eda329d56830db0d65b4e2b6e72.webp" alt="暗网勒索软件团伙LockBit遭黑客攻击：内部数据库、聊天记录、系统截图遭曝光" class="wp-image-4109"></noscript><img loading="lazy" decoding="async" width="1024" height="881" src="/images/25836eda329d56830db0d65b4e2b6e72.webp" alt="暗网勒索软件团伙LockBit遭黑客攻击：内部数据库、聊天记录、系统截图遭曝光" class="wp-image-4109 j-lazy"></figure></div>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-large"><noscript><img loading="lazy" decoding="async" width="1024" height="881" src="/images/b055da2ad8c37c6a4893f7a6c3119caa.webp" alt="暗网勒索软件团伙LockBit遭黑客攻击：内部数据库、聊天记录、系统截图遭曝光" class="wp-image-4110"></noscript><img loading="lazy" decoding="async" width="1024" height="881" src="/images/b055da2ad8c37c6a4893f7a6c3119caa.webp" alt="暗网勒索软件团伙LockBit遭黑客攻击：内部数据库、聊天记录、系统截图遭曝光" class="wp-image-4110 j-lazy"></figure></div>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-large"><noscript><img loading="lazy" decoding="async" width="1024" height="881" src="/images/35544c5f3547d4b78884ca24b44cf002.webp" alt="暗网勒索软件团伙LockBit遭黑客攻击：内部数据库、聊天记录、系统截图遭曝光" class="wp-image-4111"></noscript><img loading="lazy" decoding="async" width="1024" height="881" src="/images/35544c5f3547d4b78884ca24b44cf002.webp" alt="暗网勒索软件团伙LockBit遭黑客攻击：内部数据库、聊天记录、系统截图遭曝光" class="wp-image-4111 j-lazy"></figure></div>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-large"><noscript><img loading="lazy" decoding="async" width="1024" height="881" src="/images/0d39fc36e33726fbe6b2f5a7b363eb0e.webp" alt="暗网勒索软件团伙LockBit遭黑客攻击：内部数据库、聊天记录、系统截图遭曝光" class="wp-image-4112"></noscript><img loading="lazy" decoding="async" width="1024" height="881" src="/images/0d39fc36e33726fbe6b2f5a7b363eb0e.webp" alt="暗网勒索软件团伙LockBit遭黑客攻击：内部数据库、聊天记录、系统截图遭曝光" class="wp-image-4112 j-lazy"></figure></div>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-large"><noscript><img loading="lazy" decoding="async" width="1024" height="881" src="/images/41e863f82fae205b03d7d10f437c3625.webp" alt="暗网勒索软件团伙LockBit遭黑客攻击：内部数据库、聊天记录、系统截图遭曝光" class="wp-image-4113"></noscript><img loading="lazy" decoding="async" width="1024" height="881" src="/images/41e863f82fae205b03d7d10f437c3625.webp" alt="暗网勒索软件团伙LockBit遭黑客攻击：内部数据库、聊天记录、系统截图遭曝光" class="wp-image-4113 j-lazy"></figure></div>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-large"><noscript><img loading="lazy" decoding="async" width="1024" height="881" src="/images/bd3450b4dd556392d41011a58d5f437e.webp" alt="暗网勒索软件团伙LockBit遭黑客攻击：内部数据库、聊天记录、系统截图遭曝光" class="wp-image-4114"></noscript><img loading="lazy" decoding="async" width="1024" height="881" src="/images/bd3450b4dd556392d41011a58d5f437e.webp" alt="暗网勒索软件团伙LockBit遭黑客攻击：内部数据库、聊天记录、系统截图遭曝光" class="wp-image-4114 j-lazy"></figure></div>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-large"><noscript><img loading="lazy" decoding="async" width="1024" height="671" src="/images/161b0478aab51660bada4fe5c0cb40b5.webp" alt="暗网勒索软件团伙LockBit遭黑客攻击：内部数据库、聊天记录、系统截图遭曝光" class="wp-image-4115"></noscript><img loading="lazy" decoding="async" width="1024" height="671" src="/images/161b0478aab51660bada4fe5c0cb40b5.webp" alt="暗网勒索软件团伙LockBit遭黑客攻击：内部数据库、聊天记录、系统截图遭曝光" class="wp-image-4115 j-lazy"></figure></div>
+
+
+<h2 class="wp-block-heading">比特币地址库与用户表都是执法部门的金矿</h2>
+
+
+
+<p>HudsonRock联合创始人兼首席技术官Alon Gal称此次泄密事件是“执法部门的金矿”，可以极大地帮助追踪加密货币支付并将攻击归咎于特定的威胁行为者。</p>
+
+
+
+<p>也许最令人尴尬的是，此次泄密暴露了一个包含75名管理员和联盟附属人员的纯文本密码的用户表，这可能被执法部门用以识别发动勒索攻击的黑客。</p>
+
+
+
+<p>泄露的SQL数据库显示LockBit的暗网服务器正在运行PHP 8.1.2，该版本存在严重的远程代码执行漏洞，编号是CVE-2024-4577，可用于在远程服务器上实现远程代码执行。网络安全研究人员推测，这次攻击可能与PHP 8.1.2存在的这个高危漏洞（CVE-2024-4577）有关。</p>
+
+
+
+<h2 class="wp-block-heading">LockBit试图淡化此事件</h2>
+
+
+
+<p>LockBit试图淡化此事，该团伙在其暗网泄密网站上用西里尔文发布的一条消息中声称：“5月7日，他们入侵了带有自动注册功能的精简版管理面板，窃取了数据库，没有一个解密器受到影响，也没有任何被盗的公司数据受到影响。”该团伙愿意支付报酬，以获取有关此次入侵事件的布拉格黑客“xoxo”相关的信息。</p>
+
+
+
+<p>此次黑客攻击发生在名为“克洛诺斯“（Operation Cronos）的执法行动一年之后，克罗诺斯行动是一场国际联合执法行动。当时“<mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-vivid-red-color">暗网下/AWX</mark>”做了详细报道，执法机构于2024年2月暂时破坏了LockBit的基础设施，包括托管数据的暗网泄密网站及其34台镜像服务器、从受害者那里窃取的数据、加密货币地址、1000个解密密钥以及管理面板。</p>
+
+
+
+<p>虽然该团伙在此次攻击后成功重建并恢复运营，但其声誉已遭受重创，随着这次最新的入侵事件的发生，这对LockBit本已受损的声誉又造成了进一步的打击。研究人员指出，该团伙近期的许多受害者索赔请求都来自之前的攻击或其他勒索软件团伙的索赔。</p>
+
+
+
+<p>对于LockBit而言，此次泄密事件可能带来毁灭性的打击，可能会破坏其附属联盟的信任并进一步阻碍其运营。LockBit勒索软件团伙2023年初在全球造成了约44%的勒索软件事件。</p>
+                                                                                </div>
