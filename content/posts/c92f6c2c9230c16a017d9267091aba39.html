@@ -1,0 +1,127 @@
++++
+title = "Tor项目推出Oniux工具，可匿名化任何Linux应用的网络流量"
+date = 2025-05-27T04:26:23+08:00
+categories = ["Tor官方动态", "工具", "暗网动态", "暗网技术"]
+tags = ["Oniux", "torsocks", "Tor项目"]
+thumbnail = ""
++++
+
+<div class="entry-content clearfix">
+                            <div class="wp-block-image">
+<figure class="aligncenter size-full"><noscript><img fetchpriority="high" decoding="async" width="940" height="529" src="/images/7dc8462fb7581e9cddc888a8eedf75f9.webp" alt="Tor项目推出Oniux工具，可匿名化任何Linux应用的网络流量" class="wp-image-4152"></noscript><img fetchpriority="high" decoding="async" width="940" height="529" src="/images/7dc8462fb7581e9cddc888a8eedf75f9.webp" alt="Tor项目推出Oniux工具，可匿名化任何Linux应用的网络流量" class="wp-image-4152 j-lazy"></figure></div>
+
+
+<p>在推出隐私至关重要的应用和服务时，开发者希望确保每个数据包都只通过Tor网络。但是一次错误的代理设置，或SOCKS包装器之外的一次系统调用，都可能让数据突然暴露在Tor网络之外。</p>
+
+
+
+<p>本月中旬，<span class="wpcom_tag_link">Tor项目</span><a href="https://blog.torproject.org/introducing-oniux-tor-isolation-using-linux-namespaces/" target="_blank" rel="noreferrer noopener">宣布推出Oniux</a>，这是一种新的小型命令行工具，可通过Tor网络安全地路由任何Linux应用程序，实现匿名网络连接。</p>
+
+
+
+<p>与依赖用户空间的<a href="https://gitlab.torproject.org/tpo/core/torsocks" target="_blank" rel="noreferrer noopener"><code><span class="wpcom_tag_link">torsocks</span></code></a>等传统工具不同，<span class="wpcom_tag_link">Oniux</span>使用Linux命名空间为每个应用程序创建完全隔离的网络环境，即使应用程序是恶意的或配置错误的，也可以防止数据泄露。</p>
+
+
+
+<p>Linux命名空间是Linux内核中一项隔离功能，它提供了一种安全的方式，将应用程序的某个部分与系统的其余部分隔离开来。命名空间有多种形式和形态。例如，网络命名空间、挂载命名空间、进程命名空间等等；每种命名空间都将一定量的系统资源与应用程序隔离开来。</p>
+
+
+
+<p>Oniux使用Linux命名空间在内核级别隔离应用程序，因此所有流量都被迫通过Tor。与SOCKS不同，应用程序不会因为无法通过配置的SOCKS建立连接而意外泄露数据，而这种情况可能由于开发人员的错误而发生。</p>
+
+
+
+<p><a href="https://blog.torproject.org/introducing-oniux-tor-isolation-using-linux-namespaces/" target="_blank" rel="noreferrer noopener">Tor的博客文章中</a>写道：“我们很高兴推出<em>oniux</em>：一个小型命令行实用程序，为使用Linux命名空间的第三方应用程序提供Tor网络隔离。”</p>
+
+
+
+<p>Oniux基于Arti和onionmasq构建，可将任何Linux程序直接迁移到其自己的网络命名空间，并通过Tor进行路由，从而消除数据泄露的可能性。如果特定工作、行动或研究需要坚如磐石的流量隔离，Oniux可以满足需求。</p>
+
+
+
+<p>它通过将每个应用程序放置在自己的网络命名空间中（无法访问主机的接口）来实现这一点，而是附加一个使用onionmasq通过Tor进行路由的虚拟接口（onion0）。 </p>
+
+
+
+<p>它还使用挂载命名空间为Tor-safe DNS注入自定义/etc/resolv.conf，并使用用户/PID命名空间以最小权限安全地设置环境。</p>
+
+
+
+<p>此设置可确保任何Linux应用程序的防泄漏、内核强制Tor隔离。</p>
+
+
+
+<p>而传统工具<a href="https://gitlab.torproject.org/tpo/core/torsocks"><code>torsocks</code></a>的工作原理是覆盖所有与网络相关的 libc 函数，以便通过Tor提供的 SOCKS 代理路由流量。虽然这种方法更具有跨平台性，但它有一个明显的缺点：<em>不</em>通过动态链接的libc进行系统调用的应用程序（无论是否出于恶意）都会泄露数据。</p>
+
+
+
+<p>Torsocks通过使用“LD_PRELOAD”黑客来拦截动态链接的Linux应用程序中与网络相关的函数调用，并通过Tor SOCKS代理重定向它们。这种方法的问题在于，原始系统调用不会被Torsocks捕获，恶意应用程序可以避免使用libc函数来造成泄漏。</p>
+
+
+
+<p>此外，Torsocks根本不能与静态二进制文件一起使用，并且不能提供真正的隔离，因为应用程序仍然可以访问主机的真实网络接口。</p>
+
+
+
+<p>Tor项目发布了一个比较表，重点突出了两种解决方案之间的质量差异：</p>
+
+
+
+<figure class="wp-block-table"><table class="has-fixed-layout"><thead><tr><th><em><em>oniux</em></em></th><th><em><em>torsocks</em></em></th></tr></thead><tbody><tr><td>独立应用程序</td><td>需要运行 Tor 守护进程</td></tr><tr><td>使用 Linux 命名空间</td><td>使用 ld.so 预加载 hack</td></tr><tr><td>适用于所有应用程序</td><td>仅适用于通过 libc 进行系统调用的应用程序</td></tr><tr><td>恶意应用程序无法泄漏</td><td>恶意应用程序可以通过原始汇编进行系统调用来泄漏</td></tr><tr><td>仅限 Linux</td><td>跨平台</td></tr><tr><td>新的和实验性的</td><td>经过 15 年多的实战检验</td></tr><tr><td>使用 Arti 作为引擎</td><td>使用 CTor 作为引擎</td></tr><tr><td>用 Rust 编写</td><td>用 C 语言编写</td></tr></tbody></table></figure>
+
+
+
+<p>尽管Oniux具有明显的优势，但Tor强调该工具仍处于实验阶段，尚未在多种条件和场景下进行广泛测试，用户可以自行测试使用。</p>
+
+
+
+<h1 class="wp-block-heading">如何使用<em>Oniux</em>？🧅</h1>
+
+
+
+<p>首先，需要一个安装了Rust工具链的Linux系统。接着，可以使用以下命令安装<em>Oniux：</em></p>
+
+
+
+<pre class="wp-block-preformatted">$ cargo install --git https://gitlab.torproject.org/tpo/core/oniux <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="1b7475726e635b2b352f352b">[email protected]</a></pre>
+
+
+
+<p>安装完成，就可以开始使用<em>Oniux</em>了！🙂</p>
+
+
+
+<p>使用<em>Oniux</em>非常简单：</p>
+
+
+
+<pre class="wp-block-preformatted"><em># 使用 oniux 执行简单的 HTTPS 查询！</em> <br>$ oniux curl https://icanhazip.com <br>&lt;A TOR EXIT NODE IP ADDRESS&gt; <em># oniux 当然也支持 IPv6！</em> <br>$ oniux curl -6 https://ipv6.icanhazip.com <br>&lt;A TOR EXIT NODE IPv6 ADDRESS&gt; <em># 没有洋葱服务的 Tor 就像没有引擎的汽车……</em> <br>$ oniux curl http://2gzyxa5ihm7nsggfxnu52rck2vv4rvmdlkiu3zzui5du4xyclen53wid.onion/index.html <em># 如果您是技术宅，还可以启用日志记录功能。🤓</em> <br>$ RUST_LOG = debug oniux curl https://icanhazip.com <em># 如果需要，您可以“torify”您的整个 shell，隔离其中的所有进程！</em> <br>$ oniux bash <em># 如果您在桌面环境中，您还可以隔离图形应用程序！</em> <br>$ oniux hexchat</pre>
+
+
+
+<h1 class="wp-block-heading">Oniux在内部是如何运作的？⚙️</h1>
+
+
+
+<p>Oniux的工作原理是使用系统调用立即生成一个子进程<code>clone(2)</code> ，该子进程在其自己的网络、挂载点、PID 和用户命名空间中被隔离。然后，该进程会挂载自己的副本，<code>/proc</code>并将 UID 和 GID 映射到父进程的相应 UID 和 GID。</p>
+
+
+
+<p>随后，它会创建一个包含名称服务器条目的临时文件，该文件随后会被绑定安装到<code>/etc/resolv.conf</code>，以便在其中运行的应用程序将使用支持通过 Tor 解析的自定义名称解析器。</p>
+
+
+
+<p>接下来，子进程利用 <a href="https://gitlab.torproject.org/tpo/core/onionmasq">onionmasq</a>创建一个名为的 TUN 接口，<code>onion0</code>然后执行<code>rtnetlink(7)</code>设置接口所需的一些操作，例如分配 IP 地址。</p>
+
+
+
+<p>然后，子进程通过 Unix 域套接字将 TUN 接口的文件描述符发送给父进程，父进程自执行初始<code>clone(2)</code>.</p>
+
+
+
+<p>一旦完成，子进程将放弃作为用户命名空间中的根进程所获得的所有功能。</p>
+
+
+
+<p>最后，使用 Rust 标准库提供的功能执行用户提供的命令。</p>
+                                                                                </div>
