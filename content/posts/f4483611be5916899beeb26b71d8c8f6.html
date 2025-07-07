@@ -1,0 +1,169 @@
++++
+title = "前赴后继，七月份突然出现两个新的名为BreachForums的暗网论坛"
+date = 2025-07-06T23:05:00+08:00
+categories = ["域名", "暗网网站", "独家报道"]
+tags = ["BreachForums", "暗网论坛"]
+thumbnail = ""
++++
+
+<div class="entry-content clearfix">
+                            <div class="wp-block-image">
+<figure class="aligncenter size-large"><noscript><img fetchpriority="high" decoding="async" width="1024" height="480" src="/images/4e0f6ee0f2c599fed70ac6dd5e229458.webp" alt="前赴后继，七月份突然出现两个新的名为BreachForums的暗网论坛" class="wp-image-4238"></noscript><img fetchpriority="high" decoding="async" width="1024" height="480" src="/images/4e0f6ee0f2c599fed70ac6dd5e229458.webp" alt="前赴后继，七月份突然出现两个新的名为BreachForums的暗网论坛" class="wp-image-4238 j-lazy"></figure></div>
+
+
+<p>上个月底，臭名昭著的专门交易被盗数据的暗网论坛BreachForums再次被警方摧毁，ShinyHunters、Depressed、Hollow（Anastasia）和IntelBroker等多名管理人员在法国被逮捕。然而，这并不影响网络犯罪分子追寻自由的心，“<mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-vivid-red-color">暗网下/AWX</mark>”发现，进入七月份，两个新的<span class="wpcom_tag_link">BreachForums</span>论坛如同雨后春笋，正在生根发芽。</p>
+
+
+
+<h2 class="wp-block-heading">新的BreachForums克隆版breached[.]ws已上线</h2>
+
+
+
+<p>7月1日，管理员Hasan和thej在Telegram频道发布消息，新的BreachForums克隆版已上线，该网站似乎是从零开始建立的，拥有全新的外观，没有前一版本的用户数据或旧主题帖子。</p>
+
+
+
+<p>新的BreachForums克隆版的访问地址为：</p>
+
+
+
+<p>明网：https://breached[.]ws/<br>暗网：http://breachy72uc3rgraqpvfnb6dglhbcy7niqpmjdlseewzgpq4vifmmuyd[.]onion/</p>
+
+
+
+<p>新论坛设置了新的规则，那就是禁止发布有关9-Eyes政府数据泄露相关的帖子。管理员Hasan估计，这一限制可能会减少10-20%的收入，但他认为这是保持论坛在线而又不引起直接执法行动的唯一办法。听起来像是一个全新的开始？但也许不是……FBI的执法似乎不仅针对泄露政府数据。</p>
+
+
+
+<p>然而，就在一天后，一个名为“test55”的用户在新的网站上发布了一个主题，声称他们通过图片处理利用了一个SSRF（服务器端请求伪造）漏洞，从而获得了新论坛所在服务器的IP地址（86.54.42.86）与网站所有访问者的IP地址。</p>
+
+
+
+<h2 class="wp-block-heading">Hasan对breached[.]ws存在漏洞做出回应</h2>
+
+
+
+<p>Hasan称，昨天一个随机的“威胁行为者”试图访问被攻破的breached[.]ws的后台，或者说是自己曾经认识的一个人，但该人知道真实的后台IP。</p>
+
+
+
+<p>长话短说，该人试图通过服务器端请求获得访问权限，而这恰恰是毫无道理的，因为这只会得到他已经得到的东西——IP。</p>
+
+
+
+<p>Hasan表示，有趣的是，在这个过程中，他的DNS缓存泄露了，他的IP也泄露在了处理恶意活动和DDoS Guard的CDN的访问日志中，他还自爆了身份，试图羞辱Hasan和Hasan的团队。</p>
+
+
+
+<p>Hasan说发现该人的IP属于巴西的Db3 Servicos De Telecomunicacoes S.A。他是巴西人，这一点也不奇怪。他的CIDR IP地址子网是45.179.224.0/24。</p>
+
+
+
+<p>Hasan说这证实了此人为被他抛弃的巴西人，这有点令人讨厌，之前，他曾与5个不同的开发人员一起开发网站的WIP。</p>
+
+
+
+<p>此外，Hasan还解释了为什么访问日志会记录IP或DDoS guard等服务。他说每个网站都会记录 IP，这是标准做法，尤其是当用户使用DDoS Guard或CDN等保护时。日志用于检测可疑活动，比如有人试图通过开发工具窥探后台。但他保证breached[.]ws的日志每24小时会被清除一次，所以不用担心。</p>
+
+
+
+<p>对于MyBB邮件SSRF漏洞（CVE-2025-29459）并未在6月份的1.8.39更新中得到修复，出于其他安全原因，Hasan称将禁用BreachForums上的邮件功能，因为同步和修改MyBB软件会影响其自带的其他功能。</p>
+
+
+
+<p>针对存在可能存在其他漏洞的问题，Hasan回应称“我将添加最后的更新，那就是shoutbox，我已经限制了大部分（如果不是全部的话）CVE，否则我可以在未来最终得到证明，如果在我们更换软件之前出现了什么问题，之后我们将在论坛上工作人员OG的帮助下上传我能找到的旧数据库。“</p>
+
+
+
+<h2 class="wp-block-heading">Hasan称breachforums[.]info是一个假冒</h2>
+
+
+
+<p>Hasan还描述了另一个消息，称Anti-Extortion Network的创始人联系了他，告诉他一个显而易见的事实：http://breachforums.info是一个假冒的BreachForums克隆版，他们的管理员Jaw不是原RaidForums的Jaw，这一点他们之前已经知道很多次了。</p>
+
+
+
+<p>Hasan说但是他不知道假冒网站管理员Jaw竟然有来自RaidForums的Jaw的真实联系方式，但他很快就会发消息说明他们是如何使用Jaw的化名的。Hasan称如果想获得更多证据，可以直接通过@v6kp7qx90njz55yru71x6fdwz0联系Bear，这是他的Telegram账户。</p>
+
+
+
+<p>目前唯一的BreachForums域名是http://breached.ws，也许即将出现的许多其他域名，Hasan表示已经走了很长的路，将通过扩大其员工团队来使自己合法化，其员工团队将包括大家眼中的导师以及让BreachForums成为BreachForums的作者（发布被盗数据的网友）。</p>
+
+
+
+<h2 class="wp-block-heading">仿冒论坛breachforums[.]info于7月1日开启</h2>
+
+
+
+<p>鉴于BreachForums的知名度极高，于是假冒的BreachForums论坛前赴后继的产生然后覆灭，本站之前曾报道过新出现的假冒BreachForums论坛breached[.]fi。</p>
+
+
+
+<p>该论坛创始人Jaw在论坛上线的时候发布了主题帖“我们回来了——更强大、更聪明、更有韧性”，称“你们很多人都认识我–我叫Jaw。今天，我正式宣布，我们中的许多人都称之为家的地方回归了：BreachForums”。具体帖子内容如下：</p>
+
+
+
+<blockquote class="wp-block-quote is-layout-flow wp-block-quote-is-layout-flow">
+<p>首先，请允许我向选择回来帮助我们重建的各位致以诚挚的谢意。你们的忠诚、坚韧和对社区的承诺远非言语所能表达。</p>
+
+
+
+<p>发生了什么——我们的立场</p>
+
+
+
+<p>正如你们许多人所听说的，ShinyHunters和IntelBroker已被逮捕。在此过程中，当局查封了所有服务器基础设施，包括数据库、源代码和用户数据。联邦调查局和法国执法部门现在已经掌握了之前论坛的全部数字足迹。<br>让我明确一点：旧论坛的所有内容都已泄露。</p>
+
+
+
+<p>这对你意味着什么</p>
+
+
+
+<p>如果您要返回，请重新开始。</p>
+
+
+
+<p>新的用户名。<br>新的 OPSEC。<br>不要重复使用任何以前的用户名、PGP 密钥或标识符。</p>
+
+
+
+<p>我们已经看到了人们过于安逸的后果。不要重蹈覆辙。</p>
+
+
+
+<p>澄清MyBB传闻</p>
+
+
+
+<p>有人猜测此次漏洞使用了所谓的MyBB 0-day漏洞。这种说法是错误的。<br>只有IntelBroker可以直接访问后台和源代码。“0-day”谣言只是一个烟雾弹，是ShinyHunters转移视线的一种手段，目的可能是争取时间和转移视线。但真相已经浮出水面。</p>
+
+
+
+<p>继续前进</p>
+
+
+
+<p>我们都吸取了一些惨痛的教训。我们不会忽视它们。<br>这次重建不仅仅是将碎片重新组合在一起，而是要创造出更强大、更智能、更安全的东西。我将全力以赴，采取一切必要的措施来保护这个社区，确保我们的重建工作不会重蹈覆辙。</p>
+
+
+
+<p>这是一个新的篇章——对于那些准备参与其中的人，我欢迎你们。<br>我们重建。一起重建。</p>
+</blockquote>
+
+
+
+<p>仿冒的BreachForums的访问地址为：</p>
+
+
+
+<p>明网：https://breachforums[.]info/<br>暗网：http://gtihui3n5rijtibu4knip53wopp2teaxa2zphr66bi2yivb5fiekb6id[.]onion/</p>
+
+
+
+<p>如果breached[.]ws是正宗血统BreachForums的传承，那这将会是第四版BreachForums，第四版BreachForums的命运将如何，会不会像Hasan所言的合法化运行，“<mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-vivid-red-color">暗网下/AWX</mark>”将继续关注。</p>
+
+
+
+<p>更多暗网新闻动态，请关注“<mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-vivid-red-color">暗网下/AWX</mark>”。</p>
+                                                                                </div>
