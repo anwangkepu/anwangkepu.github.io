@@ -1,0 +1,83 @@
++++
+title = "网络安全组织NullSecurityX称暗网论坛DarkForums被黑，实为存在XSS漏洞"
+date = 2025-07-30T06:09:11+08:00
+categories = ["域名", "暗网网站", "独家报道"]
+tags = ["0day漏洞", "DarkForums", "hasan", "NullSecurityX", "NullSecX", "暗网论坛"]
+thumbnail = ""
++++
+
+<div class="entry-content clearfix">
+                            <div class="wp-block-image">
+<figure class="aligncenter size-large"><noscript><img fetchpriority="high" decoding="async" width="1024" height="444" src="/images/62c65ff3b66e943bfa3b8855a6bd4ddf.webp" alt="网络安全组织NullSecurityX称暗网论坛DarkForums被黑，实为存在XSS漏洞" class="wp-image-4280"></noscript><img fetchpriority="high" decoding="async" width="1024" height="444" src="/images/62c65ff3b66e943bfa3b8855a6bd4ddf.webp" alt="网络安全组织NullSecurityX称暗网论坛DarkForums被黑，实为存在XSS漏洞" class="wp-image-4280 j-lazy"></figure></div>
+
+
+<p>另一个买卖被盗数据的<span class="wpcom_tag_link">暗网论坛</span><span class="wpcom_tag_link">DarkForums</span>存在存储型的XSS漏洞，有组织声称已经渗透了该网站，并在X上发布了消息。</p>
+
+
+
+<p>7月27日，<a href="https://x.com/DarkWebInformer" target="_blank" rel="noreferrer noopener">@DarkWebInformer</a>在X上发布推文警告称，DarkForums存在活跃的跨站脚本（XSS）漏洞。请勿使用该网站，它不安全且会泄露您的IP地址！并附了一个弹框截图，展示了当前的Cookie。“暗网下/AWX”根据该截图确认暗网论坛DarkForums存在XSS跨站漏洞。</p>
+
+
+
+<p>随后，网络安全组织<a href="https://x.com/NullSecurityX" target="_blank" rel="noreferrer noopener">@NullSecurityX</a>进行了回复，称DarkForums被<span class="wpcom_tag_link">NullSecurityX</span>黑了:)但开玩笑归开玩笑，该推文在随附的视频中展示了Darkforums上发现的漏洞。并称祝大家渗透愉快，同时at了@DarkWebInformer。视频中，@NullSecurityX展示了其发布含有javascript标签的html代码后触发执行，并跳转至其X页面。</p>
+
+
+
+<p>对此，BreachForums的新管理员<a href="https://x.com/kartelovac" target="_blank" rel="noreferrer noopener">hasan</a>回复称，这不仅仅是DarkForums的问题，而是MyBB软件本身的问题。该软件存在大量CVE漏洞，简直令人难以置信。要真正解决这个问题，唯一的方法就是禁用大多数用户喜爱的功能。</p>
+
+
+
+<p><span class="wpcom_tag_link">hasan</span>把这个问题归结于该论坛使用的开源PHP程序MyBB的MyCode功能存在的漏洞，他称，看来DarkForums和其他论坛并没有认真考虑他的方法，因为他们大多迅速忽视了安全问题，尤其是使用被称之为MyBB的这个所谓的“地雷阵”软件。</p>
+
+
+
+<p>hasan称这无法预防，他看到BreachForums的明网和暗网门户，或者说那个任何人都能看到的蜜罐，也存在相同的问题，而他们当然没有禁用任何功能。</p>
+
+
+
+<p>hasan表示，在此之前，我更倾向于效率而非美学。因为“美学”和纯粹的愚蠢，使用MyBB的论坛都没打算修复这个漏洞。因此需要一场呼吁尽快更换MyBB软件的运动，他的新论坛已经准备好进行更改了。</p>
+
+
+
+<p>MyBB如何修复这个漏洞？hasan表示应该禁用相关功能，因为MyBB将这些功能硬编码在系统中，尤其是MyCode，即使安装了插件也无法阻止，因为MyBB的设计只允许通过其后台管理控制面板禁用MyCode。</p>
+
+
+
+<p>hasan还透露，入侵DarkForums的人正在以200美元的价格出售数据库——这些数据目前在Roblox平台上流通。</p>
+
+
+
+<h2 class="wp-block-heading">NullSecurityX（<span class="wpcom_tag_link">NullSecX</span>）的介绍</h2>
+
+
+
+<p>NullSecX自称是一家网络安全公司，根据其<a href="https://www.linkedin.com/company/nullsecx/" target="_blank" rel="noreferrer noopener">自我介绍</a>，在NullSecX，他们助力企业始终走在不断演变的网络威胁环境的前沿。</p>
+
+
+
+<p>通过主动识别和分析新兴漏洞与攻击，NullSecX提供及时的洞察和前沿的安全解决方案。NullSecX称自己的使命很简单：帮助您在威胁发生前就预见它们——以便您能够以信心和精准度保护您的数字资产。</p>
+
+
+
+<p>NullSecX的LinkedIn在招募更多人加入NullSecX，称可以共同站在网络安全创新的前沿。</p>
+
+
+
+<p>NullSecX还拥有一个Youtube页面：https://www.youtube.com/@NullSecurityX</p>
+
+
+
+<h2 class="wp-block-heading">DarkForums是什么网站</h2>
+
+
+
+<p>DarkForums是一个与BreachForums类似的暗网被盗数据交易论坛，声称可以提供任何目标的多种类型数据，以及来自全球65个国家（涵盖欧洲、亚洲、非洲、美洲、大洋洲等各大洲）的数据，均存储于此云端。</p>
+
+
+
+<p>其在Telegram频道中表示，拥有⭐️军事文件数据库、⭐️完整公司数据库、⭐️文件扫描（身份证、驾驶证、护照）、⭐️消费者信息数据库、⭐️电话列表数据库、⭐️电子邮件列表数据库、⭐️外汇与加密货币数据库、⭐️赌场与游戏数据库、⭐️公民身份 &amp; 社会保障号 &amp; 税务识别号数据库、⭐️大型网站数据库……</p>
+
+
+
+<p>据介绍，该网络犯罪分子使用的网站可以在明网（https://darkforums[.]st）与暗网（http://qeei4m7a2tve6ityewnezvcnf647onsqbmdbmlcw4y5pr6uwwfwa35yd[.]onion）同步访问，“<mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-vivid-red-color">暗网下/AWX</mark>”预计，FBI不会让其存在太长事件，未来也许会有国际执法机构对其的联合行动。</p>
+                                                                                </div>
