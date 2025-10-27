@@ -1,0 +1,113 @@
++++
+title = "Scattered LAPSUS$ Hunters团伙的暗网网站显示被FBI查封图片，但似乎有点假"
+date = 2025-10-27T13:29:00+08:00
+categories = ["暗网网站", "独家报道"]
+tags = ["Scattered LAPSUS$ Hunters", "勒索软件团伙"]
+thumbnail = ""
++++
+
+<div class="entry-content clearfix">
+                            <div class="wp-block-image">
+<figure class="aligncenter size-large"><noscript><img fetchpriority="high" decoding="async" width="1024" height="681" src="/images/06b27135f96ce3e85667e9b295ae3124.webp" alt="Scattered LAPSUS$ Hunters团伙的暗网网站显示被FBI查封图片，但似乎有点假" class="wp-image-4455"></noscript><img fetchpriority="high" decoding="async" width="1024" height="681" src="/images/06b27135f96ce3e85667e9b295ae3124.webp" alt="Scattered LAPSUS$ Hunters团伙的暗网网站显示被FBI查封图片，但似乎有点假" class="wp-image-4455 j-lazy"></figure></div>
+
+
+<p>周末，<span class="wpcom_tag_link">Scattered LAPSUS$ Hunters</span>团伙的暗网洋葱网站突然显示了被FBI查封的图片，图片与其明网网站Breachforums[.]hn本月上旬被FBI查封后展示的图片相同。如果属实，则证明该团伙的暗网基础设施也已经被FBI扣押，服务器与数据库以及文件均被执法机构掌握。但目前业界普遍认为这是Scattered LAPSUS$ Hunters团伙自导自演的恶作剧。</p>
+
+
+
+<p>回顾FBI设置的Breachforums[.]hn被扣押页面源码（省略图片的data信息与javascript引用信息）：</p>
+
+
+
+<pre class="wp-block-code"><code>&lt;html&gt;
+
+&lt;head&gt;
+&lt;meta http-equiv="Content-Type" content="text/html; charset=windows-1252"&gt;
+&lt;title&gt;This Domain Has Been Seized&lt;/title&gt;
+&lt;/head&gt;
+
+&lt;body style="background-color: black;"&gt;
+
+&lt;p&gt;&lt;img border="0" 
+alt="This domain has been seized." 
+src="data:image/png;base64,……"（省略data信息）
+width="auto" 
+height="100%"
+style="display: block; object-fit: contain; margin-left: auto; margin-right: auto";/p&gt;
+
+&lt;/body&gt;
+
+&lt;/html&gt;</code></pre>
+
+
+
+<p>目前洋葱域名展示的被扣押页面源码：</p>
+
+
+
+<pre class="wp-block-code"><code>&lt;html lang="en"&gt;&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;title&gt;Seized&lt;/title&gt;
+  &lt;style&gt;
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      background-color: black; 
+    }
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+    }
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;img src="./takedown.png" alt="Logo"&gt;
+
+
+&lt;/body&gt;&lt;/html&gt;</code></pre>
+
+
+
+<p>从两个页面看，暗网网站展示的被扣押信息有所不同，信息完整度与精致性不如明网网站的扣押信息。对此，<a href="https://x.com/DarkWebInformer/status/1982453493915881813" target="_blank" rel="noreferrer noopener">@DarkWebInformer认为</a>，暗网网站的页面标题仅显示“Seized”（查封），通常应为“This Domain Has Been Seized”（该域名已被查封）或“This Website Has Been Seized”（该网站已被查封）。PNG文件名为takedown.png——这绝非图像的常规命名方式……且当前日期为星期日，非FBI办公时间。这显然是个游戏，SLSH玩这个已经有一段时间了。</p>
+
+
+
+<p><a href="https://x.com/vxunderground/status/1982512456149701039" target="_blank" rel="noreferrer noopener">@vxunderground认为</a>，虽然Scattered LAPSUS$ Hunters的Tor域名上，现在挂着FBI查封的标识，但据他所知，美国联邦调查局从未在周末执行过域名下线或查封行动。@vxunderground总结了FBI下架域名或者查封网站的规律：</p>
+
+
+
+<ul class="wp-block-list">
+<li>多在周一或周五执行，联邦探员周末极少工作——毕竟薪水微薄，还得靠人祭才能活下去</li>
+
+
+
+<li>美国司法部总爱大张旗鼓搞宣传，有时对着镜头念稿子，说什么“你们逃不掉，我们既可怕又酷炫”</li>
+
+
+
+<li>联邦调查局局长将秃鹰标本钉在颈部行军礼，并在社交媒体发文炫耀。评论区通常被要求公开爱泼斯坦案文件的留言淹没</li>
+
+
+
+<li>美国法院文件系统（PACER）因信息查询请求陷入瘫痪</li>
+
+
+
+<li>约2000人在社交媒体声称这是“假旗行动”或“中情局蜜罐”。但据所知，所有事件皆差不多，故无真实可言</li>
+</ul>
+
+
+
+<p>“<mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-vivid-red-color">暗网下/AWX</mark>”认为，鉴于Scattered LAPSUS$ Hunters团伙的无厘头特征，且美国联邦调查局并未发布官方公告，该行为基本可以确认并非FBI的扣押行动，而是该团伙自己的游戏。大概率FBI暂未查出该团伙的暗网基础设施的位置，当然也没有张贴扣押横幅。该团伙在自家暗网网站上贴一张图片非常容易，其目的是欺骗、迷惑研究人员亦或仅仅是为了搞怪，该团伙在Telegram群组及频道中的日常搞怪已经司空见惯。</p>
+
+
+
+<p>FBI能否真的查封该<span class="wpcom_tag_link">勒索软件团伙</span>的暗网基础设施，“<mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-vivid-red-color">暗网下/AWX</mark>”将继续关注。</p>
+                                                                                </div>
