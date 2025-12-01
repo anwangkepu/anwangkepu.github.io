@@ -1,0 +1,99 @@
++++
+title = "Tor项目推出Counter Galois Onion加密，以保护用户免受网络攻击"
+date = 2025-11-29T01:05:00+08:00
+categories = ["Tor官方动态", "暗网动态", "暗网技术"]
+tags = ["Counter Galois Onion", "Tor项目", "洋葱服务"]
+thumbnail = ""
++++
+
+<div class="entry-content clearfix">
+                            <div class="wp-block-image">
+<figure class="aligncenter size-full"><noscript><img fetchpriority="high" decoding="async" width="940" height="529" src="/images/aa335050bee559beca6ab05e3b5ad734.webp" alt="Tor项目推出Counter Galois Onion加密，以保护用户免受网络攻击" class="wp-image-4520"></noscript><img fetchpriority="high" decoding="async" width="940" height="529" src="/images/aa335050bee559beca6ab05e3b5ad734.webp" alt="Tor项目推出Counter Galois Onion加密，以保护用户免受网络攻击" class="wp-image-4520 j-lazy"></figure></div>
+
+
+<p>依赖Tor的用户希望他们的流量在网络中传输时不会泄露他们的身份。这种信任取决于保护每一跳的加密强度。</p>
+
+
+
+<p>本周，<a href="https://blog.torproject.org/introducing-cgo/" target="_blank" rel="noreferrer noopener">Tor项目宣布了一项重大的加密技术改革</a>，用一种名为“反伽罗瓦洋葱”（<span class="wpcom_tag_link">Counter Galois Onion</span>，简称CGO）的全新、有研究支持的设计取代了使用了几十年的中继加密算法。</p>
+
+
+
+<p>此次升级标志着在保护匿名网络用户免受更广泛的复杂网络攻击者（特别是那些进行标记攻击的攻击者，这些攻击以前可能会损害用户隐私）的侵害方面迈出了重要一步。</p>
+
+
+
+<h2 class="wp-block-heading">为什么Tor需要改变中继处理加密的方式</h2>
+
+
+
+<p>Tor最初的中继加密算法，现在追溯命名为“tor1”，使用AES-128-CTR流密码结合弱4字节SHA-1摘要，在用户数据通过网络中的多个中继传输时对其进行加密。</p>
+
+
+
+<p>虽然这种设计能够实现功能，但它存在一些关键漏洞，而现代密码学已经解决了这些漏洞。</p>
+
+
+
+<p>最严重的问题是攻击者可以修改传输中的加密数据，并预测更改将如何在网络中传播，从而使他们能够追踪流量并有可能取消用户匿名性。</p>
+
+
+
+<p>旧系统还存在前向保密性不足的问题，在网络传输的整个生命周期内都保留着重复的对称加密密钥。如果攻击者在网络保持激活状态时窃取了密钥，他们就可以解密之前的所有通信。</p>
+
+
+
+<p>此外，4字节验证器只有四十亿分之一的概率能检测出单元伪造，这使得网络容易受到操纵。因此中继加密算法虽然已使用多年，如今已显露老旧之处。</p>
+
+
+
+<h2 class="wp-block-heading">CGO为网络带来了什么</h2>
+
+
+
+<p>CGO由密码学家Jean Paul Degabriele、Alessandro Melloni、Jean-Pierre Münch和Martijn Stam开发，代表了解决这些问题的现代方案。</p>
+
+
+
+<p>CGO基于坚固的伪随机置换（RPRP）结构，确保篡改加密数据的任何部分都会导致整个消息和所有后续消息无法恢复。</p>
+
+
+
+<p>这种宽块密码方法能够抵抗标记攻击，而不会像传统的宽块设计那样产生过多的带宽开销。</p>
+
+
+
+<p>新算法通过“更新”构造实现即时前向保密，在处理每个单元格后转换加密密钥，即使当前密钥泄露，也能防止解密先前的消息。</p>
+
+
+
+<p>CGO还升级了身份验证，采用了强大的16字节身份验证器，用现代加密标准取代了过时的SHA-1摘要。</p>
+
+
+
+<h2 class="wp-block-heading">CGO部署进展情况</h2>
+
+
+
+<p>CGO目前仍在Arti（Tor基于Rust的实现）和C语言Tor代码库中积极开发。Arti中已包含CGO，但标记为实验性功能。开发者计划在测试完成后默认启用CGO。</p>
+
+
+
+<p><span class="wpcom_tag_link">Tor项目</span>已经在其Rust实现Arti中实现了CGO，并且正在开发用于中继支持的C实现。</p>
+
+
+
+<p>当前路线图的优先事项包括：在Arti中默认启用CGO，为<span class="wpcom_tag_link">洋葱服务</span>实现CGO协商，以及针对现代处理器优化性能。</p>
+
+
+
+<p>此次过渡需要重构Tor代码库中关于中继单元布局和加密机制的核心假设。</p>
+
+
+
+<p>尽管CGO代表着一项重大进步，但Tor项目也承认，作为一个相对较新的设计，它将受益于持续的密码学审查。Tor开发者写道：“我们有理由质疑它是否存在缺陷”，同时他们也描述了为评估该建筑结构而采取的步骤。</p>
+
+
+
+<p>CGO代表了Tor核心加密技术近年来最重大的变革之一。随着开发的持续进行，用户和Tor网络上的节点运营者应密切关注即将发布的版本，并在CGO正式上线后做好过渡准备。</p>
+                                                                                </div>
