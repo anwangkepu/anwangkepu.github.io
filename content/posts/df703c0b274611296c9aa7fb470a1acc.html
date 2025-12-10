@@ -1,0 +1,109 @@
++++
+title = "暗网勒索软件团伙LockBit 5.0新的服务器IP地址和明网域名被泄露"
+date = 2025-12-09T03:34:00+08:00
+categories = ["独家报道"]
+tags = ["LockBit", "勒索软件团伙"]
+thumbnail = ""
++++
+
+<div class="entry-content clearfix">
+                            <div class="wp-block-image">
+<figure class="aligncenter size-large"><noscript><img fetchpriority="high" decoding="async" width="1024" height="576" src="/images/50105280301422364fd981870c4b7cd5.webp" alt="暗网勒索软件团伙LockBit 5.0新的服务器IP地址和明网域名被泄露" class="wp-image-4541"></noscript><img fetchpriority="high" decoding="async" width="1024" height="576" src="/images/50105280301422364fd981870c4b7cd5.webp" alt="暗网勒索软件团伙LockBit 5.0新的服务器IP地址和明网域名被泄露" class="wp-image-4541 j-lazy"></figure></div>
+
+
+<p>暗网<span class="wpcom_tag_link">勒索软件团伙</span><span class="wpcom_tag_link">LockBit</span> 5.0遭遇了严重的运营安全事故，安全研究员Rakesh Krishnan发现了其最新的基础设施，包括服务器、IP地址和明网域名均被泄露。</p>
+
+
+
+<p>12月5日，Krishnan首次通过X（前身为Twitter）<a href="https://twitter.com/RakeshKrish12/status/1997122573512200668" target="_blank" rel="noreferrer noopener">公布了调查结果</a>，并指出该域名是最近注册的，与LockBit 5.0的活动有直接联系。他的发现显示IP地址205.185.116.233和明网域名karma0.xyz托管了该勒索软件团伙的最新暗网泄密网站。</p>
+
+
+
+<figure class="wp-block-embed is-type-rich is-provider-twitter wp-block-embed-twitter"><div class="wp-block-embed__wrapper">
+<blockquote class="twitter-tweet" data-width="500" data-dnt="true"><p lang="en" dir="ltr">🚨Exposing <a href="https://twitter.com/hashtag/LOCKBIT?src=hash&amp;ref_src=twsrc%5Etfw">#LOCKBIT</a> 5.0 Server: IP &amp; DOMAIN<br><br>IP: 205.185.116.233 🇺🇸<a href="https://twitter.com/hashtag/AS53667?src=hash&amp;ref_src=twsrc%5Etfw">#AS53667</a><br><br>Domain: karma0[.]xyz<br>Reg: 2 November 2025<br><br>💡LockBit Group uses <a href="https://twitter.com/hashtag/Smokeloader?src=hash&amp;ref_src=twsrc%5Etfw">#Smokeloader</a> in their attacks<br>MD5: e818a9afd55693d556a47002a7b7ef31<a href="https://twitter.com/hashtag/Lockbit5?src=hash&amp;ref_src=twsrc%5Etfw">#Lockbit5</a> <a href="https://twitter.com/hashtag/Ransomware?src=hash&amp;ref_src=twsrc%5Etfw">#Ransomware</a> <a href="https://twitter.com/hashtag/Security?src=hash&amp;ref_src=twsrc%5Etfw">#Security</a> <a href="https://twitter.com/hashtag/Intelligence?src=hash&amp;ref_src=twsrc%5Etfw">#Intelligence</a> <a href="https://twitter.com/hashtag/OSINT?src=hash&amp;ref_src=twsrc%5Etfw">#OSINT</a> <a href="https://twitter.com/hashtag/Databreach?src=hash&amp;ref_src=twsrc%5Etfw">#Databreach</a> <a href="https://twitter.com/hashtag/TOR?src=hash&amp;ref_src=twsrc%5Etfw">#TOR</a> <a href="https://t.co/U1AvMoCuck">pic.twitter.com/U1AvMoCuck</a></p>— RAKESH KRISHNAN (@RakeshKrish12) <a href="https://twitter.com/RakeshKrish12/status/1997122573512200668?ref_src=twsrc%5Etfw">December 6, 2025</a></blockquote><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</div></figure>
+
+
+
+<p>Krishnan表示，暴露的服务器托管在AS53667（PONYNET）下，该网络由FranTech Solutions运营，该网络经常被滥用于非法活动而臭名昭著。</p>
+
+
+
+<p>访问该IP，该服务器显示了一个DDoS防护页面，上面明确显示有“LOCKBITS.5.0”标识，这直接证明了它是该勒索软件团伙的基础设施。</p>
+
+
+
+<p>此次重大泄露发生之际，LockBit团伙正凭借其增强的恶意软件攻击能力试图卷土重来。</p>
+
+
+
+<h2 class="wp-block-heading">域名注册信息及服务器暴露详情</h2>
+
+
+
+<p>WHOIS记录显示karma0.xyz域名于2025年4月12日在域名服务商Namecheap注册，有效期至2026年4月，使用了Namecheap的隐私保护服务，因此无法查看更多注册信息，但可以看到Namecheap隐私保护将冰岛雷克雅未克列为联系地点。</p>
+
+
+
+<p>域名状态显示禁止客户端转移，这项防御措施是在基础设施被公开确认之后才采取的。这表明该团伙已采取措施锁定管理控制权，以应对信息泄露事件。</p>
+
+
+
+<p>通过域名的解析记录可以看到，该域名采用Cloudflare的NS服务器（iris.ns.cloudflare.com和tom.ns.cloudflare.com）进行解析。</p>
+
+
+
+<p>针对IP地址205.185.116.233进行网络扫描，发现该服务器开放了多个端口，包括易受攻击的远程访问端口，存在重大安全风险。</p>
+
+
+
+<p>该服务器在端口21上提供FTP服务，在端口80和5000上提供HTTP服务，在端口3389上提供远程桌面协议 (RDP)，在端口5985上提供Windows远程管理（WinRM），在端口49666上提供文件共享服务。</p>
+
+
+
+<figure class="wp-block-table aligncenter"><table class="has-fixed-layout"><thead><tr><th>端口</th><th>协议</th><th>组件服务</th></tr></thead><tbody><tr><td>21</td><td>TCP</td><td>FTP Server</td></tr><tr><td>80</td><td>TCP</td><td>Apache/2.4.58 (Win64) OpenSSL/3.1.3 PHP/8.0.30 G7gGBXkXcAAcgxa.jpg​</td></tr><tr><td>3389</td><td>TCP</td><td>RDP (WINDOWS-401V6QI)</td></tr><tr><td>5000</td><td>TCP</td><td>HTTP</td></tr><tr><td>5985</td><td>TCP</td><td>WinRM</td></tr><tr><td>47001</td><td>TCP</td><td>HTTP</td></tr><tr><td>49666</td><td>TCP</td><td>File Server</td></tr></tbody></table></figure>
+
+
+
+<p>运行在Windows系统上的Apache Web服务器（版本2.4.58，OpenSSL 3.1.3和PHP 8.0.30）展示了该团伙的基于Windows的基础架构。</p>
+
+
+
+<h2 class="wp-block-heading">LockBit 5.0变种为迄今为止最危险的勒索软件</h2>
+
+
+
+<p>“<mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-vivid-red-color">暗网下/AWX</mark>”前期报道，LockBit 5.0于2025年9月左右出现，变种为迄今为止最危险的勒索软件，代表了勒索软件复杂性的重大演变，这些技术改进使得LockBit 5.0比其之前的版本危险得多。</p>
+
+
+
+<p>这款新变种对勒索软件面板和加密锁进行了全面重新设计，模块化程度更高，加密速度更快，更能有效绕过安全防御。混淆技术是该新版本勒索软件的一项关键特性，其攻击目标包括Linux、Windows和VMware ESXi环境。该变种采用随机文件扩展名来增加检测和恢复难度，实施基于地理位置的规避机制，专门跳过被识别为俄罗斯的系统，并使用XChaCha20加速文件加密。</p>
+
+
+
+<p>尽管之前LockBit的基础设施曾被FBI控制，也曾被黑客攻破，但此次基础设施暴露事件表明LockBit在运营安全方面仍然存在持续漏洞。</p>
+
+
+
+<p>同时此次事件也给大家新的启示：此次泄露凸显了威胁情报共享和对已知威胁行为者基础设施进行主动监控的重要性。</p>
+
+
+
+<h2 class="wp-block-heading">LockBit仍然是最活跃的勒索软件组织</h2>
+
+
+
+<p>尽管经过近两年的努力才重新站稳脚跟，LockBit在其六年历史中仍然是最活跃的勒索软件组织，其2757名受害者是其最接近的竞争对手（包括 Qilin、Akira、Play和CL0P）的两倍多。</p>
+
+
+
+<p>LockBit最新披露的受害者中，一家提供区域客运和包机服务的亚洲航空公司尤为引人注目。另一家新上线的受害者是一家加勒比海地区的大型房地产公司。</p>
+
+
+
+<p>LockBit针对金融服务机构的攻击取得了惊人的成功。该组织声称，到2025年，银行、金融服务和保险 (BFSI) 行业的受害者人数将超过其他行业。总体而言，金融服务业并未跻身所有勒索软件组织攻击最多的十大行业之列，因为BFSI行业的网络安全控制通常比其他行业更为严格。</p>
+
+
+
+<p>LockBit这次能否实现持续复苏还有待观察，但该团伙拥有一个独特的、值得利用的基础。然而，勒索软件的追随者往往是机会主义者，他们通常会倾向于那些能带来最大利润和成功机会的勒索软件组织。LockBit能否东山再起，取决于它能否说服追随者相信自己有资格重返行业领先地位，“暗网下/AWX”将继续关注。</p>
+                                                                                </div>
