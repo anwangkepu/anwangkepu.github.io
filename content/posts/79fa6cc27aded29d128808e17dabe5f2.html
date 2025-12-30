@@ -1,0 +1,85 @@
++++
+title = "新恶意软件NtKiller正在暗网上大肆宣传，声称可以躲避杀毒软件检测"
+date = 2025-12-27T01:33:00+08:00
+categories = ["暗网纵论"]
+tags = ["NtKiller", "恶意软件"]
+thumbnail = ""
++++
+
+<div class="entry-content clearfix">
+                            <div class="wp-block-image">
+<figure class="aligncenter size-large"><noscript><img fetchpriority="high" decoding="async" width="1024" height="556" src="/images/5d2034f186aa1bceeb2c5f1802790dba.webp" alt="新恶意软件NtKiller正在暗网上大肆宣传，声称可以躲避杀毒软件检测" class="wp-image-4578"></noscript><img fetchpriority="high" decoding="async" width="1024" height="556" src="/images/5d2034f186aa1bceeb2c5f1802790dba.webp" alt="新恶意软件NtKiller正在暗网上大肆宣传，声称可以躲避杀毒软件检测" class="wp-image-4578 j-lazy"></figure></div>
+
+
+<p>威胁行为者”AlphaGhoul“开始在暗网推广一款名为<span class="wpcom_tag_link">NtKiller</span>的新型恶意工具，该工具旨在悄无声息地关闭杀毒软件和终端检测工具，可用于勒索软件攻击和初始访问代理。</p>
+
+
+
+<p>该工具发布在一个地下论坛上，犯罪分子聚集在该暗网论坛买卖黑客服务。威胁行为者发布的广告称，NtKiller可以帮助攻击者在受感染的计算机上运行<span class="wpcom_tag_link">恶意软件</span>时避免被杀毒软件及端点防御系统检测到。</p>
+
+
+
+<p>NtKiller的出现对依赖传统安全工具的组织来说是一个重大挑战。</p>
+
+
+
+<p>威胁行为者声称该工具可以对抗许多流行的安全解决方案，包括Microsoft Defender、ESET、Kaspersky、Bitdefender和Trend Micro。</p>
+
+
+
+<p>更令人担忧的是，有说法称该恶意软件在激进模式下可以绕过企业级EDR解决方案。KrakenLabs分析师指出，该恶意软件能够利用早期启动持久化机制保持隐蔽，一旦激活，安全团队就很难检测和清除它。</p>
+
+
+
+<p>KrakenLabs的研究人员<a href="https://x.com/KrakenLabs_Team/status/2003459700310859987" target="_blank" rel="noreferrer noopener">发现</a>，NtKiller采用模块化定价结构，核心功能定价为500美元，而rootkit功能和UAC绕过等附加功能则分别需要额外支付300美元。</p>
+
+
+
+<figure class="wp-block-embed is-type-rich is-provider-twitter wp-block-embed-twitter"><div class="wp-block-embed__wrapper">
+<blockquote class="twitter-tweet" data-width="500" data-dnt="true"><p lang="en" dir="ltr">🚨 New underground tool advertised: <a href="https://twitter.com/hashtag/NtKiller?src=hash&amp;ref_src=twsrc%5Etfw">#NtKiller</a><br><br>The threat actor <a href="https://twitter.com/hashtag/AlphaGhoul?src=hash&amp;ref_src=twsrc%5Etfw">#AlphaGhoul</a> is promoting NtKiller, a utility designed to stealthily terminate antivirus and EDR solutions. The advertisement was published on an underground forum forum, positioning the tool as a defensive bypass… <a href="https://t.co/1lbfw1bD0r">pic.twitter.com/1lbfw1bD0r</a></p>— KrakenLabs (@KrakenLabs_Team) <a href="https://twitter.com/KrakenLabs_Team/status/2003459700310859987?ref_src=twsrc%5Etfw">December 23, 2025</a></blockquote><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</div></figure>
+
+
+
+<p>整个软件包定价为1100美元，这种定价模式表明，该工具已经过改进，可以面向网络犯罪分子群体进行商业销售。</p>
+
+
+
+<p>该工具声称的功能不限于简单的进程终止，还包括支持高级规避技术，体现了当今地下恶意软件经济中常见的专业级开发和维护水平。安全研究人员指出，NtKiller的模块化设计和商业风格的呈现方式体现了网络犯罪工具日益复杂的趋势，模糊了渗透测试工具和恶意软件之间的界限。</p>
+
+
+
+<h2 class="wp-block-heading" id="h-technical-capabilities">NtKiller的<strong>技术能力</strong>高超</h2>
+
+
+
+<p>NtKiller所具备的技术能力使其在经验丰富的攻击者手中尤其危险。</p>
+
+
+
+<p>卖家的描述声称，NtKiller可以静默地禁用Windows环境中的多层保护，包括那些采用Hypervisor保护的代码完整性（HVCI）、基于虚拟化的安全（VBS）和内存完整性加固的保护。</p>
+
+
+
+<p>这些保护措施通常可以防止恶意或未签名的驱动程序执行，这使得所宣传的兼容性显得尤为重要。</p>
+
+
+
+<p>该工具的早期启动持久化机制的工作原理是在系统启动期间建立自身，此时许多安全监控系统尚未完全激活。这种时间优势使得恶意载荷能够在检测能力极弱的环境中执行。</p>
+
+
+
+<p>此外，反调试和反分析保护措施阻止研究人员和自动化工具检查恶意软件的行为，从而造成了对其实际功能与营销宣传之间存在重大的知识差距。</p>
+
+
+
+<p>静默绕过用户帐户控制（UAC）选项是另一项关键技术特性。绕过UAC允许恶意软件在不触发标准Windows提示（这些提示可能会提醒用户注意可疑活动）的情况下获得更高的系统权限。结合rootkit功能，攻击者可以对受感染的系统保持持续访问，同时还能躲过标准安全监控。</p>
+
+
+
+<p>KrakenLabs表示，NtKiller除了能够绕过安全系统的警报外，还支持虚拟机监控程序保护的代码完整性 （Hypervisor-Protected Code Integrity）、基于虚拟化的安全性（Virtualization-based Security）和内存完整性（Memory Integrity），这表明它可能被用于自带漏洞驱动程序（BYOV）攻击技术。</p>
+
+
+
+<p>但值得注意的是，威胁行为者宣称的这些功能尚未经过第三方研究人员的独立验证，NtKiller的实际有效性仍不清楚。</p>
+                                                                                </div>
