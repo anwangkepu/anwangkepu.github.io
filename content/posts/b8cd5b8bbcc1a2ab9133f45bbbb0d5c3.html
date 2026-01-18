@@ -1,0 +1,201 @@
++++
+title = "Tor项目最新发布Tails 7.4、Arti 1.9.0以及Tor浏览器15.0.4"
+date = 2026-01-17T23:32:00+08:00
+categories = ["Tor官方动态", "暗网动态"]
+tags = ["Arti", "Tails", "Tor浏览器", "Tor项目"]
+thumbnail = ""
++++
+
+<div class="entry-content clearfix">
+                            <div class="wp-block-image">
+<figure class="aligncenter size-large"><noscript><img fetchpriority="high" decoding="async" width="1024" height="576" src="/images/2330a67923b9d093dee9f94b87148a49.webp" alt="Tor项目最新发布Tails 7.4、Arti 1.9.0以及Tor浏览器15.0.4" class="wp-image-3991"></noscript><img fetchpriority="high" decoding="async" width="1024" height="576" src="/images/2330a67923b9d093dee9f94b87148a49.webp" alt="Tor项目最新发布Tails 7.4、Arti 1.9.0以及Tor浏览器15.0.4" class="wp-image-3991 j-lazy"></figure></div>
+
+
+<p>2026年伊始，Tor团队正在努力发力，在短短几天内，先后密集发布了<span class="wpcom_tag_link">Tor浏览器</span>15.0.4、<span class="wpcom_tag_link">Arti</span> 1.9.0以及<span class="wpcom_tag_link">Tails</span>操作系统7.4。</p>
+
+
+
+<h2 class="wp-block-heading">Tails系统7.4版本发布</h2>
+
+
+
+<p>Tails 7.4于近日发布，这是Tails 7.x系列的第4个小版本更新。Tails 7.x系列是基于Debian GNU/Linux的便携式Linux发行版，旨在保护用户免受监视和审查。</p>
+
+
+
+<p>Tails 7.4版本在Tails 7.3.1发布一个月后推出，引入了一项新功能，允许用户将语言、键盘布局和格式从欢迎屏幕保存到U盘，并在重新启动Tails时自动应用这些设置。</p>
+
+
+
+<p>Tails的开发者强调，只有这些基本设置会以这种方式存储，不包含任何其他个人数据。</p>
+
+
+
+<h3 class="wp-block-heading">变更和更新</h3>
+
+
+
+<ul class="wp-block-list">
+<li>将Tor浏览器更新至<a href="https://blog.torproject.org/new-release-tor-browser-1504/" target="_blank" rel="noreferrer noopener">15.0.4版本</a>。</li>
+
+
+
+<li>将Thunderbird更新到<a href="https://www.thunderbird.net/en-US/thunderbird/140.6.0esr/releasenotes/" target="_blank" rel="noreferrer noopener">140.6.0版本</a>。</li>
+
+
+
+<li>将Linux内核更新至6.12.63版本。</li>
+
+
+
+<li>停止支持BitTorrent下载。</li>
+</ul>
+
+
+
+<p>随着BitTorrent从v1向v2的过渡，Tails之前提供的BitTorrent v1文件可能存在安全隐患。<span class="wpcom_tag_link">Tor项目</span>认为，升级到BitTorrent v2会增加团队的迁移和维护成本，得不偿失。</p>
+
+
+
+<h3 class="wp-block-heading">已修复问题</h3>
+
+
+
+<ul class="wp-block-list">
+<li>修复了在Kleopatra中双击或从快捷菜单中选择“使用Kleopatra打开”来打开.gpg加密文件时出现的问题。（<a href="https://gitlab.tails.boum.org/tails/tails/-/issues/21281" target="_blank" rel="noreferrer noopener">#21281</a>）</li>
+
+
+
+<li>修复使用错误密码解锁VeraCrypt卷时桌面崩溃的问题。（<a href="https://gitlab.tails.boum.org/tails/tails/-/issues/21286" target="_blank" rel="noreferrer noopener">#21286</a>）</li>
+
+
+
+<li>顶部导航栏和锁屏界面请统一使用24小时制时间格式。（<a href="https://gitlab.tails.boum.org/tails/tails/-/issues/21310" target="_blank" rel="noreferrer noopener">#21310</a>）</li>
+</ul>
+
+
+
+<h2 class="wp-block-heading">Arti 1.9.0版本发布</h2>
+
+
+
+<p>Arti是Tor团队正在进行的用Rust语言实现的下一代Tor项目的成果。Tor团队很高兴地宣布最新版本Arti 1.9.0的发布。</p>
+
+
+
+<p>此版本包含一些关于中继和目录权威性开发的幕后工作，并改进了对动态分配端口的支持。例如，Arti现在接受proxy.socks_listen = “auto”使用操作系统分配的端口配置其 SOCKS 代理，并将分配的端口写入Arti数据目录中的结构化JSON文件。</p>
+
+
+
+<p>随着动态端口分配方式的改变，Tor团队也弃用了0端口号作为参数，从而完全禁用了此功能。</p>
+
+
+
+<p>洋葱服务方面也出现了一些有趣的进展，即Arti的密钥管理器现在以实验性公共API的形式提供，供Arti的密钥管理CLI使用。这仅仅是API的变更，CLI用户不会受到影响。</p>
+
+
+
+<p>Tor团队在Arti中对中继器的支持工作也取得了显著进展。具体而言，中继电路反应器现在能够处理传入的数据流请求，这对于该组件的整体运行设计至关重要。</p>
+
+
+
+<p>同样，目录权威领域的开发也取得了显著进展。此版本对多种网络文档类型和API进行了重构，并增加了对目录权威密钥证书的实验性支持。此外，目录镜像也获得了从目录权威下载网络文档的相关逻辑。</p>
+
+
+
+<h2 class="wp-block-heading">Tor浏览器15.0.4版本发布</h2>
+
+
+
+<p>Tor浏览器15.0.4版本现已可在<a href="https://www.torproject.org/download/" target="_blank" rel="noreferrer noopener">Tor Browser下载页面</a>以及<a href="https://www.torproject.org/dist/torbrowser/15.0.4/" target="_blank" rel="noreferrer noopener">Tor项目的分发目录</a>中获取。这是基于<br>Mozilla Firefox 140 ESR的一次重大更新，引入了令人兴奋的功能，例如支持垂直标签和标签组，以及地址栏中的新统一搜索按钮。</p>
+
+
+
+<p>此版本还包含针对Firefox的<a href="https://www.mozilla.org/en-US/security/advisories/" target="_blank" rel="noreferrer noopener">重要安全更新</a>。</p>
+
+
+
+<h3 class="wp-block-heading">完整更新日志</h3>
+
+
+
+<p>Tor浏览器15.0.3版本以来的<a href="https://gitlab.torproject.org/tpo/applications/tor-browser-build/-/raw/maint-15.0/projects/browser/Bundle-Data/Docs-TBB/ChangeLog.txt" target="_blank" rel="noreferrer noopener">完整更新日志</a>如下：</p>
+
+
+
+<ul class="wp-block-list">
+<li>所有平台
+<ul class="wp-block-list">
+<li><a href="https://gitlab.torproject.org/tpo/applications/tor-browser/-/issues/44418" target="_blank" rel="noreferrer noopener">Bug tor-browser#44418</a>：更新内置的obfs4网桥</li>
+
+
+
+<li><a href="https://gitlab.torproject.org/tpo/applications/tor-browser/-/issues/44433" target="_blank" rel="noreferrer noopener">Bug tor-browser#44433</a>：已阻止对象窗口中出现奇怪的 §:domain.com 标签</li>
+
+
+
+<li><a href="https://gitlab.torproject.org/tpo/applications/tor-browser/-/issues/44470" target="_blank" rel="noreferrer noopener">Bug tor-browser#44470</a>：将 Tor 浏览器稳定版重新基于 140.7.0esr 构建</li>
+
+
+
+<li><a href="https://gitlab.torproject.org/tpo/applications/tor-browser/-/issues/44474" target="_blank" rel="noreferrer noopener">Bug tor-browser#44474</a>：从 Firefox 147 向后移植安全修复</li>
+
+
+
+<li><a href="https://gitlab.torproject.org/tpo/applications/tor-browser/-/issues/44482" target="_blank" rel="noreferrer noopener">Bug tor-browser#44482</a>：（H1）通过数据 URI 导航在最安全模式下执行脚本</li>
+</ul>
+</li>
+
+
+
+<li>Windows + macOS + Linux
+<ul class="wp-block-list">
+<li>已将 Firefox 更新至 140.7.0esr</li>
+</ul>
+</li>
+
+
+
+<li>安卓
+<ul class="wp-block-list">
+<li>GeckoView 已更新至 140.7.0esr 版本</li>
+
+
+
+<li><a href="https://gitlab.torproject.org/tpo/applications/tor-browser-build/-/issues/41681" target="_blank" rel="noreferrer noopener">Bug tor-browser-build#41681</a>：在基于 140esr 的安卓版 Tor 浏览器中保持公共后缀更新</li>
+</ul>
+</li>
+
+
+
+<li>构建系统
+<ul class="wp-block-list">
+<li>所有平台
+<ul class="wp-block-list">
+<li><a href="https://gitlab.torproject.org/tpo/applications/tor-browser-build/-/issues/41654" target="_blank" rel="noreferrer noopener">Bug tor-browser-build#41654</a>：使 relprep.py 更新 Moat 设置</li>
+
+
+
+<li><a href="https://gitlab.torproject.org/tpo/applications/tor-browser-build/-/issues/41682" target="_blank" rel="noreferrer noopener">Bug tor-browser-build#41682</a>：当找不到 GitHub 发布版本时，relprep.py 应该失败。</li>
+
+
+
+<li><a href="https://gitlab.torproject.org/tpo/applications/rbm/-/issues/40090" target="_blank" rel="noreferrer noopener">Bug rbm#40090</a>：加快清理速度</li>
+
+
+
+<li><a href="https://gitlab.torproject.org/tpo/applications/rbm/-/issues/40095" target="_blank" rel="noreferrer noopener">Bug rbm#40095</a>：启用 refresh_input 时，不应将缓存的校验和用于输入文件。</li>
+</ul>
+</li>
+
+
+
+<li>安卓
+<ul class="wp-block-list">
+<li><a href="https://gitlab.torproject.org/tpo/applications/tor-browser-build/-/issues/41679" target="_blank" rel="noreferrer noopener">Bug tor-browser-build#41679</a>：Android tor-expert-bundle 归档文件名中缺少版本信息</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+                                                                                </div>
