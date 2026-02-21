@@ -1,0 +1,89 @@
++++
+title = "允许交流勒索软件的新暗网论坛T1erOne诞生，据称是RAMP的替代品"
+date = 2026-02-15T23:27:00+08:00
+categories = ["暗网域名", "暗网网站", "独家报道"]
+tags = ["T1erOne", "暗网论坛"]
+thumbnail = ""
++++
+
+<div class="entry-content clearfix">
+                            <div class="wp-block-image">
+<figure class="aligncenter size-large"><noscript><img fetchpriority="high" decoding="async" width="1024" height="677" src="/images/9f45058702a39fb7bb2bfacae11e7fa3.webp" alt="允许交流勒索软件的新暗网论坛T1erOne诞生，据称是RAMP的替代品" class="wp-image-4687"></noscript><img fetchpriority="high" decoding="async" width="1024" height="677" src="/images/9f45058702a39fb7bb2bfacae11e7fa3.webp" alt="允许交流勒索软件的新暗网论坛T1erOne诞生，据称是RAMP的替代品" class="wp-image-4687 j-lazy"></figure></div>
+
+
+<p>“<mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-vivid-red-color">暗网下/AWX</mark>”前期报道，臭名昭著的俄罗斯暗网论坛RAMP已经被FBI查封，RAMP曾是允许讨论勒索软件的<span class="wpcom_tag_link">暗网论坛</span>，受到勒索软件团伙的欢迎。最新情报显示，RAMP的替代品已经出现，新暗网论坛的名称为“<span class="wpcom_tag_link">T1erOne</span>”（也被称为TierOne、t1eron3、Tier1），可以同时通过暗网和明网进行访问。</p>
+
+
+
+<p>近日，有安全研究人员club1337（<a href="https://x.com/club31337" target="_blank" rel="noreferrer noopener">@club31337</a>）发布推文表示“Ramp已死，TierOne万岁”，并给出了新的T1erOne网站的暗网与明网域名。“<mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-vivid-red-color">暗网下/AWX</mark>”对该推文进行了核验，确认T1erOne网站的暗网与明网域名均可以访问：</p>
+
+
+
+<p>T1erOne的暗网域名：jprrin6bqe3flvtpyxkt4zsmzc3u6vvn7ahgtcbul224w3xn4h3gawid[.]onion<br>T1erOne的明网域名：t1eron3[.]vip</p>
+
+
+
+<figure class="wp-block-embed is-type-rich is-provider-twitter wp-block-embed-twitter"><div class="wp-block-embed__wrapper">
+<blockquote class="twitter-tweet" data-width="500" data-dnt="true"><p lang="en" dir="ltr">Ramp is dead. Long live TierOne.<a href="https://t.co/akRDXrnJva">https://t.co/akRDXrnJva</a><a href="https://t.co/dm8re9gWcU">https://t.co/dm8re9gWcU</a> <a href="https://t.co/pEh2aUb78M">pic.twitter.com/pEh2aUb78M</a></p>— club1337 (@club31337) <a href="https://twitter.com/club31337/status/2022002053690638409?ref_src=twsrc%5Etfw">February 12, 2026</a></blockquote><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</div></figure>
+
+
+
+<p>“<mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-vivid-red-color">暗网下/AWX</mark>”尝试访问T1erOne论坛，发现该网站主要提供了登录和注册功能。打开该网站，显示了一个简洁的登录界面，包括用户名、密码输入框，以及注册链接，没有复杂的交互或可见的外部资源加载。可以明确的是，与常规暗网论坛不同，新的T1erOne论坛并非使用常见的开源PHP论坛程序如phpBB、MyBB或SMF等进行搭建，可能系背后的管理员独立开发。</p>
+
+
+
+<p>初步分析，T1erOne论坛采用了前后端分离的网站架构，还使用了Socket.IO技术来实现实时双向通信。其明网页面使用了Cloudflare的CDN服务，这可能为执法部门找到其背后的真实服务器IP提供便利。</p>
+
+
+
+<p>T1erOne论坛注册不需要邮箱验证，但注册该网站以后，需要管理员进行认证，访问所有页面均跳转提示：</p>
+
+
+
+<blockquote class="wp-block-quote is-layout-flow wp-block-quote-is-layout-flow">
+<p>Этот форум только по закрытому входу. Чтобы попасть, надо скинуть свои другие форумные акк (Рехаб, хсс, эксплойт) или заплатить 450$ на БТЦ / XMR кошелёк. Message an admin | Напиши админу<br>（本论坛为私密论坛。如需访问，您必须发送您的其他论坛账号（Rehab、XSS、Exploit）或向BTC/XMR钱包支付450美元。联系管理员 | 给管理员写信。）</p>
+</blockquote>
+
+
+
+<p>本站（anwangxia.com）经过对页面的解析，发现了其后端的部分API接口如下：</p>
+
+
+
+<ul class="wp-block-list">
+<li>/api/auth/register</li>
+
+
+
+<li>/api/auth/login</li>
+
+
+
+<li>/api/public/banners/image/2</li>
+
+
+
+<li>/api/auth/me</li>
+
+
+
+<li>/api/public/settings</li>
+
+
+
+<li>/api/notifications</li>
+
+
+
+<li>/api/messages/unread-count</li>
+</ul>
+
+
+
+<p>安全研究人员认为T1erOne与此前RAMP的活动关联，并正在通过新的T1erOne论坛监控该组织，这表明网络犯罪分子的攻击行为不回停歇，勒索软件的侵扰仍将继续。T1erOne论坛接下来将如何发展以及会不会步RAMP后尘，“<mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-vivid-red-color">暗网下/AWX</mark>”将持续关注。</p>
+
+
+
+<p>更多暗网新闻动态，请关注“<mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-vivid-red-color">暗网下/AWX</mark>”。</p>
+                                                                                </div>
