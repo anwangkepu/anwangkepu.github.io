@@ -1,0 +1,145 @@
++++
+title = "访问暗网都应该知道的10个隐私保护技巧"
+date = 2026-03-12T23:53:00+08:00
+categories = ["暗网技术", "暗网纵论"]
+tags = ["暗网科普", "隐私保护"]
+thumbnail = ""
++++
+
+<div class="entry-content clearfix">
+                            <div class="wp-block-image">
+<figure class="aligncenter size-large"><noscript><img fetchpriority="high" decoding="async" width="1024" height="721" src="/images/c38483d3b8503d52d2170a1be6c4c85d.webp" alt="访问暗网都应该知道的10个隐私保护技巧" class="wp-image-4729"></noscript><img fetchpriority="high" decoding="async" width="1024" height="721" src="/images/c38483d3b8503d52d2170a1be6c4c85d.webp" alt="访问暗网都应该知道的10个隐私保护技巧" class="wp-image-4729 j-lazy"></figure></div>
+
+
+<p>暗网是听着就让人有点发怵的互联网角落，但它确实是很多人躲避审查、争取隐私的最后一块阵地。有一说一，暗网的风险是实打实的大，非法内容、黑客诈骗、恶意软件到处都是。进去之前把防护做到位，比什么都重要。就像第一次去一个完全陌生的城市，得先把交通地图、防护措施都搞清楚。</p>
+
+
+
+<p>本文是“<mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-vivid-red-color">暗网下/AWX</mark>”认为访问暗网最该优先掌握的10条基本<span class="wpcom_tag_link">隐私保护</span>技巧，基本覆盖了大部分实际操作场景。但请记住：<strong>法网恢恢，疏而不漏。使用暗网从事违法犯罪行为，最终的结局一定是蹲监狱</strong>。</p>
+
+
+
+<h2 class="wp-block-heading">一、把Tor浏览器安全级别调到“Safest”（最安全）</h2>
+
+
+
+<p>Tor浏览器有三级安全设置，默认是“Standard”，但真正想把风险降到最低，直接拉到“Safest”。这个模式会完全禁用JavaScript（很多攻击都靠它）、限制字体加载、图标、数学符号显示，音频视频必须手动点才能播放，把网站能偷偷干的坏事基本全堵死了。网站界面会变得很简陋，有些功能直接用不了，但这是目前Tor自带的最强防护。日常觉得太卡就降到“Safer”，但高风险操作必须用“Safest”。</p>
+
+
+
+<p>操作：点击菜单按钮（三条横线），然后依次选择“设置”（Settings ）&gt;“隐私和安全”（Privacy &amp; Security），在“安全”（Security）选项下选择“更改”（Change） 。选择“最安全”（Safest）将 Tor 设置为最高安全模式，然后点击“保存并重启”（Save and restart）。</p>
+
+
+
+<h2 class="wp-block-heading">二、别最大化Tor浏览器窗口，随时随机调整窗口大小</h2>
+
+
+
+<p>访问暗网时，容易受到指纹识别攻击。从技术上而言，可以利用您计算机的信息（例如操作系统、系统时间，甚至是您安装的字体）来识别您的个人身份。指纹识别中另一个关键信息是显示器尺寸：如果浏览器窗口占据整个屏幕，恶意攻击者就能推断出你使用的显示器或设备。</p>
+
+
+
+<p>虽然<a href="https://support.torproject.org/tor-browser/features/fingerprinting-protections/" target="_blank" rel="noreferrer noopener">Tor已经尽力防止指纹识别</a>了，但浏览器窗口大小是个超级容易被忽略的泄露点。全屏打开的话，攻击者通过分辨率就能快速缩小你的设备范围。最好的办法是打开Tor后别点最大化按钮，最好每次用的时候都稍微拖动一下窗口，尺寸随机变化一点。简单一个习惯，就能大幅增加指纹混淆难度。</p>
+
+
+
+<h2 class="wp-block-heading">三、多用“New Identity”功能刷新身份</h2>
+
+
+
+<p>Tor浏览器有个特别实用的按钮：新建身份。点右上角菜单 → “新建身份”（New Identity），浏览器会瞬间关掉所有标签、断开当前路由线路、重连新的Tor路径，把Cookie、历史、会话全部清空，相当于彻底换了个人。遇到任何可疑页面、准备下载东西、或者连续逛了很久之后，都点一下这个，基本等于重启匿名状态。</p>
+
+
+
+<h2 class="wp-block-heading">四、增加网桥，甚至用可插拔传输来隐藏Tor流量</h2>
+
+
+
+<p>普通Tor连接走的是公开的中继节点，虽然你的真实IP不会泄露，但运营商或防火墙还是能看出你在用Tor。如果你在Tor被封锁的国家/地区，或者不想让ISP知道你在跑Tor，就必须加网桥。</p>
+
+
+
+<p>操作：在Tor浏览器中，点击右上角的菜单按钮，然后选择“设置”（Settings ）&gt;“连接”（Connection）来配置网桥。您可以使用“请求网桥”（Request bridges）功能从官方Tor机器人获取网桥链接，或者使用网页或Telegram链接查找网桥。更高一级的选择内置的可插拔传输桥（obfs4、meek-azure等），这些能把Tor流量伪装成普通HTTPS甚至其他协议，ISP基本看不出来你在用Tor。被墙地区几乎是必选项。</p>
+
+
+
+<h2 class="wp-block-heading">五、连上Tor后第一时间检查IP泄露</h2>
+
+
+
+<p>IP泄露是指你的实际网络位置被你连接的网站知晓——这是你在暗网访问时需要避免的情况。Tor再强，WebRTC没关干净、DNS配置出错、恶意网站脚本或浏览器扩展程序跑一跑，还是可能泄露真实IP。</p>
+
+
+
+<p>建议每次连上暗网前，先打开<a href="https://ipleak.net/" target="_blank" rel="noreferrer noopener">IPLeak</a>测一测，看它报的出口IP是不是Tor节点的、WebRTC有没有你家宽带信息、DNS服务器是不是Tor的。如果有任何异常，马上停下来排查（Tor默认禁用WebRTC，但多测一次心里踏实）。</p>
+
+
+
+<p>六、浏览前把电脑上其他所有程序和后台应用全关掉</p>
+
+
+
+<p>如果您通过 Tor 访问暗网，请关闭系统上的所有其他程序：清除内存中的所有应用程序，把不相关的进程全杀掉，即使它们只是在后台运行（Windows 上的任务管理器和 macOS 上的活动监视器可以帮助完成此操作）。</p>
+
+
+
+<p>运行的应用程序不仅会帮助识别您的系统以进行指纹识别（比如字体列表、系统调用、插件痕迹），还会使您更容易受到暗网上的恶意网站和恶意软件的攻击。除了 Tor 之外，您运行的程序越多，不法分子可攻击的目标范围就越大。</p>
+
+
+
+<h2 class="wp-block-heading">七、用Tails OS运行Tor，获得系统级的隔离保护</h2>
+
+
+
+<p>在Windows或macOS系统上通过Tor访问暗网，您可以获得良好的安全保护。如果通过便携式Linux操作系统Tails访问，安全防护将更上一层楼。Tails可以从U盘运行，也可以通过虚拟机运行，这意味着即使恶意软件突破了你的防御，也无法访问你的主操作系统及其上的所有程序。</p>
+
+
+
+<p>从U盘启动（或虚拟机里跑），整个操作系统强制走Tor，所有流量都匿名化。即使有恶意软件突破浏览器，也接触不到你主机上的文件和程序。用完自动擦除内存，不留痕迹。配置花点时间，但这是目前最彻底的办法。<a href="https://tails.net/doc/index.en.html" target="_blank" rel="noreferrer noopener">官网有一步一步指导的教程</a>，新手跟着做基本不会出错。</p>
+
+
+
+<h2 class="wp-block-heading">八、别下载任何文件，必须打开就用Dangerzone</h2>
+
+
+
+<p>暗网下载东西是高危行为，恶意软件、勒索病毒、木马到处都是。实在避不开（比如可信联系人发来的文件），一定要用<a href="https://dangerzone.rocks/" target="_blank" rel="noreferrer noopener">Dangerzone</a>处理。它把PDF、图片、Office文档扔进沙箱，转成纯像素重建，彻底清除嵌入的恶意代码、追踪标签，最后给你一个干净安全的文件。Dangerzone软件开源免费，自由新闻基金会做的，用着很靠谱。</p>
+
+
+
+<h2 class="wp-block-heading">九、建立一套完全独立的“暗网身份”</h2>
+
+
+
+<p>绝对不要把日常用的邮箱、用户名、社交账号带进暗网，哪怕只是登录一下都会让Tor的匿名性大打折扣。这会增加你的凭证被盗的风险，也更容易让你被识别为个人用户。</p>
+
+
+
+<p>建议制定一套全新的网络身份规则，以增加暴露真实身份的难度，用Proton、Tutanota、DuckDuckGo这种临时/匿名邮箱，用户名随机生成。最好错开上网时间、用不同设备、甚至换个WiFi热点，避免任何行为模式跟日常重叠。日常身份和暗网身份彻底切割，交叉就是给自己挖坑。</p>
+
+
+
+<h2 class="wp-block-heading">十、额外注意事项</h2>
+
+
+
+<ul class="wp-block-list">
+<li>保持Tor浏览器最新版本，及时修复漏洞打好补丁。</li>
+
+
+
+<li>Tor浏览器别装任何第三方扩展，加装插件容易被指纹追踪。</li>
+
+
+
+<li>可以先使用VPN再开Tor（Tor over VPN），但别把VPN当万能救命稻草，主要还是靠Tor本身和使用习惯。</li>
+
+
+
+<li>心态上保持警惕，别乱点链接、别登录任何跟自己相关的账号。</li>
+</ul>
+
+
+
+<p>这些是“<mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-vivid-red-color">暗网下/AWX</mark>”结合社区经验总结出来的，基本把最关键的防护点都盖住了。安全永远是相对的，没有绝对保险，但把这10条做到位，风险已经降到很低了。自己用的时候多留个心眼，暗网水很深，谨慎永远是第一位的。</p>
+                                                                                </div>
