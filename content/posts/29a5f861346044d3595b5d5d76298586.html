@@ -1,0 +1,183 @@
++++
+title = "一台会“遗忘”的服务器：探索Tor的无状态中继"
+date = 2026-04-12T11:34:00+08:00
+categories = ["Tor官方动态", "暗网技术"]
+tags = ["Tor", "TPM", "中继节点"]
+thumbnail = ""
++++
+
+<div class="entry-content clearfix">
+                            <div class="wp-block-image">
+<figure class="aligncenter size-full"><noscript><img fetchpriority="high" decoding="async" width="940" height="529" src="/images/87687dbbe6ca0363198ace932ab68f9a.webp" alt="一台会“遗忘”的服务器：探索Tor的无状态中继" class="wp-image-4800"></noscript><img fetchpriority="high" decoding="async" width="940" height="529" src="/images/87687dbbe6ca0363198ace932ab68f9a.webp" alt="一台会“遗忘”的服务器：探索Tor的无状态中继" class="wp-image-4800 j-lazy"></figure></div>
+
+
+<p><span class="wpcom_tag_link">Tor</span>网络的核心目标是保护用户隐私，让任何人——包括记者、活动人士或举报者——都能在不被追踪的情况下上网。网络设计确保没有单一节点或运营商能知道谁在和谁通信。然而，现实中运行Tor<span class="wpcom_tag_link">中继节点</span>（relay）面临巨大风险：服务器可能被执法部门扣押、突袭，甚至物理访问。历史上，奥地利、德国、美国、俄罗斯等地都发生过类似事件。一旦服务器被没收，里面存储的密钥、日志或其他数据就可能成为证据，破坏整个网络的信任基础。</p>
+
+
+
+<p>为了解决这个问题，有人提出让中继节点变得“无状态”（stateless）。简单说，就是让服务器不保存任何持久化数据，每次启动都从一个已知的、固定的镜像开始运行，就像<a href="https://tails.net/" target="_blank" rel="noreferrer noopener">Tails操作系统</a>那样，一切都在内存（RAM）中完成，重启后所有临时状态自动消失。</p>
+
+
+
+<p>本文基于<a href="https://blog.torproject.org/exploring-stateless-relays/" target="_blank" rel="noreferrer noopener">Tor项目官方博客的最新文章</a>，探讨了无状态、无盘操作系统如何从固件到用户空间提升中继服务器的安全性，重点关注软件完整性和抵御物理攻击的能力。这项工作源于意大利<a href="https://osservatorionessuno.org/" target="_blank" rel="noreferrer noopener">Osservatorio Nessuno</a>运行出口中继服务器的经验。中继服务器的管理因具体情况、技术能力、预算和管辖范围而异。我们希望引发讨论，而非提出单一模型。</p>
+
+
+
+<h2 class="wp-block-heading">什么是无状态中继，为什么它更安全？</h2>
+
+
+
+<p>传统中继节点会把身份密钥（identity key）、带宽历史等信息存放在磁盘上。这些数据让节点能在网络中积累“信誉”（如获得Guard或Exit标志，提高流量分配）。但磁盘数据正是物理攻击的最大弱点：被扣押后，攻击者可以直接复制文件，提取密钥。</p>
+
+
+
+<p>无状态系统则彻底反其道而行之：</p>
+
+
+
+<ul class="wp-block-list">
+<li><strong>物理攻击抵抗力</strong>：机器被没收或镜像克隆时，内存中的数据会因断电而消失，什么都留不下。密钥如果只存在于特定硬件中，提取难度大幅增加。</li>
+
+
+
+<li><strong>声明式配置</strong>：整个系统通过版本控制的镜像构建，每次启动都强制应用相同配置，不会“漂移”。</li>
+
+
+
+<li><strong>不可变运行时</strong>：文件系统设为只读，即使攻击者获得代码执行权限，也无法在重启后持久化恶意代码。</li>
+
+
+
+<li><strong>可重现性</strong>：系统状态固定，便于验证、审计和复现，减少人为配置错误。</li>
+</ul>
+
+
+
+<p>这种思路并非全新。早在2015年，就有Tor-ramdisk项目——一个基于uClibc的微型Linux发行版，专门设计成完全在内存中运行Tor中继。</p>
+
+
+
+<h2 class="wp-block-heading">Tor中继为什么难以实现无状态？</h2>
+
+
+
+<p>难点主要在于“信誉”和“状态”：</p>
+
+
+
+<ol class="wp-block-list">
+<li><strong>长期身份密钥</strong>：Tor中继的ed25519身份密钥决定了节点在网络中的身份。丢失它，就得从零开始积累带宽权重。密钥必须能“活过”多次重启，却又不能轻易被提取。</li>
+
+
+
+<li><strong>状态文件</strong>：Tor会维护带宽使用历史等临时数据。每次丢弃这些数据会影响性能。</li>
+
+
+
+<li><strong>内存限制</strong>：完全无磁盘意味着不能使用交换分区（swap）。如果内存不足，Linux内核的OOM Killer会直接杀死进程。实际测试显示，Tor在繁忙的Guard中继上可能占用约5.7GB内存，主要因为目录缓存对象的高频创建与销毁导致内存碎片。通过把glibc内存分配器换成jemalloc或mimalloc，能把占用降到1.2GB以下，<a href="https://1aeo.com/blog/tor-memory-optizations-what-actually-works.html" target="_blank" rel="noreferrer noopener">大幅改善稳定性</a>。</li>
+</ol>
+
+
+
+<h2 class="wp-block-heading"><span class="wpcom_tag_link">TPM</span>：硬件级密钥保护的核心工具</h2>
+
+
+
+<p>解决密钥持久化问题的关键硬件是<strong>TPM（Trusted Platform Module，可信平台模块）</strong>。这是主板上的一颗独立加密芯片，能存储密钥并执行运算，却从不把私钥暴露给操作系统。</p>
+
+
+
+<p>TPM有两个强大功能：</p>
+
+
+
+<ul class="wp-block-list">
+<li><strong>密封（Sealing）</strong>：把密钥绑定到机器当前的软件测量状态（PCR值）。只有当启动时的固件、引导程序、内核等完全一致时，才能解封使用密钥。即使物理访问硬件，也无法直接导出密钥（不过当前TPM对ed25519支持有限，密钥仍可能以加密字节串形式存于非易失性存储，存在一定导出风险）。</li>
+
+
+
+<li><strong>远程证明（Remote Attestation）</strong>：TPM能向外部验证者证明“当前运行的软件栈正是预期的那个”，签名由硬件根信任背书。这大大降低了运营商自身的可信度要求。</li>
+</ul>
+
+
+
+<p>使用TPM时，需要提前决定信任哪些软件状态。更新内核或引导程序后，测量值变化，必须重新密封密钥。这也是目前最大的运维挑战之一。</p>
+
+
+
+<h2 class="wp-block-heading">现有几种实现方案</h2>
+
+
+
+<p>不同运营商根据安全需求和复杂度，选择不同路径：</p>
+
+
+
+<ul class="wp-block-list">
+<li><strong>最简版ramdisk</strong>：直接用Tor-ramdisk之类的工具，所有东西跑在内存。密钥通过SCP手动导入导出，重启前不处理就得重头开始。没有TPM、没有验证启动，但至少保证断电后数据全无，仍比传统磁盘方案强很多。</li>
+
+
+
+<li><strong>虚拟机版ramdisk</strong>：如<a href="https://blog.emeraldonion.org/evolving-our-tor-relay-security-architecture" target="_blank" rel="noreferrer noopener">Emerald Onion项目</a>，在Proxmox虚拟化平台上为每个中继运行一个仅66MB的Alpine Linux镜像，全部加载到内存，无持久存储。利用Tor的<strong>OfflineMasterKey</strong>功能：长期主密钥在离线环境下生成，从不接触在线中继。更新就是重建镜像，回滚极其简单，不需要特殊硬件。</li>
+
+
+
+<li><strong>裸金属+TPM方案</strong>（如<a href="https://github.com/osservatorionessuno/patela" target="_blank" rel="noreferrer noopener">Patela工具</a>）：使用<a href="https://docs.system-transparency.org/st-1.3.0/docs/reference/stboot-system/" target="_blank" rel="noreferrer noopener">stboot引导程序</a>——它会从网络拉取并密码验证签名的OS镜像，再移交控制权。运行后，节点通过mTLS从配置服务器拉取配置（服务器即使被攻破也只能拒绝服务，无法推送凭证或偷密钥）。身份密钥密封在TPM非易失性内存中，绑定启动测量状态，能存活重启但无法提取。缺点是必须用裸金属硬件，更新后需重新密封。</li>
+</ul>
+
+
+
+<h2 class="wp-block-heading">尚未解决的技术难题</h2>
+
+
+
+<ul class="wp-block-list">
+<li><strong>更新后的重新密封</strong>：软件栈变化导致PCR值改变，如何自动化预测并密封新状态？systemd-pcrlock等工具正在改进，但还没做到开箱即用。</li>
+
+
+
+<li><strong>无状态与自动升级的矛盾</strong>：用unattended-upgrades更新Tor二进制后，重启会回滚到镜像中的旧版本，造成意外降级。如何协调安全补丁和不可变镜像，仍需探索。</li>
+
+
+
+<li><strong>内存约束</strong>：没有swap，内存使用难以精确预测。分配器优化有帮助，但根本限制依然存在。</li>
+
+
+
+<li><strong>网络稳定性</strong>：频繁重启可能导致丢失“Stable”标志，影响流量分配。</li>
+</ul>
+
+
+
+<h2 class="wp-block-heading">未来的技术方向</h2>
+
+
+
+<p>研究者们正在推动更多创新：</p>
+
+
+
+<ul class="wp-block-list">
+<li><strong>远程证明的广泛应用</strong>：让目录权威或配置服务器能远程验证节点运行的软件栈，减少对运营商的信任。</li>
+
+
+
+<li><strong>透明日志（Transparency Logs）</strong>：把可重现构建的哈希和TPM测量值公开记录到追加式日志中，社区可以独立监控整个中继舰队。</li>
+
+
+
+<li><strong>机密计算</strong>：在虚拟机方案中引入AMD SEV-SNP等技术，让虚拟机内存对宿主机管理程序都不可见，进一步缩小虚拟化与裸金属的安全差距。</li>
+
+
+
+<li><strong>协议层优化</strong>：如Walking Onions提案，能让节点不再需要持有完整的网络视图，从而降低内存需求。未来可能结合Arti（Tor的Rust重写实现）进一步缩小系统体积。</li>
+</ul>
+
+
+
+<p>总之，“<mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-vivid-red-color">暗网下/AWX</mark>”认为，无状态中继不是一个单一方案，而是一系列权衡：从最简单的内存运行，到结合TPM和远程证明的硬件绑定方案。它在提升物理安全、强制不可变性和可审计性的同时，也带来了运维复杂度和性能挑战。Tor社区希望通过持续讨论和实验，让更多运营商能根据自身环境，选择适合的路径，最终让整个网络对扣押和物理攻击更具韧性。</p>
+
+
+
+<p>Tor项目在文章中表示，这项工作始于<a href="https://tcg2025.4711.se/sessions/stateless_tor_relay/" target="_blank" rel="noreferrer noopener">2025年的Tor社区大会</a>，目前仍在进行中。如果用户正在运行中继服务器、参与Tor工具的开发，或者思考过任何这些未解决的问题，Tor项目都非常希望听到大家的意见。</p>
+                                                                                </div>
