@@ -1,0 +1,197 @@
++++
+title = "揭秘暗网论坛RAMP：泄露的数据库让我们看清俄罗斯勒索软件地下市场的全貌"
+date = 2026-04-25T23:26:00+08:00
+categories = ["暗网纵论", "独家报道"]
+tags = ["Ramp4u", "俄罗斯", "暗网论坛"]
+thumbnail = ""
++++
+
+<div class="entry-content clearfix">
+                            <div class="wp-block-image">
+<figure class="aligncenter size-full"><noscript><img fetchpriority="high" decoding="async" width="757" height="601" src="/images/6449c1ce7d97074f9cbbadade9259e64.webp" alt="揭秘暗网论坛RAMP：泄露的数据库让我们看清俄罗斯勒索软件地下市场的全貌" class="wp-image-4826"></noscript><img fetchpriority="high" decoding="async" width="757" height="601" src="/images/6449c1ce7d97074f9cbbadade9259e64.webp" alt="揭秘暗网论坛RAMP：泄露的数据库让我们看清俄罗斯勒索软件地下市场的全貌" class="wp-image-4826 j-lazy"></figure></div>
+
+
+<p>2026年1月28日，美国FBI联合佛罗里达南区检察官办公室突袭并查封了俄罗斯暗网论坛RAMP（Russian Anonymous Marketplace，<span class="wpcom_tag_link">俄罗斯</span>匿名市场）——这个从2021年底开始运营的俄语网络犯罪论坛。它提供Tor隐藏服务（rampjcdlqvgkoz5oywutpo6ggl7g6tvddysustfl6qzhr5osr24xxqqd[.]onion）和明网镜像（ramp4u[.]io），可以在暗网与明网同步访问，比很多竞争对手的论坛更容易访问，也因此聚集了全球各地的黑客——从西方的网络犯罪分子到东亚的威胁行为者。</p>
+
+
+
+<p>RAMP基于商业论坛软件XenForo 2.2.5搭建，设有出售网络访问权限、恶意软件、勒索软件合作、被盗数据，以及招聘犯罪自由职业者的专门版块。主版块与子版块的版块名称包含俄语、英语、中文，帖子标题也混杂俄语、英语和中文，显示出它的国际化程度。</p>
+
+
+
+<p>最近，该<span class="wpcom_tag_link">暗网论坛</span>的一份完整MySQL数据库泄露给了安全研究人员，其中包含从2021年11月到2024年1月的用户记录、1732个论坛主题帖、7707名注册用户、340333条IP日志记录、1899个私人对话和3875条私信。这份数据像X光一样，照亮了勒索软件生态系统的供应链运作方式。</p>
+
+
+
+<p>Comparitech发布的<a href="https://www.comparitech.com/news/inside-ramp-what-a-leaked-database-reveals-about-russias-ransomware-marketplace/" target="_blank" rel="noreferrer noopener">分析报告</a>称：“Comparitech独家获得了RAMP泄露的数据库。完整的MySQL转储文件包含用户记录、论坛帖子、私人消息、IP日志以及管理员活动，时间跨度从2021年11月到2024年1月。”</p>
+
+
+
+<p><strong>主要发现如下：</strong></p>
+
+
+
+<ul class="wp-block-list">
+<li>论坛活跃度从2022年第四季度的67个帖子低点激增至2023年第四季度的300个帖子，增幅达348%，表明在执法部门的干扰之后，论坛出现了大幅复苏。</li>
+
+
+
+<li>RAMP论坛促成了向包括国防承包商、能源公司、银行、医院和政府机构在内的20多个国家的组织出售企业网络访问权限。</li>
+
+
+
+<li>美国是头号目标：在标明国家的列表中，美国出现的比例高达40%。</li>
+
+
+
+<li>一位单一的准入经纪人发布了41个不同的主题帖，出售进入企业网络的入口，其中包括一家年收入12亿美元的美国公司以及在南美和乌克兰的政府网络。</li>
+
+
+
+<li>14个勒索软件即服务（RaaS）项目积极招募联盟成员，提供高达90%的赎金分成。</li>
+
+
+
+<li>政府机构是受影响最大的行业（21家），其次是金融/银行业和科技/电信业（各11家）。</li>
+</ul>
+
+
+
+<p>Comparitech表示：“本分析基于 RAMP 论坛 XenForo 安装的 MySQL 数据库转储。我们解析了原始 SQL 语句，从 xf_user（7,707 条记录）、xf_thread（1,732 条记录）、xf_post、xf_ip（340,333 条记录）、xf_admin_log、xf_conversation_master（1,899 条记录）和 xf_conversation_message（3,875 条记录）表中提取了结构化数据。” 分析总结道。“IP 地址从二进制格式解码，并根据已知的 ISP 分配进行地理位置定位。所有结论均基于数据库转储中的数据，尚未通过与实际来源的独立验证。”</p>
+
+
+
+<h2 class="wp-block-heading">访问权限市场：勒索软件攻击的“开门钥匙”</h2>
+
+
+
+<p>RAMP上规模最大的版块就是“访问权限市场”（Access(SSH/RDP/VNC/Shell)），共有333个主题在出售被入侵企业网络的入口权限。这正是勒索软件攻击链的第一环——没有初始访问，就谈不上后续部署恶意软件。</p>
+
+
+
+<p>最常见的访问类型是<strong>RDP（远程桌面协议）</strong>，占59个主题帖，其次是<strong>VPN访问</strong>（22个）和<strong>SSH/Webshell</strong>（22个）。<strong>域管理员（Domain Admin）</strong>权限只有12个，但价格最高，因为它能直接控制整个网络。</p>
+
+
+
+<p><strong>访问类型分布</strong>（部分数据）：</p>
+
+
+
+<ul class="wp-block-list">
+<li>RDP：59个（43%），风险等级：致命</li>
+
+
+
+<li>VPN（企业网关）：22个（16%），致命</li>
+
+
+
+<li>SSH/Webshell：22个（16%），高危</li>
+
+
+
+<li>域管理员：12个（9%），致命</li>
+</ul>
+
+
+
+<p>卖家最爱美国目标，占已明确国家列表的40%。其他热门国家包括欧盟各国、加拿大、巴西、印度、中国等。被针对的行业中，<strong>政府机构</strong>（含大使馆、军队）最多（21个），其次是金融/银行和技术/电信（各11个）。</p>
+
+
+
+<p>真实案例里，一个卖家“inthematrix”一个人发了41个主题帖，其中包括一家年收入12亿美元的美国公司、南美和乌克兰的政府网络。还有韩国一家年收入160亿美元的大型企业、阿联酋电信（13亿美元）、丰田巴西工厂等高价值目标。</p>
+
+
+
+<p>2022年初，市场以RDP为主；到2023年底，<strong>VPN访问</strong>大幅增加。这和2023年爆发的Cisco、Fortinet、Citrix等VPN产品严重漏洞密切相关。卖家“blackod”曾在2023年11月连续发布5个Cisco VPN访问的主题帖，覆盖美、澳、加、英，显示出自动化扫描和批量利用的痕迹。另一个帖子直接提到Pulse Secure的CVE-2019-11510漏洞，说明已知但未及时打补丁的漏洞仍是主要入口。</p>
+
+
+
+<h2 class="wp-block-heading">勒索软件即服务（RaaS）：分成最高可达90%</h2>
+
+
+
+<p>RAMP有专门的RaaS版块，60个主题用于招募“affiliate”（附属攻击者）。趋势很明显：早期分成是80/20（附属/运营商），到2023年中已变成90/10——附属攻击者能拿走100万美元赎金中的90万。这种高分成反映了市场对熟练攻击手的激烈争夺。</p>
+
+
+
+<p>论坛上共出现14个RaaS项目，包括AvosLocker、Conti、Luna（Rust语言）、Knight 3.0、NoEscape、Bl00dy、KUIPER等。最令人担忧的是<strong>破解版构建工具和源代码泄露</strong>：LockBit 3.0 Builder、PHOBOS、Zeppelin2等。一旦工具泄露，任何中等水平黑客都能独立发动攻击，不需要加入任何RaaS联盟，也不用分成。</p>
+
+
+
+<p>此外，论坛还出售破解版商业渗透测试工具：Cobalt Strike 4.8（合法年费5900美元）、Core Impact 21.3（年费2万美元以上）。这些专业级工具被零成本提供给犯罪分子，进一步降低了入门门槛。</p>
+
+
+
+<h2 class="wp-block-heading">恶意软件超市与犯罪人才市场</h2>
+
+
+
+<p>恶意软件版块有121个主题帖，涵盖：</p>
+
+
+
+<ul class="wp-block-list">
+<li>漏洞与0-day：22个（SonicWall VPN RCE、Office 0-day、WinRAR RCE等）</li>
+
+
+
+<li>加密器/FUD工具：17个</li>
+
+
+
+<li>勒索软件：12个</li>
+
+
+
+<li>RAT与后门：11个</li>
+
+
+
+<li>信息窃取器：10个（LummaC2、Mars Stealer等）</li>
+
+
+
+<li>僵尸网络：7个（一个声称能绕过主流加密货币交易所2FA的僵尸网络，售价2.5万美元）</li>
+
+
+
+<li>加载器：6个</li>
+</ul>
+
+
+
+<p>最贵的一个是VPN RCE 0-day，标价10万美元，显示国家级漏洞也在地下流通。</p>
+
+
+
+<p>人才市场同样活跃。一个帖子直接招聘Android恶意软件开发者，月薪2-2.5万美元，号称“快钱大钱”。其他招聘包括勒索谈判专家、电信内部人员（用于SIM卡交换攻击）、加密交易所内鬼等。</p>
+
+
+
+<h2 class="wp-block-heading">运营安全与漏洞</h2>
+
+
+
+<p>尽管是犯罪论坛，大部分用户使用ProtonMail等隐私邮箱注册，但仍有94个账户用了Gmail，部分还能看出真实姓名模式。340333条IP日志中，虽然多数是Tor出口节点，但仍有不少住宅ISP和VPN/托管提供商IP暴露，为情报分析提供了时间线和关联机会。</p>
+
+
+
+<p>私人消息区才是真正成交的地方。顶级卖家“inthematrix”的41个公开主题帖，产生了41个私人对话，买家包括勒索软件运营商、转卖商和渗透测试团队。谈判主题往往是“VPN访问”“Stealer”“RaaS私人伙伴计划”等。</p>
+
+
+
+<h2 class="wp-block-heading">论坛的兴衰曲线</h2>
+
+
+
+<p>RAMP活动呈现U型恢复：2021年底高开，2022年因执法行动下滑（Q4仅67个主题），2023年强势反弹，Q4达到300个主题，较最低点增长348%。这说明执法打击后，黑客迅速转移到新平台，继续生意。</p>
+
+
+
+<p>2026年1月RAMP被查封，但它的数据库泄露让我们看到：现代勒索软件攻击已形成高度商业化的供应链——从初始访问经纪人，到RaaS运营商，再到附属攻击手、谈判专家和洗钱环节，每一环都在地下市场明码标价、高效运转。</p>
+
+
+
+<p>这份泄露数据提醒我们，企业安全防护必须前置：及时修补VPN、RDP等暴露服务，实施多因素认证，监控异常登录，并定期检查暗网凭证泄露。只有堵住“第一扇门”，才能有效降低成为勒索软件受害者的风险。地下市场永远存在，但我们对它的了解越深，防御就越有针对性。</p>
+                                                                                </div>
