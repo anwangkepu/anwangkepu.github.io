@@ -1,0 +1,159 @@
++++
+title = "暗网真的匿名吗？让OnionScan来告诉您真相"
+date = 2026-07-10T23:52:00+08:00
+categories = ["工具", "暗网技术"]
+tags = ["OnionScan", "匿名技术", "去匿名化", "暗网工具"]
+thumbnail = ""
++++
+
+<div class="entry-content clearfix">
+                            <div class="wp-block-image">
+<figure class="aligncenter size-large"><noscript><img fetchpriority="high" decoding="async" width="1024" height="576" src="/images/d3694d106be2f5bbe0852f6f01179b89.webp" alt="暗网真的匿名吗？让OnionScan来告诉您真相" class="wp-image-4962"></noscript><img fetchpriority="high" decoding="async" width="1024" height="576" src="/images/d3694d106be2f5bbe0852f6f01179b89.webp" alt="暗网真的匿名吗？让OnionScan来告诉您真相" class="wp-image-4962 j-lazy"></figure></div>
+
+
+<p>很多人觉得，只要用Tor浏览器访问.onion站点，就能在暗网里彻底隐身，没人能找到您。但事实往往没那么简单，暗网可能并不像您想象中那么匿名，不少隐藏服务因为配置不当或者操作失误，露出了不少马脚。</p>
+
+
+
+<p>“<mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-vivid-red-color">暗网下/AWX</mark>”看到，有人开发了一种工具，可以剥去暗网站点的面具，它叫<a href="https://onionscan.org/" target="_blank" rel="noreferrer noopener">OnionScan</a>。</p>
+
+
+
+<p><span class="wpcom_tag_link">OnionScan</span>是一款免费开源的暗网调查工具，专门用来扫描和分析暗网站点。它能帮你快速检查一个.onion地址的各种隐私和安全问题。只要输入一个简单命令，它就会像侦探一样，把站点的各个角落翻个遍，告诉你哪里可能泄露了真实信息。</p>
+
+
+
+<p>OnionScan项目地址在GitHub上（<a href="https://github.com/s-rah/onionscan" target="_blank" rel="noreferrer noopener">s-rah/onionscan</a>），有兴趣的可以自己试试——不管是想保护自己的站点，还是单纯好奇暗网的真实样子，它都是个挺实用的工具。</p>
+
+
+
+<p>OnionScan 0.2版本已经可以在<a href="https://github.com/s-rah/onionscan" target="_blank" rel="noreferrer noopener">OnionScan的Github上</a>下载。</p>
+
+
+
+<h2 class="wp-block-heading">OnionScan的主要目标</h2>
+
+
+
+<p>OnionScan表示，无论是运营安全漏洞还是软件配置错误——大多数情况下，对匿名性的攻击并非来自破坏底层系统，而是来自运营者自身，也就是那个无法有效利用技术手段解决的持续威胁——人为错误。</p>
+
+
+
+<p>根据<a href="https://onionscan.org/" target="_blank" rel="noreferrer noopener">OnionScan官方网站</a>的说法：一是希望帮助隐藏服务的运营者发现并修复其服务的运行安全问题：希望帮助他们检测配置错误，并希望启发新一代匿名工程项目，从而让世界变得更加私密；二是希望帮助研究人员和调查人员监控和追踪暗网网站：事实上，OnionScan希望尽可能简化这一过程。这并非因为OnionScan认同所有调查机构的目标和动机——大多数情况下并不认同。但OnionScan希望通过简化这类调查，为新型<span class="wpcom_tag_link">匿名技术</span>的发展创造强大的动力。</p>
+
+
+
+<h2 class="wp-block-heading">OnionScan如何使用</h2>
+
+
+
+<p>要安装OnionScan，需要Go环境（Go 1.6 或 1.7），并且需要以下Go标准库核心未提供的依赖项：</p>
+
+
+
+<ul class="wp-block-list">
+<li>golang.org/x/net/proxy – 用于 Tor SOCKS 代理连接。</li>
+
+
+
+<li>golang.org/x/net/crypto – 用于 PGP 解析</li>
+
+
+
+<li>golang.org/x/net/html – 用于 HTML 解析</li>
+
+
+
+<li>github.com/rwcarlsen/goexif – 用于提取 EXIF 数据。</li>
+
+
+
+<li>github.com/HouzuoGuo/tiedot/db – 用于爬取数据库。</li>
+</ul>
+
+
+
+<p>使用OnionScan后，会出具一份报告，列出高、中、低风险问题。如果想看更详细的信息，可以加个<code>--verbose</code>参数；如果想导出JSON格式方便进一步处理，可以加个<code>--jsonReport</code>参数。具体说明如下：</p>
+
+
+
+<p>如需一份简要报告，详细说明使用隐蔽服务发现的高风险、中风险和低风险区域：</p>
+
+
+
+<p><code>onionscan notarealhiddenservice.onion</code></p>
+
+
+
+<p>最有趣的输出来自详细输出选项：</p>
+
+
+
+<p><code>onionscan --verbose notarealhiddenservice.onion</code></p>
+
+
+
+<p>如果您想与其他程序或应用程序集成，还可以生成 JSON 输出：</p>
+
+
+
+<p><code>onionscan --jsonReport notarealhiddenservice.onion</code></p>
+
+
+
+<p>如果您想使用监听其他地址的代理服务器 127.0.0.1:9050，则可以使用 –torProxyAddress 标志：</p>
+
+
+
+<p><code>onionscan --torProxyAddress=127.0.0.1:9150 notarealhiddenservice.onion</code></p>
+
+
+
+<h2 class="wp-block-heading">OnionScan可以查出什么</h2>
+
+
+
+<p>OnionScan会扫描常见的人为失误，可以发现的：</p>
+
+
+
+<ul class="wp-block-list">
+<li>网站配置错误导致真实IP地址泄露</li>
+
+
+
+<li>与明网服务器匹配的SSH指纹暴露</li>
+
+
+
+<li>软件版本和服务器banner暴露（SMTP和FTP应用的banner泄露了主机名称和操作系统版本）</li>
+
+
+
+<li>目录遍历、文件泄露</li>
+
+
+
+<li>EXIF数据残留（比如上传图片没去掉元数据，GPS坐标隐藏在图像元数据中）</li>
+
+
+
+<li>比特币地址、电子邮件地址和PGP密钥等关联匹配</li>
+
+
+
+<li>其他各种可能暴露运营者身份的痕迹</li>
+</ul>
+
+
+
+<p>“<mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-vivid-red-color">暗网下/AWX</mark>”看到，<a href="https://github.com/s-rah/onionscan/blob/master/doc/correlation-lab.md" target="_blank" rel="noreferrer noopener">OnionScan还拥有关联实验室</a>——一个网络仪表板，可以映射扫描站点之间的关系，由此挖掘到背后的操作者忽略了的模式问题。比如，同一个SSH密钥在两个“看起来不相关”的网站上出现、同一电子邮件、同一服务器……它将这些线索点连接起来。</p>
+
+
+
+<p>开发者s-rah做这个工具的初衷很清楚：一方面帮助暗网服务运营商发现并修复自己的安全漏洞，推动匿名技术进步；另一方面也让研究者和调查人员更容易监控这些站点。说白了，就是“把问题摆在明面上，逼着大家把匿名做得更好”。</p>
+
+
+
+<p>暗网的匿名技术本身很强大，但是人总会犯错。OnionScan就是那面镜子，让大家能看到隐藏服务到底有多“隐秘”。</p>
+                                                                                </div>
