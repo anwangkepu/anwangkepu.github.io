@@ -1,0 +1,205 @@
++++
+title = "暗网开源情报神器Darkdump：一键监控暗网，挖掘威胁情报"
+date = 2026-07-20T09:43:00+08:00
+categories = ["工具", "暗网技术"]
+tags = ["Darkdump", "OSINT", "搜索引擎", "暗网工具", "暗网情报"]
+thumbnail = ""
++++
+
+<div class="entry-content clearfix">
+                            <div class="wp-block-image">
+<figure class="aligncenter size-full"><noscript><img fetchpriority="high" decoding="async" width="882" height="859" src="/images/7e4a2dabaf2df73823ba98f1f3669c96.webp" alt="暗网开源情报神器Darkdump：一键监控暗网，挖掘威胁情报" class="wp-image-4980"></noscript><img fetchpriority="high" decoding="async" width="882" height="859" src="/images/7e4a2dabaf2df73823ba98f1f3669c96.webp" alt="暗网开源情报神器Darkdump：一键监控暗网，挖掘威胁情报" class="wp-image-4980 j-lazy"></figure>
+</div>
+
+
+<p class="wp-block-paragraph"><span class="wpcom_tag_link">Darkdump</span>是一款开源的开源情报（<span class="wpcom_tag_link">OSINT</span>）工具，专门用于深网（Deep Web）和暗网（Dark Web）的信息搜集与调查。它由开发者<a href="https://github.com/josh0xA" target="_blank" rel="noreferrer noopener">Josh Schiavone</a>维护，在<a href="https://github.com/josh0xA/darkdump/" target="_blank" rel="noreferrer noopener">Github上开源</a>，Darkdump v4版本已于今年4月发布。</p>
+
+
+
+<p class="wp-block-paragraph">Darkdump的定位很明确：帮助安全研究人员、威胁情报团队和执法相关人员合法地收集公开信息，监控泄露数据、凭证和网络犯罪趋势。它不鼓励也不支持任何非法活动。</p>
+
+
+
+<p class="wp-block-paragraph">Darkdump的核心功能是根据用户输入的关键词，从多个暗网<span class="wpcom_tag_link">搜索引擎</span>抓取结果，并可选地深入抓取每个结果站点中的电子邮件、元数据、关键词、文档和图片等信息。所有结果会实时输出到终端或本地浏览器界面，同时自动对照Ahmia公开的滥用黑名单进行过滤。</p>
+
+
+
+<h2 class="wp-block-heading">Darkdump的工作方法与主要功能</h2>
+
+
+
+<p class="wp-block-paragraph">Darkdump支持六种暗网搜索引擎，可通过参数切换：</p>
+
+
+
+<ul class="wp-block-list">
+<li><strong>Ahmia</strong>：默认搜索引擎，经Tor项目认可，过滤严格，无需Tor即可使用。</li>
+
+
+
+<li><strong>NotEvil</strong>：Ahmia的分支，索引更广，需要Tor。</li>
+
+
+
+<li><strong>TorDex、Tor66、OnionLand、Excavator</strong>：这些引擎过滤较少或几乎无过滤，需要Tor，使用前会弹出确认提示。</li>
+</ul>
+
+
+
+<p class="wp-block-paragraph">无论使用哪个搜索引擎，结果都会与暗网最大搜索引擎Ahmia的公开滥用黑名单进行交叉检查。未经过滤的搜索引擎会在执行前提示确认。但这种策略仍不完美，因此在使用未经过滤的搜索引擎进行搜索和抓取时，务必格外谨慎并仔细判断。</p>
+
+
+
+<p class="wp-block-paragraph">工具还支持深度抓取（scrape），可以提取页面中的元数据、链接、邮箱、文档，甚至图片。另外提供凭证泄露（breach）情报扫描模式，针对邮箱或域名查询相关泄露信息。</p>
+
+
+
+<h2 class="wp-block-heading">Darkdump的安装与使用</h2>
+
+
+
+<p class="wp-block-paragraph">在Linux和macOS上，安装相对简单：</p>
+
+
+
+<pre class="wp-block-code"><code>git clone https://github.com/josh0xA/darkdump
+cd darkdump
+chmod +x install.sh
+./install.sh</code></pre>
+
+
+
+<p class="wp-block-paragraph">安装后会生成两个命令：<code>darkdump</code>启动网页界面，<code>darkdump-cli</code>运行命令行工具。</p>
+
+
+
+<p class="wp-block-paragraph">手动安装则需要分别安装主程序和网页界面的依赖：</p>
+
+
+
+<pre class="wp-block-code"><code>pip3 install -r requirements.txt
+pip3 install -r darkdump-web/requirements.txt</code></pre>
+
+
+
+<p class="wp-block-paragraph"><code>darkdump</code>使用前需要正确配置Tor。在<code>torrc</code>文件中开启控制端口（通常是9051），并设置哈希密码。启动Tor服务后即可使用。</p>
+
+
+
+<p class="wp-block-paragraph">命令行常用参数包括：</p>
+
+
+
+<ul class="wp-block-list">
+<li><code>-q</code> 搜索关键词</li>
+
+
+
+<li><code>-a</code> 返回结果数量（默认10）</li>
+
+
+
+<li><code>-e</code> 指定搜索引擎</li>
+
+
+
+<li><code>-p</code> 通过Tor代理</li>
+
+
+
+<li><code>-s</code> 深度抓取</li>
+
+
+
+<li><code>-i</code> 同时收集图片（需配合<code>-s</code>）</li>
+
+
+
+<li><code>-u</code> 去重</li>
+
+
+
+<li><code>-o</code> 导出为JSON、CSV或TXT</li>
+
+
+
+<li><code>--breach</code> 启动凭证泄露扫描</li>
+</ul>
+
+
+
+<p class="wp-block-paragraph">例如：</p>
+
+
+
+<pre class="wp-block-code"><code># Basic search via Ahmia (no Tor required)
+darkdump-cli -q "privacy tools" -a 10
+
+# Search and deep scrape each result via Tor
+darkdump-cli -q "hacking" -a 10 -s -p
+
+# Search, scrape, and collect images
+darkdump-cli -q "marketplaces" -a 15 -s -p -i
+
+# Use Not Evil engine, deduplicate, save to JSON
+darkdump-cli -q "security research" -a 20 -e notevil -p -u -o results.json
+
+# Use OnionLand engine, save to CSV
+darkdump-cli -q "crypto" -a 10 -e onionland -p -o results.csv
+
+# Breach intelligence scan for an email address
+darkdump-cli --breach -q <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="b7d6d3daded9f7d2cfd6dac7dbd299d4d8da">[email protected]</a> -e ahmia -p
+
+# Breach scan with deep scraping
+darkdump-cli --breach --breach-deep -q example.com -e ahmia</code></pre>
+
+
+
+<p class="wp-block-paragraph">Darkdump包含一个基于本地浏览器的界面。运行<code>darkdump</code>后，浏览器访问<code>http://127.0.0.1:50001</code>，即可看到实时结果流、引擎切换、Tor出口IP显示、深度抓取开关和导出功能。</p>
+
+
+
+<h2 class="wp-block-heading">Darkdump的适用场景与注意事项</h2>
+
+
+
+<p class="wp-block-paragraph">Darkdump把多个暗网搜索引擎整合在一起，加上深度抓取和泄露扫描功能，降低了<span class="wpcom_tag_link">暗网情报</span>搜集的门槛。它既有命令行的灵活性，也有网页界面的便利性。对于需要监控暗网动态的安全从业者来说，是一个实用的辅助工具。</p>
+
+
+
+<p class="wp-block-paragraph">根据Github的介绍，Darkdump常被用于：</p>
+
+
+
+<ul class="wp-block-list">
+<li>搜索暗网市场和论坛中的公开信息</li>
+
+
+
+<li>识别泄露的凭证或数据包</li>
+
+
+
+<li>追踪组织或域名被提及的情况</li>
+
+
+
+<li>监控威胁行为者活动</li>
+
+
+
+<li>为调查收集情报</li>
+</ul>
+
+
+
+<p class="wp-block-paragraph">它在网络安全中的价值主要体现在早期发现数据泄露、识别被盗凭证、跟踪犯罪趋势，以及加强事件响应。</p>
+
+
+
+<p class="wp-block-paragraph">需要特别强调的是，这款工具仅面向合法用途。开发者明确声明：仅用于正当的安全研究和OSINT调查。不要用它去访问或调查涉及非法活动的站点。实际操作时应只访问公开数据，不购买任何非法内容，不与威胁行为者互动，最好在隔离的虚拟机环境中运行，并妥善记录发现结果。</p>
+
+
+
+<p class="wp-block-paragraph">“<mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-vivid-red-color">暗网下/AWX</mark>”提醒：访问或接触暗网上的非法内容本身可能构成犯罪，因此使用Darkdump时，必须严格遵守所在地区的法律法规。</p>
+                                                                                </div>
