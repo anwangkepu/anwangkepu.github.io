@@ -1,0 +1,92 @@
++++
+title = "Tor浏览器可插拔传输技术解析：obfs4、meek、Snowflake与WebTunnel"
+date = 2026-08-01T23:08:00+08:00
+categories = ["暗网技术"]
+tags = ["meek", "obfs4", "Pluggable Transport", "Snowflake", "WebTunnel", "可插拔传输技术", "网桥"]
+thumbnail = ""
++++
+
+<div class="entry-content clearfix">
+                            <div class="wp-block-image">
+<figure class="aligncenter size-large"><noscript><img fetchpriority="high" decoding="async" width="1024" height="757" src="/images/d6709867db30d80cd32b76abddc08446.webp" alt="Tor浏览器可插拔传输技术解析：obfs4、meek、Snowflake与WebTunnel" class="wp-image-5006"></noscript><img fetchpriority="high" decoding="async" width="1024" height="757" src="/images/d6709867db30d80cd32b76abddc08446.webp" alt="Tor浏览器可插拔传输技术解析：obfs4、meek、Snowflake与WebTunnel" class="wp-image-5006 j-lazy"></figure>
+</div>
+
+
+<p class="wp-block-paragraph">Tor浏览器里的<span class="wpcom_tag_link">可插拔传输技术</span>（<span class="wpcom_tag_link">Pluggable Transport</span>）并不是什么神秘黑科技，本质上是一套把Tor流量伪装成普通网络行为的中间层。面对流量审查系统越来越精细的主动探测和协议指纹识别，单纯靠加密已经不够，必须让流量在字节层面、握手行为、连接建立方式上都尽量“不像Tor”。目前主流可用的四类是<span class="wpcom_tag_link">obfs4</span>、<span class="wpcom_tag_link">meek</span>、<span class="wpcom_tag_link">Snowflake</span>和<span class="wpcom_tag_link">WebTunnel</span>。</p>
+
+
+
+<p class="wp-block-paragraph">根据<a href="https://mp.weixin.qq.com/s/dY24PnmF2lY957rT11X2Ow" target="_blank" rel="noreferrer noopener">某学术文章介绍</a>：严格来讲，obfs4、meek、Snowflake和WebTunnel本身均为可插拔传输技术，而非<span class="wpcom_tag_link">网桥</span>（Bridge）。不同之处在于，obfs4和WebTunnel通常由志愿者部署服务端，供Tor的其它用户使用，任何用户可以自由搭建和部署obfs4和WebTunnel网桥；而meek通过CDN等前置基础设施将流量转发至运行meek-server的后端网桥；Snowflake先由broker撮合客户端与短生命周期志愿代理，再经该代理将流量转发至Snowflake网桥，并进一步接入Tor网络，其中前置CDN、broker和Snowflake志愿代理均不是Tor中继节点，当然也就不能称之为网桥。meek和Snowflake的网桥数量很少，大多数由Tor官方维护。Tor Browser将这四类可插拔传输技术统一置于网桥配置界面中，属于连接配置层面的产品分类，并不意味着可插拔传输技术与网桥在技术概念上等同。</p>
+
+
+
+<p class="wp-block-paragraph">下面“<mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-vivid-red-color">暗网下/AWX</mark>”从技术机制本身拆开讲这4种可插拔传输技术。</p>
+
+
+
+<h2 class="wp-block-heading">obfs4：把流量变成几乎无法区分的随机字节流</h2>
+
+
+
+<p class="wp-block-paragraph">obfs4的核心思路是“先认证，再加密，最后把一切弄得看起来像噪声”。它采用基于ntor的认证密钥交换，并用Elligator2把Curve25519公钥的线上表示藏起来，避免公钥本身暴露可识别的特征。握手完成后，会话密钥建立，后续数据会被加密、认证，同时加入填充，使整体字节分布接近真正的随机流。</p>
+
+
+
+<p class="wp-block-paragraph">关键点在于，攻击者如果事先不知道通过桥接行（Bridge Line）带外分发的 Node ID 和身份公钥，几乎无法确认对面跑的是不是obfs4服务。主动探测也因此变得困难——你发探测包过去，对方不会给出可区分的错误响应。</p>
+
+
+
+<p class="wp-block-paragraph">时间线上，obfs4proxy 0.0.1在2014年9月3日首次发布，Tor Browser 4.5-alpha-1于同年11月18日在alpha版本正式加入。后续几个版本的安全修补很关键：0.0.11统一了握手失败时的处理逻辑，避免不同失败原因产生不同的可观测行为；0.0.12和0.0.14则专门修复了Elligator2实现里的可区分性问题。这些改动直接降低了协议指纹，增强了抗主动探测能力。</p>
+
+
+
+<h2 class="wp-block-heading">meek：躲在HTTPS和域前置后面</h2>
+
+
+
+<p class="wp-block-paragraph">meek的思路完全不同。它不试图让流量“随机”，而是把Tor流量完整封装进HTTPS请求里，再利用域前置（domain fronting）把真正的目标藏起来。客户端看起来是在访问某个大厂的CDN或云服务域名，实际流量却被转到 meek 服务器。</p>
+
+
+
+<p class="wp-block-paragraph">早期实现比较独立。Tor Browser 4.0-alpha-1在2014年8月12日首次纳入meek 0.10客户端，当时还没有后来的 meek_lite。后来obfs4proxy 0.0.6加入了meek_lite，0.0.9引入uTLS来模拟浏览器式的TLS指纹，0.0.13又一度停止使用uTLS。再往后，Tor维护的0.0.14-tor2恢复了uTLS支持，Lyrebird 0.1.0把它纳入正式主线。Lyrebird 0.8.0进一步加入了多组URL/front组合，请求失败时可以自动轮换。</p>
+
+
+
+<p class="wp-block-paragraph">需要注意的是，uTLS在这里主要负责塑造ClientHello的浏览器式指纹，并没有改变meek基于HTTPS加域前置的基本架构。整个设计的前提是审查者很难大规模封锁主流CDN的域名和 IP，因为那样会误伤大量正常服务。</p>
+
+
+
+<h2 class="wp-block-heading">Snowflake：用志愿者浏览器当临时跳板</h2>
+
+
+
+<p class="wp-block-paragraph">Snowflake走的是另一条路——利用大量临时、动态的志愿者代理。它的broker只负责会合与信令，撮合客户端和当前可用的志愿者代理。客户端与代理之间建立WebRTC数据通道，代理再通过WebSocket把流量转发给真正的Snowflake服务端。</p>
+
+
+
+<p class="wp-block-paragraph">这里有个容易误解的地方：志愿代理只是流量转发层，并不是Tor中继节点。它们不参与电路构建，也不知道最终目的地，只是临时把数据从一端搬到另一端。这种设计让审查者很难通过封锁固定IP或域名来彻底掐断，因为代理池是不断变化的。</p>
+
+
+
+<p class="wp-block-paragraph">Tor Browser 7.0a1在2017年1月25日首次允许Linux用户测试Snowflake，到2021年7月6日的TorBrowser 10.5才正式作为内置网桥选项向Stable用户开放。Lyrebird 0.5.0的意义在于把Snowflake客户端统一集成进来，而不是说Snowflake协议本身到2024年才出现。</p>
+
+
+
+<h2 class="wp-block-heading">WebTunnel：伪装成普通网站的WebSocket流量</h2>
+
+
+
+<p class="wp-block-paragraph">WebTunnel相对较新，目标是把Tor流量封装成看起来像普通WebSocket的HTTPS连接，并且能借助反向代理，和真实网站共用同一个域名、IP和端口。审查者如果只看端口和SNI，很难区分这是正常网站访问还是隧道。</p>
+
+
+
+<p class="wp-block-paragraph">Tor Project在2024年3月12日宣布它稳定可用。Lyrebird 0.2.0加入WebTunnel客户端时已经支持HTTPS/TLS，并可以通过utls参数显式选择uTLS。到Lyrebird 0.7.0，uTLS被设为默认路径，同时加入了证书链哈希固定、多个TLS服务名候选以及sni-imitation等增强。uTLS启用后主要改变的是TLS ClientHello的可观测指纹，替代了标准Go TLS握手留下的特征。</p>
+
+
+
+<p class="wp-block-paragraph">和meek类似，WebTunnel也依赖“伪装成合法网站流量”这一思路，但它更强调与现有Web基础设施的共生，而不是单纯依赖域前置。</p>
+
+
+
+<p class="wp-block-paragraph">这四类可插拔传输技术解决的其实是同一类问题的不同侧面：obfs4追求字节级随机性与抗探测，meek靠HTTPS和域前置隐藏目标，Snowflake用动态志愿者池对抗固定封锁，WebTunnel则试图彻底融入普通网站流量。没有哪一种是万能的，实际使用中往往需要根据网络环境切换，或者组合使用。技术细节会随着审查手段的升级继续演进，但核心逻辑——让流量在观察者眼里“不像Tor”——始终没变。</p>
+                                                                                </div>
