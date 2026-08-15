@@ -1,0 +1,96 @@
++++
+title = "另类暗网Freenet发布重大进展：从共享硬盘到共享计算机，去中心化应用迈入实用阶段"
+date = 2026-08-13T23:06:00+08:00
+categories = ["工具", "暗网技术"]
+tags = ["Freenet", "匿名技术", "去中心化"]
+thumbnail = ""
++++
+
+<div class="entry-content clearfix">
+                            <div class="wp-block-image">
+<figure class="aligncenter size-large"><noscript><img fetchpriority="high" decoding="async" width="1024" height="626" src="/images/46c06e04a4940799957ced1dafa401cd.webp" alt="另类暗网Freenet发布重大进展：从共享硬盘到共享计算机，去中心化应用迈入实用阶段" class="wp-image-5029"></noscript><img fetchpriority="high" decoding="async" width="1024" height="626" src="/images/46c06e04a4940799957ced1dafa401cd.webp" alt="另类暗网Freenet发布重大进展：从共享硬盘到共享计算机，去中心化应用迈入实用阶段" class="wp-image-5029 j-lazy"></figure>
+</div>
+
+
+<p class="wp-block-paragraph">诞生于1999年的<span class="wpcom_tag_link">Freenet</span>，是世界上第一个可扩展、<span class="wpcom_tag_link">去中心化</span>的P2P网络，也是另一种存在形式的暗网。它在某种程度上就像一个共享硬盘。20多年后的今天，互联网日益中心化对个人自由构成了根本性威胁，少数公司控制着绝大部分互联网服务和基础设施。这些公司拥有巨大权力，却基本上不需要承担相应责任。它们能够审查内容、利用用户数据，并将用户驱逐出他们所依赖的服务之外。</p>
+
+
+
+<p class="wp-block-paragraph">2023年，Freenet宣布了新计划：创建Web的完整去中心化替代方案。它从共享硬盘转变为共享计算机，开发者可以在此基础上开发中心化服务的去中心化替代品，包括消息、社交媒体、电子邮件和电子商务。今年3月，全新设计的Freenet正式上线。</p>
+
+
+
+<h2 class="wp-block-heading">Ian Clarke在FUTO的最新演讲阐述为什么需要去中心化</h2>
+
+
+
+<p class="wp-block-paragraph">2026年7月17日，Freenet设计者伊恩·克拉克 (Ian Clarke) 在FUTO发表了题为“Freeing the Internet: Apps without platforms”的主题演讲，并于7月下旬<a href="https://freenet.org/about/news/services-without-servers-video-talk/" target="_blank" rel="noreferrer noopener">公开了演讲视频</a>《Services Without Servers》。这次演讲是一次进度更新，介绍了Freenet网络的工作原理，以及目前已在其上运行的应用程序。</p>
+
+
+
+<p class="wp-block-paragraph">演讲贯穿始终的主题是：这些应用遵循同一种模式——它们的后端就是网络本身，因此可以在没有平台支撑的情况下存在。</p>
+
+
+
+<p class="wp-block-paragraph">演讲中提到，西方世界正面临越来越严格的在线控制。例如，英国在2023年就有12000人因“冒犯性”网络帖子被捕。传统应用都运行在某个人的服务器上，这意味着你的数据、消息，以及你被允许看到的内容，都由运营方掌控。</p>
+
+
+
+<p class="wp-block-paragraph">Freenet则没有可被拥有的服务器。它没有客户端与服务器的区分，只有对等节点。没有人单独运营整个网络，因此没有可被强制的运营者，没有可被用来下架内容的杠杆，也没有可被强制要求设置的后门。</p>
+
+
+
+<h2 class="wp-block-heading">Freenet如何工作</h2>
+
+
+
+<p class="wp-block-paragraph">根据<a href="https://freenet.org/presentations/2026-07-17-apps-without-platforms/" target="_blank" rel="noreferrer noopener">其官网介绍</a>，在Freenet上，每个应用都需要规则：谁可以发帖、什么内容有效、谁拥有什么。这些规则以任何人都可以验证的代码形式存在，而不是存在于某家公司的服务器上。这里的“合约”（contract）就是以WebAssembly代码编写的规则，其密钥是该代码的哈希值。</p>
+
+
+
+<p class="wp-block-paragraph">Freenet不只是托管数据，它还会像网页向你投递Gmail那样，把应用本身投递到你的浏览器中。打开一个链接，应用就会加载——无需安装，也无需应用商店。两边都没有公司介入：界面来自Freenet，状态则保存在Freenet合约中。</p>
+
+
+
+<p class="wp-block-paragraph">用户现在可以通过<a href="https://try.freenet.org/" target="_blank" rel="noreferrer noopener">try.freenet.org</a>在无需安装的情况下试用Freenet。</p>
+
+
+
+<h2 class="wp-block-heading">Freenet目前已可用的四个应用</h2>
+
+
+
+<p class="wp-block-paragraph">演讲中重点介绍了用户现在就能使用的四个应用：</p>
+
+
+
+<p class="wp-block-paragraph"><strong>River：群聊</strong><br>River是去中心化群聊应用，感觉像Signal或WhatsApp，但中间没有公司。聊天室本身是一个Freenet合约。它不依赖River公司服务器，也不需要账号或电话号码。最新进展是新增了私密聊天室功能。River目前处于运行状态，但私密房间是新功能，整体仍在持续完善中。</p>
+
+
+
+<p class="wp-block-paragraph"><strong>Delta：信息发布</strong><br>Delta是去中心化的网站构建和发布平台。用户可以在对等网络上创作和发布站点，没有托管费用，也没有可被下架的单一入口。它已经在Freenet上运行。</p>
+
+
+
+<p class="wp-block-paragraph"><strong>Atlas：发现与搜索</strong><br>Atlas是去中心化发现层，用于发布关于Freenet内容的签名元数据，并在此基础上构建竞争性的、多元的搜索、推荐和策展系统。它的首个工作版本已经发布。与传统网络不同，在Freenet上，用户可以选择索引和排序方式，有良好的默认设置，但不会被锁定。</p>
+
+
+
+<p class="wp-block-paragraph"><strong>freenet-git：开发者工具</strong><br>freenet-git支持通过Freenet进行克隆、获取和推送操作。Git本身不变，改变的是仓库存放的位置——仓库是一个Freenet合约，而不是你登录的某个服务器。它已经可以正常工作。</p>
+
+
+
+<h2 class="wp-block-heading">Freenet未来规划与存在的意义</h2>
+
+
+
+<p class="wp-block-paragraph">除了上述四个应用，Mail（去中心化电子邮件）、Raven（去中心化实时社交动态）和Harvest（去中心化市场）也在开发中。Mail将实现点对点消息路由，中间没有服务商；Raven设计为高活跃的实时社交表面，与Atlas的持久发现和归档形成互补；Harvest则是面向点对点商业的去中心化市场，结合匿名身份与盲签名反馈机制，在没有中心运营者的情况下提供问责能力。</p>
+
+
+
+<p class="wp-block-paragraph">“<mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-vivid-red-color">暗网下/AWX</mark>”多次介绍，Freenet是以Tor、I2P为代表的暗网的另一种替代方案。Freenet的核心意义不在于它拥有一个聊天应用、一个发布应用或一个Git工具，而在于这些都是同一种模式的体现：应用的后端就是网络本身。没有公司可以审查、利用数据或把用户踢出服务。随着River、Delta、Atlas和freenet-git的上线，以及更多应用的推进，Freenet正在从早期愿景走向可实际使用的去中心化互联网基础设施。</p>
+
+
+
+<p class="wp-block-paragraph">用户可以通过<a href="https://try.freenet.org/" target="_blank" rel="noreferrer noopener">try.freenet.org</a>在线体验，或安装自己的节点以获得完整的点对点体验。更多细节可在Freenet官网和相关演讲视频中查看。</p>
+                                                                                </div>
