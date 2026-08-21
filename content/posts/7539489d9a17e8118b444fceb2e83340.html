@@ -1,0 +1,166 @@
++++
+title = "包括麦当劳在内的多家世界500强企业内部通讯录数据正在暗网出售，分析拖取自Microsoft Azure"
+date = 2026-08-19T23:59:00+08:00
+categories = ["暗网动态", "美国暗网动态"]
+tags = ["Microsoft Azure", "TheHatman", "数据泄露", "麦当劳"]
+thumbnail = ""
++++
+
+<div class="entry-content clearfix">
+                            <div class="wp-block-image">
+<figure class="aligncenter size-large"><noscript><img fetchpriority="high" decoding="async" width="1024" height="605" src="/images/0023b258d10602030a08b2db2af3407c.webp" alt="包括麦当劳在内的多家世界500强企业内部通讯录数据正在暗网出售，分析拖取自Microsoft Azure" class="wp-image-5040"></noscript><img fetchpriority="high" decoding="async" width="1024" height="605" src="/images/0023b258d10602030a08b2db2af3407c.webp" alt="包括麦当劳在内的多家世界500强企业内部通讯录数据正在暗网出售，分析拖取自Microsoft Azure" class="wp-image-5040 j-lazy"></figure>
+</div>
+
+
+<p class="wp-block-paragraph">过去半个月，一起规模巨大的针对<span class="wpcom_tag_link">Microsoft Azure</span>数据窃取活动正在进行中，一名化名为“<span class="wpcom_tag_link">TheHatman</span>”的网络攻击者在暗网论坛上发布了大量财富500强企业的内部员工通讯录数据。据报道，这些庞大的数据是利用被盗用的凭据直接从企业的Azure/Entra门户下载的。</p>
+
+
+
+<h2 class="wp-block-heading"><span class="wpcom_tag_link">麦当劳</span>员工数据出现在暗网论坛</h2>
+
+
+
+<p class="wp-block-paragraph">该黑客本周在暗网<span class="wpcom_tag_link">数据泄露</span>论坛上发布了一篇标题为“麦当劳 170 万+ Azure 内部员工数据泄露”的帖子，同时附上了8000行数据的样本，声称这只是从麦当劳Azure租户中窃取的170万条员工通讯录的一部分。该样本经离线技术分析，在所有可应用的测试中均显示数据真实有效，但记录的年份以及170万这个数字的准确性尚无法确认。</p>
+
+
+
+<p class="wp-block-paragraph">帖子未标明售价，而是征求报价。研究人员已离线查看了免费样本，并未尝试访问、探测或验证任何麦当劳系统。由于卖家帖子中包含的下载链接仍然指向真实用户的联系方式，因此未在公开资料中披露。</p>
+
+
+
+<p class="wp-block-paragraph">卖家提供的8000行免费数据样本，显示了结构化的公司通讯录信息，包括DisplayName、UserPrincipalName和EmployeeId。样本中不包含日期字段，因此无法确定数据提取时间。最明确的线索是该公司的运营范围：样本中没有俄罗斯记录（这与麦当劳于2022年退出俄罗斯市场相符），也没有哈萨克斯坦记录（表明数据日期为2023年或之后）。声称的170万条记录总数无法与样本进行核实，该样本仅占总记录数的不到0.5%。</p>
+
+
+
+<p class="wp-block-paragraph">卖家称，这些资料是使用泄露的凭证直接从麦当劳公司Azure租户下载的，包含员工账户、服务账户和其他租户记录。多项技术指标表明这是一次真实的管理导出。诸如“传真号码”和“物理送货办公室名称”之类的列标题与管理员使用Microsoft PowerShell目录工具从Entra ID（Azure Active Directory 的当前名称）导出用户列表时生成的属性名称完全一致。样本中识别出的所有50个电子邮件域均属于麦当劳，涵盖了30多个国家/地区的公司员工、餐厅员工帐户、加盟商登录和供应商访客访问权限。其中三个条目包含租户的内部Microsoft地址mcdonaldscorp.onmicrosoft.com，该地址在企业外部不可见或无法访问。</p>
+
+
+
+<p class="wp-block-paragraph">该样本还包含233行乱码字符编码数据，这与导出时省略UTF-8格式的情况一致；此外，还有85个职位名称被截断至30个字符，这种模式与人力资源软件中的固定宽度字段相关；其中一条记录甚至超出了文件本身：位于威勒尔 Upton By-Pass 的“556 Upton”餐厅信息（包括电话号码）与一家公开列出的真实麦当劳餐厅相符。一般而言，这些编码错误不会出现在伪造的数据中，伪造的数据集不会出现真正的编码错误。</p>
+
+
+
+<h2 class="wp-block-heading">受影响的大型企业及泄露数据分析</h2>
+
+
+
+<p class="wp-block-paragraph">在16天内，该名为“TheHatman”的账户发布了九篇帖子，涵盖麦当劳、沃达丰、盖璞、两家连锁酒店以及四家信息技术外包公司，包括Kyndryl和塔塔咨询服务公司，涵盖IT服务、酒店、电信、零售和物流等行业。</p>
+
+
+
+<p class="wp-block-paragraph">“<mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-vivid-red-color">暗网下/AWX</mark>”分析了发布在暗网论坛上的帖子，根据发现的企业电子邮件地址以及与标准Azure目录导出完全匹配的字段名称，每条信息都使用了相同的19列结构，应是由同一操作者针对持有有效凭证的租户运行相同的导出脚本所致，因此该活动看起来高度可信。</p>
+
+
+
+<p class="wp-block-paragraph">以下是受影响的企业以及攻击者提供的惊人数量的泄露记录：</p>
+
+
+
+<ul class="wp-block-list">
+<li>麦当劳公司：约170万条记录</li>
+
+
+
+<li>TCS（塔塔咨询服务公司）：超过80万条记录</li>
+
+
+
+<li>沃达丰：约42.5万条记录</li>
+
+
+
+<li>HCL Technologies：超过25万条记录</li>
+
+
+
+<li>洲际酒店集团 (IHG)：约18.5万条记录</li>
+
+
+
+<li>Kyndryl：约17万多条记录</li>
+
+
+
+<li>Gap公司：约8万多条记录</li>
+
+
+
+<li>Hexaware Technologies：超过2万条记录</li>
+
+
+
+<li>温德姆酒店：约9000多条记录</li>
+</ul>
+
+
+
+<p class="wp-block-paragraph">在所有受影响的租户数据转储文件中，泄露的字段始终包含基础的企业通讯录数据。通过分析提供的样本，可以清晰地看到泄露数据的结构：</p>
+
+
+
+<ul class="wp-block-list">
+<li>核心身份和联系方式：全名、公司电子邮件地址（包括活跃域和租户特定.onmicrosoft.com结构）、电话号码和实际地址。</li>
+
+
+
+<li>企业结构：员工编号、职位名称、部门、备注、经理详细信息和直接下属。</li>
+
+
+
+<li>访问权限和组映射：用户组成员身份、服务帐户和高级权限帐户记录（例如全局管理员列表）。</li>
+</ul>
+
+
+
+<p class="wp-block-paragraph">服务帐户和全局管理员名称的泄露尤其令人担忧，因为这为后续针对这些企业的社会工程、鱼叉式网络钓鱼或有针对性的权限提升攻击提供了直接路线图。</p>
+
+
+
+<p class="wp-block-paragraph">虽然数据极有可能真实，但尚无法确定此次攻击活动的具体实施方式。攻击者明确声称，这些数据是“使用被盗用的凭证”下载的。然而，具体的入侵途径仍然未知。</p>
+
+
+
+<p class="wp-block-paragraph">样本中不包含密码或密码哈希值，这意味着直接风险主要来自社交工程攻击，而非账户盗用。因此对于数据中提及的个人而言，没有任何措施可以消除风险，务实的应对措施是对未经请求的联系保持警惕。</p>
+
+
+
+<h2 class="wp-block-heading">大型企业的通讯录数据如何被窃取</h2>
+
+
+
+<p class="wp-block-paragraph">虽然目前无法确切确认黑客究竟使用了哪些凭证来入侵这些企业，但研究人员已经找到了与大多数受影响公司相关的、源自Infostealer感染的被盗Azure凭证，因此此次攻击活动极有可能通过对Infostealer感染获取的用户凭证的定向利用，而非微软Azure的系统性零日漏洞。</p>
+
+
+
+<p class="wp-block-paragraph">“<mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-vivid-red-color">暗网下/AWX</mark>”推断，大概有几个方面的原因造成了500强大型企业内部通讯录的泄露：</p>
+
+
+
+<ul class="wp-block-list">
+<li>活跃的Infostealer病毒感染导致员工会话令牌泄露</li>
+
+
+
+<li>高成功率的网络钓鱼活动获取了管理权限</li>
+
+
+
+<li>特定租户门户缺乏严格的多因素身份验证（MFA）</li>
+
+
+
+<li>滥用了在多个环境中拥有过高读取权限的第三方API/集成</li>
+</ul>
+
+
+
+<p class="wp-block-paragraph">如此庞大的数据泄露规模和速度表明，一旦获得初始访问权限，攻击者便会采取系统化的自动化手段窃取企业内部的通讯录。</p>
+
+
+
+<p class="wp-block-paragraph">大型企业内部通讯录的泄露对受影响的企业构成严重且直接的威胁。黑客经常利用这些结构化数据发起极具迷惑性的商业电子邮件诈骗 (BEC) 和鱼叉式网络钓鱼攻击。通过了解企业的详细汇报结构、部门和职位，攻击者可以轻松冒充经理或IT人员，诱骗员工批准欺诈性电汇或交出多因素身份验证 (MFA) 令牌。</p>
+
+
+
+<p class="wp-block-paragraph">此外，服务帐户和全局管理员的识别为初始访问代理和勒索软件运营者提供了高价值目标的精确路线图。为了主动防御这些入侵，企业必须监控初始感染途径，安全团队可以在威胁行为者利用Infostealer窃取的信息访问Azure等关键基础设施之前，检测到被Infostealer窃取凭证的受感染员工、用户和第三方凭据。</p>
+                                                                                </div>
