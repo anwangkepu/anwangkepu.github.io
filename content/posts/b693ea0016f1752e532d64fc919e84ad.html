@@ -1,0 +1,104 @@
++++
+title = "Tor项目称：在浏览器之外，Tor VPN Beta把Tor的保护带到了整部安卓手机"
+date = 2026-09-16T01:40:00+08:00
+categories = ["Tor官方动态", "工具", "暗网动态"]
+tags = ["Tor VPN", "Tor项目", "保护隐私"]
+thumbnail = ""
++++
+
+<div class="entry-content clearfix">
+                            <div class="wp-block-image">
+<figure class="aligncenter size-full"><noscript><img fetchpriority="high" decoding="async" width="940" height="529" src="/images/8f0f1541a4b365abb7899fc988af02cf.webp" alt="Tor项目称：在浏览器之外，Tor VPN Beta把Tor的保护带到了整部安卓手机" class="wp-image-5090"></noscript><img fetchpriority="high" decoding="async" width="940" height="529" src="/images/8f0f1541a4b365abb7899fc988af02cf.webp" alt="Tor项目称：在浏览器之外，Tor VPN Beta把Tor的保护带到了整部安卓手机" class="wp-image-5090 j-lazy"></figure>
+</div>
+
+
+<p class="wp-block-paragraph">近期，<span class="wpcom_tag_link">Tor项目</span>发布文章“<a href="https://blog.torproject.org/tor-vpn-beta/" target="_blank" rel="noreferrer noopener">Tor VPN Beta：我们从零开始构建自己的安卓 VPN 的经验教训</a>”，详细讲述了最近几年来建设<span class="wpcom_tag_link">Tor VPN</span>的心路历程。</p>
+
+
+
+<p class="wp-block-paragraph">Tor项目称，多年来，Tor浏览器一直是<span class="wpcom_tag_link">保护隐私</span>、绕过审查的有效工具之一。但如今，大多数人接触互联网的方式已经不只是使用浏览器，人们更多通过常用的应用连接网络：即时通讯、社交媒体、电子邮件等等。能否把同样的隐私保护，延伸到这些应用上？</p>
+
+
+
+<p class="wp-block-paragraph">Tor项目在用户研究中反复听到这样的需求。人们希望有一种简单的方式，保护整部设备上的流量。正是这一需求，促成了2021年Tor VPN的构想。Tor团队首先聚焦安卓（Android）平台——那里需求最迫切，也最能覆盖审查较严地区的用户。他们推出了Tor VPN Beta作为第一版，预期从真实使用中学习。去年秋天在有限范围内发布后，主要使用场景很快变得清晰：解锁被限制的互联网访问。这一发现影响了之后的开发优先级、用户支持方向，以及产品未来的规划。</p>
+
+
+
+<h2 class="wp-block-heading">Tor VPN有何不同</h2>
+
+
+
+<p class="wp-block-paragraph">与商业VPN不同，Tor VPN Beta建立在截然不同的另一套模型上。它是Tor首次在移动端实现设备级网络保护，把Tor的防护从浏览器扩展出去。</p>
+
+
+
+<p class="wp-block-paragraph">在Tor VPN中，设备上的每个应用会获得各自独立的Tor线路，而不是共用一条隧道。这意味着一个应用的活动不容易与另一个应用关联起来。这种应用级隔离的设计，很大程度上受到Tor浏览器跨站追踪防护思路的启发。它与多数VPN的模型不同，默认就致力于减少跨应用追踪。</p>
+
+
+
+<p class="wp-block-paragraph">随着Tor VPN Beta的不断完善和逐步成熟，Tor团队也在让应用级控制更易用。应用列表界面现已支持搜索，用户可以更快找到某个特定应用，并决定是否将其流量路由到Tor网络。</p>
+
+
+
+<h2 class="wp-block-heading">重新思考如何设计规避策略</h2>
+
+
+
+<p class="wp-block-paragraph">Tor VPN Beta也包含一些常规VPN的常见功能，例如出口节点选择。但对试图绕过审查的用户来说，这些功能并非总是最佳选择。这是可用性测试和早期反馈中最重要的经验教训之一。</p>
+
+
+
+<p class="wp-block-paragraph">Tor团队最初探索过给用户更多出口选择权，纸面上看起来很合理。实际使用中却带来了混淆：本该使用网桥的用户，却去选择其他出口位置。Tor的工作方式与用户的预期之间存在错位。因此，当前设计要求先把应用连上Tor网络，然后才能选择出口。出口选择仍是未来希望更充分探索的方向，但需要以一种不在高风险场景下制造用户误操作的方式引入。</p>
+
+
+
+<h2 class="wp-block-heading">用在最需要的地方</h2>
+
+
+
+<p class="wp-block-paragraph">早期数据显示，高度审查地区的采用率很高，包括伊朗和土库曼斯坦。这与安卓版Tor浏览器的用户结构形成对比——后者更偏向全球北方用户。而在Tor VPN Beta上，Tor团队看到了来自全球南方国家用户的参与度显著提升，这些用户每天都面临着网络限制的挑战。</p>
+
+
+
+<p class="wp-block-paragraph">正因为实际使用方式如此，Tor团队加大了在绕过审查能力上的投入。例如，在较早的1.4.0 beta版本中优先加入了WebTunnel网桥，有助于让Tor流量看起来更像普通的加密网页流量，从而提高被审查方检测和封锁的难度。Tor团队也修复了多个与网桥相关的问题，并做了体验上的改进，目标是让网桥使用更可靠。</p>
+
+
+
+<h2 class="wp-block-heading">稳定与可靠，和功能同样重要</h2>
+
+
+
+<p class="wp-block-paragraph">事实上，自早期版本发布以来，Tor团队投入了大量精力来提升稳定性。Tor VPN建立在<a href="https://blog.torproject.org/announcing-arti/" target="_blank" rel="noreferrer noopener">Arti</a>之上——这是用Rust编写的下一代Tor实现。这意味着底层架构拥有一个全新的、坚实的技术基础，而不是对旧架构进行修补。其直接优势之一是可靠性的提升，包括更少的崩溃和更好的网络状况处理。</p>
+
+
+
+<p class="wp-block-paragraph">Tor团队还投入精力实现可复现构建，并把应用上架到F-Droid应用商店。可复现构建让任何人都能验证自己运行的二进制文件是否与公开源码一致；F-Droid则让用户可以不依赖Google Play安装和更新应用。对一款以隐私和安全为重心的工具来说，这两点都很重要。</p>
+
+
+
+<p class="wp-block-paragraph">Tor VPN Beta的速度性能并不像以速度为卖点的商业VPN那样表现出色。不过，Tor网络本身的性能多年来持续提升，<a href="https://blog.torproject.org/congestion-contrl-047/" target="_blank" rel="noreferrer noopener">Tor团队也在把这些改进带到移动端体验中</a>。Tor在C语言实现中的一些性能特性，例如拥塞控制，目前在Arti中尚未实现。将这些功能移植过来是下一步的工作重点。</p>
+
+
+
+<p class="wp-block-paragraph">Tor项目产品与用户体验负责人Duncan表示，Tor团队最初是为了把Tor扩展到浏览器之外，填补移动端保护的缺口；但项目很快被真实使用方式所塑造，尤其是那些需要可靠、设备级绕过审查能力的人。因此，重点放在为移动端Tor打好基础：以Arti和Onionmasq为中心的模块化Tor协议栈，能够随真实使用而演进。这些组件现已可在多个应用中复用，有助于减少生态碎片化，并降低长期维护风险。</p>
+
+
+
+<p class="wp-block-paragraph">Tor浏览器仍代表目前能力的业界标杆，Tor团队的目标之一是让Tor VPN逐步达到同样的水平。</p>
+
+
+
+<h2 class="wp-block-heading">协作与开放开发</h2>
+
+
+
+<p class="wp-block-paragraph">Tor VPN Beta是多年协作的结果。Tor团队感谢<a href="https://guardianproject.info/" target="_blank" rel="noreferrer noopener">Guardian Project</a>在指导和关键底层移动库方面的帮助，以及LEAP Encryption Access Project的贡献——没有双方，这款应用很难真正面世。</p>
+
+
+
+<p class="wp-block-paragraph">Tor项目仍在<a href="https://blog.torproject.org/code-audit-tor-vpn/" target="_blank" rel="noreferrer noopener">公开继续开发Tor VPN Beta</a>，并根据人们的实际使用方式调整方向。这意味着：在受限环境中改进绕过审查能力，把更多性能特性引入Arti，并打磨用户体验以减少混淆和风险。</p>
+
+
+
+<p class="wp-block-paragraph">更重要的是，继续向依赖这款工具的人学习。若你也在使用，并希望参与塑造Tor VPN Beta的发展，可访问<a href="https://download.torproject.org/" target="_blank" rel="noreferrer noopener">Tor项目更新后的下载页面</a>。除了通过APK或Google Play安装，现在也可以通过F-Droid获取Tor VPN Beta。</p>
+                                                                                </div>
