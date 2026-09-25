@@ -1,0 +1,108 @@
++++
+title = "两大网络犯罪团伙PK：ShinyHunters宣称攻破勒索软件团伙Cl0p的暗网泄密站点"
+date = 2026-09-22T23:55:00+08:00
+categories = ["独家报道"]
+tags = ["CL0P", "Oracle", "ShinyHunters", "勒索软件团伙"]
+thumbnail = ""
++++
+
+<div class="entry-content clearfix">
+                            <div class="wp-block-image">
+<figure class="aligncenter size-large"><noscript><img fetchpriority="high" decoding="async" width="1024" height="599" src="/images/1a6ecb2c5d6aa9276ab8f7bae5522cd2.webp" alt="两大网络犯罪团伙PK：ShinyHunters宣称攻破勒索软件团伙Cl0p的暗网泄密站点" class="wp-image-5102"></noscript><img fetchpriority="high" decoding="async" width="1024" height="599" src="/images/1a6ecb2c5d6aa9276ab8f7bae5522cd2.webp" alt="两大网络犯罪团伙PK：ShinyHunters宣称攻破勒索软件团伙Cl0p的暗网泄密站点" class="wp-image-5102 j-lazy"></figure>
+</div>
+
+
+<p class="wp-block-paragraph">网络勒索与数据窃取领域两大活跃的网络犯罪团伙之间的矛盾，近日以公开方式爆发。数据窃取团伙<span class="wpcom_tag_link">ShinyHunters</span>宣称，已入侵并控制了对手<span class="wpcom_tag_link">勒索软件团伙</span>Cl0p的暗网泄密站点，并在网站上留下挑衅信息、提出金钱要求，还威胁公开曾向Cl0p支付赎金的企业相关信息。部分细节尚未得到独立核实，但多名安全研究者认为这场对峙看起来真实存在。</p>
+
+
+
+<h2 class="wp-block-heading">Cl0p的暗网网站被劫持经过</h2>
+
+
+
+<p class="wp-block-paragraph">ShinyHunters是以数据窃取与勒索为主的网络犯罪团伙，近年来身份边界日益模糊，研究者观察到其与Scattered Spider Lapsus$等团伙存在关联与协作。Cl0p则以大规模数据勒索行动闻名，尤其擅长利用零日漏洞；2023年曾利用Progress Software的MOVEit文件传输软件零日漏洞发起大规模行动，同年还针对Fortra GoAnywhere漏洞开展类似活动。</p>
+
+
+
+<p class="wp-block-paragraph">根据ShinyHunters的说法，攻击始于周五晚间：其利用Cl0p暗网泄密网站所使用的Grav CMS中一个无需身份验证的文件上传漏洞得手。周末期间，Cl0p的暗网数据泄露站点被涂改，页面显示“DOMAIN SEIZED BY SHINYHUNTERS”（域名已被ShinyHunters接管）。</p>
+
+
+
+<p class="wp-block-paragraph">网络安全研究平台eCrime.ch保存的截图显示，周六该站点确有上述接管信息。路透社周日尝试访问时，站点已不可用。</p>
+
+
+
+<p class="wp-block-paragraph">ShinyHunters在与路透社的在线对话中称：“我们基本上已经控制了他们。”两位网络安全专家向路透社表示，这场对峙看起来是真实的，尽管ShinyHunters所提供的具体细节无法立即独立核实。明尼苏达州Ascent Solutions威胁情报经理Brandon Parsons说：“暗网上的街头冲突是真实存在的。”SpyCloud安全研究高级总监Joe Roosen则表示，很少看到对手网络犯罪团伙如此公开地对峙：“这确实是个意外转折。很少有机会看到这些犯罪分子互相争斗。”</p>
+
+
+
+<h2 class="wp-block-heading">ShinyHunters窃取的内容与勒索信息</h2>
+
+
+
+<p class="wp-block-paragraph">ShinyHunters宣称已获得Cl0p暗网泄密站点所在服务器的完全访问权限，并窃取了源代码、Grav CMS插件、系统日志、Onion服务私钥及其他数据。这些数据窃取说法尚未得到独立验证。</p>
+
+
+
+<p class="wp-block-paragraph">攻击者继续在Cl0p站点上留下嘲讽信息，并试图向Cl0p勒索。9月19日，署名ShinyHunters的信息要求一笔未具体说明的八位数比特币赎金，并指示Cl0p联系某个Onionmail地址。</p>
+
+
+
+<p class="wp-block-paragraph">9月20日，攻击者又在页面上写道，要求获得Cl0p在“EBS行动”中赚取的全部款项，外加利息，否则将开始公布哪些公司曾向Cl0p付款、付了多少、以及比特币地址等信息。这里的“EBS”很可能指Cl0p去年针对受<span class="wpcom_tag_link">Oracle</span> E-Business Suite（EBS）关键零日漏洞CVE-2025-61882影响客户的勒索行动。</p>
+
+
+
+<p class="wp-block-paragraph">目前尚无迹象表明Cl0p已支付，涂改信息中有一条注明日期的新留言称：每过24小时若仍不回应，要求就会提高，现在还包括必须公开向其道歉。随后，Cl0p泄露站点已移除涂改信息，改为显示一段纯文本，可能来自Cl0p自身，称ShinyHunters的邮箱地址无法使用。</p>
+
+
+
+<h2 class="wp-block-heading">ShinyHunters与Cl0p的恩怨起源：Oracle零日漏洞</h2>
+
+
+
+<p class="wp-block-paragraph">ShinyHunters称，与Cl0p的冲突可追溯到去年对Oracle E-Business Suite中一个此前未知漏洞的利用。此类零日漏洞对攻击者极具价值，因为防御方事先没有补丁机会。</p>
+
+
+
+<p class="wp-block-paragraph">据路透社援引谷歌分析师的评估，说俄语的Cl0p利用该漏洞从100多家公司窃取了数据。ShinyHunters则对路透社表示，是自己先发现了该漏洞。据其说法，随后矛盾升级：Cl0p威胁曝光数名ShinyHunters成员身份，ShinyHunters则威胁披露Cl0p内部运作信息。路透社表示无法立即核实这一说法的准确性。</p>
+
+
+
+<h2 class="wp-block-heading">两个网络犯罪团伙的背景</h2>
+
+
+
+<p class="wp-block-paragraph">Cl0p以利用广泛使用的企业软件漏洞著称。2023年利用MOVEit漏洞的行动影响了600多家机构、数千万人的数据。近期，Cl0p还宣称从包括飞利浦、壳牌、Fiserv、通用电气等在内的数十家公司窃取了数据。</p>
+
+
+
+<p class="wp-block-paragraph">ShinyHunters同样以大规模数据窃取闻名。今年4月，该团伙因宣称从游戏开发商Rockstar Games窃取数百万条商业记录而受到关注；5月，针对教育技术平台Canvas的攻击曾导致美国多所学校大面积中断。本月，人工智能公司Anthropic表示，已发现与ShinyHunters有关联的黑客试图使用其工具。</p>
+
+
+
+<p class="wp-block-paragraph">公开的网络犯罪团伙之间争斗并不罕见。今年早些时候，新兴勒索软件团伙0APT与KryBit就曾互相入侵并泄露对方内部数据。</p>
+
+
+
+<h2 class="wp-block-heading">该事件对受害者意味着什么</h2>
+
+
+
+<p class="wp-block-paragraph">一方面，如Malwarebytes的Pieter Arntz在博文中所写：好消息是，当他们互相针对时，可能暂时少有精力去攻击合法企业。</p>
+
+
+
+<p class="wp-block-paragraph">另一方面，目前尚不清楚ShinyHunters是否真正获得了Cl0p受害者的信息。该团伙尚未提供已掌握相关数据的证据，却已威胁公布据称曾向Cl0p付款的公司信息，包括金额与比特币地址。若其确实掌握了与Cl0p受害者相关的额外信息，这些机构可能面临进一步暴露，甚至再次遭遇勒索。</p>
+
+
+
+<p class="wp-block-paragraph">AttackIQ威胁知情防御副总裁Jon Baker表示，目前没有证据表明ShinyHunters真正拿到了Cl0p的受害者文件，但更重要的一点是：“被盗信息不会自动退役。”“这些数据会留在原始团伙、其附属方和基础设施提供商运营的服务器上，每一份副本都是再次被盗、转售或曝光的机会。一家公司可能要为多年都无法定位或控制的数据承担责任。”</p>
+
+
+
+<p class="wp-block-paragraph">Keeper Security首席执行官兼联合创始人Darren Guccione指出，根本问题在于：“即便付了赎金，也不能指望犯罪分子信守约定。”“为删除数据而付款，等于假定对方会销毁数据，但你是在与以欺骗和盗窃为商业模式的人谈判。一旦数据离开勒索团伙控制，就没有机制可以验证它是否被销毁，没有审计轨迹，承诺被违背时也没有救济途径。”</p>
+
+
+
+<p class="wp-block-paragraph">这场公开对峙再次说明：数据一旦被窃取，勒索软件团伙就可能长期为存储在无法保障、无法审计甚至无法定位的基础设施上的信息负责。网络犯罪分子之间的基础设施漏洞，同样可能被对手利用；而对合法企业而言，被盗数据在犯罪分子之间易手，只会增加再次被利用的风险。</p>
+                                                                                </div>
