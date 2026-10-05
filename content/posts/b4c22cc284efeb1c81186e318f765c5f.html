@@ -1,0 +1,74 @@
++++
+title = "Tor浏览器15.0.24版本发布，但由于其Windows安装包签名证书过期，官网临时提供15.0.20版本规避警告"
+date = 2026-10-02T23:34:00+08:00
+categories = ["Tor官方动态", "暗网动态"]
+tags = ["Tor浏览器", "代码签名证书", "版本更新"]
+thumbnail = ""
++++
+
+<div class="entry-content clearfix">
+                            <div class="wp-block-image">
+<figure class="aligncenter size-full"><noscript><img fetchpriority="high" decoding="async" width="940" height="529" src="/images/cbf2dd4d77240235ec15c4f312f58bbd.webp" alt="Tor浏览器15.0.24版本发布，但由于其Windows安装包签名证书过期，官网临时提供15.0.20版本规避警告" class="wp-image-4066"></noscript><img fetchpriority="high" decoding="async" width="940" height="529" src="/images/cbf2dd4d77240235ec15c4f312f58bbd.webp" alt="Tor浏览器15.0.24版本发布，但由于其Windows安装包签名证书过期，官网临时提供15.0.20版本规避警告" class="wp-image-4066 j-lazy"></figure>
+</div>
+
+
+<p class="wp-block-paragraph">Tor项目已发布<span class="wpcom_tag_link">Tor浏览器</span>15.0.24，可从Tor浏览器下载页及官方分发目录获取。该版本包含针对Firefox的重要安全更新。与此同时，Windows用户在全新安装时可能遇到安装包签名警告。Tor项目<a href="https://x.com/torproject/status/2105055094488305747" target="_blank" rel="noreferrer noopener">在X上发布公告进行说明</a>，这是由于用于签署Windows安装包的证书过期，并已采取临时措施，避免用户被过期证书提示困扰。</p>
+
+
+
+<figure class="wp-block-embed is-type-rich is-provider-x wp-block-embed-x"><div class="wp-block-embed__wrapper">
+<blockquote class="twitter-tweet" data-width="500" data-dnt="true"><p lang="en" dir="ltr">Noticed a warning when installing Tor Browser for Windows? ⚠️ Our installer’s signing certificate expired. While we renew it, our website will serve version<br>15.0.20 for Windows users. After installation and on first run, the browser will download the latest version and install it…</p>— The Tor Project (@torproject) <a href="https://x.com/torproject/status/2105055094488305747?ref_src=twsrc%5Etfw">September 29, 2026</a></blockquote><script async src="https://platform.x.com/widgets.js" charset="utf-8"></script>
+</div></figure>
+
+
+
+<h2 class="wp-block-heading">Tor浏览器的Windows安装包遇到签名问题</h2>
+
+
+
+<p class="wp-block-paragraph">Tor项目用于签署Windows安装包的DigiCert EV<span class="wpcom_tag_link">代码签名证书</span>自9月1日起过期，目前正在办理续期，但流程尚未完成。受此影响，从头开始安装Tor浏览器15.0.21与15.0.22的Windows用户会收到“签名无效”或类似警告。</p>
+
+
+
+<p class="wp-block-paragraph">作为临时解决方案，Tor项目在官网下载页面针对Windows用户暂时继续提供已正确签名的最新版本15.0.20。用户安装并首次运行后，浏览器会通过自动更新机制下载最新版本，并在下次启动时完成安装。自动更新使用的是另一套密钥，不依赖这枚已过期的证书，因此可避开过期证书警告。</p>
+
+
+
+<p class="wp-block-paragraph">若用户希望直接下载最新版、并自行判断是否忽略证书过期提示，可从官方分发目录获取15.0.24：<br><a href="https://dist.torproject.org/torbrowser/15.0.24/" target="_blank" rel="noreferrer noopener">https://dist.torproject.org/torbrowser/15.0.24/</a></p>
+
+
+
+<h2 class="wp-block-heading">15.0.24版本最新更新的内容</h2>
+
+
+
+<p class="wp-block-paragraph">相对15.0.23，15.0.24的主要变更包括：</p>
+
+
+
+<p class="wp-block-paragraph">全平台方面，NoScript更新至13.6.35.1984，Tor更新至0.4.9.13；将Tor浏览器稳定版变基到Firefox 140.17.0esr；回传Firefox 157的安全修复；处理NoScript站点解析中的onion别名问题；以及为内容补丁传播挂钩CharacterData/Range插入相关接口。</p>
+
+
+
+<p class="wp-block-paragraph">Windows、macOS与Linux桌面版将Firefox更新至140.17.0esr，并实现2026年年终筹款（YEC）相关桌面稳定版展示。Linux方面还调整了32位版本在15.0最终版上的过期提示文案。Android版将GeckoView更新至140.17.0esr，并实现对应的年终筹款展示。</p>
+
+
+
+<p class="wp-block-paragraph">构建系统方面，所有平台的发布均改用新gpg子密钥签名；macOS构建中修复了hfsplus-tools项目配置里的sha256sum定义问题。</p>
+
+
+
+<p class="wp-block-paragraph">本次发布使用了新的PGP子密钥进行签名。若用户以往用gpg校验Tor浏览器下载包，可能需要在本地密钥环中刷新Tor浏览器签名密钥（0xEF6E286DDA85EA2A4BA7DE684E2C6E8793298290）。具体步骤可参考<a href="https://support.torproject.org/tor-browser/getting-started/verifying-tor-browser/" target="_blank" rel="noreferrer noopener">Tor项目关于签名验证的说明页面中“刷新PGP密钥”一节</a>。</p>
+
+
+
+<h2 class="wp-block-heading">用户发现新版本Tor浏览器的问题可随时反馈</h2>
+
+
+
+<p class="wp-block-paragraph">若发现缺陷，或对如何改进本版本有建议，可通过<a href="https://support.torproject.org/misc/bug-or-feedback/" target="_blank" rel="noreferrer noopener">Tor项目支持渠道提交反馈</a>。完整变更日志可在Tor项目GitLab上的ChangeLog文件中查阅。</p>
+
+
+
+<p class="wp-block-paragraph">Tor项目强调，Windows下载页暂时停留在15.0.20是为规避过期签名警告的权宜之计；证书续期完成后，预计将恢复直接提供最新签名安装包。在此期间，通过官网安装15.0.20再依赖自动更新，或从分发目录手动获取15.0.24，均可到达当前安全版本。</p>
+                                                                                </div>
