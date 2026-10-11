@@ -1,0 +1,84 @@
++++
+title = "黑客在暗网出售近1800万条Minecraft玩家数据，样本分析其来自信息窃取木马"
+date = 2026-10-08T23:22:00+08:00
+categories = ["独家报道"]
+tags = ["Minecraft", "PwnForums", "我的世界", "数据泄露", "暗网论坛"]
+thumbnail = ""
++++
+
+<div class="entry-content clearfix">
+                            
+<figure class="wp-block-image size-large"><noscript><img fetchpriority="high" decoding="async" width="1024" height="614" src="/images/8829c9fd43674cf4c0eb9816e08d3b33.webp" alt="黑客在暗网出售近1800万条Minecraft玩家数据，样本分析其来自信息窃取木马" class="wp-image-5135"></noscript><img fetchpriority="high" decoding="async" width="1024" height="614" src="/images/8829c9fd43674cf4c0eb9816e08d3b33.webp" alt="黑客在暗网出售近1800万条Minecraft玩家数据，样本分析其来自信息窃取木马" class="wp-image-5135 j-lazy"></figure>
+
+
+
+<p class="wp-block-paragraph">近期，<span class="wpcom_tag_link">暗网论坛</span>上出现两篇广告帖子，声称掌握大量《<span class="wpcom_tag_link">我的世界</span>》（<span class="wpcom_tag_link">Minecraft</span>）玩家数据并对外出售。其中一则宣称有1800万条用户记录待售，另一则称约900万条。网络安全媒体Cybernews研究人员检查了攻击者提供的免费样本后发现，两份据称不同的数据集实际对应同一批约1000条记录，且更符合信息窃取木马（infostealer）汇总数据的特征，而非微软或Mojang核心基础设施遭直接入侵。</p>
+
+
+
+<h2 class="wp-block-heading">暗网论坛上宣称售卖《我的世界》玩家信息</h2>
+
+
+
+<p class="wp-block-paragraph">两则售卖广告帖子均发布于暗网论坛<span class="wpcom_tag_link">PwnForums</span>，威胁行为者“Feel”在一篇帖子中声称出售1800万条用户记录，而另一篇帖子给出较为克制的900万条数字。该黑客名为“Feel”，个人签名留下一个属于其个人的暗网网页：http://udodnxrzvmgv3ukdrwo7v6y25iulg7abamo7gkq4rgikuqan2hxapuyd[.]onion，称自己很疯狂，并留下一张图片URL（<a href="https://ibb.co/LzxcbNfm" target="_blank" rel="noreferrer noopener">https://ibb.co/LzxcbNfm</a>）：</p>
+
+
+<div class="wp-block-image">
+<figure class="aligncenter size-large"><noscript><img decoding="async" width="1024" height="559" src="/images/45b81aac1b48d220588e3f748fe26697.webp" alt="黑客在暗网出售近1800万条Minecraft玩家数据，样本分析其来自信息窃取木马" class="wp-image-5136"></noscript><img decoding="async" width="1024" height="559" src="/images/45b81aac1b48d220588e3f748fe26697.webp" alt="黑客在暗网出售近1800万条Minecraft玩家数据，样本分析其来自信息窃取木马" class="wp-image-5136 j-lazy"></figure>
+</div>
+
+
+<p class="wp-block-paragraph">Minecraft （《我的世界》）是一款很流行的游戏，由马库斯·”Notch”·佩尔松（Markus “Notch” Persson）创建，Mojang Studios开发，每月活跃玩家超过2.12亿。</p>
+
+
+
+<p class="wp-block-paragraph">Cybernews研究人员对两篇帖子附带的样本进行了比对，发现所谓不同数据集实为相同的约1000条记录。样本中包含用户名、电子邮箱，部分记录还带有密码哈希。记录似乎来自特定多人游戏服务器，仅样本中就出现了3个不同的服务器。</p>
+
+
+
+<p class="wp-block-paragraph">研究人员表示，仅凭样本无法判断数据集究竟有多旧，因为没有时间戳；也无法仅凭样本断定真实规模是否达到1800万或900万条。两份样本高度重叠，也使人怀疑卖家是否在兜售同一批数据。</p>
+
+
+
+<h2 class="wp-block-heading">数据来源可能与俄罗斯相关恶意软件有关</h2>
+
+
+
+<p class="wp-block-paragraph">攻击者如何进入、如何将数据带出，目前仍不清楚。样本中除用户名与邮箱外，部分记录含密码哈希，且有些哈希在不同用户间重复出现。</p>
+
+
+
+<p class="wp-block-paragraph">Cybernews研究团队发现，样本中的邮箱出现在Have I Been Pwned等数据库中，并在多份信息窃取木马组合列表（combo lists）中被引用。这提示数据来源更可能是信息窃取类恶意软件，而非一次性从《我的世界》官方基础设施中批量导出。</p>
+
+
+
+<p class="wp-block-paragraph">Escudo Digital的报道也指出，分析人员认为信息至少来自三台具体的《我的世界》服务器，因此排除了对Mojang Studios或微软中央服务器的入侵。微软迄今未就此事发布官方声明，也未公开确认或否认相关事件。</p>
+
+
+
+<p class="wp-block-paragraph">2025年，Check Point Research曾发现约1500台设备感染疑似源自俄罗斯的恶意软件，专门针对《我的世界》玩家。该恶意软件通过恶意GitHub仓库传播，伪装成模组、外挂或社区常用自动化工具，会从浏览器中收割玩家凭证，以及加密货币钱包、Discord、Steam、Telegram等应用中的数据。</p>
+
+
+
+<p class="wp-block-paragraph">那一轮活动为当前的售卖提供了可能的背景，但并不能证明与本次售卖帖存在直接关联。</p>
+
+
+
+<h2 class="wp-block-heading">更可能是信息窃取木马，而不是从服务器窃取的数据库</h2>
+
+
+
+<p class="wp-block-paragraph">《我的世界》拥有庞大的模组、插件与自定义服务器生态，既方便合法改造，也容易滋生恶意软件。Cybernews研究人员称：“我们现在分析的列表看起来完全来自多人服务器，因此可能存在服务器侧的恶意模组。”</p>
+
+
+
+<p class="wp-block-paragraph">他们同时指出，服务器侧通常能拿到的是用户名、IP地址、连接时间等；邮箱与密码更难用普通服务器遥测解释。“游戏社区里恶意模组并不少见，但我们无法在此指认任何具体模组。”</p>
+
+
+
+<p class="wp-block-paragraph">综合判断，新近挂售样本中的数据，更像是从信息窃取木马组合列表中拼装而来，而不是《我的世界》核心基础设施遭遇一次直截了当的大规模失窃。对玩家而言，更现实的风险仍是撞库与针对复用密码的社工；在官方尚未证实的情况下，不宜将事件直接等同于微软或Mojang主系统被攻破。</p>
+
+
+
+<p class="wp-block-paragraph">研究人员指出，若邮箱与用户在其他平台重复使用的密码配对，暴露数据可能被用于撞库（credential stuffing）与社工诈骗。犯罪分子会拿以往泄露中的用户名与密码组合，到其他服务上试登录，赌用户在多处复用同一套凭证。</p>
+                                                                                </div>
