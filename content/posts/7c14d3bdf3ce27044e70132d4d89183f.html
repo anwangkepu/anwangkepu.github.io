@@ -1,0 +1,160 @@
++++
+title = "暗网爆出特大漏洞：攻击者通过GoBalance获取Tor私钥，从而劫持.onion地址"
+date = 2026-10-14T23:27:00+08:00
+categories = ["独家报道", "暗网技术", "工具"]
+tags = ["Dread", "Ed25519", "GoBalance", "OnionBalance", "Tor", "洋葱服务", "零日漏洞"]
+thumbnail = ""
++++
+
+<div class="entry-content clearfix">
+                            <div class="wp-block-image">
+<figure class="aligncenter size-large"><noscript><img fetchpriority="high" decoding="async" width="1024" height="576" src="/images/7d302c1c8e670ba8d74e0b8e7dc750a4.webp" alt="暗网爆出特大漏洞：攻击者通过GoBalance获取Tor私钥，从而劫持.onion地址" class="wp-image-5151"></noscript><img fetchpriority="high" decoding="async" width="1024" height="576" src="/images/7d302c1c8e670ba8d74e0b8e7dc750a4.webp" alt="暗网爆出特大漏洞：攻击者通过GoBalance获取Tor私钥，从而劫持.onion地址" class="wp-image-5151 j-lazy"></figure>
+</div>
+
+
+<p class="wp-block-paragraph">攻击者并不总是需要攻破网站的服务器，才能成功实现对目标网站的入侵。近期披露的<span class="wpcom_tag_link">GoBalance</span>工具的<span class="wpcom_tag_link">零日漏洞</span>，正说明了这一点。</p>
+
+
+
+<p class="wp-block-paragraph">GoBalance是一个配置暗网网站服务常用的工具，在DDoS攻击期间，很多暗网网站都用它来保持可访问性。然而，GoBalance工具近期爆出一个惊天漏洞，这个漏洞允许任何人仅使用公开信息就能算出暗网网站.onion地址的密钥，从而成功接管该.onion地址。</p>
+
+
+
+<p class="wp-block-paragraph">Searchlight Cyber于10月8日<a href="https://www.slcyber.io/research/leaking-the-keys-to-the-kingdom-how-a-single-slip-handed-over-a-darknet-empire" target="_blank" rel="noreferrer noopener">发布技术调查报告</a>，指出用于在拒绝服务攻击期间维持可用性的负载均衡工具GoBalance，在加密签名实现上存在缺陷。攻击者仅凭公开可获取的信息，即可恢复受影响<span class="wpcom_tag_link">洋葱服务</span>的签名密钥，进而接管其.onion地址。相关后果在暗网论坛<span class="wpcom_tag_link">Dread</span>等服务的地址被重定向事件中已有体现。</p>
+
+
+
+<p class="wp-block-paragraph">需要强调的是：问题并非<span class="wpcom_tag_link">Ed25519</span>算法本身被攻破，而是实现上的错误——在生成签名前丢弃了关键密钥材料。对受影响服务而言，本应用于建立信任的公开信息，反而可能泄露用于冒充该身份的必要秘密。</p>
+
+
+
+<p class="wp-block-paragraph">攻击者如果获取了密钥，就可以将暗网网站访问者重定向到他们控制的暗网网站副本。但即使控制了该地址，攻击者也无法访问暗网网站的服务器、数据库或存储的用户数据。</p>
+
+
+
+<h2 class="wp-block-heading">洋葱地址不同于普通域名，分析GoBalance工具的漏洞成因</h2>
+
+
+
+<p class="wp-block-paragraph">理解该漏洞，需要理解<span class="wpcom_tag_link">Tor</span>洋葱地址如何建立身份。</p>
+
+
+
+<p class="wp-block-paragraph">传统DNS名称通过注册商、注册局、权威DNS服务器与递归解析器等指向基础设施。v3洋葱地址则使用密码学身份：地址本身由服务的主Ed25519公钥派生，具有自认证性质——客户端无需依赖传统域名注册体系，即可验证与服务相关的密码学信息。</p>
+
+
+
+<p class="wp-block-paragraph">洋葱服务会向Tor网络发布已签名的描述符，供客户端定位并建立连接。描述符包含服务发现所需信息，且设计为可公开获取。在正确实现的签名体系中，发布有效数字签名并不会泄露用于生成签名的私钥。GoBalance工具的缺陷破坏了这一预期，原因在于签名密钥材料的处理方式出错。</p>
+
+
+
+<p class="wp-block-paragraph">GoBalance工具是用Go语言重写的<span class="wpcom_tag_link">OnionBalance</span>类功能实现，用于将Tor洋葱服务流量分散到多个后端实例。它随EndGame工具包分发，被一些希望在DDoS拒绝服务攻击下保持在线的暗网网站服务采用。</p>
+
+
+
+<p class="wp-block-paragraph">依赖洋葱服务的暗网网站与传统网站有本质不同。传统网站依赖DNS体系中的域名；而暗网网站则使用Tor v3洋葱地址，由密码学公钥派生。根据Tor v3洋葱地址规范，.onion地址实际上是一个公钥，地址编码了Ed25519公钥以及校验和与版本信息。对应的私钥签名能力，因此持有匹配私钥的人可以控制该地址。</p>
+
+
+
+<p class="wp-block-paragraph">若攻击者获得生成有效身份相关签名所需的秘密，就可能通过Tor网络正常的服务发现流程冒充该服务。这正是GoBalance工具的漏洞引入的风险。</p>
+
+
+
+<p class="wp-block-paragraph">主要特征可概括如下：受影响软件为GoBalance（关联工具包EndGame）；漏洞类型为密码学密钥处理实现错误；底层算法为Ed25519；触发条件是使用Tor格式的扩展私钥进行签名；暴露的是主身份秘密标量；攻击者所需仅为公开可用的已签名描述符；潜在影响包括洋葱地址冒充与流量重定向。原版OnionBalance与Tor协议本身据Searchlight Cyber称不受影响；公开研究披露时间为2026年10月8日；截至相关报道时，美国国家漏洞库中尚无确认的CVE编号。</p>
+
+
+
+<p class="wp-block-paragraph">受影响范围窄于“所有安装GoBalance的暗网服务”。脆弱签名路径针对的是使用Tor格式扩展私钥的服务，而非GoBalance安装工具默认生成的基于种子的密钥格式。</p>
+
+
+
+<h2 class="wp-block-heading">GoBalance工具如何处理Ed25519密钥，该漏洞背后的密码学问题</h2>
+
+
+
+<p class="wp-block-paragraph">Ed25519是基于椭圆曲线密码的数字签名方案。私钥实现可以有不同表示形式。常见形式从32字节种子出发，再派生签名所需信息。Tor则可存储包含64字节已派生材料的扩展私钥表示。</p>
+
+
+
+<p class="wp-block-paragraph">扩展表示包含两个重要部分：用于签名计算的秘密标量，以及用于派生每条消息随机数（nonce）的额外秘密材料。二者用途不同，但对签名过程都必不可少。</p>
+
+
+
+<p class="wp-block-paragraph">Searchlight Cyber发现，GoBalance在处理这些表示时存在关键错配。对于Tor格式的扩展私钥，私钥长度默认为64字节，GoBalance只把前32字节传给签名函数，后32字节被丢弃。原因是实现调用了旨在返回Ed25519私钥“种子部分”的方法。对普通基于种子的密钥，应用可以从种子重新生成所需的扩展组件；对已经扩展好的Tor格式密钥，把前半段当作完整签名材料处理，就等于丢掉了关键信息。这改变了经由该代码路径生成的每一条签名的安全性质。</p>
+
+
+
+<p class="wp-block-paragraph">Ed25519的安全性依赖于以不暴露私钥签名标量的方式生成签名。简化的签名关系可写成：</p>
+
+
+
+<pre class="wp-block-code"><code>[ S = r + H(R \parallel A \parallel M)\cdot a \pmod L ]</code></pre>
+
+
+
+<p class="wp-block-paragraph">其中 (a) 为秘密签名标量，(r) 为签名随机数，(M) 为被签名消息，(A) 为公钥，(R) 为由随机数派生的公开签名分量。在正确实现中，随机数用秘密材料派生；即使签名与消息公开，观察者也无法直接解出私钥标量。</p>
+
+
+
+<p class="wp-block-paragraph">GoBalance的实现错误改变了这一点。丢弃用于派生随机数的秘密材料后，脆弱签名代码会从固定的、可公开知晓的输入构造数值，本应秘密的每条消息随机数因此变得可预测。一旦随机数可从公开信息算出，签名关系就不再按预期保护标量。</p>
+
+
+
+<p class="wp-block-paragraph">Searchlight Cyber展示了如何利用公开签名信息恢复相关的盲化签名标量，再反推公开确定的盲化关系，得到主身份秘密标量。该标量即具备冒充受影响洋葱身份所需的签名能力。关键在于：攻击并不需要削弱Ed25519或求解困难的椭圆曲线问题，而是利用应用程序向本可正常工作的密码学实现错误地提供了密钥材料。</p>
+
+
+
+<h2 class="wp-block-heading">一份公开描述符就可能足够拿到密钥，如果已泄露，仅打补丁无法消除后果</h2>
+
+
+
+<p class="wp-block-paragraph">数字签名通常假设：攻击者即使看到许多已签名消息，也学不到私钥。该假设建立在签名算法被正确实现之上。在脆弱的GoBalance路径中，用于保护随机数派生的秘密材料缺失，随机数可能从公开数据算出。已发布的描述符包含签名关系所需的签名与相关信息。Searchlight Cyber的分析认为，一份受影响的描述符即可提供足够信息，恢复服务的秘密签名能力。</p>
+
+
+
+<p class="wp-block-paragraph">因此该漏洞较为特殊：攻击者不必攻破Web应用、获取管理凭证，或接触运行洋葱服务的操作系统；公开分发的密码学材料本身成为暴露源。这也解释了为何在移除原有脆弱软件之后，问题仍可能持续——补丁前已发布的描述符无法从所有可能被观察或存档的地方撤回。</p>
+
+
+
+<p class="wp-block-paragraph">据Searchlight Cyber，脆弱行为与Tor格式扩展私钥路径相关。该格式含64字节已扩展签名材料；有问题的代码路径错误地丢弃了安全派生随机数所需的部分。标准基于种子的密钥路径没有同样缺陷，因为签名过程会从种子重新生成预期秘密材料。因此并非每一个GoBalance部署都会暴露其签名标量。</p>
+
+
+
+<p class="wp-block-paragraph">管理员也不应假定：改用其他签名格式就能自动恢复已经受损的洋葱身份。若受影响服务此前发布过泄露身份签名能力的描述符，仅更换软件或配置并不会使已暴露的秘密失效，服务必须建立新的密码学身份。</p>
+
+
+
+<p class="wp-block-paragraph">软件漏洞常被描述为“装更新即可修复”。密码学密钥暴露则多了一层要求：一旦描述符已发布，其中泄露的密钥无法收回。运行过脆弱版本的站点必须生成新的.onion地址并完成迁移——Dread与Omega即是如此。</p>
+
+
+
+<p class="wp-block-paragraph">截至目前，尚无官方修复：美国国家漏洞库中未见该缺陷的CVE编号，Tor项目或GoBalance维护方亦无公开公告。Dread表示计划发布修补版GoBalance并协助受影响站点迁移。一名独立研究者已发布补丁与可从单份公开描述符恢复主密钥的概念验证；研究者称演示仅使用为测试生成的密钥，未针对真实服务。</p>
+
+
+
+<h2 class="wp-block-heading">暗网网站运营者与用户应如何应对</h2>
+
+
+
+<p class="wp-block-paragraph">“<mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-vivid-red-color">暗网下/AWX</mark>”认为，劫持洋葱地址并不一定等于服务器被黑。控制洋葱地址与控制暗网网站背后的服务器是不同的概念。能够发布针对某身份的有效描述符信息的攻击者，可能把客户端导向其控制的暗网网站，但这并不自动赋予对原服务数据库、文件或应用环境的访问权。</p>
+
+
+
+<p class="wp-block-paragraph">攻击者仍可造成严重危害：用户可能被定向到恶意的仿冒网站并输入密码等敏感信息；也可通过占用受损地址干扰可用性，使用户无法经原地址到达合法服务。当用户无法区分合法基础设施与密码学上有效的冒充时，洋葱身份通常所依赖的信任即失效。因此，没有后端服务器被入侵的证据，不能等同于用户未受影响——损害可能发生在身份与流量路由层，而非传统系统入侵。</p>
+
+
+
+<p class="wp-block-paragraph"><strong>对暗网网站运营者而言</strong>：安装修复补丁无法撤销已发生的暴露。曾发布过脆弱描述符的站点应创建新.onion地址并迁移；确认密钥格式，避免继续使用Tor格式扩展私钥的脆弱签名路径。</p>
+
+
+
+<p class="wp-block-paragraph"><strong>对可能访问过受影响暗网网站的用户</strong>：按Dread建议，修改本站及其他可能受影响站点的密码；将旧地址视为不可信；在信任任何新地址前，通过已签名的官方声明加以核实。</p>
+
+
+
+<p class="wp-block-paragraph">GoBalance漏洞的本质，是在Ed25519签名实现中错误处理Tor格式扩展私钥：只传入前32字节、丢弃用于随机数派生的后32字节，使每条消息的随机数可从公开信息计算，进而从单份公开描述符恢复主身份秘密标量。</p>
+
+
+
+<p class="wp-block-paragraph">根据“<mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-vivid-red-color">暗网下/AWX</mark>”对近期报道的综合分析：原版OnionBalance与Tor本身不受影响；风险主要落在使用脆弱路径、且密钥为Tor格式的服务上。劫持地址不等于拿下后端，但足以造成仿站、凭据收割与可用性破坏。对已暴露的身份，唯一可靠出路是换新洋葱地址并完成可信迁移。</p>
+                                                                                </div>
