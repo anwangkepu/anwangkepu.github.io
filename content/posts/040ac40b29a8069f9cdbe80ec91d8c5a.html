@@ -1,0 +1,104 @@
++++
+title = "GoBalance漏洞案例：暗网论坛Dread的主洋葱域名密钥泄露，网站被竞争对手劫持"
+date = 2026-10-16T04:23:00+08:00
+categories = ["独家报道", "暗网网站"]
+tags = ["Dread", "GoBalance", "HugBunter", "V3域名", "暗网论坛", "黑客攻击"]
+thumbnail = ""
++++
+
+<div class="entry-content clearfix">
+                            
+<p class="wp-block-paragraph">上文“<mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-vivid-red-color">暗网下/AWX</mark>”详细讲解了暗网网站广泛使用的负载均衡工具GoBalance存在严重漏，任何人都可以从其公开数据中恢复洋葱域名的密钥，从而接管暗网网站。接下来本站（anwangxia.com）将用两个具体的案例介绍该漏洞的严重程度，本文首先讲解暗网最大的英文论坛Dread遭受<span class="wpcom_tag_link">GoBalance</span>漏洞攻击的情形，该<span class="wpcom_tag_link">暗网论坛</span>由化名为<span class="wpcom_tag_link">HugBunter</span>和Paris的管理员运营。</p>
+
+
+
+<p class="wp-block-paragraph">在中国的国庆节期间（10月5日至10月7日），知名暗网论坛<span class="wpcom_tag_link">Dread</span>的两个洋葱地址均被接管并重定向至竞争对手平台Conclave。Dread的运营者最初将此次事件归咎于密钥意外泄露，但后来才得知，GoBalance漏洞才是罪魁祸首。</p>
+
+
+
+<p class="wp-block-paragraph">Dread论坛已迁移至新地址，并通知用户更改密码。在10月7日发布的一份署名声明中，运营方表示，由于第三方软件漏洞导致洋葱私钥泄露，该论坛已“永久迁移”，并且“其他隐藏服务也可能受到影响”。他们声称Dread的服务器并未遭到入侵。</p>
+
+
+
+<h2 class="wp-block-heading">Dread的2个主洋葱地址相继被攻击的过程</h2>
+
+
+
+<p class="wp-block-paragraph">10月5日大约5点31分，Dread的主洋葱地址（“dreadytofat”）上出现了一条名为“dread²”的通知，称该暗网网站已被黑客入侵。</p>
+
+
+<div class="wp-block-image">
+<figure class="aligncenter size-large"><noscript><img fetchpriority="high" decoding="async" width="1024" height="576" src="/images/74fdfc9588b73ff714fa90a955c3eff8.webp" alt="GoBalance漏洞案例：暗网论坛Dread的主洋葱域名密钥泄露，网站被竞争对手劫持" class="wp-image-5154"></noscript><img fetchpriority="high" decoding="async" width="1024" height="576" src="/images/74fdfc9588b73ff714fa90a955c3eff8.webp" alt="GoBalance漏洞案例：暗网论坛Dread的主洋葱域名密钥泄露，网站被竞争对手劫持" class="wp-image-5154 j-lazy"></figure>
+</div>
+
+
+<p class="wp-block-paragraph">10月5日6点02分，同一洋葱地址显示了来自Conclave管理员的消息，声称已控制Dread的洋葱密钥，攻击者还声称掌握敏感数据。</p>
+
+
+
+<p class="wp-block-paragraph">当天晚些时候，Dread的创始人HugBunter发布了一份透明度报告，将此次数据泄露归咎于联合管理员Paris，称包含私钥的软件存档被误上传。HugBunter表示，Dread的主洋葱域名dreadytofatroptsdj6io7l3xptbet6onoyno2yv7jicoxknyazubrad.onion已经退休，不再使用，同时他表示：没有服务器遭到入侵；没有用户数据被访问；服务器仍未暴露。</p>
+
+
+<div class="wp-block-image">
+<figure class="aligncenter size-large"><noscript><img decoding="async" width="1024" height="631" src="/images/63af669c74c252e7e0bd8aad87d20c82.webp" alt="GoBalance漏洞案例：暗网论坛Dread的主洋葱域名密钥泄露，网站被竞争对手劫持" class="wp-image-5155"></noscript><img decoding="async" width="1024" height="631" src="/images/63af669c74c252e7e0bd8aad87d20c82.webp" alt="GoBalance漏洞案例：暗网论坛Dread的主洋葱域名密钥泄露，网站被竞争对手劫持" class="wp-image-5155 j-lazy"></figure>
+</div>
+
+
+<p class="wp-block-paragraph">Paris随后发表声明，承认责任，并表示这是软件部署过程中用户操作失误造成的。</p>
+
+
+<div class="wp-block-image">
+<figure class="aligncenter size-full"><noscript><img decoding="async" width="733" height="418" src="/images/1751ff078ff437637ac888f89dcdd9ff.webp" alt="GoBalance漏洞案例：暗网论坛Dread的主洋葱域名密钥泄露，网站被竞争对手劫持" class="wp-image-5156"></noscript><img decoding="async" width="733" height="418" src="/images/1751ff078ff437637ac888f89dcdd9ff.webp" alt="GoBalance漏洞案例：暗网论坛Dread的主洋葱域名密钥泄露，网站被竞争对手劫持" class="wp-image-5156 j-lazy"></figure>
+</div>
+
+
+<p class="wp-block-paragraph">随后，在服务中断期间，10月6日，Dread管理员将用户引导至备用“VIP”镜像站点（“dreadlands”），该地址此前仅供高级会员使用，用于规避DDoS攻击。同时，HugBunter重申，此次重大安全漏洞是由于操作失误造成的，而不是Dread基础设施的缺陷。</p>
+
+
+<div class="wp-block-image">
+<figure class="aligncenter size-full"><noscript><img loading="lazy" decoding="async" width="739" height="407" src="/images/7e61acafc4fec938150f4af60497e773.webp" alt="GoBalance漏洞案例：暗网论坛Dread的主洋葱域名密钥泄露，网站被竞争对手劫持" class="wp-image-5157"></noscript><img loading="lazy" decoding="async" width="739" height="407" src="/images/7e61acafc4fec938150f4af60497e773.webp" alt="GoBalance漏洞案例：暗网论坛Dread的主洋葱域名密钥泄露，网站被竞争对手劫持" class="wp-image-5157 j-lazy"></figure>
+</div>
+
+
+<p class="wp-block-paragraph">然而，大约在10月7日凌晨2点29分，“dreadlands”域名上出现了一份声明，对管理员的账户提出质疑。这份声明用俄语写成，声称接管了第二个据称安全的域名，表明此次入侵并非意外上传。声明中还包含对管理员的隐晦威胁，要求道歉和赔偿，并链接到Conclave，同时承诺稍后公布入侵方法的细节。</p>
+
+
+
+<p class="wp-block-paragraph">第二个地址的泄露意义重大。一次意外上传不足以解释两个独立密钥的丢失。10月7日12点37分，Dread的管理员已经重新控制了VIP地址，并将其重定向回合法网站。</p>
+
+
+
+<p class="wp-block-paragraph">HugBunter随后承认，攻击者利用GoBalance的零日漏洞攻击了多个暗网服务。他表示“过去一小时里，我仔细检查了所有系统，可以肯定地告诉大家：我们的基础设施完好无损，也没有任何服务器遭到入侵。遗憾的是，看来是最近上传的GoBalance软件更新包出了问题——该包中包含了本应仅保存在本地环境的我们的洋葱私钥。”</p>
+
+
+<div class="wp-block-image">
+<figure class="aligncenter size-large"><noscript><img loading="lazy" decoding="async" width="1024" height="599" src="/images/d15053be83a076a1c4f1d6f8921aa5fe.webp" alt="GoBalance漏洞案例：暗网论坛Dread的主洋葱域名密钥泄露，网站被竞争对手劫持" class="wp-image-5158"></noscript><img loading="lazy" decoding="async" width="1024" height="599" src="/images/d15053be83a076a1c4f1d6f8921aa5fe.webp" alt="GoBalance漏洞案例：暗网论坛Dread的主洋葱域名密钥泄露，网站被竞争对手劫持" class="wp-image-5158 j-lazy"></figure>
+</div>
+
+
+<p class="wp-block-paragraph">随后，Dread团队开始通过其官方链接渠道推广一个新生成的洋葱地址（“dreadohbles”）。</p>
+
+
+
+<h2 class="wp-block-heading">HugBunter确认漏洞源自GoBalance，并表示Dread的服务器未遭到入侵</h2>
+
+
+
+<p class="wp-block-paragraph">HugBunter解释说，尽管洋葱地址被劫持，但Dread的服务器并未遭到入侵，也没有证据表明其数据库被访问。然而，他警告说，不能完全排除中间人攻击的可能性，并建议用户出于谨慎起见，更改Dread和其他可能受影响的服务的密码。</p>
+
+
+
+<p class="wp-block-paragraph">据HugBunter称，该漏洞源自GoBalance，这是一款用于管理Tor洋葱服务的工具，该漏洞影响所有已发布的版本，攻击者无需访问服务器本身即可恢复冒充受影响洋葱地址所需的签名能力。他还声称，该漏洞的发现使用了人工智能技术，Dread的团队在调查过程中也使用了人工智能技术发现了同样的问题。</p>
+
+
+
+<p class="wp-block-paragraph">HugBunter还透露，攻击者声称拥有Dread的数据库并试图勒索他，但拒绝提供任何证据。这些反复发生的服务器接管事件最初让管理员们感到困惑，他们难以理解为何在没有任何服务器入侵迹象的情况下，其他地址也会被攻破。</p>
+
+
+
+<p class="wp-block-paragraph">HugBunter警告称，任何之前使用过GoBalance的服务都可能受到影响。Dread团队宣布计划发布修复版本，并协助受影响的服务恢复其地址或将用户重定向到合法的替代地址。</p>
+
+
+
+<p class="wp-block-paragraph">HugBunter还证实，Dread将进行全面的运营安全审查，并采取进一步措施防止再次发生被攻击事件。他承认这些事件损害了社区的信任，但坚称Dread将继续运营，不会受到攻击。</p>
+                                                                                </div>
