@@ -1,0 +1,174 @@
++++
+title = "GoBalance漏洞案例：暗网交易市场Omega Market被攻击，更换新的暗网onion域名"
+date = 2026-10-18T23:35:00+08:00
+categories = ["独家报道", "暗网网站", "暗网域名"]
+tags = ["GoBalance", "Omega Market", "暗网交易市场", "零日漏洞"]
+thumbnail = ""
++++
+
+<div class="entry-content clearfix">
+                            <div class="wp-block-image">
+<figure class="aligncenter size-large"><noscript><img fetchpriority="high" decoding="async" width="1024" height="543" src="/images/4174c0c6e66064f740c35f81b4a25ea3.webp" alt="GoBalance漏洞案例：暗网交易市场Omega Market被攻击，更换新的暗网onion域名" class="wp-image-5165"></noscript><img fetchpriority="high" decoding="async" width="1024" height="543" src="/images/4174c0c6e66064f740c35f81b4a25ea3.webp" alt="GoBalance漏洞案例：暗网交易市场Omega Market被攻击，更换新的暗网onion域名" class="wp-image-5165 j-lazy"></figure>
+</div>
+
+
+<p class="wp-block-paragraph">GoBalance工具的漏洞因2026年10月知名暗网论坛Dread被劫持相关事件而格外引人关注，Dread论坛管理HugBunter曾表示有多个暗网市场的地址被接管（含部分已关闭站点），但未点出具体名称或给出数量。不过“<mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-vivid-red-color">暗网下/AWX</mark>”在Dread论坛中看到，暗网市场Omega已经确认受<span class="wpcom_tag_link">GoBalance</span>漏洞影响，并更换了新的onion域名。</p>
+
+
+
+<p class="wp-block-paragraph"><span class="wpcom_tag_link">Omega Market</span>是一个成立于2025年2月10日的暗网市场，也是目前暗网里仍在存活的较大暗网市场之一， 商家在此销售实物和数字产品及服务。该暗网平台设计简洁大方，大概率是Vibe Coding开发的网站，自称拥有：全球范围内的毒品和数字商品——内置赌场——内置论坛——减害措施（Harm Reduction）——支持PGP的双因素认证——反钓鱼系统——7×24小时客服支持——第三方托管及FE服务，宣称其团队重视用户反馈并定期更新平台。</p>
+
+
+
+<p class="wp-block-paragraph">“<mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-vivid-red-color">暗网下/AWX</mark>”看到，Omega Market除了支持暗网通用的门罗币（XMR），还支持比特币（BTC）与莱特币（LTC），并在其暗网网站提醒：</p>
+
+
+
+<blockquote class="wp-block-quote is-layout-flow wp-block-quote-is-layout-flow">
+<p class="wp-block-paragraph">➙ 请直接从您自己的钱包中发送 BTC/LTC，切勿通过交易所或需要 KYC 认证的其他加密货币交易服务进行转账，且需一次性完成交易。<br>➙ 生成的 BTC 或 LTC 地址仅在 15 分钟内有效，且仅限使用一次。<br>➙ 交易所的提现存在延迟且采用批量处理，因此您可能会错过汇率窗口。<br>➙ 可选择提供退款地址，以便在存款延迟或过期时获得退款。但退款并非保证。</p>
+</blockquote>
+
+
+
+<p class="wp-block-paragraph">如此专业的暗网市场为了防范DDoS攻击也使用了GoBalance工具，于是也受到了GoBalance漏洞的影响，被攻击并跳转至攻击者的Conclave服务。</p>
+
+
+
+<p class="wp-block-paragraph">10月7日晚上19点07分， 有用户在Dread论坛发帖询问为什么Omega市场主链接会跳转到Conclave，称“当我点击子论坛面板中的市场链接时，它会跳转到Conclave。那个人是不是对Omega也做了和对Dread一样的事？其他市场是否也面临威胁？目前使用DNN是否存在风险？”</p>
+
+
+
+<p class="wp-block-paragraph">该帖子下有用户/u/Darkazon提醒称，所有暗网市场都需要更换其洋葱地址；如果它们仍在使用之前的地址，执法部门便能轻松实施中间人攻击，并表示，可以肯定地说中间人攻击100%可行。/u/shadowrealm称，Omega正在使用GoBalance。GoBalance存在一个漏洞，会危及任何使用该服务的网站的私钥安全。该链接很可能因此而遭到入侵。不过别担心，目前尚未有数据泄露的确认消息。</p>
+
+
+
+<p class="wp-block-paragraph">随后，Omega Market的管理员/u/quark于10月8日在Dread论坛发布公告：“OMEGA MARKET: WE’RE BACK, BABY, YA! NEW URL Marketplace Updates”，该公告解释称，因GoBalance缺陷导致的问题已将旧地址下线并迁至新地址。原文如下：</p>
+
+
+
+<blockquote class="wp-block-quote is-layout-flow wp-block-quote-is-layout-flow">
+<p class="wp-block-paragraph">—–BEGIN PGP SIGNED MESSAGE—–<br>Hash: SHA256</p>
+
+
+
+<p class="wp-block-paragraph">OMEGA MARKET: WE’RE BACK, BABY, YA!</p>
+
+
+
+<p class="wp-block-paragraph">Our new URL is:</p>
+
+
+
+<p class="wp-block-paragraph"><a href="http://omegaartzedzoquzbsaf3wmza4fqeqx6msl4smeybd5suqpkb36norqd%5B.%5Donion">http://omegaartzedzoquzbsaf3wmza4fqeqx6msl4smeybd5suqpkb36norqd[.]onion</a></p>
+
+
+
+<p class="wp-block-paragraph">We’re sorry we had to take omega7eye…….onion offline due to an issue caused by the GoBalance bug.</p>
+
+
+
+<p class="wp-block-paragraph">We’re back up, and this new URL is now our official address.</p>
+
+
+
+<p class="wp-block-paragraph">Stay safe. Stay sharp.</p>
+
+
+
+<p class="wp-block-paragraph">Thank you,<br>Q</p>
+
+
+
+<p class="wp-block-paragraph">—–BEGIN PGP SIGNATURE—–</p>
+
+
+
+<p class="wp-block-paragraph">iQJPBAEBCAA5FiEE9WFvQOzmXHFsU63W6RZv3HE+4MkFAmrGvxcbFIAAAAAABAAO<br>bWFudTIsMi41KzEuMTIsMiwxAAoJEOkWb9xxPuDJpfsP/0bhZU2iit1DBThwrMG4<br>SSGb99kfkbN4OUWCcpOyLG/H/VsgXvlC0Ga/f6PViZLNSfhaV70P0c3fofYOKqr3<br>hqcAkc2FZNRmjWVPG7PvmqHntPOyRXM6g1pCCeff2TI23VKnWcIVkxTHM0a/fhbp<br>lPpN1nc2DNs17dN1/c5I83GpAV1bZbx9l3r3iJOWNN3Icnx+JiZSdIJgVss+bviD<br>y0386rSFIxbZ+fq0NrefiZPh5zKn4BYNBnTbe966NCN64c5Sje0mh488fbCgKWTl<br>PlLOoU+MqvNaKQdY0S/nd/TuaOqJv40pHndE532qdfiY16bC/3aDdym7NvNpRM76<br>jazm/scJdGkcPCbN72KUgKKx6Ol3TVMFF2FpPg6+Pss4g6+FEj7lXAG0ZwjELbus<br>/eJUqw66l7qq3iuSbfRraPisHaBfjQc7SjE/vkb1tyn+zRs/LsE2i6/cuZVSQ1CL<br>E8tsjjnKM4mXcCCchkMmjbgyhBjAqArE/UAQPyFt+pAnLn9V2WunRDdEfeGGvVjw<br>ijueAQEvx5kcfz/EgpgIJ82o1GzPV8KifUwU/DiD32Qt2CL0I2NVpY813XMNm1K8<br>yP0vff7NzjfWV3cccuwuAZbrvYsPU8owTMjm+FBmxpz11MUF5Ly8O2nWYFQzZOsy<br>NAolntt5WDgERhRsN3e2wqbu<br>=z5MI<br>—–END PGP SIGNATURE—–</p>
+
+
+
+<p class="wp-block-paragraph">It will be slow atm because some working is going on but everything will be back normal, just get new circuit it should work fine for now.</p>
+</blockquote>
+
+
+<div class="wp-block-image">
+<figure class="aligncenter size-large"><noscript><img decoding="async" width="1024" height="580" src="/images/01a83be83d164c76ef2e2db1c67b5d57.webp" alt="GoBalance漏洞案例：暗网交易市场Omega Market被攻击，更换新的暗网onion域名" class="wp-image-5164"></noscript><img decoding="async" width="1024" height="580" src="/images/01a83be83d164c76ef2e2db1c67b5d57.webp" alt="GoBalance漏洞案例：暗网交易市场Omega Market被攻击，更换新的暗网onion域名" class="wp-image-5164 j-lazy"></figure>
+</div>
+
+
+<p class="wp-block-paragraph">暗网媒体Dark Web Informer直接在社交媒体提醒大家：</p>
+
+
+
+<blockquote class="wp-block-quote is-layout-flow wp-block-quote-is-layout-flow">
+<p class="wp-block-paragraph">Omega暗网市场可能已被劫持，情况与最近发生的Dread事件类似。</p>
+
+
+
+<p class="wp-block-paragraph">有确凿报道称，Omega的主市场链接正在将访问者重定向至攻击者的Conclave服务。</p>
+
+
+
+<p class="wp-block-paragraph">HugBunter证实了这些报道，并表示攻击者可能正在利用最近几周收集到的密钥来重定向洋葱服务。</p>
+</blockquote>
+
+
+
+<p class="wp-block-paragraph">Omega Market也在其暗网网站发出钓鱼链接的警告：</p>
+
+
+
+<blockquote class="wp-block-quote is-layout-flow wp-block-quote-is-layout-flow">
+<p class="wp-block-paragraph">➙ OMEGA MARKET钓鱼链接 – 警告</p>
+
+
+
+<p class="wp-block-paragraph">这些是虚假钓鱼链接：</p>
+
+
+
+<ul class="wp-block-list">
+<li><a href="http://omega7yhz7n4vg4yhf2na2qaaaeatdlqvjbj2juc245mr5muxtnuvgyd%5B.%5Donion">http://omega7yhz7n4vg4yhf2na2qaaaeatdlqvjbj2juc245mr5muxtnuvgyd[.]onion</a></li>
+
+
+
+<li><a href="https://omega3yhz7n4vg4yhf2na2qaaaeatdlqvjbj2juc245mr5muxtnuvgyd%5B.%5Dtop">https://omega3yhz7n4vg4yhf2na2qaaaeatdlqvjbj2juc245mr5muxtnuvgyd[.]top</a></li>
+</ul>
+
+
+
+<p class="wp-block-paragraph">并提醒大家小心钓鱼导航：</p>
+
+
+
+<ul class="wp-block-list">
+<li><a href="https://dark-web%5B.%5Dguru/?shop=ai-wp-editorial&amp;domain=black-market-dark.net&amp;page=/">https://dark-web[.]guru/?shop=ai-wp-editorial&amp;domain=black-market-dark.net&amp;page=/</a></li>
+</ul>
+</blockquote>
+
+
+
+<p class="wp-block-paragraph">Omega Market还继续在Dread论坛发布广告吸引更多的商家加入：</p>
+
+
+
+<blockquote class="wp-block-quote is-layout-flow wp-block-quote-is-layout-flow">
+<p class="wp-block-paragraph">致所有来自已关闭市场的难民商贩——Omega公告</p>
+
+
+
+<p class="wp-block-paragraph">欢迎所有来自DarkMatter、Nexus或Prime市场的难民商贩来到Omega市场，申请免费商贩保证金。</p>
+
+
+
+<p class="wp-block-paragraph">不过，申请免费商贩保证金时必须满足以下要求。</p>
+
+
+
+<p class="wp-block-paragraph">这些要求包括：<br>综合评分率高于 90%（将通过 DarkNet 数据库或直接在各市场进行核实）。<br>过往销售数量需达到 100 笔以上。</p>
+
+
+
+<p class="wp-block-paragraph">注意：每项待处理申请均将单独审核，具体情况可能导致要求有所不同。<br>请注意，我们的政策和要求可能会发生变更。</p>
+</blockquote>
+                                                                                </div>
