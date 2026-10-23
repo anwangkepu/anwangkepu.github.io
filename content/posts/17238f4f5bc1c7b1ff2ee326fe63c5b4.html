@@ -1,0 +1,135 @@
++++
+title = "十分之一的Tor出口节点被安装Ebury后门，用于SSH中间人攻击，Tor项目紧急标记BadExit"
+date = 2026-10-20T23:44:00+08:00
+categories = ["暗网动态", "Tor官方动态", "暗网技术"]
+tags = ["Ebury", "SSH劫持", "Tor网络", "中继节点", "中间人攻击", "出口节点"]
+thumbnail = ""
++++
+
+<div class="entry-content clearfix">
+                            <div class="wp-block-image">
+<figure class="aligncenter size-large"><noscript><img fetchpriority="high" decoding="async" width="1024" height="559" src="/images/d18d571389a874b3a575a69627c799a6.webp" alt="十分之一的Tor出口节点被安装Ebury后门，用于SSH中间人攻击，Tor项目紧急标记BadExit" class="wp-image-5169"></noscript><img fetchpriority="high" decoding="async" width="1024" height="559" src="/images/d18d571389a874b3a575a69627c799a6.webp" alt="十分之一的Tor出口节点被安装Ebury后门，用于SSH中间人攻击，Tor项目紧急标记BadExit" class="wp-image-5169 j-lazy"></figure>
+</div>
+
+
+<p class="wp-block-paragraph">近日，瑞士的安全研究专家<a href="https://kaba.cx/posts/20261020_Tor/" target="_blank" rel="noreferrer noopener">发布文章</a>，披露了其本月初协助Tor团队移除了300多个受后门感染的Tor<span class="wpcom_tag_link">出口节点</span>。“<mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-vivid-red-color">暗网下/AWX</mark>”在本文对该文章进行了翻译，并将技术细节进行讲解。</p>
+
+
+
+<p class="wp-block-paragraph">文章称，2026年10月2日上午约9时35分，333个已遭感染的Tor出口节点开始协同行动：拦截SSH连接，并尽可能收集未加密数据。<span class="wpcom_tag_link">Tor网络</span>全网出口中继约3000个，这意味着攻击方一度控制了约十分之一的出口节点。攻击者早在8月份就获得了服务器的访问权限，并悄悄部署了<span class="wpcom_tag_link">Ebury</span> 1.8.3有效载荷——这是一种用于Linux的OpenSSH后门与凭据窃取程序。</p>
+
+
+
+<p class="wp-block-paragraph">Tor出口节点是构成Tor回路的三跳中继中的最后一跳，负责把匿名网络内的流量接到开放互联网。目标站点若使用HTTPS，出口节点通常只能看到加密流量；若使用HTTP或其它明文协议，出口节点则可能看到甚至改写内容。本次事件中，攻击者正是利用对出口节点的控制，把特定协议（尤其是22端口的SSH）导向自有拦截基础设施。</p>
+
+
+
+<h2 class="wp-block-heading">攻击目的与攻击方法</h2>
+
+
+
+<p class="wp-block-paragraph">此次协同攻击至少有两个主要目的：一是尽可能多地收集未加密的邮件流量；二是对SSH连接进行拦截实施<span class="wpcom_tag_link">中间人攻击</span>（MITM）。</p>
+
+
+
+<p class="wp-block-paragraph">攻击方通过封锁部分端口，使得受控出口节点只能处理未加密的邮件流量。一位资深Tor运营者<a href="https://lists.torproject.org/mailman3/hyperkitty/list/tor-relays@lists.torproject.org/thread/QHRD6YOX6RZRDR7NCHNDO7GLCEA6VFM6/" target="_blank" rel="noreferrer noopener">在tor-relays邮件列表中详细描述了相关现象</a>。本文（来自KABA.CX）重点介绍了第二类行为：SSH中间人攻击。</p>
+
+
+
+<p class="wp-block-paragraph">若用户的Tor回路恰好经上述333个恶意出口之一离开网络，初期往往难以察觉：加密网页流量会照常转发；一旦尝试通过22端口建立SSH连接，请求会被重定向到12台SSH拦截服务器中的一台。用户端可能收到类似如下的主机密钥变更警告：</p>
+
+
+
+<pre class="wp-block-code"><code>@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@    WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!     @
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+IT IS POSSIBLE THAT SOMEONE IS DOING SOMETHING NASTY!
+Someone could be eavesdropping on you right now (man-in-the-middle attack)!
+It is also possible that a host key has just been changed.
+The fingerprint for the ED25519 key sent by the remote host is
+SHA256:6baCZCPsl+AfQuujUS81fMEE/C7UeJ+AwjrImqmDB3E.
+Please contact your system administrator.</code></pre>
+
+
+
+<p class="wp-block-paragraph">若用户忽略警告并继续登录，攻击者会完成三件事：窃取密码；建立通向真实目标服务器的连接并监视用户输入的每一条命令（真正的中间人会话）；再开第二条连接，向目标服务器植入Ebury。</p>
+
+
+
+<h2 class="wp-block-heading">发现、报告与下线时间线</h2>
+
+
+
+<p class="wp-block-paragraph">安全研究者（KABA.CX的作者）在10月2日晚间<a href="https://community.torproject.org/relay/community-resources/bad-relays/" target="_blank" rel="noreferrer noopener">将发现报告给Tor项目的网络健康团队</a>。对方确认此类攻击此前未见过，这是一个新出现的问题，并着手联系受影响的中继运营者。Tor网络健康团队称：“我们以前没有见过这样的攻击。”</p>
+
+
+
+<p class="wp-block-paragraph">时间线大致如下：</p>
+
+
+
+<ul class="wp-block-list">
+<li><strong>10月2日（周五）</strong>：拦截行动开始。</li>
+
+
+
+<li><strong>10月4日（周日）</strong>：Tor网络健康团队向中继运营者<a href="https://lists.torproject.org/mailman3/hyperkitty/list/tor-relays@lists.torproject.org/thread/WOHPLKCSHYXFTBRZXDENDKJZMBMPLMG5/" target="_blank" rel="noreferrer noopener">发布公告</a>，运营者开始关闭出口节点；相关中继被标记为BadExit，客户端不再用其作为出口。</li>
+
+
+
+<li><strong>10月5日（周一）</strong>：攻击者重启了部分中继，但由于这些中继已被标记，因此它们只能用作中间中继；同日，所有受感染服务器全部关闭——部分由运营者接到通知后关闭，部分由攻击者自行关闭。</li>
+</ul>
+
+
+
+<p class="wp-block-paragraph">Tor网络健康团队<a href="https://lists.torproject.org/mailman3/hyperkitty/list/tor-relays@lists.torproject.org/thread/WOHPLKCSHYXFTBRZXDENDKJZMBMPLMG5/" target="_blank" rel="noreferrer noopener">在公告中描述</a>的模式是：攻击者先进入基于Linux的主机；若这些机器原先跑的是非出口中继，会修改torrc，将其改成出口节点，以便实施SSH攻击。<a href="https://metrics.torproject.org/relayflags.html?start=2026-09-02&amp;end=2026-10-19&amp;flag=Exit" target="_blank" rel="noreferrer noopener">metrics.torproject.org网站</a>上以Exit标志筛选的曲线在10月4日出现明显下跌，之后尚未完全恢复。</p>
+
+
+
+<h2 class="wp-block-heading">如何定位全部受感染的出口节点</h2>
+
+
+
+<p class="wp-block-paragraph">文章作者使用<a href="https://gitlab.torproject.org/tpo/network-health/exitmap" target="_blank" rel="noreferrer noopener">exitmap</a>构建脚本：固定某个出口节点，再从自己的服务器A向自己的服务器B发起SSH连接。服务器A检查是否收到服务器B的正确SSH指纹；服务器B检查连接是否来自固定的出口节点，还是来自那12台拦截SSH的服务器。</p>
+
+
+
+<p class="wp-block-paragraph">脚本对约3000个出口中继逐一跑完。约十几个返回伪造指纹；另有300多个服务器虽未直接伪造指纹，但会把流量重定向到同一批拦截服务器。仅凭重定向这一行为就足以确认该出口服务器已被感染。</p>
+
+
+
+<p class="wp-block-paragraph">进一步分析中，作者用<a href="https://github.com/jaksi/sshesame" target="_blank" rel="noreferrer noopener">sshesame</a>作蜜罐，诱使中间人登录蜜罐，观察到对方使用paramiko（Python SSH库），并尝试用Perl安装Ebury。相关命令先检查权限，再执行经base64编码的载荷，例如：</p>
+
+
+
+<pre class="wp-block-code"><code>echo "U=$(id -u) S=$(command -v sudo &gt;/dev/null 2&gt;&amp;1 &amp;&amp; (sudo -n true 2&gt;/dev/null &amp;&amp; echo nopass || echo maybe) || echo none)"
+sudo bash -c 'echo &lt;base64&gt; | base64 -d | perl'</code></pre>
+
+
+
+<h2 class="wp-block-heading">未能明确的问题与攻击者的动机判断</h2>
+
+
+
+<p class="wp-block-paragraph">目前最大的疑问是：攻击者最初如何进入这么多服务器。有一种说法是托管商本身被黑客攻破（<a href="https://lists.torproject.org/mailman3/hyperkitty/list/tor-relays@lists.torproject.org/thread/RXWGWYYYKBDEBNXC2C3NYIQ2HHHWXL7O/" target="_blank" rel="noreferrer noopener">tor-relays列表中有讨论</a>），但目前仍属推测，没有人真正知道答案。</p>
+
+
+
+<p class="wp-block-paragraph">另一个问题是幕后黑手的身份：使用Ebury、广泛收集未加密数据，都指向经济动机的犯罪团伙；同样也是推断。ESET研究人员Marc-Etienne M. Léveillé<a href="https://lists.torproject.org/mailman3/hyperkitty/list/tor-relays@lists.torproject.org/thread/RXWGWYYYKBDEBNXC2C3NYIQ2HHHWXL7O/" target="_blank" rel="noreferrer noopener">在列表中指出</a>：2009至2023年间曾有约40万台服务器感染了Ebury病毒，因此极可能还有其它已沦陷的Tor中继尚未被发现。</p>
+
+
+
+<p class="wp-block-paragraph">作者还怀疑攻击方刻意选在周五发动，指望无人愿意牺牲周末响应；Tor团队能快速处置，因此更值得肯定。</p>
+
+
+
+<h2 class="wp-block-heading">对<span class="wpcom_tag_link">中继节点</span>运营者与Tor用户的启示</h2>
+
+
+
+<p class="wp-block-paragraph"><a href="https://kaba.cx/posts/20261020_Tor/" target="_blank" rel="noreferrer noopener">该文章</a>对防护也进行了总结，对中继节点运营者而言，结论并不新鲜，教训也和以往一样：额外安全措施值得投入。应禁用密码登录，改用SSH密钥；有条件者可进一步采用硬件密钥。中继与桥接节点应被当作高度受针对的生产机器来运维，而非“能跑就行”的实验机。</p>
+
+
+
+<p class="wp-block-paragraph">对普通用户而言：经Tor做SSH时，务必认真对待主机密钥变更警告，不要轻易接受新指纹；优先使用密钥认证而非密码。对中继运营者而言：出口节点一旦被改配置或异常转向，应立即自查是否遭入侵，并与Tor网络健康团队协作，及时标记BadExit、下线受控机器。</p>
+                                                                                </div>
